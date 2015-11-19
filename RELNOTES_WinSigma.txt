@@ -1,0 +1,46 @@
+WinSigma - RELEASE NOTES
+
+---------------------------------------------------
+V 4.02.000 - 23-03-2011 - Simone Calamai
+
+Modifiche:
+
+
+Aggiunte:
+- Aggiunto UpdateWinSigma_4_2_0.txt per aggiornamento database
+- Nuovi layout certificati CertificatoTrazioneProfilati2011.prn e CertificatoReti2011.prn
+- Nuovi layout minute MinutaTrazioneProfilati2011.prn e MinutaReti2011.prn
+- Nuove dll TrazioneProfilati2011 e TrazioneReti2011
+- Listino: associazione servizi DB01, DB02, DB03, DB04, DB05, DB95 al certificato Prova di trazione su profilati in acciaio (n. 14)
+- Listino: associazione servizi DA14, DA15, DA16, DA17 al certficato Prova su reti elettrosaldate 2011 (n. 15)
+
+
+Bug:
+- Bug msg "Nessuna riga e' stata influenzata...": aggiunta sequenza try and catch nelle operazioni di aggiunta/modifica record nel database
+- Bug requery/sincronizzazione del recordset Provini in tutti i certificati: aggiunta SAFETY_OPEN(ProviniSet) prima della SINCRONIZE
+in MainDlg::OnSelchangedTreeProvini
+- Bug edit dll: nelle varie dll al doppio clic sull'albero o alla pressione di Modifica il focus passa al primo campo editabile
+selezionando tutto il contenuto
+
+
+
+---------------------------------------------------
+V 4.01.001 - 05-10-2010 - Simone Calamai
+
+Modifiche:
+- Stampa report etichette: modificato layout per aumentare lo spazio a disposizione dei dati aggiuntivi
+
+
+Aggiunte:
+
+
+
+Bug:
+- Verbali: nella ValidateData corretto il bug dovuto all'utilizzazione della data del verbale corrente
+al posto della data modificata per eseguire il controllo di coerenza tra data e progressivo totale del verbale.
+Questo elimina il dead lock causato da modifiche di data non compatibili con gli altri verbali presenti.
+- Stampa Etichette: corretta stampa etichetta bianca in piu' 
+- Compressione Carote: variata visualizzazione diametro in mm da 1 cifra decimale a nessuna cifra decimale
+- Centro Trasformazione: se la data di prelievo e' n.d. la data stampata sul certificato e' 01/01/1970.
+
+

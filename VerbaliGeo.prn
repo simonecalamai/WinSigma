@@ -1,0 +1,105 @@
+[general]
+x zero=+10
+y zero=-260
+
+; numero massimo di righe per pagina nella lista dei campioni
+tab lines=10
+
+[strings]
+10=50,360,800,40,Courier New,40,35,L,VERBALE DI ACCETTAZIONE N.
+15=1640,+80,100,40,Courier New,26,35,L,PAG.
+20=0,+80,420,40,Courier New,18,35,L,Intestatario Certificati  :
+30=0,+120,420,40,Courier New,18,35,L,Impresa...................:
+40=0,+120,420,40,Courier New,18,35,L,Cantiere..................:
+50=0,+120,420,40,Courier New,18,35,L,Direttore dei lavori......:
+60=0,+80,420,40,Courier New,18,35,L,Proprietario..............:
+70=0,+80,460,40,Courier New,26,35,L,Campioni consegnati con:
+80=0,+40,460,40,Courier New,26,35,L,Prove richieste e note :
+85=0,+40,2050,40,Courier New,36,35,L,------------------------------------------------------------------------------
+-90=0,1720,500,40,Courier New,18,35,L,Spianatura campioni CLS.........:
+-100=0,+80,500,40,Courier New,18,35,L,Intestazione fattura............:
+-130=1210,+80,230,40,Courier New,18,35,L,Cond. Pagam.:
+-140=0,+80,500,40,Courier New,18,35,L,Richiedente in nome e per conto :
+-150=0,+80,500,40,Courier New,18,35,L,Consegna certificati............:
+-240=0,2160,2050,40,Courier New,20,35,L,La richiesta di urgenza comporta la maggiorazione del 50%. I certificati vengono consegnati previo saldo fattura
+-250=0,+40,2050,40,Courier New,20,35,L,Per il ritiro diretto dei certificati e' obbligatoria la restituzione del presente verbale
+-260=0,+40,2050,40,Courier New,20,35,L,La firma del presente verbale costituisce accettazione delle Norme e Tariffe del Laboratorio ed autorizzazione al trat_
+-270=0,+40,2050,40,Courier New,20,35,L,tamento dei dati personali soggetti all'art.10 L.675/96 ai soli fini contabili e fiscali.
+-280=200,+80,600,40,Courier New,26,35,L,Operatore
+-290=-150,+80,750,40, Courier New,26,35,L,_____________________________
+-300=+1200,-80,600,40,Courier New,26,35,L,Il Richiedente
+-310=-150,+80,750,40,Courier New,26,35,L,_____________________________
+
+[fields]
+10=1450,360,250,40,Courier New,40,35,L,numeroVerbale
+20=170,+80,650,40,Courier New,26,35,L,tipoVerbale
+30=+850,+0,400,40,Courier New,26,35,L,data
+40=+770,+0,220,40,Courier New,26,35,L,@page
+45=+50,+0,220,40,Courier New,26,35,L,pagina
+50=420,+80,130,40,Courier New,26,35,L,codAzCertificati
+60=+240,+0,900,40,Courier New,26,35,L,nomeAzCertificati
+70=-10,+40,1300,80,Courier New,26,35,L,indirizzoCertificati
+80=420,+80,130,40,Courier New,26,35,L,codImpresa
+90=+240,+0,900,40,Courier New,26,35,L,nomeImpresa
+100=-10,+40,1300,80,Courier New,26,35,L,indirizzoImpresa
+110=+0,+80,1300,40,Courier New,26,35,L,cantiere1
+120=+0,+40,1300,40,Courier New,26,35,L,cantiere2
+125=+0,+40,1300,40,Courier New,26,35,L,cantiere3
+130=+10,+40,1300,40,Courier New,26,35,L,direttoreLavori
+138=+500,+40,700,40,Courier New,14,35,L,domanda
+140=-500,+40,1300,40,Courier New,26,35,L,proprietario1
+145=+0,+40,1300,40,Courier New,26,35,L,proprietario2
+150=+0,+40,1500,40,Courier New,14,35,L,materialeConsegnato
+160=+0,+40,1500,40,Courier New,14,35,L,proveRichiesteNote
+167=0,+80,40,40,Courier New,14,35,L,barra
+170=230,+0,250,40,Courier New,14,35,L,campioni
+175=780,+0,40,40,Courier New,14,35,L,barra
+180=+90,+0,140,40,Courier New,14,35,L,sigle
+185=1070,+0,40,40,Courier New,14,35,L,barra
+190=+330,+0,250,40,Courier New,14,35,L,prelievo
+193=1890,+0,10,40,Courier New,14,35,L,barra
+195=+40,+0,60,50,Courier New,14,35,L,posizione
+198=1995,+0,40,40,Courier New,14,35,L,barra
+200=0,+40,40,40,Courier New,14,35,L,barra
+205=70,+0,50,40,Courier New,14,35,L,numero
+208=+60,+0,40,40,Courier New,14,35,L,barra
+210=+150,+0,360,40,Courier New,14,35,L,tipo
+215=780,+0,40,40,Courier New,14,35,L,barra
+220=+50,+0,200,40,Courier New,14,35,L,contrassegni
+225=1070,+0,40,40,Courier New,14,35,L,barra
+230=+170,+0,160,40,Courier New,14,35,L,struttura
+235=1690,+0,40,40,Courier New,14,35,L,barra
+240=+60,+0,120,40,Courier New,14,35,L,dataPrelievo
+245=1900,+0,10,40,Courier New,14,35,L,barra
+250=+40,+0,60,50,Courier New,14,35,L,certificato
+252=2000,+0,40,40,Courier New,14,35,L,barra
+253=0,+40,2030,40,Courier New,36,35,L,linea
+255=0,+440,2050,40,Courier New,36,35,L,linea
+-260=520,1720,300,40,Courier New,24,35,L,spianatura
+-265=0,+40,500,40,Courier New,14,35,L,letteraLabel
+-268=520,+0,800,40,Courier New,26,35,L,lettera
+-270=520,+40,110,40,Courier New,26,35,L,codAzFattura
+-280=+240,+0,900,40,Courier New,26,35,L,nomeAzFattura
+-290=-10,+40,1300,40,Courier New,26,35,L,indirizzoAzFattura
+-300=+50,+40,420,40,Courier New,14,35,L,partitaIVA
+-310=+740,+0,700,40,Courier New,14,35,L,condPagamento
+-305=-740,+40,420,40,Courier New,14,35,L,codFiscale
+-320=520,+25,900,40,Courier New,26,35,L,richiedente
+-330=+0,+80,900,40,Courier New,26,35,L,consegna
+-340=0,+80,2000,40,Courier New,26,35,L,urgenza
+-350=250,2400,1000,40,Courier New,26,35,L,operatore
+
+[tabfields]
+10=80,1280,100,40,Courier New,14,35,L,numeroCampioni
+20=+85,+0,400,40,Courier New,14,35,L,tipoCaratteristiche
+30=+440,+0,60,40,Courier New,14,35,L,dimensione3
+40=+60,+0,60,40,Courier New,14,35,L,dimensione2
+50=+60,+0,60,40,Courier New,14,35,L,dimensione1
+60=+170,+0,250,40,Courier New,14,35,L,sigla
+70=+160,+0,600,40,Courier New,14,35,L,struttura
+80=+610,+0,200,40,Courier New,14,35,L,data
+90=+210,+0,60,40,Courier New,14,35,L,posizioneCert
+
+[grids]
+
+[bitmaps]

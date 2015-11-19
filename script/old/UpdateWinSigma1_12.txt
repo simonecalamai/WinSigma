@@ -1,0 +1,10 @@
+alter table FATTURE add BancaAppoggio VARCHAR(64);
+alter table FATTURE add ABIAppoggio VARCHAR(8);
+alter table FATTURE add CABAppoggio VARCHAR(8);
+
+alter table TIPI_PAGAMENTO add Banca VARCHAR(64);
+alter table TIPI_PAGAMENTO add ABI VARCHAR(8);
+alter table TIPI_PAGAMENTO add CAB VARCHAR(8);
+
+alter table VERBALI drop CopieRichieste;
+alter table VERBALI add Annullato tinyint default 0;

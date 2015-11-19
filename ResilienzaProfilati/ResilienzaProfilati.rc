@@ -1,0 +1,231 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Italian (Italy) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ITA)
+#ifdef _WIN32
+LANGUAGE LANG_ITALIAN, SUBLANG_ITALIAN
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ITA)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 16, 1\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#endif //_WIN32\r\n"
+    "#include ""res\\ResilienzaProfilati.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""l.ita\\afxres.rc""          // Standard components\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 2,0,1,0
+ PRODUCTVERSION 2,0,1,0
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x2L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "041004b0"
+        BEGIN
+            VALUE "Comments", "\0"
+            VALUE "CompanyName", "\0"
+            VALUE "FileDescription", "ResilienzaProfilati DLL\0"
+            VALUE "FileVersion", "2, 0, 1, 0\0"
+            VALUE "InternalName", "ResilienzaProfilati\0"
+            VALUE "LegalCopyright", "Copyright (C) 2003\0"
+            VALUE "LegalTrademarks", "\0"
+            VALUE "OriginalFilename", "ResilienzaProfilati.DLL\0"
+            VALUE "PrivateBuild", "\0"
+            VALUE "ProductName", "ResilienzaProfilati Dynamic Link Library\0"
+            VALUE "ProductVersion", "2, 0, 1, 0\0"
+            VALUE "SpecialBuild", "\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x410, 1200
+    END
+END
+
+#endif    // !_MAC
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_DIALOG_MAIN DIALOG DISCARDABLE  0, 0, 327, 261
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "PROVA DI RESILIENZA SU PROFILATI IN ACCIAIO"
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "Tree1",IDC_TREE_PROVINI,"SysTreeView32",WS_BORDER | 
+                    WS_TABSTOP,16,148,72,61
+    PUSHBUTTON      "Modifica",IDC_BTN_MODIFICA,14,216,79,14,WS_DISABLED
+    EDITTEXT        IDC_EDIT_OSSERVAZIONI,65,12,176,21,ES_MULTILINE | 
+                    ES_AUTOHSCROLL | ES_WANTRETURN
+    COMBOBOX        IDC_COMBO_SPERIMENTATORI,65,36,176,72,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_COMBO_MACCHINE,65,54,176,70,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    CONTROL         "DateTimePicker1",IDC_DATA_PROVA,"SysDateTimePick32",
+                    DTS_RIGHTALIGN | WS_TABSTOP,251,54,59,12
+    PUSHBUTTON      "OK",IDOK,263,239,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,185,240,50,14
+    COMBOBOX        IDC_COMBO_PROVETTA,170,148,48,63,CBS_DROPDOWN | CBS_SORT | 
+                    WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        IDC_EDT_TEMPERATURA,106,192,19,12,ES_RIGHT | 
+                    ES_AUTOHSCROLL | ES_READONLY
+    EDITTEXT        IDC_EDIT_SEZ_INDEBOLITA,185,192,19,12,ES_RIGHT | 
+                    ES_AUTOHSCROLL | ES_READONLY
+    EDITTEXT        IDC_EDT_KV,264,192,19,12,ES_RIGHT | ES_AUTOHSCROLL | 
+                    ES_READONLY
+    PUSHBUTTON      "Conferma modifiche",IDC_BUTTON_CONFERMA,120,216,79,14
+    PUSHBUTTON      "Annulla modifiche",IDC_BUTTON_ANNULLA,226,216,79,14,NOT 
+                    WS_TABSTOP
+    CTEXT           "(°C)",IDC_STATIC,128,194,12,8
+    CTEXT           "KV",IDC_STATIC,268,180,10,8
+    CTEXT           "(J)",IDC_STATIC,285,194,8,8
+    LTEXT           "Data test",IDC_STATIC,251,44,30,8
+    GROUPBOX        "Provini",IDC_STATIC,7,133,309,103
+    CTEXT           "(mm)",IDC_STATIC,206,194,16,8
+    CTEXT           "Temperatura",IDC_STATIC,95,180,41,8
+    LTEXT           "Materiale",IDC_STATIC,139,94,30,8
+    GROUPBOX        "Serie",IDC_STATIC,7,80,309,51
+    EDITTEXT        IDC_EDIT_STRUTTURA,48,111,256,12,ES_AUTOHSCROLL | 
+                    ES_READONLY | NOT WS_TABSTOP
+    LTEXT           "Struttura",IDC_STATIC,14,114,28,8
+    GROUPBOX        "Certificato",IDC_STATIC,7,3,309,73
+    LTEXT           "Osservazioni",IDC_STATIC,19,15,41,8
+    LTEXT           "Sperimentatore",IDC_STATIC,12,38,48,8
+    LTEXT           "Macchina",IDC_STATIC,28,54,32,8
+    EDITTEXT        IDC_EDIT_SIGLA,103,92,23,12,ES_AUTOHSCROLL | ES_READONLY | 
+                    NOT WS_TABSTOP
+    LTEXT           "Sigla",IDC_STATIC,82,94,16,8
+    LTEXT           "Posizione",IDC_STATIC,11,94,31,8
+    EDITTEXT        IDC_EDIT_POSIZIONE,50,92,23,12,ES_CENTER | 
+                    ES_AUTOHSCROLL | ES_READONLY | NOT WS_TABSTOP
+    EDITTEXT        IDC_EDIT_MATERIALE,171,92,133,12,ES_AUTOHSCROLL | 
+                    ES_READONLY | NOT WS_TABSTOP
+    CTEXT           "Provetta",IDC_STATIC,138,150,28,8
+    LTEXT           "Sezione indebolita",IDC_STATIC,165,181,58,8
+    DEFPUSHBUTTON   "",IDC_BUTTON_NEXT,81,237,50,14,NOT WS_VISIBLE | NOT 
+                    WS_TABSTOP
+    EDITTEXT        IDC_EDIT_DATA_VA,251,24,46,12,ES_CENTER | ES_READONLY
+    LTEXT           "Data V.A.",IDC_STATIC,251,15,38,8
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_DIALOG_MAIN, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 320
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 254
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_ICON_INTERA_SELECT  ICON    DISCARDABLE     "icon_int.ico"
+IDI_ICON_INTERA         ICON    DISCARDABLE     "ico00001.ico"
+IDI_ICON_SELECT         ICON    DISCARDABLE     "ico_empt.ico"
+IDI_ICON_NOSELECT       ICON    DISCARDABLE     "ico_prov.ico"
+#endif    // Italian (Italy) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ITA)
+#ifdef _WIN32
+LANGUAGE 16, 1
+#pragma code_page(1252)
+#endif //_WIN32
+#include "res\ResilienzaProfilati.rc2"  // non-Microsoft Visual C++ edited resources
+#include "l.ita\afxres.rc"          // Standard components
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

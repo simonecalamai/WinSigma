@@ -1,0 +1,301 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Italian (Italy) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ITA)
+#ifdef _WIN32
+LANGUAGE LANG_ITALIAN, SUBLANG_ITALIAN
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ITA)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 16, 1\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#endif //_WIN32\r\n"
+    "#include ""res\\TrazionePiegamentoBarreCT.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""l.ita\\afxres.rc""          // Standard components\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 2,0,1,0
+ PRODUCTVERSION 2,0,1,0
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x2L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "041004b0"
+        BEGIN
+            VALUE "Comments", "\0"
+            VALUE "CompanyName", "\0"
+            VALUE "FileDescription", "TrazionePiegamentoBarreCT DLL\0"
+            VALUE "FileVersion", "2, 0, 1, 0\0"
+            VALUE "InternalName", "TrazionePiegamentoBarreCT\0"
+            VALUE "LegalCopyright", "Copyright (C) 2003\0"
+            VALUE "LegalTrademarks", "\0"
+            VALUE "OriginalFilename", "TrazionePiegamentoBarreCT.DLL\0"
+            VALUE "PrivateBuild", "\0"
+            VALUE "ProductName", "TrazionePiegamentoBarreCT Dynamic Link Library\0"
+            VALUE "ProductVersion", "2, 0, 1, 0\0"
+            VALUE "SpecialBuild", "\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x410, 1200
+    END
+END
+
+#endif    // !_MAC
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_DIALOG_TRAZIONE_PIEG_BARRE_CT DIALOG DISCARDABLE  0, 0, 444, 316
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION
+CAPTION 
+"PROVA DI TRAZIONE E PIEGAMENTO PER BARRE DI ACCIAIO DA C.A. CENTRO TRASFORMAZIONE"
+
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "Tree1",IDC_TREE_PROVINI,"SysTreeView32",WS_BORDER | 
+                    WS_TABSTOP,16,171,72,72
+    PUSHBUTTON      "Modifica",IDC_BTN_MODIFICA,148,250,79,14,WS_DISABLED
+    EDITTEXT        IDC_EDIT_OSSERVAZIONI,65,19,257,32,ES_MULTILINE | 
+                    ES_AUTOHSCROLL | ES_WANTRETURN
+    COMBOBOX        IDC_COMBO_SPERIMENTATORI,65,63,141,64,CBS_DROPDOWNLIST | 
+                    CBS_AUTOHSCROLL | CBS_NOINTEGRALHEIGHT | WS_VSCROLL | 
+                    WS_TABSTOP
+    COMBOBOX        IDC_COMBO_MACCHINE,252,62,175,64,CBS_DROPDOWNLIST | 
+                    CBS_AUTOHSCROLL | CBS_NOINTEGRALHEIGHT | WS_VSCROLL | 
+                    WS_TABSTOP
+    CONTROL         "DateTimePicker1",IDC_DATA_PROVA,"SysDateTimePick32",
+                    DTS_RIGHTALIGN | WS_TABSTOP,368,30,59,15
+    PUSHBUTTON      "OK",IDOK,375,295,50,14,NOT WS_TABSTOP
+    PUSHBUTTON      "Cancel",IDCANCEL,310,295,50,14,NOT WS_TABSTOP
+    EDITTEXT        IDC_EDT_PESO,105,189,27,12,ES_RIGHT | ES_AUTOHSCROLL | 
+                    ES_READONLY
+    EDITTEXT        IDC_EDIT_LUNGHEZZA,149,189,30,12,ES_RIGHT | 
+                    ES_AUTOHSCROLL | ES_READONLY
+    EDITTEXT        IDC_EDT_SNERVAMENTO,196,189,27,12,ES_RIGHT | 
+                    ES_AUTOHSCROLL | ES_READONLY
+    EDITTEXT        IDC_EDT_ROTTURA,240,189,27,12,ES_RIGHT | ES_AUTOHSCROLL | 
+                    ES_READONLY
+    EDITTEXT        IDC_EDT_ALLUNGAMENTO,284,189,27,12,ES_RIGHT | 
+                    ES_AUTOHSCROLL | ES_READONLY
+    EDITTEXT        IDC_EDT_ADERENZA,323,189,27,12,ES_RIGHT | ES_AUTOHSCROLL | 
+                    ES_READONLY
+    EDITTEXT        IDC_EDIT_DIAMETR_MANDRINO,364,189,19,12,ES_RIGHT | 
+                    ES_AUTOHSCROLL | ES_READONLY
+    CONTROL         "POS",IDC_RADIO_POS,"Button",BS_AUTORADIOBUTTON | 
+                    BS_LEFTTEXT | WS_DISABLED | WS_GROUP | WS_TABSTOP,394,
+                    182,31,10
+    CONTROL         "NEG",IDC_RADIO_NEG,"Button",BS_AUTORADIOBUTTON | 
+                    BS_LEFTTEXT | WS_DISABLED | WS_GROUP | WS_TABSTOP,394,
+                    195,31,10
+    PUSHBUTTON      "Annulla modifiche",IDC_BUTTON_ANNULLA,352,250,79,14,NOT 
+                    WS_TABSTOP
+    PUSHBUTTON      "Conferma modifiche",IDC_BUTTON_CONFERMA,250,250,79,14
+    EDITTEXT        IDC_EDT_FI_NOMINALE,98,116,16,12,ES_RIGHT | 
+                    ES_AUTOHSCROLL | ES_READONLY | NOT WS_TABSTOP
+    CTEXT           "Snervam.",IDC_STATIC,193,171,31,8,SS_CENTERIMAGE
+    CTEXT           "(kN)",IDC_STATIC,202,179,14,8
+    CTEXT           "Ø Nom",IDC_STATIC,71,118,23,8
+    CTEXT           "Lungh.",IDC_STATIC,152,171,23,8
+    LTEXT           "(gr)",IDC_STATIC,113,179,10,8
+    CTEXT           "Allung.",IDC_STATIC_ALL_AGT,288,171,22,8
+    CTEXT           "(mm)",IDC_STATIC_MM_PER,290,179,15,8
+    LTEXT           "Aderenza",IDC_STATIC,322,171,31,8
+    RTEXT           "Data test",IDC_STATIC,323,33,38,8
+    GROUPBOX        "Provini",IDC_STATIC,7,157,430,131
+    CTEXT           "Rottura",IDC_STATIC,241,171,24,8,SS_CENTERIMAGE
+    CTEXT           "(kN)",IDC_STATIC,246,179,14,8
+    LTEXT           "Peso",IDC_STATIC,110,171,17,8
+    LTEXT           "(mm)",IDC_STATIC,156,179,16,8
+    LTEXT           "(%) A",IDC_STATIC_PERC,401,220,17,8
+    EDITTEXT        IDC_EDIT_INDICE_ALL,403,230,13,12,ES_RIGHT | 
+                    ES_AUTOHSCROLL | ES_READONLY | NOT WS_TABSTOP
+    LTEXT           "Diametro",IDC_STATIC,359,171,29,8
+    LTEXT           "mandr.",IDC_STATIC,362,179,22,8
+    LTEXT           "Indice fr.",IDC_STATIC,323,179,28,8
+    LTEXT           "T. snerv",IDC_STATIC,249,211,27,8
+    EDITTEXT        IDC_EDIT_SNERVAM_PERC,247,230,30,12,ES_RIGHT | 
+                    ES_AUTOHSCROLL | ES_READONLY | NOT WS_TABSTOP
+    LTEXT           "T. rottura",IDC_STATIC,294,211,30,8
+    EDITTEXT        IDC_EDIT_TENS_PERC,294,230,30,12,ES_RIGHT | 
+                    ES_AUTOHSCROLL | ES_READONLY | NOT WS_TABSTOP
+    LTEXT           "Sez. eff.",IDC_STATIC,107,211,27,8
+    EDITTEXT        IDC_EDIT_SEZ_EFFET,105,230,30,12,ES_RIGHT | 
+                    ES_AUTOHSCROLL | ES_READONLY | NOT WS_TABSTOP
+    LTEXT           "Ø calc",IDC_STATIC,156,211,22,8
+    EDITTEXT        IDC_EDIT_FI_CALC,152,230,30,12,ES_RIGHT | ES_AUTOHSCROLL | 
+                    ES_READONLY | NOT WS_TABSTOP
+    CTEXT           "Allung. su Ø nom.",IDC_STATIC_ALL_AGT_PER,329,211,56,8
+    EDITTEXT        IDC_EDIT_ALLUNG_PERC,343,230,30,12,ES_RIGHT | 
+                    ES_AUTOHSCROLL | ES_READONLY | NOT WS_TABSTOP
+    LTEXT           "Toll. su sez.",IDC_STATIC,196,211,38,8
+    EDITTEXT        IDC_EDIT_TOLL_PERC,200,230,30,12,ES_RIGHT | 
+                    ES_AUTOHSCROLL | ES_READONLY | NOT WS_TABSTOP
+    RTEXT           "Materiale:",IDC_STATIC,253,118,38,8
+    RTEXT           "Marchio:",IDC_STATIC,13,253,29,8
+    LTEXT           "(mm²)",IDC_STATIC,111,220,18,8
+    LTEXT           "(mm)",IDC_STATIC,159,220,16,8
+    LTEXT           "(%)",IDC_STATIC,210,220,10,8
+    LTEXT           "(N/mm²)",IDC_STATIC,249,220,26,8
+    LTEXT           "(N/mm²)",IDC_STATIC,296,220,26,8
+    LTEXT           "(%)",IDC_STATIC,352,220,10,8
+    LTEXT           "Esito",IDC_STATIC,404,171,16,8
+    GROUPBOX        "Serie",IDC_STATIC,7,105,430,48
+    EDITTEXT        IDC_EDIT_STRUTTURA,98,133,329,14,ES_AUTOHSCROLL | 
+                    ES_READONLY | NOT WS_TABSTOP
+    LTEXT           "Struttura",IDC_STATIC,66,136,28,8
+    GROUPBOX        "Certificato",IDC_STATIC,7,8,430,93
+    LTEXT           "Osservazioni",IDC_STATIC,14,17,41,8
+    LTEXT           "Sperimentatore",IDC_STATIC,14,65,48,8
+    LTEXT           "Macchina",IDC_STATIC,215,65,32,8
+    EDITTEXT        IDC_EDIT_SIGLA,35,134,23,12,ES_CENTER | ES_AUTOHSCROLL | 
+                    ES_READONLY | NOT WS_TABSTOP
+    LTEXT           "Sigla",IDC_STATIC,14,136,16,8
+    LTEXT           "Pos.",IDC_STATIC,14,118,15,8
+    LTEXT           "(mm)",IDC_STATIC,115,118,15,8
+    LTEXT           "Indice All.",IDC_STATIC_ALL,393,211,32,8
+    EDITTEXT        IDC_EDIT_POSIZIONE,35,116,23,12,ES_CENTER | 
+                    ES_AUTOHSCROLL | ES_READONLY | NOT WS_TABSTOP
+    COMBOBOX        IDC_COMBO_MARCHI,47,251,86,139,CBS_DROPDOWNLIST | 
+                    WS_DISABLED | WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        IDC_EDIT_MATERIALE,294,116,133,12,ES_AUTOHSCROLL | 
+                    ES_READONLY | NOT WS_TABSTOP
+    EDITTEXT        IDC_EDIT_FYK,215,115,28,12,ES_CENTER | ES_AUTOHSCROLL | 
+                    ES_READONLY | NOT WS_TABSTOP
+    LTEXT           "Fyk",IDC_STATIC,198,117,12,8
+    DEFPUSHBUTTON   "",IDC_BUTTON_NEXT,143,295,50,14,NOT WS_VISIBLE | NOT 
+                    WS_TABSTOP
+    EDITTEXT        IDC_EDIT_DATA_VA,368,16,59,12,ES_CENTER | ES_READONLY
+    RTEXT           "Data V.A.",IDC_STATIC,323,19,38,8
+    CONTROL         "Calcoli con decimali",IDC_CHECK_CALCOLI,"Button",
+                    BS_AUTOCHECKBOX | BS_LEFTTEXT | WS_TABSTOP,349,49,78,10
+    CONTROL         "Rotoli Centro Trasformazione",IDC_CHECK_ROTOLI,"Button",
+                    BS_AUTOCHECKBOX | BS_LEFTTEXT | WS_DISABLED | WS_TABSTOP,
+                    15,273,117,8
+    LTEXT           "Fornitore",IDC_STATIC_FORNITORE,14,84,45,11
+    EDITTEXT        IDC_EDIT_FORNITORE,66,82,360,12,ES_AUTOHSCROLL
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_DIALOG_TRAZIONE_PIEG_BARRE_CT, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 437
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 309
+        HORZGUIDE, 7
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_ICON_NOSELECT       ICON    DISCARDABLE     "ico_prov.ico"
+IDI_ICON_SELECT         ICON    DISCARDABLE     "ico_empt.ico"
+IDI_ICON_INTERA         ICON    DISCARDABLE     "ico00001.ico"
+IDI_ICON_INTERA_SELECT  ICON    DISCARDABLE     "icon_int.ico"
+#endif    // Italian (Italy) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ITA)
+#ifdef _WIN32
+LANGUAGE 16, 1
+#pragma code_page(1252)
+#endif //_WIN32
+#include "res\TrazionePiegamentoBarreCT.rc2"  // non-Microsoft Visual C++ edited resources
+#include "l.ita\afxres.rc"          // Standard components
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

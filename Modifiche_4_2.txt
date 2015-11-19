@@ -1,0 +1,6 @@
+- Aggiunto UpdateWinSigma_4_2_0.txt per aggiornamento database
+- Nuovi layout certificati CertificatoTrazioneProfilati2011.prn e CertificatoReti2011.prn
+- Nuovi layout minute MinutaTrazioneProfilati2011.prn e MinutaReti2011.prn
+- Nuove dll TrazioneProfilati2011 e TrazioneReti2011
+- Listino: associazione servizi DB01, DB02, DB03, DB04, DB05, DB95 al certificato Prova di trazione su profilati in acciaio (n. 14)
+- Listino: associazione servizi DA14, DA15, DA16, DA17 al certficato Prova su reti elettrosaldate 2011 (n. 15)

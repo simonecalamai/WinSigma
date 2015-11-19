@@ -1,0 +1,245 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Italian (Italy) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ITA)
+#ifdef _WIN32
+LANGUAGE LANG_ITALIAN, SUBLANG_ITALIAN
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ITA)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 16, 1\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#endif //_WIN32\r\n"
+    "#include ""res\\CompressioneCarote.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""l.ita\\afxres.rc""          // Standard components\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 2,0,1,0
+ PRODUCTVERSION 2,0,1,0
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x2L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "041004b0"
+        BEGIN
+            VALUE "Comments", "\0"
+            VALUE "CompanyName", "\0"
+            VALUE "FileDescription", "CompressioneCarote DLL\0"
+            VALUE "FileVersion", "2, 0, 1, 0\0"
+            VALUE "InternalName", "CompressioneCarote\0"
+            VALUE "LegalCopyright", "Copyright (C) 2003\0"
+            VALUE "LegalTrademarks", "\0"
+            VALUE "OriginalFilename", "CompressioneCarote.DLL\0"
+            VALUE "PrivateBuild", "\0"
+            VALUE "ProductName", "CompressioneCarote Dynamic Link Library\0"
+            VALUE "ProductVersion", "2, 0, 1, 0\0"
+            VALUE "SpecialBuild", "\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x410, 1200
+    END
+END
+
+#endif    // !_MAC
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_DIALOG_MAIN DIALOG DISCARDABLE  0, 0, 327, 301
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION
+CAPTION "PROVA A COMPRESSIONE SU CAROTE DI CALCESTRUZZO INDURITO"
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "Tree2",IDC_TREE_PROVINI,"SysTreeView32",TVS_HASBUTTONS | 
+                    TVS_HASLINES | TVS_SHOWSELALWAYS | WS_BORDER | 
+                    WS_TABSTOP,16,165,72,75
+    PUSHBUTTON      "Modifica",IDC_BTN_MODIFICA,16,249,76,14,WS_DISABLED
+    EDITTEXT        IDC_EDIT_OSSERVAZIONI,69,22,246,21,ES_MULTILINE | 
+                    ES_AUTOHSCROLL | ES_WANTRETURN
+    COMBOBOX        IDC_COMBO_SPERIMENTATORI,13,58,129,69,CBS_DROPDOWNLIST | 
+                    CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_COMBO_MACCHINE,152,58,163,69,CBS_DROPDOWNLIST | 
+                    CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "DateTimePicker1",IDC_DATA_PROVA,"SysDateTimePick32",
+                    DTS_RIGHTALIGN | WS_TABSTOP,155,129,59,15
+    CONTROL         "Eseguita spianatura",IDC_CHECK_SPIANATURA,"Button",
+                    BS_AUTOCHECKBOX | BS_LEFTTEXT | WS_TABSTOP,237,133,78,10
+    PUSHBUTTON      "OK",IDOK,239,280,50,14,NOT WS_TABSTOP
+    PUSHBUTTON      "Cancel",IDCANCEL,131,280,50,14,NOT WS_TABSTOP
+    EDITTEXT        IDC_EDIT_DIAMETRO,98,178,35,12,ES_RIGHT | ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_LUNG,151,178,35,12,ES_RIGHT | ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_MASSA,214,178,35,12,ES_RIGHT | ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_CARICO_SP,264,178,51,12,ES_RIGHT | 
+                    ES_AUTOHSCROLL
+    COMBOBOX        IDC_COMBO_TIPO_ROTTURA,162,199,153,116,CBS_DROPDOWNLIST | 
+                    CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "Conferma",IDC_BTN_CONFERMA,131,249,76,14
+    PUSHBUTTON      "Annulla",IDC_BTN_ANNULLA,240,249,76,14,NOT WS_TABSTOP
+    GROUPBOX        "Dati provino",IDC_STATIC,6,151,314,120
+    EDITTEXT        IDC_EDIT_AREA,124,227,38,14,ES_RIGHT | ES_AUTOHSCROLL | 
+                    ES_READONLY | NOT WS_TABSTOP
+    EDITTEXT        IDC_EDIT_ROTTURA,198,227,37,14,ES_RIGHT | ES_AUTOHSCROLL | 
+                    ES_READONLY | NOT WS_TABSTOP
+    CTEXT           "Tipo rottura",IDC_STATIC,120,200,37,8
+    CTEXT           "Car. Rottura (kN)",IDC_STATIC,264,164,54,8
+    CTEXT           "Data prelievo",IDC_STATIC,14,134,43,8
+    CTEXT           "Massa (kg)",IDC_STATIC,214,164,36,8
+    CTEXT           "Diametro (cm)",IDC_STC_DIM1,98,164,44,8
+    CTEXT           "Lunghezza (cm)",IDC_STC_DIM2,151,164,51,8
+    LTEXT           "Area",IDC_STATIC,99,218,16,8
+    LTEXT           "Compress.",IDC_STATIC,242,217,34,8
+    EDITTEXT        IDC_EDIT_COMPRESSIONE,278,228,37,14,ES_RIGHT | 
+                    ES_AUTOHSCROLL | ES_READONLY | NOT WS_TABSTOP
+    LTEXT           "Rottura",IDC_STATIC,168,216,24,8
+    LTEXT           "Sigla",IDC_STATIC,71,103,16,8
+    EDITTEXT        IDC_EDIT_SIGLA,91,103,17,12,ES_AUTOHSCROLL | ES_READONLY | 
+                    NOT WS_TABSTOP
+    CTEXT           "Data prova",IDC_STATIC,115,134,36,8
+    LTEXT           "(N/mm²)",IDC_STATIC,168,232,26,8
+    LTEXT           "(cm²)",IDC_STATIC_UMAREA,99,232,21,8
+    LTEXT           "(kgf/cm²)",IDC_STATIC,243,232,30,8
+    EDITTEXT        IDC_EDIT_DATA_PRELIEVO,61,132,47,12,ES_CENTER | 
+                    ES_AUTOHSCROLL | ES_READONLY | NOT WS_TABSTOP
+    GROUPBOX        "Serie",IDC_STATIC,6,94,314,54
+    GROUPBOX        "Certificato",IDC_STATIC,6,10,314,81
+    LTEXT           "Osservazioni",IDC_STATIC,13,22,41,8
+    LTEXT           "Sperimentatore",IDC_STATIC,13,48,48,8
+    LTEXT           "Macchina",IDC_STATIC,153,48,32,8
+    EDITTEXT        IDC_EDIT_STRUTTURA,155,102,160,20,ES_MULTILINE | 
+                    ES_READONLY | NOT WS_TABSTOP
+    LTEXT           "Struttura",IDC_STATIC,115,103,28,8
+    LTEXT           "Pos.",IDC_STATIC,15,103,15,8
+    EDITTEXT        IDC_EDIT_POSIZIONE,31,103,23,12,ES_CENTER | 
+                    ES_AUTOHSCROLL | ES_READONLY | NOT WS_TABSTOP
+    DEFPUSHBUTTON   "",IDC_BUTTON_NEXT,29,280,50,14,NOT WS_VISIBLE | NOT 
+                    WS_TABSTOP
+    CTEXT           "Data V.A.",IDC_STATIC,25,119,32,8
+    EDITTEXT        IDC_EDIT_DATA_VA,61,117,47,12,ES_CENTER | ES_AUTOHSCROLL | 
+                    ES_READONLY | NOT WS_TABSTOP
+    CONTROL         "Allegato fotografico",IDC_CHECK_ALLEGATO,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,13,74,77,12
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_DIALOG_MAIN, DIALOG
+    BEGIN
+        LEFTMARGIN, 6
+        RIGHTMARGIN, 320
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 294
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_ICON_NOSELECT       ICON    DISCARDABLE     "icon_nos.ico"
+IDI_ICON_INTERA_SELECT  ICON    DISCARDABLE     "icon_int.ico"
+IDI_ICON_INTERA         ICON    DISCARDABLE     "ico00001.ico"
+IDI_ICON_SELECT         ICON    DISCARDABLE     "icon_sel.ico"
+#endif    // Italian (Italy) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ITA)
+#ifdef _WIN32
+LANGUAGE 16, 1
+#pragma code_page(1252)
+#endif //_WIN32
+#include "res\CompressioneCarote.rc2"  // non-Microsoft Visual C++ edited resources
+#include "l.ita\afxres.rc"          // Standard components
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

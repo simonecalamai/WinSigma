@@ -1,0 +1,41 @@
+[general]
+x zero=-80
+y zero=-80
+
+; numero massimo di righe per pagina nella lista delle consegne
+tab lines=12
+
+; posizione e font del numero di pagina
+Nr.Pagina=1700,2100,Times New Roman,24,48,C
+
+
+[strings]
+10=400,120,800,80,Times New Roman,38,64,BL,Laboratorio SIGMA s.r.l.
+15=+1200,+20,200,40,Times New Roman,28,48,BL,Data
+20=170,390,90,40,Times New Roman,26,42,BL,Cod.
+30=+170,+0,500,40,*,Descrizione
+40=+1380,+0,200,40,Times New Roman,26,42,BC,Prezzo
+50=+0,+40,200,40,Courier New,36,46,C,€
+55=+200,-40,120,80,Times New Roma,20,32,C,Prov. per serie
+60=1650,2780,100,100,Times New Roman,24,48,C,Pag.
+
+[fields]
+3=175,330,5000,48,Times New Roman,28,48,BL,descrizione
+5=1710,140,500,40,Times New Roman,28,48,BL,data
+10=170,240,70,60,Times New Roman,28,48,L,idCategoria
+20=+170,+0,1400,60,Times New Roman,28,48,BL,nomeCategoria
+30=1800,2780,100,100,Times New Roman,24,48,C,@page
+
+[tabfields]
+10=170,480,110,-200,Times New Roman,20,32,L,idServizio
+20=+115,+0,60,-200,Arial,28,48,BL,concessione
+30=+55,+0,1300,-200,Times New Roman,28,42,L,nomeServizio
+40=+1300,+0,220,-200,Arial,26,42,BR,prezzoServizio
+50=+280,+0,120,-200,Arial,20,32,C,proviniPerSerie
+
+[grids]
+10=140,220,1900,0,1,1
+20=+0,+100,1900,0,1,1
+
+[bitmaps]
+10=180,80,120,120,LS,formella.bmp

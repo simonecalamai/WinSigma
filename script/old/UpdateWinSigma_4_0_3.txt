@@ -1,0 +1,17 @@
+ALTER TABLE `winsigma`.`tipi_certificato` ADD COLUMN `LayoutStampaVerbali` VARCHAR(40) DEFAULT NULL AFTER `Variante`;
+UPDATE TIPI_CERTIFICATO set LayoutStampaVerbali='Verbali.prn' WHERE Codice=1;
+UPDATE TIPI_CERTIFICATO set LayoutStampaVerbali='Verbali.prn' WHERE Codice=2;
+UPDATE TIPI_CERTIFICATO set LayoutStampaVerbali='Verbali.prn' WHERE Codice=3;
+UPDATE TIPI_CERTIFICATO set LayoutStampaVerbali='Verbali.prn' WHERE Codice=4;
+UPDATE TIPI_CERTIFICATO set LayoutStampaVerbali='Verbali.prn' WHERE Codice=5;
+UPDATE TIPI_CERTIFICATO set LayoutStampaVerbali='Verbali.prn' WHERE Codice=6;
+UPDATE TIPI_CERTIFICATO set LayoutStampaVerbali='Verbali.prn' WHERE Codice=7;
+UPDATE TIPI_CERTIFICATO set LayoutStampaVerbali='Verbali.prn' WHERE Codice=8;
+UPDATE TIPI_CERTIFICATO set LayoutStampaVerbali='Verbali.prn' WHERE Codice=9;
+UPDATE TIPI_CERTIFICATO set LayoutStampaVerbali='Verbali.prn' WHERE Codice=10;
+UPDATE TIPI_CERTIFICATO set LayoutStampaVerbali='Verbali.prn', Variante=0 WHERE Codice=11;
+UPDATE TIPI_CERTIFICATO set LayoutStampaVerbali='Verbali.prn', Variante=0 WHERE Codice=12;
+UPDATE TIPI_CERTIFICATO set LayoutStampaVerbali='VerbaleCT.prn', Variante=0 WHERE Codice=13;
+UPDATE TIPI_CERTIFICATO set FinestraDialogo='TrazionePiegamentoBarreB450_2010' WHERE Codice=11;
+UPDATE TIPI_CERTIFICATO set FinestraDialogo='CompressioneCubiDM2008' WHERE Codice=12;
+UPDATE TIPI_CERTIFICATO set FinestraDialogo='TrazionePiegamentoBarreCT' WHERE Codice=13;

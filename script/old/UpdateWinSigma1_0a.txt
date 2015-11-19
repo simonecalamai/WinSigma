@@ -1,0 +1,9 @@
+alter table TIPI_CERTIFICATO add Maturazione INT DEFAULT 0;
+update TIPI_CERTIFICATO set Maturazione = 28 where Codice = 1;
+update TIPI_CERTIFICATO set LayoutStampaMinuta = 'AcciaioLaminati.prn' where Codice = 4;
+
+alter table AZIENDE drop index ID;
+alter table AZIENDE add UNIQUE(P_IVA);
+alter table AZIENDE add UNIQUE(ID);
+
+update SERIE set Materiale = replace(Materiale, 'mq', 'm²');

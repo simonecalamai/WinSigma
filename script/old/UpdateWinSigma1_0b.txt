@@ -1,0 +1,17 @@
+alter table TIPI_CERTIFICATO drop DimensioniProvini;
+alter table TIPI_CERTIFICATO drop Sigla;
+alter table TIPI_CERTIFICATO drop Struttura;
+alter table TIPI_CERTIFICATO drop DataPrelievo;
+alter table TIPI_CERTIFICATO drop Materiale;
+
+alter table SERIE add DataND varchar(16);
+alter table SERIE add IDMateriale varchar(8);
+
+alter table AZIENDE modify Indirizzo_Sped varchar(64);
+
+alter table FATTURE add AliquotaIVA double default 20;
+alter table FATTURE add Spese double default 0;
+alter table FATTURE add Imponibile double default 0;
+alter table FATTURE add Archiviata tinyint default 0;
+
+

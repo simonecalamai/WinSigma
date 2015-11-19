@@ -1,0 +1,3 @@
+alter table SERVIZI_LISTINO add Commento varchar(64);
+update SERVIZI_LISTINO set Commento = 'con cubiera' where CommentoMateriale = 1;
+alter table SERVIZI_LISTINO drop CommentoMateriale;

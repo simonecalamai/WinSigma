@@ -1,0 +1,5 @@
+alter table TIPI_CERTIFICATO add Variante tinyint default 0;
+INSERT INTO TIPI_CERTIFICATO VALUES (10,'Prova su barre da c.a. B450',NULL,'CertificatoBarreB450.prn','AcciaioCAB450.prn','TrazionePiegamentoBarre','Trazione barre','Piegamento barre',NULL,'Diametro(mm)',NULL,'Lunghezza(cm)',NULL,NULL,NULL,6,0,10,1);
+UPDATE TIPI_CERTIFICATO set Variante=1 WHERE Codice=8;
+INSERT INTO TIPI_MATERIALE VALUES (228,'B450C',' Acciaio B 450C','Acciaio dichiarato B 450C',0,10,450,0);
+INSERT INTO TIPI_MATERIALE VALUES (229,'B450A','Acciaio B 450A','Acciaio dichiarato B 450 A',0,10,450,0);

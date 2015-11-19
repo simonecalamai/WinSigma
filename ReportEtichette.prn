@@ -1,0 +1,22 @@
+[general]
+x zero=+0
+y zero=+0
+
+; numero massimo di righe per pagina nella lista dei campioni
+tab lines=7
+
+[strings]
+
+[fields]
+10=200,100,1200,40,Arial,30,40,LB,intestazione
+;20=1800,2500,100,100,Times New Roman,24,48,C,@page
+20=1900,2800,100,100,Times New Roman,24,48,C,@page
+
+
+[tabfields]
+;20=300,160,1700,400,Arial,18,36,L,indirizzo
+20=200,160,1750,360,Arial,16,32,L,indirizzo
+
+[grids]
+
+[bitmaps]

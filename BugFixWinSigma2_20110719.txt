@@ -1,0 +1,2 @@
+USE WinSigma2;
+UPDATE winsigma2.aziende SET TipoPagamento=9, ID='QIO0007', RagioneSociale='QIONGYNG ZHUQI', Indirizzo='VIA MARCO RONCIONI 122', CAP='59100', Citta='Prato', Provincia='PO' WHERE Codice=13758;

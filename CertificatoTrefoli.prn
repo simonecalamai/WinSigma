@@ -1,0 +1,110 @@
+[general]
+x zero=-50
+y zero=-50
+
+; numero massimo di righe per pagina nella lista delle consegne
+tab lines=10
+
+; posizione e font del numero di pagina
+;Nr.Pagina=1700,2100,Times New Roman,24,48,C
+
+
+[strings]
+5=140,430,1700,70,Times New Roman,28,50,BC,PROVE SU TREFOLI DA C.A.P.
+10=140,560,300,40,Times New Roman,22,38,BL,CERTIFICATO N°
+20=+430,+0,50,40,Times New Roman,22,38,BL,del
+30=1200,+0,200,40,Times New Roman,22,38,BL,Rif. V.A. N°
+40=+400,+0,50,40,Times New Roman,22,38,BL,del
+50=200,760,400,40,Times New Roman,22,40,L,Richiedente
+60=+0,+120,400,40,Times New Roman,22,40,L,Direttore dei lavori
+70=+0,+80,400,40,Times New Roman,22,40,L,Impresa esecutrice
+80=+0,+120,400,40,Times New Roman,22,40,L,Cantiere
+90=+0,+190,300,40,Times New Roman,22,40,L,Tipo e caratteristiche
+100=80,+90,1890,50,Times New Roman,28,50,BC,DATI DI LABORATORIO
+
+140=80,+60,40,50,Arial,20,30,BC,
+150=+45,+0,200,60,Arial,20,30,BC,Area della sezione A
+160=+255,+0,200,60,Arial,20,30,BC,Carico limite allo 0.1% fp(0.1)
+170=+270,+0,200,60,Arial,20,30,BC,Carico limite allo 0.2% fp(0.2)
+180=+270,+0,200,60,Arial,20,30,BC,Tensione 1.0% sotto carico fp(1)
+190=+270,+0,200,60,Arial,20,30,BC,Tensione rottura ftp
+200=+270,+0,200,60,Arial,20,30,BC,Modulo elastico apparente Ep
+210=+270,+0,180,60,Arial,20,30,BC,Allungamento a rottura
+
+270=80,+65,40,50,Times New Roman,20,38,R,n.
+280=+45,+0,200,50,Times New Roman,20,38,C,mm²
+290=+255,+0,200,50,Times New Roman,20,38,C,N/mm²
+300=+270,+0,200,50,Times New Roman,20,38,C,N/mm²
+305=+270,+0,200,50,Times New Roman,20,38,C,N/mm²
+310=+270,+0,200,50,Times New Roman,20,38,C,N/mm²
+320=+270,+0,200,50,Times New Roman,20,38,C,N/mm²
+330=+270,+0,200,50,Times New Roman,20,38,C,1%
+
+440=80,2110,150,40,Courier,20,40,L,Norme
+450=+150,+10,1600,30,Courier New,18,30,L,UNI 7676/77 e D.M. 09/01/96 allegato 3.
+470=80,+35,1600,30,Courier New,18,30,L,Dato che per tutti i trefoli provati lo snervamento non è chiaramente individuabile da diagramma sforzi-deformazioni
+480=80,+30,1600,30,Courier New,18,30,L,la tensione di snervamento fpy viene sostituita con fp(0.2).
+
+
+550=80,2300,270,44,Arial,22,36,L,Domanda di prove 
+560=1200,+0,380,44,*,Prove effettuate in data:
+
+580=230,2460,500,100,Times New Roman,22,40,C,Lo Sperimentatore
+600=1355,2460,350,100,Times New Roman,22,40,C,Il Direttore Responsabile del Laboratorio
+
+;620=90,2700,520,50,Courier New,20,40,L,Il presente documento è costituito da n.
+;630=+550,+0,100,50,Courier New,20,40,L,pagine 
+;640=1580,+0,60,40,Courier New,26,35,L,pag.
+;650=1690,+0,20,40,Courier New,26,35,L,/
+
+[fields]
+10=440,560,130,80,Times New Roman,22,38,BL,numeroCertificato
+20=+210,+0,200,80,Times New Roman,22,38,BL,dataCertificato
+30=1400,+0,220,80,Times New Roman,22,38,BL,numeroVerbale
+40=+285,+0,200,80,Times New Roman,22,38,BL,dataVerbale
+50=140,+40,1000,40,Times New Roman,22,38,BL,emendamento
+55=+0,+40,500,40,Times New Roman,22,38,L,duplicato
+1060=200,680,330,40,Times New Roman,22,40,L,etichettaIncarico
+70=+350,+0,1300,40,Times New Roman,22,40,L,letteraIncarico
+80=+0,+80,1300,40,Times New Roman,22,40,L,richiedente
+90=+0,+40,1300,40,Times New Roman,22,40,L,indirizzoRichiedente
+100=+0,+80,1300,100,Times New Roman,22,40,L,direttoreLavori
+110=+0,+80,1300,40,Times New Roman,22,40,L,impresaEsecutrice
+120=+0,+40,1300,40,Times New Roman,22,40,L,indirizzoImpresaEsecutrice
+130=+0,+80,1300,120,Times New Roman,22,40,L,cantiere
+140=-350,+120,330,40,Times New Roman,22,40,L,etichettaProprietario
+150=+350,+0,1300,40,Times New Roman,22,40,L,proprietario
+160=+0,+70,1300,40,Times New Roman,22,40,L,caratteristiche
+170=80,2225,950,50,Courier New,18,30,L,macchina 
+180=380,2300,1000,44,Arial,22,36,L,domandaProve 
+190=1580,+0,180,44,Arial,22,36,L,dataProve
+210=80,+74,1000,64,Arial,15,32,L,osservazioniLabel
+215=+150,+0,1000,64,Arial,15,32,L,osservazioni
+
+220=130,2540,700,100,Times New Roman,22,40,BC,sperimentatore
+230=1280,+0,500,100,Times New Roman,22,40,BC,responsabile
+
+;240=600,2700,20,50,Courier New,20,40,C,pagine
+;250=1660,+0,20,50,Courier New,26,35,L,@page
+;260=+55,+0,50,50,Courier New,26,35,L,pagine
+
+
+[tabfields]
+10=80,1520,30,55,Arial,16,32,RWSV,numeroInterno
+20=+20,+0,250,55,Times New Roman,18,36,CBSEV,area
+30=+250,+0,270,55,Times New Roman,18,36,CBSV,limite1
+40=+270,+0,270,55,Times New Roman,18,36,CBSEV,limite2
+50=+270,+0,270,55,Times New Roman,18,36,CBSV,tensione
+60=+270,+0,270,55,Times New Roman,18,36,CBSEV,rottura
+80=+270,+0,270,55,Times New Roman,18,36,CBSEV,modulo
+90=+270,+0,270,55,Times New Roman,18,36,CBSEV,allungamento
+
+[grids]
+10=80,1410,1890,110,1,1
+20=230,2660,500,0,1,1
+30=1280,+0,500,0,1,1
+
+[bitmaps]
+10=110,720,80,450,RCM,didascalia.bmp
+
+

@@ -1,0 +1,114 @@
+[general]
+x zero=+10
+y zero=+60
+
+; numero massimo di righe per pagina nella lista delle consegne
+tab lines=12
+
+; posizione e font del numero di pagina
+Nr.Pagina=1700,2100,Times New Roman,24,48,C
+
+
+[strings]
+5=80,430,1850,70,Times New Roman,28,50,BC,PROVA A COMPRESSIONE SU CAROTE IN CALCESTRUZZO
+10=160,560,300,40,Times New Roman,22,38,BL,CERTIFICATO N°
+20=+400,+0,50,40,Times New Roman,22,38,BL,del
+30=1200,+0,200,40,Times New Roman,22,38,BL,Rif. V.A. N°
+40=+400,+0,50,40,Times New Roman,22,38,BL,del
+50=230,760,400,40,Times New Roman,22,40,L,Richiedente
+60=+0,+120,400,40,Times New Roman,22,40,L,Direttore dei lavori
+70=+0,+80,400,40,Times New Roman,22,40,L,Impresa esecutrice
+80=+0,+120,400,40,Times New Roman,22,40,L,Cantiere
+90=+0,+200,300,40,Times New Roman,22,40,L,Tipo e caratteristiche
+100=120,1400,700,40,Times New Roman,24,40,BC,DATI FORNITI DAL COMMITTENTE
+110=870,1400,1060,40,Times New Roman,24,40,BC,DATI DI LABORATORIO
+120=100,1495,450,40,Arial,22,38,BL,Struttura di prelievo
+130=+490,+0,150,40,Arial,22,38,BL,Sigla
+140=+90,+0,190,40,Arial,22,38,BC,Data prelievo
+150=+190,+0,345,40,Arial,22,38,BC,Dimensioni
+160=+345,+0,115,40,Arial,22,38,BC,Area
+170=+115,+0,140,40,Arial,22,38,BC,Massa
+180=+130,+0,80,40,Arial,22,38,BC,T.R.
+190=+80,+0,40,40,Arial,22,38,BC,S.
+200=+50,+0,190,40,Arial,22,38,BC,Rottura
+210=+190,+0,150,40,Arial,22,38,BC,Data prova
+220=935,+40,30,40,Symbol,30,45,BL,F
+230=+70,+0,50,40,Arial,22,38,BC,cm
+240=+85,+0,40,40,Arial,22,38,BC,H
+250=+125,+0,115,40,Arial,22,38,BC,cm
+260=+115,+0,140,40,Arial,22,38,BC,kg
+270=+260,+0,190,40,Arial,22,38,BC,N/mm
+280=90,2030,100,30,Arial,18,34,R,NORME
+290=+0,2070,100,30,Arial,18,34,R,T.R.
+300=+0,+33,100,30,Arial,18,34,R,S.
+310=+0,+33,100,34,Arial,18,34,R,n.d.
+320=+130,2025,1300,38,Courier New,20,38,L,   Compressione UNI 6132.72 - Spianatura UNI 6132.72
+330=+0,2070,1300,30,Courier New,18,30,L,Tipo Rottura:  1=bipiramidale;  2=sfaldamento obliquo;  3=sgretolamento; 4=altro
+340=+0,+33,1300,30,Courier New,18,30,L,Spianatura:  A=effettuata;  B=non effettuata in quanto già conforme secondo UNI 6132.72
+350=+0,+33,200,30,Courier New,18,30,L,Non Dichiarata
+360=90,2186,270,44,Arial,22,36,L,Domanda di prove 
+
+380=230,2340,500,100,Times New Roman,22,40,C,Lo Sperimentatore
+400=1330,2340,400,100,Times New Roman,22,40,C,Il Direttore Responsabile del Laboratorio
+
+;potenze
+420=1300,1535,20,30,Arial,11,19,L,2
+430=1730,+0,20,30,Arial,11,19,L,2
+
+[fields]
+10=460,560,130,80,Times New Roman,22,38,BL,numeroCertificato
+20=+180,+0,200,80,Times New Roman,22,38,BL,dataCertificato
+30=1400,+0,220,80,Times New Roman,22,38,BL,numeroVerbale
+40=+280,+0,200,80,Times New Roman,22,38,BL,dataVerbale
+50=160,+40,1000,40,Times New Roman,22,38,BL,emendamento
+55=+0,+40,500,40,Times New Roman,22,38,L,duplicato
+60=230,680,330,40,Times New Roman,22,40,L,etichettaIncarico
+70=+350,+0,1300,40,Times New Roman,22,40,L,letteraIncarico
+80=580,+80,1300,40,Times New Roman,22,40,L,richiedente
+90=+0,+40,1300,40,Times New Roman,22,40,L,indirizzoRichiedente
+100=+0,+80,1300,100,Times New Roman,22,40,L,direttoreLavori
+110=+0,+80,1300,40,Times New Roman,22,40,L,impresaEsecutrice
+120=+0,+40,1300,40,Times New Roman,22,40,L,indirizzoImpresaEsecutrice
+130=+0,+80,1300,120,Times New Roman,22,40,L,cantiere
+140=230,+120,330,40,Times New Roman,22,40,L,etichettaProprietario
+150=+350,+0,1300,80,Times New Roman,22,40,L,proprietario
+160=+0,+80,1300,40,Times New Roman,22,40,L,caratteristiche
+170=500,2136,950,50,Courier New,18,30,L,macchina 
+180=370,2186,350,44,Arial,22,36,L,domandaProve
+185=+900,+0,500,44,Arial,22,36,L,allegato
+190=90,2240,1000,64,Arial,15,32,L,osservazioniLabel
+200=+150,+0,1000,64,Arial,15,32,L,osservazioni
+
+210=130,2420,700,100,Times New Roman,22,40,BC,sperimentatore
+220=1280,2420,500,100,Times New Roman,22,40,BC,responsabile
+
+230=160,2560,700,50,Courier New,20,40,L,pagineDocumento
+240=1680,+0,150,50,Courier New,20,40,L,paginaDiPagine
+
+[tabfields]
+5=80,1575,20,70,Times New Roman,18,36,LWSV,
+10=+20,+0,470,70,Times New Roman,12,30,LS,strutturaPrelievoLunga
+15=+0,+0,470,70,Times New Roman,12,30,LSV,strutturaPrelievoBreve
+20=+470,+0,120,70,Times New Roman,12,30,CSV,sigla
+30=+110,+0,190,70,Times New Roman,18,36,CSEV,dataPrelievo
+40=+190,+0,150,70,Times New Roman,18,36,CSWV,diametro
+50=+150,+0,195,70,Times New Roman,18,36,CSV,lunghezza
+60=+195,+0,115,70,Times New Roman,18,36,CSV,area
+70=+115,+0,140,70,Times New Roman,18,36,BCSEV,massa
+80=+140,+0,60,70,Times New Roman,18,36,CSV,tipoRottura
+90=+60,+0,60,70,Times New Roman,18,36,CSEV,spianatura
+100=+60,+0,190,70,Times New Roman,18,36,BCSEV,rottura
+110=+190,+0,150,70,Times New Roman,18,36,CSEV,dataProva
+
+[grids]
+10=80,1475,790,100,1,1
+20=+790,+0,1060,100,1,1
+90=230,2540,500,0,1,1
+100=1280,2540,500,0,1,1
+
+
+[bitmaps]
+10=110,720,80,450,RCM,didascalia.bmp
+
+
+

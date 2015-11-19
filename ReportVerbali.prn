@@ -1,0 +1,53 @@
+[general]
+x zero=+0
+y zero=+0
+
+; numero massimo di righe per pagina nella lista dei campioni
+tab lines=30
+
+[strings]
+10=200,150,800,80,Times New Roman,18,36,L,Report dei verbali dell'azienda per il periodo: 
+
+20=120,700,1000,80,Arial,18,36,LB,ELENCO VERBALI 
+
+30=300,220,100,50,Arial,12,24,L,Azienda
+40=1000,+0,100,50,Arial,12,24,L,Indirizzo 
+50=1000,480,500,50,Arial,12,24,L,Eventuale indirizzo spedizione alternativo
+
+110=100,750,150,60,Arial,18,36,WSNCVB,Numero
+120=+150,+0,120,60,Arial,18,36,WSNCVB,Data
+130=+120,+0,850,60,Arial,18,36,WSNLVB,Cantiere
+140=+850,+0,200,60,Arial,18,36,WSNCVB,Fatture
+150=+200,+0,550,60,Arial,18,36,WSNELVB,Materiale consegnato
+
+180=1760,2750,20,50,Times New Roman,24,48,L,/
+
+[fields]
+5=810,150,1000,80,Times New Roman,18,36,BL,periodo
+10=300,250,600,120,Arial,18,36,NWELB,ragSociale
+20=+0,+120,600,40,Arial,18,36,SWELB,piva
+
+30=+700,-120,700,80,Arial,18,36,NWELB,indirizzo
+40=+0,+80,700,40,Arial,18,36,WELB,cap
+50=+0,+40,700,40,Arial,18,36,SWELB,citta
+
+60=+0,510,700,80,Arial,18,36,NWELB,indirizzoSped
+70=+0,+80,700,40,Arial,18,36,WELB,capSped
+80=+0,+40,700,40,Arial,18,36,SWELB,cittaSped
+
+110=1710,2750,40,50,Times New Roman,24,48,R,@page
+120=1780,+0,40,50,Times New Roman,24,48,L,pagine
+
+
+[tabfields]
+10=100,810,150,60,Arial,12,24,WSCV,numero
+20=+150,+0,120,60,Arial,12,24,WSCV,data
+30=+120,+0,850,60,Arial,10,22,WNSLV,cantiere
+35=+0,+0,850,60,Arial,10,22,WSL,cantiereLungo
+40=+850,+0,200,60,Arial,12,24,WSCV,fatture
+50=+200,+0,550,60,Arial,10,22,WNESLV,materiale
+60=+0,+0,550,60,Arial,10,22,WESL,materialeLungo
+
+[grids]
+
+[bitmaps]

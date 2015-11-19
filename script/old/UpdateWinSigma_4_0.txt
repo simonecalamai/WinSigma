@@ -1,0 +1,19 @@
+USE WinSigma;
+ALTER TABLE `WinSigma`.`SERVIZI_LISTINO` ADD COLUMN `Certificato3` INT(11) DEFAULT 0 AFTER `Prove2`;
+ALTER TABLE `WinSigma`.`SERVIZI_LISTINO` ADD COLUMN `Prove3` SMALLINT(6) DEFAULT 0 AFTER `Certificato3`;
+ALTER TABLE `WinSigma`.`SERVIZI_LISTINO` ADD COLUMN `Certificato4` INT(11) DEFAULT 0 AFTER `Prove3`;
+ALTER TABLE `WinSigma`.`SERVIZI_LISTINO` ADD COLUMN `Prove4` SMALLINT(6) DEFAULT 0 AFTER `Certificato4`;
+ALTER TABLE `WinSigma`.`TIPI_MATERIALE` ADD COLUMN `TipoCertificato3` INT(11) DEFAULT 0 AFTER `TipoCertificato2`;
+ALTER TABLE `WinSigma`.`TIPI_MATERIALE` ADD COLUMN `TipoCertificato4` INT(11) DEFAULT 0 AFTER `TipoCertificato3`;
+ALTER TABLE `WinSigma`.`SERIE` ADD COLUMN `VerbalePrelievo` VARCHAR(64) DEFAULT NULL AFTER `Ordinamento`;
+ALTER TABLE `WinSigma`.`SERIE` ADD COLUMN `SiglaFornitore` VARCHAR(128) DEFAULT NULL AFTER `VerbalePrelievo`;
+ALTER TABLE `WinSigma`.`PROVINI` ADD COLUMN `RotoliCT` BOOLEAN DEFAULT NULL AFTER `Marchio`;
+
+ALTER TABLE `WinSigma`.`FATTURE` MODIFY COLUMN `InUso` VARCHAR(64) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL;
+ALTER TABLE `WinSigma`.`VERBALI` MODIFY COLUMN `InUso` VARCHAR(64) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL;
+ALTER TABLE `WinSigma`.`PROVINI` MODIFY COLUMN `InUso` VARCHAR(64) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL;
+ALTER TABLE `WinSigma`.`CERTIFICATI` ADD COLUMN `Aderenza` BOOLEAN DEFAULT 0 AFTER `EmendatoDa`;
+
+INSERT INTO TIPI_CERTIFICATO VALUES (11,'Prove su barre da c.a. B450',NULL,'CertificatoBarreB450_2010.prn','AcciaioCAB450_2010.prn','TrazionePiegamentoBarreB450_2010','Trazione barre','Piegamento barre',NULL,'Diametro(mm)',NULL,'Lunghezza(cm)',NULL,NULL,NULL,6,0,11,2);
+INSERT INTO TIPI_CERTIFICATO VALUES (12,'Prove su cubi D.M. 2008',NULL,'CertificatoCubi2010.prn','Cubetti2010.prn','CompressioneCubiDM2008','Compressione su cubi',NULL,NULL,'Lunghezza(mm)',150,'Larghezza(mm)',150,'Altezza(mm)',150,6,28,12,2);
+INSERT INTO TIPI_CERTIFICATO VALUES (13,'Prove su barre Centro Trasformazione',NULL,'CertificatoBarreCT.prn','AcciaioCT.prn','TrazionePiegamentoBarreCT','Trazione barre','Piegamento barre',NULL,'Diametro(mm)',NULL,'Lunghezza(cm)',NULL,NULL,NULL,6,0,13,3);

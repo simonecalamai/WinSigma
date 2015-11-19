@@ -1,0 +1,5 @@
+alter table SERVIZI_EROGATI modify Quantita double;
+
+alter table FATTURE add Pagamento varchar(64);
+
+alter table SERVIZI_LISTINO add Concessione tinyint default 0;

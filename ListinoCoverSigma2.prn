@@ -1,0 +1,20 @@
+[general]
+x zero=-30
+y zero=-30
+
+; numero massimo di righe per pagina nella lista delle consegne
+tab lines=12
+
+; posizione e font del numero di pagina
+Nr.Pagina=1700,2100,Times New Roman,24,48,C
+
+
+[strings]
+10=0,450,2100,400,Arial,160,300,C,SIGMADUE
+
+[fields]
+10=0,2100,2100,80,Arial,44,80,C,validità
+
+[tabfields]
+
+[grids]

@@ -1,0 +1,2793 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+// Generated Help ID header file
+#define APSTUDIO_HIDDEN_SYMBOLS
+#include "resource.hm"
+#undef APSTUDIO_HIDDEN_SYMBOLS
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Italian (Italy) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ITA)
+#ifdef _WIN32
+LANGUAGE LANG_ITALIAN, SUBLANG_ITALIAN
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ITA)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 16, 1\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#endif //_WIN32\r\n"
+    "#include ""res\\WinSigma.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""l.ita\\afxres.rc""          // Standard components\r\n"
+    "#include ""l.ita\\afxprint.rc""        // printing/print preview resources\r\n"
+    "#include ""l.ita\\afxdb.rc""           // Database resources\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON    DISCARDABLE     "res\\WinSigma.ico"
+IDR_WINSIGTYPE          ICON    DISCARDABLE     "res\\WinSigmaDoc.ico"
+IDI_ICON_MSGBOX         ICON    DISCARDABLE     "res\\iconMsg.ico"
+IDI_ICON_CLOCK          ICON    DISCARDABLE     "res\\clock-2-icon-32x32.ico"
+IDI_ICON_DISK           ICON    DISCARDABLE     "res\\disk-4-icon-32x32.ico"
+IDI_ICON_QX             ICON    DISCARDABLE     "res\\quarkxpress-passport-icon-32x32.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_IMAGELIST_AZIENDE   BITMAP  DISCARDABLE     "res\\aziende.bmp"
+IDB_IMAGELIST_FATTURE   BITMAP  DISCARDABLE     "res\\fatture.bmp"
+IDR_TOOLBAR_FATTURE     BITMAP  DISCARDABLE     "res\\toolbar_fatture.bmp"
+IDB_IMAGELIST_ARCHIVIO  BITMAP  DISCARDABLE     "res\\archivio.bmp"
+IDB_IMAGELIST_LISTINI   BITMAP  DISCARDABLE     "res\\Listini.bmp"
+IDR_TOOLBAR_LISTINI     BITMAP  DISCARDABLE     "res\\toolbar_listini.bmp"
+IDR_TOOLBAR_OPERATORI   BITMAP  DISCARDABLE     "res\\toolbar_operatori.bmp"
+IDR_TOOLBAR_PAGAMENTI   BITMAP  DISCARDABLE     "res\\toolbar_pagamenti.bmp"
+IDR_TOOLBAR_MATERIALI   BITMAP  DISCARDABLE     "res\\toolbar_materiali.bmp"
+IDR_TOOLBAR1            BITMAP  DISCARDABLE     "res\\toolbar1.bmp"
+IDB_IMAGELIST_STRUMENTI BITMAP  DISCARDABLE     "res\\Strumenti.bmp"
+IDR_TOOLBAR_AZIENDE     BITMAP  DISCARDABLE     "res\\toolbar_aziende.bmp"
+IDB_IMAGELIST_VERBALI   BITMAP  DISCARDABLE     "res\\Verbali.bmp"
+IDR_TOOLBAR_VERBALI     BITMAP  DISCARDABLE     "res\\toolbar_verbali.bmp"
+IDB_IMAGELIST_SERIE     BITMAP  DISCARDABLE     "res\\serie.bmp"
+IDR_TOOLBAR_MARCHI      BITMAP  DISCARDABLE     "res\\toolbar_marchi.bmp"
+IDB_IMAGELIST_STAMPA_CERT BITMAP  DISCARDABLE     "res\\stampaCertificati.bmp"
+IDR_TOOLBAR_ARCHIVIO_VERBALI BITMAP  DISCARDABLE     "res\\toolbar_arcverb.bmp"
+IDR_TOOLBAR_ARCHIVIO_CERTIFICATI BITMAP  DISCARDABLE     "res\\toolbar_arccert.bmp"
+IDR_TOOLBAR_ARCHIVIO_FATTURE BITMAP  DISCARDABLE     "res\\toolbar_arcfatt.bmp"
+IDB_LOGO_QUADRANTE      BITMAP  DISCARDABLE     "html\\Images\\lgq.bmp"
+IDB_BITMAP_ELETT        BITMAP  DISCARDABLE     "res\\elett16.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Toolbar
+//
+
+IDR_TOOLBAR_FATTURE TOOLBAR DISCARDABLE  16, 15
+BEGIN
+    BUTTON      ID_FATTURA_EMETTI
+    BUTTON      ID_VISUALIZZA_FATTURA
+    BUTTON      ID_ARCHIVIA_FATTURA
+    BUTTON      ID_ESPORTA_FATTURE
+    SEPARATOR
+    BUTTON      ID_BUTTON_AGGIORNA
+END
+
+IDR_TOOLBAR_LISTINI TOOLBAR DISCARDABLE  16, 15
+BEGIN
+    BUTTON      ID_NUOVO
+    BUTTON      ID_MODIFICA
+    BUTTON      ID_ELIMINA
+    BUTTON      ID_LISTINI_ATTIVA
+    BUTTON      ID_LISTINI_COPIA
+END
+
+IDR_TOOLBAR_OPERATORI TOOLBAR DISCARDABLE  16, 15
+BEGIN
+    BUTTON      ID_NUOVO
+    BUTTON      ID_MODIFICA
+    BUTTON      ID_ELIMINA
+    SEPARATOR
+    BUTTON      ID_BUTTON_AGGIORNA
+END
+
+IDR_TOOLBAR_PAGAMENTI TOOLBAR DISCARDABLE  16, 15
+BEGIN
+    BUTTON      ID_NUOVO
+    BUTTON      ID_MODIFICA
+    BUTTON      ID_ELIMINA
+    SEPARATOR
+    BUTTON      ID_BUTTON_AGGIORNA
+END
+
+IDR_TOOLBAR_MATERIALI TOOLBAR DISCARDABLE  16, 15
+BEGIN
+    BUTTON      ID_NUOVO
+    BUTTON      ID_MODIFICA
+    BUTTON      ID_ELIMINA
+    SEPARATOR
+    BUTTON      ID_BUTTON_AGGIORNA
+END
+
+IDR_TOOLBAR_AZIENDE TOOLBAR DISCARDABLE  16, 15
+BEGIN
+    BUTTON      ID_NUOVO
+    BUTTON      ID_MODIFICA
+    BUTTON      ID_ELIMINA
+    SEPARATOR
+    BUTTON      ID_BUTTON_AGGIORNA
+END
+
+IDR_TOOLBAR_VERBALI TOOLBAR DISCARDABLE  16, 15
+BEGIN
+    BUTTON      ID_NUOVO
+    BUTTON      ID_NUOVO_VERBALE
+    BUTTON      ID_NUOVO_GEOLOGIA
+    BUTTON      ID_MODIFICA
+    BUTTON      ID_METTI_IN_FATTURAZIONE
+    SEPARATOR
+    BUTTON      ID_DATI_PROVINI
+    BUTTON      ID_BUTTON_AVVIA_EMISSIONE
+    BUTTON      ID_BUTTON_STAMPA_CERTIFICATI
+    SEPARATOR
+    BUTTON      ID_BUTTON_AGGIORNA
+    BUTTON      ID_BUTTON_AGGIORNAALBERO
+END
+
+IDR_TOOLBAR_MARCHI TOOLBAR DISCARDABLE  16, 15
+BEGIN
+    BUTTON      ID_NUOVO
+    BUTTON      ID_MODIFICA
+    BUTTON      ID_ELIMINA
+    SEPARATOR
+    BUTTON      ID_BUTTON_AGGIORNA
+END
+
+IDR_TOOLBAR_ARCHIVIO_VERBALI TOOLBAR DISCARDABLE  16, 16
+BEGIN
+    BUTTON      IDD_PREVIEW_DOC
+    BUTTON      IDD_OPEN_DOC
+END
+
+IDR_TOOLBAR_ARCHIVIO_CERTIFICATI TOOLBAR DISCARDABLE  16, 16
+BEGIN
+    BUTTON      IDD_PREVIEW_DOC
+    BUTTON      ID_STAMPA
+    BUTTON      ID_BTN_EILIMINACERTIFICATO
+END
+
+IDR_TOOLBAR_ARCHIVIO_FATTURE TOOLBAR DISCARDABLE  16, 16
+BEGIN
+    BUTTON      ID_RIPRISTINA_FATTURA
+    BUTTON      IDD_PREVIEW_DOC
+    BUTTON      ID_FATTURA_STAMPA_SINGOLA
+    BUTTON      ID_FATTURA_STAMPA_MULTIPLA
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MENU_FATTURE MENU DISCARDABLE 
+BEGIN
+    POPUP "&Fattura"
+    BEGIN
+        POPUP "&Nuova"
+        BEGIN
+            MENUITEM "Nuova &senza verbale",        ID_NUOVA_SENZAVERBALE
+            MENUITEM "Nuova nota di &credito",      ID_NOTACREDITO_NUOVA
+        END
+        POPUP "&Modifica"
+        BEGIN
+            MENUITEM "Modifica e &stampa",          ID_VISUALIZZA_FATTURA
+            MENUITEM "Modifica &intestatario",      ID_TROVA
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "Eli&mina verbale",            ID_DEL_INFATTURAZIONE
+        MENUITEM "&Inserisci verbale",          ID_INSERTVERBALE
+        MENUITEM SEPARATOR
+        MENUITEM "&Emetti",                     ID_FATTURA_EMETTI
+        MENUITEM "E&lettronica",                ID_FATTURA_ELETT_EMETTI
+        POPUP "&Archivia"
+        BEGIN
+            MENUITEM "&Singola fattura",            ID_FATTURA_ARCHIVIA_SINGOLAFATTURA
+
+            MENUITEM "&Gruppo fatture",             ID_FATTURA_ARCHIVIA_GRUPPOFATTURE
+
+        END
+        MENUITEM "Es&porta fatture",            ID_FATTURA_ESPORTAFATTURE
+        MENUITEM SEPARATOR
+        POPUP "&Stampa"
+        BEGIN
+            MENUITEM "Stampa fattura &proforma",    ID_PRINTPROFORMA
+            MENUITEM "Stampa &effetti",             ID_STAMPAEFFETTI
+        END
+        MENUITEM SEPARATOR
+        POPUP "&Sblocco"
+        BEGIN
+            MENUITEM "S&blocca fattura",            ID_SBLOCCAFATTURA
+            MENUITEM "S&blocca fatturazione",       ID_SBLOCCAFATTURAZIONE
+        END
+    END
+    POPUP "&?"
+    BEGIN
+        MENUITEM "&Help\tF1",                   ID_HELP
+        MENUITEM "Informazioni",                ID_HELP_VERSION
+    END
+END
+
+IDR_MENU_LISTINI MENU DISCARDABLE 
+BEGIN
+    POPUP "&Listini"
+    BEGIN
+        MENUITEM "&Nuovo",                      ID_NUOVO
+        MENUITEM "&Copia",                      ID_LISTINI_COPIA
+        MENUITEM "&Modifica",                   ID_MODIFICA
+        MENUITEM "&Elimina",                    ID_ELIMINA
+        MENUITEM SEPARATOR
+        MENUITEM "&Attiva",                     ID_LISTINI_ATTIVA
+        MENUITEM "&Disattiva",                  ID_LISTINI_DISATTIVA
+        MENUITEM SEPARATOR
+        MENUITEM "&Stampa",                     ID_LISTINI_STAMPA
+        MENUITEM "Stampa in concessione",       ID_LISTINI_STAMPA_INCONCESSIONE
+
+    END
+    POPUP "&Categorie"
+    BEGIN
+        MENUITEM "&Nuova",                      ID_CATEGORIA_NUOVA
+        MENUITEM "&Modifica",                   ID_CATEGORIA_MODIFICA
+        MENUITEM "&Elimina",                    ID_CATEGORIA_ELIMINA
+    END
+    POPUP "&Servizi"
+    BEGIN
+        MENUITEM "&Nuovo",                      ID_SERVIZI_NUOVO
+        MENUITEM "Nuovo n&ota",                 ID_SERVIZI_NUOVONOTA
+        MENUITEM "&Modifica",                   ID_SERVIZI_MODIFICA
+        MENUITEM "&Elimina",                    ID_SERVIZI_ELIMINA
+    END
+    POPUP "&?"
+    BEGIN
+        MENUITEM "&Help\tF1",                   ID_HELP
+        MENUITEM "Informazioni",                ID_HELP_VERSION
+    END
+END
+
+IDR_MENU_OPERATORI MENU DISCARDABLE 
+BEGIN
+    POPUP "&Operatori"
+    BEGIN
+        MENUITEM "&Nuovo",                      ID_NUOVO
+        MENUITEM "&Modifica",                   ID_MODIFICA
+        MENUITEM "&Elimina",                    ID_ELIMINA
+    END
+    POPUP "&?"
+    BEGIN
+        MENUITEM "&Help\tF1",                   ID_HELP
+        MENUITEM "Informazioni",                ID_HELP_VERSION
+    END
+END
+
+IDR_MENU_PAGAMENTI MENU DISCARDABLE 
+BEGIN
+    POPUP "&Pagamenti"
+    BEGIN
+        MENUITEM "&Nuovo",                      ID_NUOVO
+        MENUITEM "&Modifica",                   ID_MODIFICA
+        MENUITEM "&Elimina",                    ID_ELIMINA
+    END
+    POPUP "&?"
+    BEGIN
+        MENUITEM "&Help\tF1",                   ID_HELP
+        MENUITEM "Informazioni",                ID_HELP_VERSION
+    END
+END
+
+IDR_MENU_MATERIALI MENU DISCARDABLE 
+BEGIN
+    POPUP "&Materiali"
+    BEGIN
+        MENUITEM "&Nuovo",                      ID_NUOVO
+        MENUITEM "&Modifica",                   ID_MODIFICA
+        MENUITEM "&Elimina",                    ID_ELIMINA
+    END
+    POPUP "&?"
+    BEGIN
+        MENUITEM "&Help\tF1",                   ID_HELP_VERSION
+        MENUITEM "Informazioni",                ID_HELP
+    END
+END
+
+IDR_MAINFRAME MENU PRELOAD DISCARDABLE 
+BEGIN
+    POPUP "&File"
+    BEGIN
+        MENUITEM "&Nuovo\tCtrl+N",              ID_FILE_NEW
+        MENUITEM "&Apri...\tCtrl+A",            ID_FILE_OPEN
+        MENUITEM "&Salva\tCtrl+S",              ID_FILE_SAVE
+        MENUITEM "Sa&lva con nome...",          ID_FILE_SAVE_AS
+        MENUITEM SEPARATOR
+        MENUITEM "Stam&pa...\tCtrl+P",          ID_FILE_PRINT
+        MENUITEM "Antepri&ma di stampa",        ID_FILE_PRINT_PREVIEW
+        MENUITEM "Imposta s&tampante...",       ID_FILE_PRINT_SETUP
+        MENUITEM SEPARATOR
+        MENUITEM "Ultimo file usato",           ID_FILE_MRU_FILE1, GRAYED
+        MENUITEM SEPARATOR
+        MENUITEM "&Esci",                       ID_APP_EXIT
+    END
+    POPUP "&Modifica"
+    BEGIN
+        MENUITEM "&Annulla\tCtrl+Z",            ID_EDIT_UNDO
+        MENUITEM SEPARATOR
+        MENUITEM "Tag&lia\tCtrl+X",             ID_EDIT_CUT
+        MENUITEM "&Copia\tCtrl+C",              ID_EDIT_COPY
+        MENUITEM "&Incolla\tCtrl+V",            ID_EDIT_PASTE
+    END
+    POPUP "&Visualizza"
+    BEGIN
+        MENUITEM "Barra degli st&rumenti",      ID_VIEW_TOOLBAR
+        MENUITEM "Barra di st&ato",             ID_VIEW_STATUS_BAR
+    END
+    POPUP "&?"
+    BEGIN
+        MENUITEM "Infor&mazioni",               ID_APP_ABOUT
+    END
+END
+
+IDR_MENU_AZIENDE MENU DISCARDABLE 
+BEGIN
+    POPUP "&Aziende"
+    BEGIN
+        MENUITEM "&Nuova",                      ID_NUOVO
+        MENUITEM "&Modifica",                   ID_MODIFICA
+        MENUITEM "&Elimina",                    ID_ELIMINA
+        MENUITEM SEPARATOR
+        MENUITEM "&Report verbali",             ID_REPORT_VERBALI
+        MENUITEM "&Trova",                      ID_TROVA
+    END
+    POPUP "&?"
+    BEGIN
+        MENUITEM "&Help\tF1",                   ID_HELP
+        MENUITEM "Informazioni",                ID_HELP_VERSION
+    END
+END
+
+IDR_MENU_VERBALI MENU DISCARDABLE 
+BEGIN
+    POPUP "&Verbali"
+    BEGIN
+        POPUP "&Nuovo"
+        BEGIN
+            MENUITEM "Nuovo in &concessione",       ID_NUOVO
+            MENUITEM "Nu&ovo non in concessione",   ID_NUOVO_VERBALE
+            MENUITEM "Nuovo prove &geotecniche",    ID_NUOVO_GEOLOGIA
+        END
+        MENUITEM "&Modifica",                   ID_MODIFICA
+        MENUITEM SEPARATOR
+        MENUITEM "&Annulla",                    ID_ANNULLA
+        MENUITEM "&Chiudi",                     ID_CHIUDI_VERBALE
+        MENUITEM "Me&tti in fatturazione",      ID_METTI_IN_FATTURAZIONE
+        MENUITEM SEPARATOR
+        POPUP "&Stampa"
+        BEGIN
+            MENUITEM "&Verbale su carta intestata", ID_PRN_CARTA_INTESTATA
+            MENUITEM "Ver&bale su carta libera",    ID_PRN_CARTA_LIBERA
+            MENUITEM "&Minute",                     ID_PRINT_MINUTA
+            MENUITEM "&Etichette",                  ID_STAMPA_ETICHETTE
+            MENUITEM "Sc&heda intestatario fattura", 
+                                                    ID_PRINT_SCHEDA_INT_FATTURA
+
+            MENUITEM "&Fattura proforma",           ID_PRN_FATTURA_PROFORMA
+        END
+        MENUITEM SEPARATOR
+        POPUP "Ce&rca verbale per..."
+        BEGIN
+            MENUITEM "&Cantiere",                   ID_FIND_VERB_CANTIERE
+            MENUITEM "&Direttore lavori",           ID_FIND_VERB_DIR_LAVORI
+            MENUITEM "&Intestatario certificato",   ID_FIND_VERB_CERTIFICATO
+            MENUITEM "Intestatario &fattura",       ID_FIND_VERB_FATTURA
+            MENUITEM "I&mpresa",                    ID_FIND_VERB_IMPRESA
+            MENUITEM "Struttura di &perlievo",      ID_FIND_VERB_STRUTTURA
+            MENUITEM "&Sigla serie",                ID_FIND_VERB_SIGLA
+            MENUITEM "&Numero",                     ID_FIND_VERB_NUMERO
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "&Ricarica elenco verbali",    ID_AGGIORNA_ALBERO
+        MENUITEM "S&blocca verbale",            ID_SBLOCCO_VERBALE
+    END
+    POPUP "&Certificati"
+    BEGIN
+        MENUITEM "&Modifica",                   ID_BUTTON_MODIFICA_CERTIFICATO
+
+        MENUITEM "&Dati provini",               ID_DATI_PROVINI
+        MENUITEM SEPARATOR
+        MENUITEM "&Emissione",                  ID_BUTTON_AVVIA_EMISSIONE
+        MENUITEM SEPARATOR
+        MENUITEM "&Stampa",                     ID_BUTTON_STAMPA_CERTIFICATI
+        MENUITEM SEPARATOR
+        MENUITEM "S&blocca certificazione",     ID_SBLOCCACERTIFICAZIONE
+    END
+    POPUP "&?"
+    BEGIN
+        MENUITEM "&Help\tF1",                   ID_HELP
+        MENUITEM "Informazioni",                ID_HELP_VERSION
+    END
+END
+
+IDR_MENU_MARCHI MENU DISCARDABLE 
+BEGIN
+    POPUP "&Marchi"
+    BEGIN
+        MENUITEM "&Nuovo",                      ID_NUOVO
+        MENUITEM "&Modifica",                   ID_MODIFICA
+        MENUITEM "&Elimina",                    ID_ELIMINA
+        MENUITEM "&Stampa",                     ID_STAMPA
+    END
+    POPUP "&?"
+    BEGIN
+        MENUITEM "&Help\tF1",                   ID_HELP
+        MENUITEM "Informazioni",                ID_HELP_VERSION
+    END
+END
+
+IDR_MENU_ARCHIVIO_VERBALI MENU DISCARDABLE 
+BEGIN
+    POPUP "&Archivio Verbali"
+    BEGIN
+        MENUITEM "&Apri",                       IDD_OPEN_DOC
+        MENUITEM "&Visualizza",                 IDD_PREVIEW_DOC
+    END
+    POPUP "&?"
+    BEGIN
+        MENUITEM "&Help\tF1",                   ID_HELP
+        MENUITEM "Informazioni",                ID_HELP_VERSION
+    END
+END
+
+IDR_MENU_ARCHIVIO_CERTIFICATI MENU DISCARDABLE 
+BEGIN
+    POPUP "&Archivio Certificati"
+    BEGIN
+        MENUITEM "&Visualizza",                 IDD_PREVIEW_DOC
+        MENUITEM "&Elimina",                    ID_BTN_EILIMINACERTIFICATO
+        MENUITEM "&Stampa",                     ID_STAMPA
+    END
+    POPUP "&?"
+    BEGIN
+        MENUITEM "&Help\tF1",                   ID_HELP
+        MENUITEM "Informazioni",                ID_HELP_VERSION
+    END
+END
+
+IDR_MENU_ARCHIVIO_FATTURE MENU DISCARDABLE 
+BEGIN
+    POPUP "&Archivio Fatture"
+    BEGIN
+        MENUITEM "&Visualizza",                 IDD_PREVIEW_DOC
+        MENUITEM "&Ripristina",                 ID_RIPRISTINA_FATTURA
+        POPUP "&Stampa"
+        BEGIN
+            MENUITEM "D&oppia copia",               ID_FATTURA_STAMPA_MULTIPLA
+
+            MENUITEM "S&ingola copia",              ID_FATTURA_STAMPA_SINGOLA
+
+        END
+    END
+    POPUP "&?"
+    BEGIN
+        MENUITEM "&Help\tF1",                   ID_HELP_HELPF1
+        MENUITEM "Informazioni",                ID_HELP
+    END
+END
+
+IDR_MENU_VERBALI_WS2 MENU DISCARDABLE 
+BEGIN
+    POPUP "&Verbali"
+    BEGIN
+        MENUITEM "&Nuovo",                      ID_NUOVO_VERBALE
+        MENUITEM "&Modifica",                   ID_MODIFICA
+        MENUITEM SEPARATOR
+        MENUITEM "&Annulla",                    ID_ANNULLA
+        MENUITEM "&Chiudi",                     ID_CHIUDI_VERBALE
+        MENUITEM "Me&tti in fatturazione",      ID_METTI_IN_FATTURAZIONE
+        MENUITEM SEPARATOR
+        POPUP "&Stampa"
+        BEGIN
+            MENUITEM "&Verbale su carta intestata", ID_PRN_CARTA_INTESTATA
+            MENUITEM "Ver&bale su carta libera",    ID_PRN_CARTA_LIBERA
+            MENUITEM "&Minute",                     ID_PRINT_MINUTA
+            MENUITEM "&Etichette",                  ID_STAMPA_ETICHETTE
+            MENUITEM "Sc&heda intestatario fattura", 
+                                                    ID_PRINT_SCHEDA_INT_FATTURA
+
+            MENUITEM "&Fattura proforma",           ID_PRN_FATTURA_PROFORMA
+        END
+        MENUITEM SEPARATOR
+        POPUP "Ce&rca verbale per..."
+        BEGIN
+            MENUITEM "&Cantiere",                   ID_FIND_VERB_CANTIERE
+            MENUITEM "&Direttore lavori",           ID_FIND_VERB_DIR_LAVORI
+            MENUITEM "&Intestatario certificato",   ID_FIND_VERB_CERTIFICATO
+            MENUITEM "Intestatario &fattura",       ID_FIND_VERB_FATTURA
+            MENUITEM "I&mpresa",                    ID_FIND_VERB_IMPRESA
+            MENUITEM "Struttura di &perlievo",      ID_FIND_VERB_STRUTTURA
+            MENUITEM "&Sigla serie",                ID_FIND_VERB_SIGLA
+            MENUITEM "&Numero",                     ID_FIND_VERB_NUMERO
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "&Ricarica elenco verbali",    ID_AGGIORNA_ALBERO
+        MENUITEM "S&blocca verbale",            ID_SBLOCCO_VERBALE
+    END
+    POPUP "&Certificati"
+    BEGIN
+        MENUITEM "&Modifica",                   ID_BUTTON_MODIFICA_CERTIFICATO
+
+        MENUITEM "&Dati provini",               ID_DATI_PROVINI
+        MENUITEM SEPARATOR
+        MENUITEM "&Emissione",                  ID_BUTTON_AVVIA_EMISSIONE
+        MENUITEM SEPARATOR
+        MENUITEM "&Stampa",                     ID_BUTTON_STAMPA_CERTIFICATI
+        MENUITEM SEPARATOR
+        MENUITEM "S&blocca certificazione",     ID_SBLOCCACERTIFICAZIONE
+    END
+    POPUP "&?"
+    BEGIN
+        MENUITEM "&Help\tF1",                   ID_HELP
+        MENUITEM "Informazioni",                ID_HELP_VERSION
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDR_MAINFRAME ACCELERATORS PRELOAD MOVEABLE PURE 
+BEGIN
+    "C",            ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
+    "N",            ID_FILE_NEW,            VIRTKEY, CONTROL, NOINVERT
+    "O",            ID_FILE_OPEN,           VIRTKEY, CONTROL, NOINVERT
+    "P",            ID_FILE_PRINT,          VIRTKEY, CONTROL, NOINVERT
+    "S",            ID_FILE_SAVE,           VIRTKEY, CONTROL, NOINVERT
+    "V",            ID_EDIT_PASTE,          VIRTKEY, CONTROL, NOINVERT
+    VK_BACK,        ID_EDIT_UNDO,           VIRTKEY, ALT, NOINVERT
+    VK_DELETE,      ID_EDIT_CUT,            VIRTKEY, SHIFT, NOINVERT
+    VK_F6,          ID_NEXT_PANE,           VIRTKEY, NOINVERT
+    VK_F6,          ID_PREV_PANE,           VIRTKEY, SHIFT, NOINVERT
+    VK_INSERT,      ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
+    VK_INSERT,      ID_EDIT_PASTE,          VIRTKEY, SHIFT, NOINVERT
+    "X",            ID_EDIT_CUT,            VIRTKEY, CONTROL, NOINVERT
+    "Z",            ID_EDIT_UNDO,           VIRTKEY, CONTROL, NOINVERT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOG DISCARDABLE  0, 0, 377, 66
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Informazioni su WinSigma"
+FONT 8, "MS Sans Serif"
+BEGIN
+    LTEXT           "WinSigma Versione 4.1.1 Copyright (C) 2003-2010 by Quadrante s.n.c.",
+                    IDC_STATIC_VERSION,72,7,297,9,SS_NOPREFIX
+    CONTROL         239,IDC_STATIC,"Static",SS_BITMAP,7,7,54,49
+    LTEXT           "Via A. De Gasperi n° 26",IDC_STATIC,71,21,148,9
+    LTEXT           "50013 Campi Bisenzio (FI)",IDC_STATIC,71,34,148,9
+    LTEXT           "Tel : 055-8996461 Fax : 055-8947382",IDC_STATIC,71,49,
+                    148,9
+END
+
+IDD_FORM_FATTURE DIALOG DISCARDABLE  0, 0, 514, 429
+STYLE WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    GROUPBOX        "Dati cliente",IDC_STATIC,7,3,500,88
+    EDITTEXT        IDC_EDIT_RAGIONE_SOCIALE,158,14,162,15,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_P_IVA,47,51,70,15,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_COD_CLIENTE,47,14,49,15,ES_AUTOHSCROLL
+    CONTROL         "List1",IDC_LIST_SERVIZI,"SysListView32",LVS_REPORT | 
+                    LVS_SHOWSELALWAYS | WS_BORDER | WS_TABSTOP,16,103,484,
+                    147
+    CONTROL         "List2",IDC_LIST_VERBALI,"SysListView32",LVS_REPORT | 
+                    WS_BORDER | WS_TABSTOP,25,280,298,132
+    PUSHBUTTON      "Aggiungi",IDC_BUTTON_ADD_SERVIZIO,334,255,50,14
+    PUSHBUTTON      "Elimina",IDC_BUTTON_DEL_SERVIZIO,392,255,50,14
+    PUSHBUTTON      "Modifica",IDC_BUTTON_MODIFY_SERVIZIO,450,255,50,14
+    EDITTEXT        IDC_EDIT_IMPORTO,445,274,55,15,ES_RIGHT | ES_AUTOHSCROLL | 
+                    ES_READONLY
+    GROUPBOX        "Servizi",IDC_STATIC,7,92,500,330
+    RTEXT           "Tipo pagamento",IDC_STATIC,325,12,58,15,SS_CENTERIMAGE
+    RTEXT           "P. IVA",IDC_STATIC,19,51,23,15,SS_CENTERIMAGE
+    RTEXT           "Codice",IDC_STATIC,15,14,27,15,SS_CENTERIMAGE
+    GROUPBOX        "Verbali aperti",IDC_STATIC,16,269,315,148
+    RTEXT           "Imponibile",IDC_STATIC,387,274,54,15,SS_CENTERIMAGE
+    RTEXT           "Ragione sociale",IDC_STATIC,101,14,52,15,SS_CENTERIMAGE
+    EDITTEXT        IDC_EDIT_BANCA,387,36,107,26,ES_MULTILINE | 
+                    ES_AUTOVSCROLL
+    RTEXT           "Banca",IDC_STATIC,360,36,23,15
+    RTEXT           "Indirizzo",IDC_STATIC,15,32,27,15,SS_CENTERIMAGE
+    EDITTEXT        IDC_EDIT_INDIRIZZO,47,32,273,15,ES_AUTOHSCROLL
+    RTEXT           "Sconto",IDC_STATIC,261,51,22,15,SS_CENTERIMAGE
+    EDITTEXT        IDC_EDIT_SCONTO,285,51,35,15,ES_RIGHT | ES_AUTOHSCROLL
+    RTEXT           "ABI",IDC_STATIC,360,72,23,14,SS_CENTERIMAGE
+    EDITTEXT        IDC_EDIT_ABI,387,72,39,14,ES_AUTOHSCROLL
+    RTEXT           "CAB",IDC_STATIC,435,72,15,14,SS_CENTERIMAGE
+    EDITTEXT        IDC_EDIT_CAB,455,72,39,14,ES_AUTOHSCROLL
+    RTEXT           "Cod. fiscale",IDC_STATIC,127,51,38,15,SS_CENTERIMAGE
+    EDITTEXT        IDC_EDIT_COD_FISCALE,170,51,88,15,ES_AUTOHSCROLL
+    COMBOBOX        IDC_COMBO_TIPO_PAGAMENTO,387,13,107,65,CBS_DROPDOWN | 
+                    CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    RTEXT           "Aliquota",IDC_STATIC,353,329,26,15,SS_CENTERIMAGE
+    GROUPBOX        "IVA",IDC_STATIC,349,320,155,28
+    RTEXT           "Importo",IDC_STATIC,417,329,24,15,SS_CENTERIMAGE
+    EDITTEXT        IDC_EDIT_ALIQUOTA,383,329,25,15,ES_RIGHT | 
+                    ES_AUTOHSCROLL | ES_READONLY
+    EDITTEXT        IDC_EDIT_IVA,445,329,55,15,ES_RIGHT | ES_AUTOHSCROLL | 
+                    ES_READONLY
+    RTEXT           "Importo totale",IDC_STATIC,397,401,44,15,SS_CENTERIMAGE
+    EDITTEXT        IDC_EDIT_TOTALE,445,401,55,15,ES_RIGHT | ES_AUTOHSCROLL | 
+                    ES_READONLY
+    GROUPBOX        "Sconto fattura",IDC_STATIC,349,291,155,28
+    RTEXT           "Sconto",IDC_STATIC,353,300,26,15,SS_CENTERIMAGE
+    EDITTEXT        IDC_EDIT_SCONTO_FATTURA,383,300,25,15,ES_RIGHT | 
+                    ES_AUTOHSCROLL | ES_READONLY
+    EDITTEXT        IDC_EDIT_IMPORTO_SCONTATO,445,300,55,15,ES_RIGHT | 
+                    ES_AUTOHSCROLL | ES_READONLY
+    RTEXT           "Imp. sc.",IDC_STATIC,414,301,27,15,SS_CENTERIMAGE
+    RTEXT           "Spedizione",IDC_STATIC,397,382,44,15,SS_CENTERIMAGE
+    EDITTEXT        IDC_EDIT_SPESE_SPED,445,382,55,15,ES_RIGHT | 
+                    ES_AUTOHSCROLL | ES_READONLY
+    LTEXT           "Tipo di documento",IDC_STATIC,22,71,60,15,
+                    SS_CENTERIMAGE
+    EDITTEXT        IDC_EDIT_TIPO_DOC,87,72,111,14,ES_AUTOHSCROLL | 
+                    ES_READONLY
+    RTEXT           "Data emissione",IDC_STATIC,207,71,48,15,SS_CENTERIMAGE
+    CONTROL         "DateTimePicker1",IDC_DATETIMEPICKER_DATA_EMISSIONE,
+                    "SysDateTimePick32",DTS_RIGHTALIGN | WS_TABSTOP,259,71,
+                    61,15
+    GROUPBOX        "Ritenuta di acconto",IDC_STATIC,349,349,155,28
+    LTEXT           "Rit. Acconto",IDC_STATIC,355,361,42,8
+    EDITTEXT        IDC_EDIT_RIT_ACCONTO,399,358,25,15,ES_RIGHT | 
+                    ES_AUTOHSCROLL | ES_READONLY
+    LTEXT           "Importo",IDC_STATIC,430,360,26,9
+    EDITTEXT        IDC_EDIT_TOT_RIT_ACCONTO,457,358,44,15,ES_RIGHT | 
+                    ES_AUTOHSCROLL | ES_READONLY
+END
+
+IDD_FORM_VERBALI DIALOG DISCARDABLE  0, 0, 511, 404
+STYLE WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "DateTimePicker2",IDC_DATE_ACCETTAZIONE,
+                    "SysDateTimePick32",DTS_RIGHTALIGN | WS_TABSTOP,77,40,84,
+                    15
+    EDITTEXT        IDC_EDIT_COD_AZ_CERTIFICATO,205,9,45,15,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_NOME_AZ_CERTIFICATO,251,9,164,15,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_COD_AZ_IMPRESA,205,34,45,15,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_NOME_AZ_IMPRESA,251,34,164,15,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_COD_AZ_FATTURA,205,57,45,15,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_NOME_AZ_FATTURA,251,57,164,15,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_DIRETTORE,55,86,120,15,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_RICHIEDENTE,55,100,120,15,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_PROPRIETARIO,55,115,120,15,ES_AUTOHSCROLL
+    CONTROL         "Lettera di incarico",IDC_CHECK_LETTERA,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,178,86,115,15
+    EDITTEXT        IDC_EDIT_LETTERA,178,100,115,15,ES_AUTOHSCROLL
+    CONTROL         "Sottoscritta Dir. Lavori",
+                    IDC_CHECK_DOMANDA_SOTTOSCRITTA,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,178,115,115,15
+    EDITTEXT        IDC_EDIT_CANTIERE,299,98,198,32,ES_MULTILINE | 
+                    ES_WANTRETURN | WS_VSCROLL
+    COMBOBOX        IDC_COMBO_CONSEGNA,31,148,75,68,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    CONTROL         "Urgenza",IDC_CHECK_URGENZA,"Button",BS_AUTOCHECKBOX | 
+                    BS_LEFTTEXT | WS_TABSTOP,109,144,45,12
+    CONTROL         "DateTimePicker3",IDC_DATE_CONSEGNA,"SysDateTimePick32",
+                    DTS_RIGHTALIGN | WS_TABSTOP,201,148,55,14
+    EDITTEXT        IDC_EDIT_ORA_CONSEGNA,261,148,55,14
+    EDITTEXT        IDC_EDIT_NOTE,31,168,284,15,ES_WANTRETURN
+    EDITTEXT        IDC_EDIT_DESTINATARIO,372,148,129,35,ES_MULTILINE | 
+                    ES_WANTRETURN | WS_VSCROLL
+    EDITTEXT        IDC_EDIT_PROVE,60,207,157,41,ES_MULTILINE | 
+                    ES_WANTRETURN
+    EDITTEXT        IDC_EDITMATERIALE,273,207,121,41,ES_MULTILINE | 
+                    ES_WANTRETURN
+    CONTROL         "Cert. per ogni serie",IDC_CHECK_OGNISERIE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,415,216,76,10
+    CONTROL         "Lunga scadenza",IDC_CHECK_LUNGA_SCADENZA,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,415,231,75,10
+    PUSHBUTTON      "Aggiungi",IDC_BUTTON_AGGIUNGI,15,383,50,15
+    PUSHBUTTON      "Elimina",IDC_BUTTON_ELIMINA,75,383,50,15
+    PUSHBUTTON      "Modifica",IDC_BUTTON_MODIFICA,135,383,50,15
+    EDITTEXT        IDC_EDIT_PIVA,418,41,83,15,ES_AUTOHSCROLL | ES_READONLY
+    PUSHBUTTON      "Provini",IDC_BUTTON_DATI_PROVINI,195,383,50,15
+    GROUPBOX        "Accettazione",IDC_STATIC,5,0,159,75
+    EDITTEXT        IDC_EDIT_TIPOVERBALE,10,10,150,25,ES_CENTER | 
+                    ES_MULTILINE | ES_AUTOHSCROLL | ES_READONLY
+    RTEXT           "Data",IDC_STATIC,50,40,20,15,SS_CENTERIMAGE
+    RTEXT           "Data e ora",IDC_STATIC,161,148,38,15,SS_CENTERIMAGE
+    GROUPBOX        "Intestazioni",IDC_STATIC,167,0,338,75
+    RTEXT           "Certificati",IDC_STATIC,173,10,29,14,SS_CENTERIMAGE
+    RTEXT           "Fattura",IDC_STATIC,173,58,29,14,SS_CENTERIMAGE
+    RTEXT           "Impresa",IDC_STATIC,173,34,29,14,SS_CENTERIMAGE
+    GROUPBOX        "Altri dati",IDC_STATIC,5,75,500,60
+    LTEXT           "Cantiere",IDC_STATIC,298,85,30,12,SS_CENTERIMAGE
+    RTEXT           "Proprietario",IDC_STATIC,10,115,39,15,SS_CENTERIMAGE
+    GROUPBOX        "Prove richieste e materiale consegnato",IDC_STATIC,5,
+                    196,395,55
+    GROUPBOX        "Consegna",IDC_STATIC,5,138,500,55
+    RTEXT           "Destinatario",IDC_STATIC,325,148,40,15,SS_CENTERIMAGE
+    GROUPBOX        "Altri servizi",IDC_STATIC,407,196,98,55
+    GROUPBOX        "Serie",IDC_STATIC,1,254,504,145
+    CONTROL         "List1",IDC_LIST_SERIE,"SysListView32",LVS_REPORT | 
+                    LVS_SINGLESEL | LVS_SHOWSELALWAYS | WS_BORDER | 
+                    WS_TABSTOP,11,266,485,110
+    RTEXT           "Totale serie",IDC_STATIC,400,383,39,12,SS_CENTERIMAGE
+    EDITTEXT        IDC_EDIT_NUMSERIE,443,383,40,15,ES_RIGHT | 
+                    ES_AUTOHSCROLL | ES_READONLY
+    RTEXT           "Costo",IDC_STATIC,314,383,26,13,SS_CENTERIMAGE
+    EDITTEXT        IDC_EDIT_COSTO,343,383,40,15,ES_RIGHT | ES_AUTOHSCROLL | 
+                    ES_READONLY
+    RTEXT           "Note",IDC_STATIC,11,168,16,15,SS_CENTERIMAGE
+    PUSHBUTTON      "Materiale",IDC_BUTTON_AUTO_MAT,227,212,40,14
+    RTEXT           "Richiedente",IDC_STATIC,10,100,39,15,SS_CENTERIMAGE
+    PUSHBUTTON      "Copia",IDC_BUTTON_COPY,450,8,50,15
+    RTEXT           "Dir. lavori",IDC_STATIC,10,86,39,15,SS_CENTERIMAGE
+    PUSHBUTTON      "Prove",IDC_BUTTON_AUTO_PROVE,15,212,40,14
+    EDITTEXT        IDC_EDIT_PAGAMENTO,418,25,83,15,ES_AUTOHSCROLL | 
+                    ES_READONLY
+    PUSHBUTTON      "Emenda",IDC_BUTTON_EMENDA,259,383,50,15
+    CONTROL         "Ritiro",IDC_CHECK_RITIRO,"Button",BS_AUTOCHECKBOX | 
+                    BS_LEFTTEXT | WS_TABSTOP,109,154,45,12
+    EDITTEXT        IDC_EDIT_CODFISCALE,418,57,83,15,ES_AUTOHSCROLL | 
+                    ES_READONLY
+    LTEXT           "Tipo prova",IDC_STATIC_TIPO_PROVA,10,60,35,10
+    COMBOBOX        IDC_COMBO_TIPO_PROVA,46,59,115,73,CBS_DROPDOWNLIST | 
+                    WS_DISABLED | WS_VSCROLL | WS_TABSTOP
+END
+
+IDD_FORM_LISTINI DIALOG DISCARDABLE  0, 0, 491, 396
+STYLE WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    LTEXT           "Codice",IDC_STATIC,10,15,23,8
+    LTEXT           "Nome",IDC_STATIC,110,15,20,8
+    LTEXT           "Autore",IDC_STATIC,10,65,22,8
+    LTEXT           "Categorie",IDC_STATIC,10,90,31,8
+    LTEXT           "Servizi",IDC_STATIC,10,210,22,8
+    LTEXT           "Totale",IDC_STATIC,10,165,25,8
+    GROUPBOX        "Validità (gg/mm/aaaa)",IDC_STATIC,360,5,115,70
+    EDITTEXT        IDC_EDIT_CODICE,45,10,40,14,ES_AUTOHSCROLL | ES_READONLY | 
+                    NOT WS_TABSTOP
+    EDITTEXT        IDC_EDIT_NOME,140,10,205,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_AUTORE,45,60,85,14,ES_AUTOHSCROLL | ES_READONLY | 
+                    NOT WS_TABSTOP
+    CONTROL         "List1",IDC_LIST_CATEGORIE,"SysListView32",LVS_REPORT | 
+                    LVS_SINGLESEL | LVS_SHOWSELALWAYS | WS_BORDER | 
+                    WS_TABSTOP,45,85,430,110
+    CONTROL         "List1",IDC_LIST_SERVIZI,"SysListView32",LVS_REPORT | 
+                    LVS_SINGLESEL | LVS_SHOWSELALWAYS | WS_BORDER | 
+                    WS_TABSTOP,45,205,430,180
+    EDITTEXT        IDC_EDIT_NCATEGORIE,10,180,25,14,ES_CENTER | 
+                    ES_AUTOHSCROLL | ES_READONLY | NOT WS_TABSTOP
+    LTEXT           "Al",IDC_STATIC,375,51,8,14,SS_CENTERIMAGE
+    LTEXT           "Dal",IDC_STATIC,371,22,12,14,SS_CENTERIMAGE
+    EDITTEXT        IDC_EDIT_NSERVIZI,10,370,25,14,ES_CENTER | 
+                    ES_AUTOHSCROLL | ES_READONLY | NOT WS_TABSTOP
+    LTEXT           "Azienda",IDC_STATIC,10,35,26,8
+    PUSHBUTTON      "Cerca ...",IDC_BUTTON_CERCA,295,35,50,14
+    EDITTEXT        IDC_EDIT_NOMEAZIENDA,90,35,195,14,ES_AUTOHSCROLL | 
+                    ES_READONLY
+    EDITTEXT        IDC_EDIT_CODICEAZIENDA,45,35,40,14,ES_AUTOHSCROLL | 
+                    ES_READONLY
+    LTEXT           "Totale",IDC_STATIC,10,355,21,8
+    CONTROL         "Certificati per ogni serie",
+                    IDC_CHECK_CERTIFICATIOGNISERIE,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,159,63,128,10
+    EDITTEXT        IDC_EDIT_INIZIO,390,22,69,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_FINE,390,51,69,14,ES_AUTOHSCROLL
+END
+
+IDD_FORM_OPERATORI DIALOGEX 0, 0, 494, 359
+STYLE WS_CHILD | WS_BORDER
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_EDIT_NOME,150,25,260,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_COGNOME,150,46,260,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_TITOLI,150,67,48,14,ES_AUTOHSCROLL
+    COMBOBOX        IDC_COMBO_LIVELLO,70,103,160,77,CBS_DROPDOWN | 
+                    WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        IDC_EDIT_PASSWORD,70,123,160,14,ES_PASSWORD | 
+                    ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_VERIFICA,70,148,160,14,ES_PASSWORD | 
+                    ES_AUTOHSCROLL
+    CONTROL         "Sperimentatore",IDC_CHECK_SPERIMENTATORE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,16,186,90,10
+    EDITTEXT        IDC_EDIT_MACCHINA,150,184,255,14,ES_AUTOHSCROLL | 
+                    WS_DISABLED
+    CONTROL         "DateTimePicker1",IDC_DATETIMEPICKER_INIZIO,
+                    "SysDateTimePick32",DTS_RIGHTALIGN | WS_TABSTOP,300,98,
+                    100,15
+    CONTROL         "DateTimePicker1",IDC_DATETIMEPICKER_FINE,
+                    "SysDateTimePick32",DTS_RIGHTALIGN | WS_TABSTOP,312,124,
+                    87,15
+    CONTROL         "Sospeso",IDC_CHECK_SOPSESO,"Button",BS_AUTOCHECKBOX | 
+                    BS_LEFTTEXT | WS_TABSTOP,265,148,43,10
+    GROUPBOX        "Gestione operatori",IDC_STATIC,5,5,420,206
+    RTEXT           "Nome",IDC_STATIC,112,28,34,8
+    RTEXT           "Cognome",IDC_STATIC,104,49,42,8
+    LTEXT           "Inizio",IDC_STATIC,265,103,17,8
+    LTEXT           "Fine",IDC_STATIC,265,128,14,8
+    GROUPBOX        "Attività",IDC_STATIC,255,88,155,84
+    LTEXT           "Password",IDC_STATIC,25,128,32,8
+    LTEXT           "Verifica",IDC_STATIC,25,148,24,8
+    GROUPBOX        "Privilegi",IDC_STATIC,15,88,225,85
+    LTEXT           "Livello",IDC_STATIC,25,103,21,8
+    LTEXT           "Codice",IDC_STATIC,20,30,23,8
+    EDITTEXT        IDC_EDIT_CODICE,50,25,40,14,ES_AUTOHSCROLL | ES_READONLY | 
+                    NOT WS_TABSTOP
+    LTEXT           "Macchina",IDC_STATIC,115,187,32,8
+    RTEXT           "Titoli",IDC_STATIC,116,70,30,8
+    CONTROL         "Responsabile del laboratorio",IDC_CHECK_RESPONSABILE,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,259,69,122,10
+    CONTROL         "",IDC_CHECK_INVALIDPICKER,"Button",BS_AUTOCHECKBOX | 
+                    BS_LEFTTEXT | BS_CENTER | BS_VCENTER | WS_TABSTOP,300,
+                    124,13,15,WS_EX_CLIENTEDGE | WS_EX_STATICEDGE
+END
+
+IDD_DIALOG_CONNESSIONE DIALOGEX 0, 0, 201, 122
+STYLE DS_SYSMODAL | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Connessione a WinSigma"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    COMBOBOX        IDC_COMBO_OPERATORE,51,19,135,79,CBS_DROPDOWN | CBS_SORT | 
+                    WS_VSCROLL | WS_TABSTOP,WS_EX_ACCEPTFILES
+    EDITTEXT        IDC_EDIT_PASSWORD,51,39,135,12,ES_PASSWORD | 
+                    ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "OK",IDOK,108,101,50,14
+    PUSHBUTTON      "Annulla",IDCANCEL,33,101,50,14
+    LTEXT           "Operatore",IDC_STATIC,13,22,32,8
+    LTEXT           "Password",IDC_STATIC,13,44,32,8
+    CONTROL         "Progress1",IDC_PROGRESS_LOAD,"msctls_progress32",
+                    WS_BORDER | WS_TABSTOP,13,75,175,10
+    GROUPBOX        "Connessione",IDC_STATIC,7,7,187,52
+    GROUPBOX        "Stato del caricamento",IDC_STATIC_LOADPROGESS,7,63,187,
+                    29
+    ICON            IDR_MAINFRAME,IDC_STATIC_ICON,173,95,21,20,NOT 
+                    WS_VISIBLE
+END
+
+IDD_FORM_PAGAMENTI DIALOG DISCARDABLE  0, 0, 446, 206
+STYLE WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    GROUPBOX        "Gestione tipi di pagamento",IDC_STATIC,5,5,385,195
+    LTEXT           "Codice",IDC_STATIC,20,25,23,14,SS_CENTERIMAGE
+    EDITTEXT        IDC_EDIT_CODICE,51,25,40,14,ES_AUTOHSCROLL | ES_READONLY
+    LTEXT           "Nome",IDC_STATIC,192,25,20,14,SS_CENTERIMAGE
+    EDITTEXT        IDC_EDIT_NOME,222,25,158,14,ES_AUTOHSCROLL
+    LTEXT           "Descrizione",IDC_STATIC,20,55,38,14,SS_CENTERIMAGE
+    EDITTEXT        IDC_EDIT_DESCRIZIONE,70,55,310,14,ES_AUTOHSCROLL
+    LTEXT           "Arrotondamento scadenza",IDC_STATIC,252,90,86,12,
+                    SS_CENTERIMAGE
+    COMBOBOX        IDC_COMBO_ALLINEAMENTO,217,105,150,72,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    GROUPBOX        "Scadenze",IDC_STATIC_SCADENZE,20,75,365,55
+    LTEXT           "Prima scad. (gg.)",IDC_STATIC_PRIMA_SCADENZA,28,110,55,
+                    12,SS_CENTERIMAGE
+    EDITTEXT        IDC_EDIT_PRIMA_SCADENZA,88,110,25,12,ES_AUTOHSCROLL
+    LTEXT           "Numero rate",IDC_STATIC_NUMERO_RATE,28,88,55,12,
+                    SS_CENTERIMAGE
+    EDITTEXT        IDC_EDIT_NUMERO_RATE,88,88,25,12,ES_AUTOHSCROLL
+    GROUPBOX        "Banca d'appoggio Sigma",IDC_STATIC,20,132,365,58
+    RTEXT           "Banca",IDC_STATIC,32,148,22,14,SS_CENTERIMAGE
+    RTEXT           "ABI",IDC_STATIC,42,169,12,14,SS_CENTERIMAGE
+    RTEXT           "CAB",IDC_STATIC,106,169,15,14,SS_CENTERIMAGE
+    EDITTEXT        IDC_EDIT_CAB,126,169,37,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_ABI,58,169,37,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_BANCA,58,148,319,14,ES_AUTOHSCROLL
+    RTEXT           "CIN",IDC_STATIC,168,169,19,14,SS_CENTERIMAGE
+    RTEXT           "C/C",IDC_STATIC,360,169,17,14,SS_CENTERIMAGE
+    EDITTEXT        IDC_EDIT_CIN,192,169,34,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_CC,272,169,105,14,ES_AUTOHSCROLL
+    LTEXT           "Codice Gest",IDC_STATIC_CODICE_GEST,97,25,42,14,
+                    SS_CENTERIMAGE
+    EDITTEXT        IDC_EDIT_CODICE_GEST,143,25,40,14,ES_AUTOHSCROLL
+    CONTROL         "Bonifico",IDC_CHECK_BONIFICO,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,130,90,41,10
+    CONTROL         "RI.BA.",IDC_CHECK_RIBA,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,130,110,37,10
+END
+
+IDD_FORM_MATERIALI DIALOG DISCARDABLE  0, 0, 446, 276
+STYLE WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    GROUPBOX        "Gestione tipi di materiale",IDC_STATIC,5,5,428,270
+    RTEXT           "Codice",IDC_STATIC,7,30,69,8
+    EDITTEXT        IDC_EDIT_CODICE,85,25,40,14,ES_AUTOHSCROLL
+    RTEXT           "Nome",IDC_STATIC,142,30,27,8
+    EDITTEXT        IDC_EDIT_NOME,175,25,245,14,ES_AUTOHSCROLL | 
+                    ES_OEMCONVERT
+    RTEXT           "Descrizione",IDC_STATIC,7,60,69,8
+    EDITTEXT        IDC_EDIT_DESCRIZIONE,85,55,276,14,ES_AUTOHSCROLL
+    RTEXT           "Primo tipo di cert.",IDC_STATIC,7,88,69,8
+    COMBOBOX        IDC_COMBO_TIPOCERTIFICATO,85,85,237,160,CBS_DROPDOWNLIST | 
+                    CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "Predefinito",IDC_CHECK_PREDEFINITO,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,85,190,58,10
+    EDITTEXT        IDC_EDIT_SNERVAMENTO,380,84,40,14,ES_AUTOHSCROLL
+    RTEXT           "Snervamento",IDC_STATIC,333,89,42,8
+    PUSHBUTTON      "<---     x²",IDC_BUTTON_QUADRI,370,55,50,14,BS_LEFT
+    RTEXT           "Secondo tipo cert.",IDC_STATIC,7,116,69,8
+    COMBOBOX        IDC_COMBO_TIPOCERTIFICATO2,85,114,237,139,
+                    CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    RTEXT           "Terzo tipo cert.",IDC_STATIC,7,141,69,8
+    COMBOBOX        IDC_COMBO_TIPOCERTIFICATO3,85,139,237,130,CBS_DROPDOWN | 
+                    CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    RTEXT           "Quarto tipo cert.",IDC_STATIC,13,168,63,8
+    COMBOBOX        IDC_COMBO_TIPOCERTIFICATO4,85,166,237,122,CBS_DROPDOWN | 
+                    WS_VSCROLL | WS_TABSTOP
+END
+
+IDD_DIALOG_CATEGORIE DIALOG DISCARDABLE  0, 0, 257, 175
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+FONT 8, "MS Sans Serif"
+BEGIN
+    EDITTEXT        IDC_EDIT_CODICE,60,70,40,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_NOME,60,90,180,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_DESCRIZIONE,60,110,180,35,ES_MULTILINE | 
+                    ES_AUTOVSCROLL
+    PUSHBUTTON      "Annulla",IDCANCEL,135,155,50,14
+    LTEXT           "Codice",IDC_STATIC,15,20,23,8
+    EDITTEXT        IDC_EDIT_CODICELISTINO,60,15,40,14,ES_AUTOHSCROLL | 
+                    ES_READONLY | NOT WS_TABSTOP
+    EDITTEXT        IDC_EDIT_NOMELISTINO,60,35,180,14,ES_AUTOHSCROLL | 
+                    ES_READONLY | NOT WS_TABSTOP
+    GROUPBOX        "Categoria",IDC_STATIC,5,60,245,90
+    LTEXT           "Codice",IDC_STATIC,15,75,25,8
+    LTEXT           "Nome",IDC_STATIC,15,95,20,8
+    LTEXT           "Descrizione",IDC_STATIC,15,110,38,8
+    GROUPBOX        "Listino",IDC_STATIC,5,5,245,50
+    LTEXT           "Nome",IDC_STATIC,15,39,20,8
+    PUSHBUTTON      "OK",IDC_BUTTON_OK,200,154,50,14
+END
+
+IDD_DIALOG_SERVIZI_FATTURA DIALOG DISCARDABLE  0, 0, 269, 173
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "",IDC_MASKEDBOX_PREZZO,
+                    "{C932BA85-4374-101B-A56C-00AA003668DC}",WS_TABSTOP,182,
+                    95,71,14
+    DEFPUSHBUTTON   "OK",IDOK,203,152,50,14
+    PUSHBUTTON      "Annulla",IDCANCEL,127,152,50,14
+    CONTROL         "",IDC_MASKEDBOX_IMPORTO,
+                    "{C932BA85-4374-101B-A56C-00AA003668DC}",WS_TABSTOP,182,
+                    114,71,14
+    COMBOBOX        IDC_COMBO_VERBALE,39,11,215,62,CBS_DROPDOWN | CBS_SORT | 
+                    WS_VSCROLL | WS_TABSTOP
+    RTEXT           "Verbale",IDC_STATIC,7,11,27,12,SS_CENTERIMAGE
+    COMBOBOX        IDC_COMBO_CATEGORIA,56,40,71,61,CBS_DROPDOWN | CBS_SORT | 
+                    WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_COMBO_SERVIZIO,183,40,71,61,CBS_DROPDOWN | CBS_SORT | 
+                    WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        IDC_EDIT_DESCRIZIONE,56,56,198,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_QUANTITA,56,94,71,14,ES_RIGHT | ES_AUTOHSCROLL
+    RTEXT           "Categoria",IDC_STATIC,20,40,31,12,SS_CENTERIMAGE
+    RTEXT           "Servizio",IDC_STATIC,147,40,31,12,SS_CENTERIMAGE
+    RTEXT           "Descrizione",IDC_STATIC,12,56,39,14,SS_CENTERIMAGE
+    RTEXT           "Quantità",IDC_STATIC,20,94,31,14,SS_CENTERIMAGE
+    RTEXT           "Prezzo",IDC_STATIC,147,94,31,14,SS_CENTERIMAGE
+    RTEXT           "Importo",IDC_STATIC,147,113,31,14,SS_CENTERIMAGE
+    RTEXT           "Sconto",IDC_STATIC,20,113,31,14,SS_CENTERIMAGE
+    EDITTEXT        IDC_EDIT_SCONTO,56,113,71,14,ES_RIGHT | ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_NOTE,56,75,198,14,ES_AUTOHSCROLL
+    RTEXT           "Note",IDC_STATIC,12,75,39,14,SS_CENTERIMAGE
+    GROUPBOX        "Servizi",IDC_STATIC,7,28,255,119
+    CONTROL         "Listino generale",IDC_CHECK_LISTINOGENERALE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,56,132,136,10
+END
+
+IDD_DIALOG_ATTIVALISTINO DIALOG DISCARDABLE  0, 0, 272, 135
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Attivazione listino"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,210,115,50,14
+    PUSHBUTTON      "Annulla",IDCANCEL,150,115,50,14
+    GROUPBOX        "Listino precedente",IDC_STATIC,5,5,260,50
+    LTEXT           "Codice",IDC_STATIC,15,15,23,14,SS_CENTERIMAGE
+    EDITTEXT        IDC_EDIT_CODICEVECCHIO,50,15,40,14,ES_AUTOHSCROLL | 
+                    ES_READONLY
+    LTEXT           "Nome",IDC_STATIC,15,35,20,14,SS_CENTERIMAGE
+    EDITTEXT        IDC_EDIT_NOMEVECCHIO,50,35,205,14,ES_AUTOHSCROLL | 
+                    ES_READONLY
+    LTEXT           "In vigore dal",IDC_STATIC,122,15,40,14,SS_CENTERIMAGE
+    EDITTEXT        IDC_EDIT_DALVECCHIO,170,15,85,14,ES_AUTOHSCROLL | 
+                    ES_READONLY
+    GROUPBOX        "Nuovo listino",IDC_STATIC,5,60,260,50
+    LTEXT           "Codice",IDC_STATIC,15,70,23,14,SS_CENTERIMAGE
+    EDITTEXT        IDC_EDIT_CODICENUOVO,50,70,40,14,ES_AUTOHSCROLL | 
+                    ES_READONLY
+    LTEXT           "Nome",IDC_STATIC,15,90,20,14,SS_CENTERIMAGE
+    EDITTEXT        IDC_EDIT_NOMENUOVO,50,90,205,14,ES_AUTOHSCROLL | 
+                    ES_READONLY
+    CONTROL         "DateTimePicker1",IDC_DATETIMEPICKER_DALNUOVO,
+                    "SysDateTimePick32",DTS_RIGHTALIGN | WS_TABSTOP,170,70,
+                    85,15
+    LTEXT           "In vigore dal",IDC_STATIC,115,71,40,14,SS_CENTERIMAGE
+END
+
+IDD_FORM_AZIENDE DIALOG DISCARDABLE  0, 0, 550, 430
+STYLE WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    EDITTEXT        IDC_EDIT_CODE,50,20,50,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "Auto",IDC_BUTTON_GENERA_CODICE,115,20,46,14
+    EDITTEXT        IDC_EDIT_PIVA,213,20,151,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_RAG_SOC,49,39,314,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_INDIRIZZO,48,58,315,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_PROVINCIA,49,76,22,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_CITTA,102,76,261,14,ES_AUTOHSCROLL
+    COMBOBOX        IDC_COMBO_CAP,49,95,279,85,CBS_DROPDOWNLIST | CBS_SORT | 
+                    WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        IDC_EDIT_CAP,329,95,34,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_TELEFONO,49,112,74,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_FAX,169,113,74,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_CELL,290,112,74,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_CODFISC,49,131,136,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_EMAIL,221,131,142,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_INDIRIZZO_SPEDIZIONE,50,161,305,14,
+                    ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_CAP_SPEDIZIONE,50,183,50,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_CITTA_SPEDIZIONE,129,183,149,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_PROVINCIA_SPEDIZIONE,333,183,22,14,
+                    ES_AUTOHSCROLL
+    CONTROL         "Privato",IDC_CHECK_PRIVATO,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,33,208,52,10
+    CONTROL         "Cliente importante",IDC_CHECK_IMPORTANTE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,143,208,89,10
+    CONTROL         "Listino generale",IDC_CHECK_LISTINOGENERALE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,259,208,79,10
+    EDITTEXT        IDC_EDIT_NOTE,15,237,418,64,ES_MULTILINE | ES_WANTRETURN
+    CONTROL         "List1",IDC_LIST_VERBALI,"SysListView32",LVS_REPORT | 
+                    LVS_SHOWSELALWAYS | WS_BORDER | WS_TABSTOP,13,325,348,91
+    COMBOBOX        IDC_COMBO_TIPOPAGAMENTO,402,18,133,81,CBS_DROPDOWNLIST | 
+                    CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        IDC_EDIT_SCONTO,402,34,37,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_BANCA,402,54,133,33,ES_MULTILINE | 
+                    ES_WANTRETURN
+    EDITTEXT        IDC_EDIT_ABI,402,92,35,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_CAB,500,92,35,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "Importa azienda",IDC_BUTTON_ARCHIVIO_AZIENDE,389,126,65,
+                    24
+    PUSHBUTTON      "Inserisci",IDC_BUTTON_INSERT,396,163,120,24
+    PUSHBUTTON      "Modifica",IDC_BUTTON_MODIFICA_VFARLOCCO,396,195,50,14
+    PUSHBUTTON      "Elimina",IDC_BUTTON_ELIMINA_VFARLOCCO,466,195,50,14
+    GROUPBOX        "Anagrafica cliente",IDC_STATIC,5,5,364,217
+    RTEXT           "Nome",IDC_STATIC,13,39,31,14,SS_CENTERIMAGE
+    RTEXT           "Indirizzo",IDC_STATIC,13,58,31,14,SS_CENTERIMAGE
+    RTEXT           "CAP",IDC_STATIC,29,96,15,14,SS_CENTERIMAGE
+    RTEXT           "Città",IDC_STATIC,80,76,17,14,SS_CENTERIMAGE
+    RTEXT           "Provincia",IDC_STATIC,15,76,30,14,SS_CENTERIMAGE
+    RTEXT           "Tel",IDC_STATIC,13,115,31,14,SS_CENTERIMAGE
+    RTEXT           "e-mail",IDC_STATIC,183,136,35,14,SS_CENTERIMAGE
+    RTEXT           "Fax",IDC_STATIC,149,113,14,14,SS_CENTERIMAGE
+    RTEXT           "Cod. Fisc.",IDC_STATIC,13,131,31,14,SS_CENTERIMAGE
+    RTEXT           "P. IVA",IDC_STATIC,185,20,23,14,SS_CENTERIMAGE
+    GROUPBOX        "Note",IDC_STATIC,5,225,438,85
+    GROUPBOX        "Pagamenti",IDC_STATIC,374,5,168,106
+    LTEXT           "Tipo",IDC_STATIC,385,18,17,14,SS_CENTERIMAGE
+    LTEXT           "Sconto",IDC_STATIC,378,35,23,14,SS_CENTERIMAGE
+    LTEXT           "Banca",IDC_STATIC,379,54,23,14,SS_CENTERIMAGE
+    LTEXT           "ABI",IDC_STATIC,385,93,14,14,SS_CENTERIMAGE
+    RTEXT           "CAB",IDC_STATIC,478,93,15,14,SS_CENTERIMAGE
+    GROUPBOX        "Verbali in corso",IDC_STATIC,3,314,539,108
+    RTEXT           "Aperti",IDC_STATIC,380,338,19,14,SS_CENTERIMAGE
+    EDITTEXT        IDC_EDIT_APERTI,422,338,105,14,ES_AUTOHSCROLL | 
+                    ES_READONLY
+    GROUPBOX        "Riassuntivo",IDC_STATIC,373,325,162,91
+    RTEXT           "Da fatturare",IDC_STATIC,379,367,38,14,SS_CENTERIMAGE
+    EDITTEXT        IDC_EDIT_DAFATTURARE,421,367,105,14,ES_AUTOHSCROLL | 
+                    ES_READONLY
+    RTEXT           "TOTALE",IDC_STATIC,379,393,29,14,SS_CENTERIMAGE
+    EDITTEXT        IDC_EDIT_TOTALEVERBALI,421,393,105,14,ES_AUTOHSCROLL | 
+                    ES_READONLY
+    RTEXT           "Codice",IDC_STATIC,18,20,26,14,SS_CENTERIMAGE
+    RTEXT           "Cell.",IDC_STATIC,270,112,18,14,SS_CENTERIMAGE
+    GROUPBOX        "Spedizione",IDC_STATIC_SPEDIZIONE,12,149,351,56
+    RTEXT           "Indirizzo",IDC_STATIC_INDIRIZZO_SPEDIZIONE,20,162,26,14,
+                    SS_CENTERIMAGE
+    RTEXT           "CAP",IDC_STATIC_CAP_SPEDIZIONE,22,183,24,14,
+                    SS_CENTERIMAGE
+    RTEXT           "Città",IDC_STATIC_CITTA_SPEDIZIONE,106,183,18,14,
+                    SS_CENTERIMAGE
+    RTEXT           "Provincia",IDC_STATIC_PROVINCIA_SPEDIZIONE,296,183,30,
+                    14,SS_CENTERIMAGE
+    GROUPBOX        "Archivi Sigma",IDC_STATIC,374,113,168,109
+    GROUPBOX        "",IDC_STATIC_VERBALI_FARLOCCHI,382,150,151,66
+    PUSHBUTTON      "Archivio remoto",IDC_BUTTON_DB_REMOTO,461,126,65,24
+    PUSHBUTTON      "Aggiorna",IDC_BUTTON_AGGIORNA,470,270,50,14
+END
+
+IDD_DIALOG_TROVA_AZIENDA DIALOG DISCARDABLE  0, 0, 587, 291
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Ricerca azienda"
+FONT 8, "MS Sans Serif"
+BEGIN
+    EDITTEXT        IDC_EDIT_NOME,337,15,178,14,ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "Cerca",IDC_BUTTON_CERCA,522,15,50,14
+    EDITTEXT        IDC_EDIT_CODICE,39,15,56,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_PIVA,140,15,95,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "Annulla",IDCANCEL,475,270,50,14
+    PUSHBUTTON      "OK",IDOK,531,270,50,14
+    CONTROL         "List2",IDC_LIST_RISULTATI,"SysListView32",LVS_REPORT | 
+                    LVS_SINGLESEL | LVS_SHOWSELALWAYS | WS_BORDER | 
+                    WS_TABSTOP,7,45,573,215
+    RTEXT           "Ragione sociale",IDC_STATIC,270,15,63,14,SS_CENTERIMAGE
+    RTEXT           "Codice",IDC_STATIC,14,15,21,14,SS_CENTERIMAGE
+    RTEXT           "Partita IVA",IDC_STATIC,104,15,34,14,SS_CENTERIMAGE
+    GROUPBOX        "Campi di ricerca",IDC_STATIC,10,0,570,39
+    EDITTEXT        IDC_EDIT_NAZIENDE,70,270,40,14,ES_AUTOHSCROLL | 
+                    ES_READONLY
+    LTEXT           "Aziende trovate",IDC_STATIC,15,270,50,14,SS_CENTERIMAGE
+END
+
+IDD_DIALOG_SERIE DIALOG DISCARDABLE  0, 0, 419, 410
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+FONT 8, "MS Sans Serif"
+BEGIN
+    COMBOBOX        IDC_COMBO_TIPI_CERTIFICATO,31,14,226,148,
+                    CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    RTEXT           "Posizione",IDC_STATIC,332,14,34,14,SS_CENTERIMAGE | NOT 
+                    WS_VISIBLE
+    EDITTEXT        IDC_EDIT_POSIZIONE,370,14,32,14,ES_AUTOHSCROLL | 
+                    ES_READONLY | NOT WS_VISIBLE
+    CONTROL         "List1",IDC_LIST_SERVIZI,"SysListView32",LVS_REPORT | 
+                    LVS_SINGLESEL | LVS_SORTASCENDING | WS_BORDER | 
+                    WS_TABSTOP,15,56,391,107
+    EDITTEXT        IDC_EDIT_RICHIESTI,77,175,32,14,ES_AUTOHSCROLL | 
+                    ES_READONLY
+    EDITTEXT        IDC_EDIT_NUMSERVIZI,163,175,32,14,ES_AUTOHSCROLL | 
+                    ES_READONLY
+    CONTROL         "ListinoGenerale",IDC_CHECK_LISTINO,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,255,174,65,10
+    COMBOBOX        IDC_COMBO_MATERIALE,70,211,208,78,CBS_DROPDOWN | 
+                    WS_VSCROLL | WS_TABSTOP
+    CONTROL         "DateTimePicker1",IDC_DATETIMEPICKER_PRELIEVO,
+                    "SysDateTimePick32",DTS_RIGHTALIGN | WS_TABSTOP,65,242,
+                    72,15
+    CONTROL         "DateTimePicker1",IDC_DATETIMEPICKER_SCADENZA,
+                    "SysDateTimePick32",DTS_RIGHTALIGN | WS_TABSTOP,65,262,
+                    72,15
+    CONTROL         "Non dichiarata",IDC_CHECK_NON_DICHIARATA,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,151,243,62,14
+    EDITTEXT        IDC_EDIT_DATA_ND,219,243,51,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_DIM1,352,210,50,15,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_DIM2,352,240,50,15,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_DIM3,352,270,50,15,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_SIGLA,29,291,49,15,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_STRUTTURA,113,291,164,20,ES_MULTILINE | 
+                    ES_AUTOVSCROLL | WS_VSCROLL
+    EDITTEXT        IDC_EDIT_VERBALE_PRELIEVO,72,319,66,15,ES_AUTOHSCROLL | 
+                    WS_DISABLED
+    EDITTEXT        IDC_EDIT_SIGLA_FORNITORE,211,319,190,15,ES_AUTOHSCROLL | 
+                    WS_DISABLED
+    EDITTEXT        IDC_EDIT_OSSERVAZIONI,72,346,329,31,ES_MULTILINE | 
+                    ES_AUTOHSCROLL | WS_DISABLED
+    DEFPUSHBUTTON   "",IDC_BUTTON_NEXT,172,389,50,14,NOT WS_VISIBLE
+    PUSHBUTTON      "OK",IDOK,274,389,50,14
+    PUSHBUTTON      "Annulla",IDCANCEL,362,389,50,14
+    GROUPBOX        "Certificato",IDC_STATIC,7,3,405,33
+    RTEXT           "Tipo",IDC_STATIC,13,14,13,12,SS_CENTERIMAGE
+    CONTROL         "Nuovo certificato",IDC_CHECK_NUOVOCERT,"Button",
+                    BS_AUTOCHECKBOX | BS_LEFTTEXT | BS_VCENTER | WS_TABSTOP,
+                    261,14,69,14
+    GROUPBOX        "Servizi richiesti",IDC_STATIC,7,40,405,155
+    RTEXT           "Campioni richiesti",IDC_STATIC,15,175,56,14,
+                    SS_CENTERIMAGE
+    RTEXT           "N. servizi",IDC_STATIC,123,175,36,14,SS_CENTERIMAGE
+    GROUPBOX        "Provini",IDC_STATIC,7,200,405,181
+    RTEXT           "Materiale",IDC_STATIC_MATERIALE,31,212,32,12,
+                    SS_CENTERIMAGE
+    GROUPBOX        "Date",IDC_STATIC,19,231,258,52,BS_LEFT
+    RTEXT           "Sigla",IDC_STATIC_SIGLA,9,295,17,14
+    RTEXT           "Struttura",IDC_STATIC_STRUTTURA,79,295,30,14
+    RTEXT           "",IDC_STATIC_DIM1,282,210,64,15,SS_CENTERIMAGE
+    RTEXT           "",IDC_STATIC_DIM2,282,239,64,15,SS_CENTERIMAGE
+    RTEXT           "",IDC_STATIC_DIM3,282,269,64,15,SS_CENTERIMAGE
+    LTEXT           "Prelievo",IDC_STATIC,27,242,26,15,SS_CENTERIMAGE
+    LTEXT           "Scadenza",IDC_STATIC,27,262,32,15,SS_CENTERIMAGE
+    LTEXT           "Sigla fornitore",IDC_STATIC_SIGLA_FORNITORE,154,322,44,
+                    10
+    LTEXT           "Verbale prelievo",IDC_STATIC_VERBALE_PRELIEVO,13,323,55,
+                    11
+    LTEXT           "Osservazioni",IDC_STATIC,14,346,44,11
+END
+
+IDD_DIALOG_EMISSIONE_CERTIFICATI DIALOGEX 0, 0, 310, 209
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Emissione certificati"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,73,188,50,14,WS_DISABLED,0,HIDOK
+    PUSHBUTTON      "Annulla",IDCANCEL,187,188,50,14
+    CONTROL         "List1",IDC_LIST_CERTIFICATI,"SysListView32",LVS_REPORT | 
+                    LVS_SINGLESEL | WS_BORDER | WS_TABSTOP,13,59,283,122
+    LTEXT           "Numero proposto ",IDC_STATIC,18,12,57,8
+    EDITTEXT        IDC_EDIT_CODICE_PRIMO,135,22,40,13,ES_CENTER | 
+                    ES_AUTOHSCROLL | ES_READONLY
+    EDITTEXT        IDC_EDIT_NUM_MOD,252,23,40,13,ES_CENTER | ES_AUTOHSCROLL
+    PUSHBUTTON      "<< Modifica  <<",IDC_BUTTON_MOD_NUM,181,23,65,13
+    LTEXT           "Numero alternativo",IDC_STATIC,232,12,60,8
+    PUSHBUTTON      ">> Conferma >>",IDC_BUTTON_CONFERMA,64,23,65,13
+    EDITTEXT        IDC_EDIT_PROPOSTO,18,23,40,13,ES_CENTER | ES_AUTOHSCROLL | 
+                    ES_READONLY
+    CONTROL         "NUMERO SCELTO",IDC_STATIC,"Static",SS_LEFTNOWORDWRAP | 
+                    WS_GROUP,123,10,63,8
+    CONTROL         "Aderenza",IDC_CHECK_ADERENZA,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,18,40,62,15
+END
+
+IDD_DIALOG_STAMPA_CERTIFICATI DIALOGEX 0, 0, 263, 167
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Stampa certificati"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,66,143,50,14
+    PUSHBUTTON      "Annulla",IDCANCEL,144,143,50,14
+    CONTROL         "List1",IDC_LIST_CERTIFICATI_STAMPABILI,"SysListView32",
+                    LVS_REPORT | WS_BORDER | WS_TABSTOP,15,34,228,101
+    PUSHBUTTON      "Deseleziona tutti",IDC_BUTTON_SELEZIONE,175,15,69,14,
+                    NOT WS_TABSTOP,0,HIDC_BUTTON_SELEZIONE
+    GROUPBOX        "Avvia stampa",IDC_STATIC,7,4,249,156
+    CONTROL         "Duplicato in data:",IDC_CHECK_DUPLICATO,"Button",
+                    BS_AUTOCHECKBOX | WS_DISABLED | WS_TABSTOP,17,16,74,10
+    CONTROL         "DateTimePicker1",IDC_DATA_DUPLICATO,"SysDateTimePick32",
+                    DTS_RIGHTALIGN | WS_DISABLED | WS_TABSTOP,96,14,58,15
+END
+
+IDD_DIALOG_SAVEPRN_VERBALI DIALOG DISCARDABLE  0, 0, 186, 119
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "WinSigma"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "Si",IDOK,7,98,50,14
+    PUSHBUTTON      "Annulla",IDCANCEL,129,98,50,14
+    PUSHBUTTON      "No",IDC_BUTTON_NO,68,98,50,14
+    LTEXT           "Salvare le modifiche ai dati?",IDC_STATIC_SALVA,61,10,
+                    100,20,SS_CENTERIMAGE
+    CONTROL         "Stampa verbale",IDC_CHECK_PRN_VERBALE,"Button",
+                    BS_AUTOCHECKBOX | WS_DISABLED | WS_TABSTOP,13,39,65,10
+    CONTROL         "Stampa verbale in carta libera",
+                    IDC_CHECK_PRN_VCARTALIBERA,"Button",BS_AUTOCHECKBOX | 
+                    WS_DISABLED | WS_TABSTOP,13,57,109,10
+    CONTROL         "Stampa minuta",IDC_CHECK_PRN_MINUTA,"Button",
+                    BS_AUTOCHECKBOX | WS_DISABLED | WS_TABSTOP,13,76,63,10
+    ICON            IDI_ICON_MSGBOX,IDC_STATIC,27,10,20,20,SS_REALSIZEIMAGE
+END
+
+IDD_FORM_MARCHI DIALOGEX 0, 0, 446, 279
+STYLE WS_CHILD | WS_BORDER
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    GROUPBOX        "Gestione marchi",IDC_STATIC,5,5,428,270
+    LTEXT           "Codice",IDC_STATIC,20,30,23,8
+    EDITTEXT        IDC_EDIT_CODICE,70,25,40,14,ES_AUTOHSCROLL | ES_READONLY
+    LTEXT           "Nome",IDC_STATIC,135,30,20,8
+    EDITTEXT        IDC_EDIT_NOME,165,25,255,14,ES_AUTOHSCROLL
+    LTEXT           "Descrizione",IDC_STATIC,20,60,38,8
+    EDITTEXT        IDC_EDIT_DESCRIZIONE,70,55,350,14,ES_AUTOHSCROLL
+    LTEXT           "Produttore",IDC_STATIC,20,90,34,8
+    LTEXT           "Stabilimento",IDC_STATIC,20,115,39,8
+    GROUPBOX        "Marchio di identificazione",IDC_STATIC,20,140,405,125
+    PUSHBUTTON      "Sfoglia",IDC_BUTTON_SFOGLIA,345,245,65,14
+    CONTROL         "",IDC_STATIC_MARCHIO,"Static",SS_BLACKRECT,70,155,345,
+                    85,WS_EX_STATICEDGE
+    EDITTEXT        IDC_EDIT_PRODUTTORE,70,85,350,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_STABILIMENTO,70,115,350,14,ES_AUTOHSCROLL
+END
+
+IDD_FORM_ARCHIVIO_VERBALI DIALOG DISCARDABLE  0, 0, 520, 366
+STYLE WS_CHILD | WS_CAPTION
+FONT 8, "MS Sans Serif"
+BEGIN
+    EDITTEXT        IDC_EDIT_DANUMERO,52,19,45,12,ES_AUTOHSCROLL
+    COMBOBOX        IDC_COMBO_ANNO,227,20,65,80,CBS_DROPDOWNLIST | 
+                    CBS_AUTOHSCROLL | CBS_SORT | WS_TABSTOP
+    EDITTEXT        IDC_EDIT_RAGIONE_SOCIALE,77,61,217,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_CODICE,333,61,61,12,ES_AUTOHSCROLL
+    CONTROL         "Intestazione certificati",
+                    IDC_RADIO_INTESTAZIONE_CERTIFICATI,"Button",
+                    BS_AUTORADIOBUTTON | WS_TABSTOP,78,78,87,13
+    CONTROL         "Intestazione fatture",IDC_RADIO_INTESTAZIONE_FATTURE,
+                    "Button",BS_AUTORADIOBUTTON,193,78,96,13
+    CONTROL         "Impresa costruttrice",IDC_RADIO_IMPRESA_COSTRUTTRICE,
+                    "Button",BS_AUTORADIOBUTTON,303,78,89,13
+    CONTROL         "Destinatario certificati",
+                    IDC_RADIO_DESTINATARIO_CERTIFICATI,"Button",
+                    BS_AUTORADIOBUTTON,403,78,82,13
+    DEFPUSHBUTTON   "Cerca",IDC_BUTTON_RICERCA,428,102,67,17
+    CONTROL         "List1",IDC_LIST_RISULTATO_RICERCA,"SysListView32",
+                    LVS_REPORT | LVS_SINGLESEL | LVS_SHOWSELALWAYS | 
+                    WS_BORDER | WS_TABSTOP,5,139,507,218
+    LTEXT           "Da numero",IDC_STATIC_DANUMERO,13,19,36,12,
+                    SS_CENTERIMAGE
+    LTEXT           "Anno",IDC_STATIC_ANNO,201,20,25,12,SS_CENTERIMAGE
+    GROUPBOX        "Intestazione",IDC_STATIC_INTESTAZIONE,11,42,484,54
+    LTEXT           "Ragione sociale",IDC_STATIC_RAGIONE_SOCIALE,17,61,56,12,
+                    SS_CENTERIMAGE
+    LTEXT           "Codice",IDC_STATIC_CODICE,305,61,25,12,SS_CENTERIMAGE
+    GROUPBOX        "Selezione",IDC_STATIC_SELEZIONE,5,5,507,122
+    PUSHBUTTON      "Ricerca avanzata",IDC_BUTTON_RICERCA_AVANZATA,413,59,67,
+                    17
+    CONTROL         "Ricerca anche nei verbali aperti",
+                    IDC_CHK_VERBALI_APERTI,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,314,20,119,12
+    LTEXT           "A numero",IDC_STATIC_ANUMERO,108,21,34,9
+    EDITTEXT        IDC_EDIT_ANUMERO,141,20,45,12,ES_AUTOHSCROLL
+END
+
+IDD_FORM_ARCHIVIO_CERTIFICATI DIALOG DISCARDABLE  0, 0, 503, 388
+STYLE WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    COMBOBOX        IDC_COMBO_ANNO,36,18,57,44,CBS_DROPDOWNLIST | 
+                    CBS_AUTOHSCROLL | CBS_SORT | WS_TABSTOP
+    EDITTEXT        IDC_EDIT_NUMERO_CERTIFICATO,186,18,50,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_NUMEROVERBALE,70,38,50,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_RAGIONE_SOCIALE,77,70,217,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_CODICE,333,70,61,12,ES_AUTOHSCROLL
+    CONTROL         "Intestazione certificati",
+                    IDC_RADIO_INTESTAZIONE_CERTIFICATI,"Button",
+                    BS_AUTORADIOBUTTON,78,85,87,13
+    CONTROL         "Intestazione fatture",IDC_RADIO_INTESTAZIONE_FATTURE,
+                    "Button",BS_AUTORADIOBUTTON,193,85,96,13
+    CONTROL         "Impresa costruttrice",IDC_RADIO_IMPRESA_COSTRUTTRICE,
+                    "Button",BS_AUTORADIOBUTTON,303,85,89,13
+    CONTROL         "Destinatario certificati",
+                    IDC_RADIO_DESTINATARIO_CERTIFICATI,"Button",
+                    BS_AUTORADIOBUTTON,403,85,82,13
+    DEFPUSHBUTTON   "Ricerca",IDC_BUTTON_RICERCA,428,107,67,17
+    CONTROL         "List1",IDC_LIST_RISULTATO_RICERCA,"SysListView32",
+                    LVS_REPORT | LVS_SINGLESEL | LVS_SHOWSELALWAYS | 
+                    WS_BORDER | WS_TABSTOP,5,140,491,220
+    GROUPBOX        "Parametri di ricerca",IDC_STATIC_SELEZIONE,5,5,498,127
+    RTEXT           "Numero certificato",IDC_STATIC_NUMERO_CERTIFICATO,119,
+                    18,62,12,SS_CENTERIMAGE
+    RTEXT           "Anno",IDC_STATIC_ANNO,12,19,19,11,SS_CENTERIMAGE
+    GROUPBOX        "Intestazione",IDC_STATIC_INTESTAZIONE,11,56,484,46
+    LTEXT           "Ragione sociale",IDC_STATIC_RAGIONE_SOCIALE,17,70,56,12,
+                    SS_CENTERIMAGE
+    LTEXT           "Codice",IDC_STATIC_CODICE,305,70,25,12,SS_CENTERIMAGE
+    RTEXT           "Numero verbale",IDC_STATIC_NUMERO_VERBALE,12,38,54,12,
+                    SS_CENTERIMAGE
+    RTEXT           "Tipo di certificato",IDC_STATIC,272,18,61,12,
+                    SS_CENTERIMAGE
+    COMBOBOX        IDC_COMBO_TIPO,338,18,152,134,CBS_DROPDOWNLIST | 
+                    CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Documenti trovati",IDC_STATIC,8,367,56,14,
+                    SS_CENTERIMAGE
+    EDITTEXT        IDC_EDIT_NUM_CERTIFICATI,69,367,40,14,ES_AUTOHSCROLL | 
+                    ES_READONLY
+    RTEXT           "Numero fattura",IDC_STATIC,149,38,48,12,SS_CENTERIMAGE
+    EDITTEXT        IDC_EDIT_FATTURA,202,38,50,12,ES_AUTOHSCROLL
+END
+
+IDD_FORM_ARCHIVIO_FATTURE DIALOG DISCARDABLE  0, 0, 528, 385
+STYLE WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    COMBOBOX        IDC_COMBO_ANNO,41,18,65,70,CBS_DROPDOWNLIST | 
+                    CBS_AUTOHSCROLL | CBS_SORT | WS_TABSTOP
+    EDITTEXT        IDC_EDIT_NUMERO_VERBALE,321,18,78,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_RAGIONE_SOCIALE,77,61,217,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_CODICE,351,61,61,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_PARTITA_IVA,77,86,82,12,ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "Ricerca",IDC_BUTTON_RICERCA,443,93,67,17
+    CONTROL         "List1",IDC_LIST_RISULTATO_RICERCA,"SysListView32",
+                    LVS_REPORT | LVS_SINGLESEL | LVS_SHOWSELALWAYS | 
+                    WS_BORDER | WS_TABSTOP,5,130,516,248
+    GROUPBOX        "Selezione",IDC_STATIC_SELEZIONE,5,5,516,118
+    LTEXT           "Anno",IDC_STATIC_ANNO,14,18,25,12,SS_CENTERIMAGE
+    LTEXT           "Numero verbale",IDC_STATIC_NUMERO_VERBALE,263,18,55,12,
+                    SS_CENTERIMAGE
+    GROUPBOX        "Intestazione",IDC_STATIC_INTESTAZIONE,11,42,421,68
+    LTEXT           "Ragione sociale",IDC_STATIC_RAGIONE_SOCIALE,17,61,56,12,
+                    SS_CENTERIMAGE
+    LTEXT           "Codice",IDC_STATIC_CODICE,320,61,25,12,SS_CENTERIMAGE
+    LTEXT           "Partita IVA",IDC_STATIC_PARTITA_IVA,17,86,47,12,
+                    SS_CENTERIMAGE
+    LTEXT           "Numero fattura",IDC_STATIC,139,18,48,12,SS_CENTERIMAGE
+    EDITTEXT        IDC_EDIT_NUM_FATTURA,192,18,40,12,ES_AUTOHSCROLL
+END
+
+IDD_DIALOG_FIND_VERBALI DIALOG DISCARDABLE  0, 0, 587, 199
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+FONT 8, "MS Sans Serif"
+BEGIN
+    PUSHBUTTON      "OK",IDOK,529,25,50,14
+    PUSHBUTTON      "Annulla",IDCANCEL,529,47,50,14
+    CONTROL         "List1",IDC_LIST_VERBALI,"SysListView32",LVS_REPORT | 
+                    LVS_SINGLESEL | WS_BORDER | WS_TABSTOP,7,68,572,124
+    DEFPUSHBUTTON   "Cerca",IDC_BUTTON_CERCA,438,38,50,15
+    GROUPBOX        "Chiave di ricerca",IDC_STATIC,7,7,489,55
+    EDITTEXT        IDC_EDIT_CHIAVE,45,38,364,15,ES_AUTOHSCROLL
+    LTEXT           "Chiave",IDC_STATIC,17,38,24,15,SS_CENTERIMAGE
+    CONTROL         "Cantiere",IDC_RADIO_CANTIERE,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,13,20,46,10
+    CONTROL         "Dir. lavori",IDC_RADIO_DIR_LAVORI,"Button",
+                    BS_AUTORADIOBUTTON,66,20,46,10
+    CONTROL         "Int. certificati",IDC_RADIO_INT_CERT,"Button",
+                    BS_AUTORADIOBUTTON,121,20,59,10
+    CONTROL         "Int. fattura",IDC_RADIO_INT_FATTURA,"Button",
+                    BS_AUTORADIOBUTTON,190,20,52,10
+    CONTROL         "Impresa",IDC_RADIO_IMPRESA,"Button",BS_AUTORADIOBUTTON,
+                    252,20,45,10
+    CONTROL         "Strutt. di prelievo",IDC_RADIO_STRUTT,"Button",
+                    BS_AUTORADIOBUTTON,305,20,69,10
+    CONTROL         "Sigla serie",IDC_RADIO_SIGLA,"Button",
+                    BS_AUTORADIOBUTTON,384,20,51,10
+    CONTROL         "Numero",IDC_RADIO_NUMERO,"Button",BS_AUTORADIOBUTTON,
+                    440,20,46,10
+END
+
+IDD_DIALOG_PRINT_VERBALI DIALOG DISCARDABLE  0, 0, 302, 305
+STYLE WS_MINIMIZEBOX | WS_MAXIMIZEBOX | WS_POPUP | WS_CAPTION | WS_SYSMENU | 
+    WS_THICKFRAME
+CAPTION "Stampa verbali"
+FONT 8, "MS Sans Serif"
+BEGIN
+    PUSHBUTTON      "Annulla",IDCANCEL,236,26,50,14
+    PUSHBUTTON      "Stampa",IDC_BUTTON_STAMPA,236,74,50,14
+    PUSHBUTTON      "Zoom",IDC_BUTTON_ZOOM,236,50,50,14
+    GROUPBOX        "Preview",IDC_STATIC_PREVIEW,7,7,288,291
+END
+
+IDD_DIALOG_SERVIZILISTINO DIALOG DISCARDABLE  0, 0, 638, 319
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+FONT 8, "MS Sans Serif"
+BEGIN
+    EDITTEXT        IDC_EDIT_NOME,55,35,250,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_DESCRIZIONE,55,55,250,30,ES_MULTILINE | 
+                    ES_AUTOVSCROLL | ES_WANTRETURN
+    EDITTEXT        IDC_EDIT_NORMA,55,90,250,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_RIFERIMENTI,55,110,250,14,ES_AUTOHSCROLL
+    CONTROL         "",IDC_MASKEDBOX_PREZZO,
+                    "{C932BA85-4374-101B-A56C-00AA003668DC}",WS_TABSTOP,55,
+                    130,50,14
+    EDITTEXT        IDC_EDIT_NPROVINI,275,130,30,14,ES_AUTOHSCROLL
+    COMBOBOX        IDC_COMBO_CERTIFICATO,338,30,272,114,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    CONTROL         "",IDC_CHECK_PROVAA,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,338,50,156,8
+    CONTROL         "",IDC_CHECK_PROVAB,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,338,70,164,8
+    DEFPUSHBUTTON   "OK",IDOK,247,293,50,14
+    PUSHBUTTON      "Annulla",IDCANCEL,183,293,50,14
+    GROUPBOX        "Servizio",IDC_STATIC,7,7,310,167
+    LTEXT           "Categoria",IDC_STATIC,15,15,31,13,SS_CENTERIMAGE
+    EDITTEXT        IDC_EDIT_CATEGORIA,55,15,40,14,ES_AUTOHSCROLL | 
+                    ES_READONLY
+    LTEXT           "Codice",IDC_STATIC,105,15,23,15,SS_CENTERIMAGE
+    LTEXT           "Num. provini",IDC_STATIC,230,130,40,14,SS_CENTERIMAGE
+    LTEXT           "Descrizione",IDC_STATIC,15,55,38,8
+    LTEXT           "Prezzo €",IDC_STATIC,15,135,28,8
+    GROUPBOX        "Certificati associati",IDC_STATIC,321,7,310,304
+    LTEXT           "Nome",IDC_STATIC,15,40,20,8
+    LTEXT           "Norma",IDC_STATIC,15,95,22,8
+    LTEXT           "Riferimenti",IDC_STATIC,15,115,34,8
+    COMBOBOX        IDC_COMBO_ID,130,15,48,60,CBS_DROPDOWN | CBS_SORT | 
+                    WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Emissione cert.",IDC_STATIC,190,15,50,15,SS_CENTERIMAGE
+    COMBOBOX        IDC_COMBO_EMISSIONE,240,15,65,45,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_COMBO_AGGIUNTIVO,513,60,85,45,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    GROUPBOX        "Aggiungibiltà in certificazione",IDC_STATIC,504,46,105,
+                    35
+    CONTROL         "Cadauno",IDC_CHECK_PERPROVINO,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,120,132,45,10
+    CONTROL         "Per serie",IDC_CHECK_PERSERIE,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,177,132,43,10
+    CONTROL         "Servizio in concessione (mette la C nel listino)",
+                    IDC_CHECK_CONCESSIONE,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,7,261,158,10
+    RTEXT           "Numero di provini per serie",IDC_STATIC,186,151,84,14,
+                    SS_CENTERIMAGE
+    EDITTEXT        IDC_EDIT_PROVINI_PER_SERIE,275,151,30,14,ES_AUTOHSCROLL
+    CONTROL         "Servizio per prove geotecniche (mette la G nel listino)",
+                    IDC_CHECK_GEOLOGIA,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
+                    7,277,183,10
+    EDITTEXT        IDC_EDIT_COMMENTO,45,290,126,13,ES_AUTOHSCROLL
+    LTEXT           "Commento",IDC_STATIC,7,290,34,13,SS_CENTERIMAGE
+    GROUPBOX        "Primo tipo certificato",IDC_STATIC_PRIMO,327,18,293,67
+    GROUPBOX        "Secondo tipo di certificato",IDC_STATIC_SECONDO,327,88,
+                    293,68
+    COMBOBOX        IDC_COMBO_CERTIFICATO2,338,102,272,116,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    CONTROL         "",IDC_CHECK_PROVAA2,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,338,122,175,8
+    CONTROL         "",IDC_CHECK_PROVAB2,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,338,141,175,8
+    GROUPBOX        "Terzo tipo di certificato",IDC_STATIC_TERZO,329,164,293,
+                    68
+    COMBOBOX        IDC_COMBO_CERTIFICATO3,338,182,272,125,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    CONTROL         "",IDC_CHECK_PROVAA3,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,338,203,175,8
+    CONTROL         "",IDC_CHECK_PROVAB3,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,338,218,175,8
+    GROUPBOX        "Quarto tipo di certificato",IDC_STATIC_QUARTO,329,239,
+                    293,68
+    COMBOBOX        IDC_COMBO_CERTIFICATO4,338,255,272,115,CBS_DROPDOWN | 
+                    WS_VSCROLL | WS_TABSTOP
+    CONTROL         "",IDC_CHECK_PROVAA4,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,338,278,175,8
+    CONTROL         "",IDC_CHECK_PROVAB4,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,338,293,175,8
+END
+
+IDD_DIALOG_ARCHIVIO_AZIENDE DIALOG DISCARDABLE  0, 0, 379, 254
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Archivio aziende"
+FONT 8, "MS Sans Serif"
+BEGIN
+    EDITTEXT        IDC_EDIT_RAGIONE_SOCIALE,83,21,217,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_INDIRIZZO,83,37,217,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_PARTITA_IVA,83,55,135,12,ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "Ricerca",ID_BUTTON_RICERCA,322,15,50,14
+    PUSHBUTTON      "OK",IDOK,322,37,50,14
+    PUSHBUTTON      "Annulla",IDCANCEL,322,57,50,14
+    CONTROL         "List1",IDC_LIST_AZIENDE_VECCHIE,"SysListView32",
+                    LVS_REPORT | LVS_SINGLESEL | LVS_SHOWSELALWAYS | 
+                    LVS_SORTASCENDING | WS_BORDER | WS_TABSTOP,7,82,365,168
+    GROUPBOX        "Campi di ricerca",IDC_STATIC_CAMPI_RICERCA,7,7,304,69
+    LTEXT           "Partita IVA",IDC_STATIC_PARTITA_IVA,13,57,59,10
+    LTEXT           "Ragione sociale",IDC_STATIC_RAGIONE_SOCIALE,13,23,59,10
+    LTEXT           "Indirizzo",IDC_STATIC_INDIRIZZO,13,39,59,10
+END
+
+IDD_DIALOG_INSERT_VERBALI DIALOG DISCARDABLE  0, 0, 205, 127
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Inserimento di un verbale"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,147,7,50,14
+    PUSHBUTTON      "Annulla",IDCANCEL,148,25,50,14
+    LTEXT           "Progressivo parziale",IDC_STATIC,9,7,64,14,
+                    SS_CENTERIMAGE
+    LTEXT           "Progressivo totale",IDC_STATIC,9,26,57,14,
+                    SS_CENTERIMAGE
+    EDITTEXT        IDC_EDIT_PARZIALE,77,7,58,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_TOTALE,77,26,58,14,ES_AUTOHSCROLL
+    LTEXT           "Cantiere",IDC_STATIC,9,84,29,14,SS_CENTERIMAGE
+    EDITTEXT        IDC_EDIT_CANTIERE,43,84,154,37,ES_MULTILINE | 
+                    ES_AUTOHSCROLL | ES_WANTRETURN
+    LTEXT           "Data accettazione",IDC_STATIC,9,46,59,14,SS_CENTERIMAGE
+    CONTROL         "DateTimePicker1",IDC_DATETIMEPICKER_ACCETTAZIONE,
+                    "SysDateTimePick32",DTS_RIGHTALIGN | WS_TABSTOP,77,45,58,
+                    15
+    CONTROL         "Verbale a lunga scadenza",IDC_CHECK_LUNGA_SCADENZA,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,9,67,98,10
+END
+
+IDD_DIALOG_STAMPA_FATTURE DIALOG DISCARDABLE  0, 0, 230, 303
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "",IDC_MASKEDBOX_SPESE_SPEDIZIONE,
+                    "{C932BA85-4374-101B-A56C-00AA003668DC}",WS_TABSTOP,169,
+                    83,47,14
+    GROUPBOX        "",IDC_STATIC_DATI,7,3,216,117
+    RTEXT           "Numero",IDC_STATIC,10,15,26,14,SS_CENTERIMAGE
+    EDITTEXT        IDC_EDIT_NUMERO,41,15,59,14,ES_RIGHT | ES_AUTOHSCROLL | 
+                    ES_READONLY
+    RTEXT           "Data",IDC_STATIC,20,35,16,14,SS_CENTERIMAGE
+    CONTROL         "Spedizione",IDC_CHECK_SPEDIZIONE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,109,83,48,14
+    GROUPBOX        "Dati cliente",IDC_STATIC,7,122,216,83
+    RTEXT           "Ragione sociale",IDC_STATIC,12,134,53,14,SS_CENTERIMAGE
+    EDITTEXT        IDC_EDIT_RAGIONE_SOCIALE,70,134,147,14,ES_AUTOHSCROLL | 
+                    ES_READONLY
+    RTEXT           "Codice",IDC_STATIC,42,152,23,14,SS_CENTERIMAGE
+    EDITTEXT        IDC_EDIT_CODICE,70,152,35,14,ES_AUTOHSCROLL | 
+                    ES_READONLY
+    RTEXT           "",IDC_STATIC_PIVA_CF,107,152,31,14,SS_CENTERIMAGE
+    EDITTEXT        IDC_EDIT_PIVA,143,152,73,14,ES_AUTOHSCROLL | ES_READONLY
+    RTEXT           "Indirizzo",IDC_STATIC,39,187,26,14,SS_CENTERIMAGE
+    EDITTEXT        IDC_EDIT_INDIRIZZO,70,185,147,14,ES_AUTOHSCROLL | 
+                    ES_READONLY
+    GROUPBOX        "Pagamento",IDC_STATIC,7,209,216,46
+    RTEXT           "Tipo",IDC_STATIC,19,219,15,14,SS_CENTERIMAGE
+    RTEXT           "Banca",IDC_STATIC,13,236,22,14,SS_CENTERIMAGE
+    EDITTEXT        IDC_EDIT_BANCA,39,236,113,14,ES_AUTOHSCROLL
+    RTEXT           "ABI",IDC_STATIC,161,219,12,14,SS_CENTERIMAGE
+    EDITTEXT        IDC_EDIT_ABI,178,219,40,14,ES_AUTOHSCROLL
+    RTEXT           "CAB",IDC_STATIC,158,236,15,14,SS_CENTERIMAGE
+    EDITTEXT        IDC_EDIT_CAB,178,236,40,14,ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "",IDOK,16,282,50,14
+    PUSHBUTTON      "Stampa",IDC_BUTTON_PRINT_FATTURA,91,282,50,14
+    PUSHBUTTON      "Chiudi",IDCANCEL,166,282,50,14
+    LTEXT           "Imponibile",IDC_STATIC,131,15,32,14,SS_CENTERIMAGE
+    LTEXT           "Iva",IDC_STATIC,122,49,12,14,SS_CENTERIMAGE
+    LTEXT           "Importo totale",IDC_STATIC,109,99,54,14,SS_CENTERIMAGE
+    EDITTEXT        IDC_EDIT_IMPONIBILE,169,15,47,14,ES_RIGHT | 
+                    ES_AUTOHSCROLL | ES_READONLY
+    EDITTEXT        IDC_EDIT_ALIQUOTA,141,49,22,14,ES_RIGHT | ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_IVA,169,49,47,14,ES_RIGHT | ES_AUTOHSCROLL | 
+                    ES_READONLY
+    EDITTEXT        IDC_EDIT_TOTALE,169,100,47,14,ES_RIGHT | ES_AUTOHSCROLL
+    CONTROL         "Raggruppa per servizio",IDC_CHECK_PERSERVIZIO,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,262,89,10
+    COMBOBOX        IDC_COMBO_TIPO_PAGAMENTO,39,220,113,110,CBS_DROPDOWN | 
+                    CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "DateTimePicker1",IDC_DATETIMEPICKER_DATA_FATTURA,
+                    "SysDateTimePick32",DTS_RIGHTALIGN | WS_TABSTOP,41,36,59,
+                    14
+    RTEXT           "Copie",IDC_STATIC,156,260,19,14,SS_CENTERIMAGE
+    EDITTEXT        IDC_EDIT_NUM_COPIE,178,260,40,14,ES_RIGHT | 
+                    ES_AUTOHSCROLL
+    LTEXT           "Sconto",IDC_STATIC,111,32,23,14,SS_CENTERIMAGE
+    EDITTEXT        IDC_EDIT_SCONTO,141,31,22,14,ES_RIGHT | ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_IMPORTOSCONTATO,169,32,47,14,ES_RIGHT | 
+                    ES_AUTOHSCROLL | ES_READONLY
+    EDITTEXT        IDC_EDIT_CODFISCALE,143,168,73,14,ES_AUTOHSCROLL | 
+                    ES_READONLY
+    LTEXT           "Cod. Fisc.",IDC_STATIC,108,171,32,9
+    LTEXT           "Ritenuta Acconto %",IDC_STATIC_RIT_ACCONTO,71,68,67,8
+    EDITTEXT        IDC_EDIT_RIT_ACCONTO,141,66,22,14,ES_RIGHT | 
+                    ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_TOT_RIT_ACCONTO,169,66,47,14,ES_RIGHT | 
+                    ES_AUTOHSCROLL | ES_READONLY
+    CONTROL         "PA",IDC_CHECK_PA,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
+                    20,85,25,10
+    CONTROL         "IVA Differita",IDC_CHECK_IVADIFF,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,20,100,53,10
+    CONTROL         263,IDC_STATIC_ELETT,"Static",SS_BITMAP | NOT WS_VISIBLE,
+                    107,18,11,10
+END
+
+IDD_DIALOG_PREVIEW DIALOGEX 0, 0, 663, 436
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "Chiudi",IDCANCEL,606,415,50,14
+    PUSHBUTTON      "Stampa",IDC_STAMPA,606,382,50,14
+    CONTROL         "",IDC_STATIC_PREVIEW,"Static",SS_WHITERECT | NOT 
+                    WS_VISIBLE,7,7,578,422,WS_EX_STATICEDGE
+    SCROLLBAR       IDC_SCROLLBAR,587,7,10,422,SBS_VERT
+    CONTROL         "Zoom",IDC_CHECK_ZOOM,"Button",BS_AUTOCHECKBOX | 
+                    BS_PUSHLIKE | WS_TABSTOP,606,356,50,14
+END
+
+IDD_DIALOG_MODIFICA_CERTIFICATO DIALOG DISCARDABLE  0, 0, 299, 102
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Modifica dati certificato"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,166,81,50,14
+    PUSHBUTTON      "Annulla",IDCANCEL,239,81,50,14
+    RTEXT           "Certificato n°",IDC_STATIC,7,12,45,8
+    EDITTEXT        IDC_EDIT_NUMERO,56,9,40,14,ES_AUTOHSCROLL
+    RTEXT           "del",IDC_STATIC,100,12,18,8
+    EDITTEXT        IDC_EDIT_PAGINE,108,57,19,12,ES_AUTOHSCROLL
+    CONTROL         "DateTimePicker1",IDC_DATE_EMISSIONE,"SysDateTimePick32",
+                    DTS_RIGHTALIGN | WS_TABSTOP,123,9,55,15
+    RTEXT           "Rif. V.A. n°",IDC_STATIC,183,12,41,8
+    EDITTEXT        IDC_EDIT_VERBALE,231,9,55,14,ES_AUTOHSCROLL | 
+                    ES_READONLY
+    GROUPBOX        "Numero pagine documento",IDC_STATIC,9,29,277,44
+    CONTROL         "Calcolo automatico",IDC_CHECK_CALCOLO_PAGINE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,17,42,87,10
+    CONTROL         "Inserimento manuale",IDC_CHECK_NO_CALCOLO,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,17,59,86,10
+    GROUPBOX        "",IDC_STATIC,154,29,135,44,NOT WS_VISIBLE
+    LTEXT           "Emendamento del documento corrente",IDC_STATIC,160,38,
+                    123,8,NOT WS_VISIBLE
+    CONTROL         "Crea emendamento ",IDC_CHECK_EMENDAMENTO,"Button",
+                    BS_AUTOCHECKBOX | NOT WS_VISIBLE | WS_DISABLED | 
+                    WS_TABSTOP,160,53,79,10
+END
+
+IDD_DIALOG_EFFETTI DIALOG DISCARDABLE  0, 0, 499, 203
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Stampa effetti"
+FONT 8, "MS Sans Serif"
+BEGIN
+    EDITTEXT        IDC_EDIT_DA_FATTURA,65,17,40,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_A_FATTURA,159,17,40,14,ES_AUTOHSCROLL
+    COMBOBOX        IDC_COMBO_ANNO,233,19,63,50,CBS_DROPDOWN | CBS_SORT | 
+                    WS_VSCROLL | WS_TABSTOP
+    DEFPUSHBUTTON   "Ricerca",IDC_BUTTON_RICERCA,311,17,50,14
+    PUSHBUTTON      "Stampa",IDOK,377,17,50,14
+    PUSHBUTTON      "Chiudi",IDCANCEL,442,17,50,14
+    CONTROL         "List1",IDC_LIST_EFFETTI,"SysListView32",LVS_REPORT | 
+                    WS_BORDER | WS_TABSTOP,7,46,485,150
+    GROUPBOX        "Ricerca",IDC_STATIC,7,7,360,35
+    LTEXT           "Da fattura n°",IDC_STATIC,19,17,42,14,SS_CENTERIMAGE
+    LTEXT           "a fattura n°",IDC_STATIC,118,17,38,14,SS_CENTERIMAGE
+    LTEXT           "Anno",IDC_STATIC_ANNO,210,17,22,14,SS_CENTERIMAGE
+END
+
+IDD_DIALOG_STAMPAMINUTE DIALOG DISCARDABLE  0, 0, 266, 262
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION
+CAPTION "Stampa minute"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,56,225,75,25
+    PUSHBUTTON      "Annulla",IDCANCEL,135,225,75,25
+    CONTROL         "List1",IDC_LIST_MINUTE,"SysListView32",LVS_REPORT | 
+                    LVS_AUTOARRANGE | WS_BORDER | WS_TABSTOP,7,36,252,184
+    PUSHBUTTON      "Stampa tutte",IDC_BUTTON_TUTTE,87,3,91,29
+END
+
+IDD_DIALOG_ETICHETTE DIALOG DISCARDABLE  0, 0, 214, 159
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Stampa etichette"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,154,138,50,14
+    PUSHBUTTON      "Annulla",IDCANCEL,90,138,50,14
+    EDITTEXT        IDC_EDIT_DAL,13,15,97,14,ES_AUTOHSCROLL
+    CONTROL         "Stampa report",IDC_CHECK_REPORT,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,34,98,60,10
+    CONTROL         "Stampa etichette",IDC_CHECK_ETICHETTE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,34,112,69,10
+    COMBOBOX        IDC_COMBO_PARTENZA,142,111,24,111,CBS_DROPDOWNLIST | 
+                    WS_DISABLED | WS_VSCROLL | WS_TABSTOP
+    CTEXT           "Salta le prime",IDC_STATIC,116,98,57,8
+    GROUPBOX        "Inserire qui i numeri dei verbali coinvolti",IDC_STATIC,
+                    7,3,199,79
+    LTEXT           "Inserie i progressivi totali separati dalla virgola \n\t(es. 996,997,998,999); \noppure gli estremi di un intervallo separati da duepunti \n\t(es. 996:999).",
+                    IDC_STATIC,12,41,190,35,SS_SUNKEN
+    GROUPBOX        "Selezionare qui le operazioni richieste",IDC_STATIC,7,
+                    86,199,47
+    COMBOBOX        IDC_COMBO_ANNO,148,16,54,60,CBS_DROPDOWN | CBS_SORT | 
+                    WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Anno",IDC_STATIC_ANNO,125,18,19,8
+END
+
+IDD_DIALOG_REPORT_VERBALI DIALOG DISCARDABLE  0, 0, 539, 282
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "RICERCA VERBALI DELL'AZIENDA"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "Exit",IDOK,472,261,37,14
+    PUSHBUTTON      "CANCEL",IDCANCEL,66,261,50,14,NOT WS_VISIBLE
+    PUSHBUTTON      "Stampa risultato",IDC_BUTTON_STAMPA,355,261,64,14,
+                    WS_DISABLED
+    CONTROL         "DateTimePicker1",IDC_DATE_AL,"SysDateTimePick32",
+                    DTS_RIGHTALIGN | WS_TABSTOP,463,23,61,15
+    CONTROL         "DateTimePicker1",IDC_DATE_DAL,"SysDateTimePick32",
+                    DTS_RIGHTALIGN | WS_TABSTOP,370,23,61,15
+    RTEXT           "AL",IDC_STATIC,443,24,16,13,SS_CENTERIMAGE
+    CONTROL         "List1",IDC_LIST_SERVIZI,"SysListView32",LVS_REPORT | 
+                    LVS_SINGLESEL | WS_BORDER | WS_TABSTOP,17,78,505,174
+    EDITTEXT        IDC_EDIT_RAGIONE_SOCIALE,18,19,299,24,ES_AUTOHSCROLL | 
+                    ES_READONLY
+    GROUPBOX        "Risultati ricerca",IDC_STATIC,8,63,525,196
+    PUSHBUTTON      "Avvia ricerca",IDC_BUTTON_CERCA,238,261,64,14
+    GROUPBOX        "Data di emissione",IDC_STATIC,334,7,199,45
+    RTEXT           "DAL",IDC_STATIC,341,24,22,13,SS_CENTERIMAGE
+    GROUPBOX        "Azienda",IDC_STATIC,8,7,320,45
+END
+
+IDD_DIALOG_INSERT_VERBALE DIALOG DISCARDABLE  0, 0, 315, 103
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Inserisci verbale in fattura"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,258,62,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,258,82,50,14
+    CONTROL         "List1",IDC_LIST_VERBALIDAFATTURARE,"SysListView32",
+                    LVS_REPORT | WS_BORDER | WS_TABSTOP,7,7,244,89
+END
+
+IDD_DIALOG_FATTURA_PROFORMA DIALOG DISCARDABLE  0, 0, 131, 103
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Dati fattura proforma"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,6,82,50,14
+    PUSHBUTTON      "Annulla",IDCANCEL,74,82,50,14
+    RTEXT           "Aliquota IVA",IDC_STATIC,26,8,40,14,SS_CENTERIMAGE
+    RTEXT           "Sconto",IDC_STATIC,42,26,24,14,SS_CENTERIMAGE
+    CONTROL         "Spedizione",IDC_CHECK_SPEDIZIONE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,15,44,51,14
+    EDITTEXT        IDC_EDIT_ALIQUOTA,72,8,40,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_SCONTO,72,26,40,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_SPESE,72,44,40,14,ES_AUTOHSCROLL
+    RTEXT           "Numero copie",IDC_STATIC,21,62,45,14,SS_CENTERIMAGE
+    EDITTEXT        IDC_EDIT_NUMCOPIE,72,62,40,14,ES_AUTOHSCROLL
+END
+
+IDD_DIALOG_ARCHIVIA_FATTURE DIALOG DISCARDABLE  0, 0, 139, 73
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Achivia fatture"
+FONT 8, "MS Sans Serif"
+BEGIN
+    EDITTEXT        IDC_EDIT_DA_FATTURA,45,7,28,13,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_A_FATTURA,45,28,28,13,ES_AUTOHSCROLL
+    PUSHBUTTON      "Cancel",IDCANCEL,7,52,50,14
+    DEFPUSHBUTTON   "OK",IDOK,82,52,50,14
+    LTEXT           "Da fattura",IDC_STATIC_DA_FATTURA,7,7,31,10,
+                    SS_CENTERIMAGE
+    LTEXT           "A fattura",IDC_STATIC_A_FATTURA,7,31,31,10,
+                    SS_CENTERIMAGE
+END
+
+IDD_DIALOG_EMENDAMENTI DIALOG DISCARDABLE  0, 0, 285, 162
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Emenda"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "Crea",IDOK,228,140,50,14
+    PUSHBUTTON      "Annulla",IDCANCEL,164,140,50,14
+    CONTROL         "Tree1",IDC_CERTIFICATO,"SysTreeView32",TVS_HASBUTTONS | 
+                    TVS_HASLINES | TVS_LINESATROOT | TVS_DISABLEDRAGDROP | 
+                    TVS_SHOWSELALWAYS | TVS_NOTOOLTIPS | TVS_TRACKSELECT | 
+                    TVS_SINGLEEXPAND | TVS_FULLROWSELECT | WS_BORDER | 
+                    WS_TABSTOP,14,17,101,131
+    GROUPBOX        "Certificato",IDC_STATIC_CERTIFICATO,7,7,114,147
+    GROUPBOX        "Emendamenti",IDC_STATIC_EMENDAMENTI,164,7,114,125
+    CONTROL         "Tree2",IDC_TREE_EMENDAMENTI,"SysTreeView32",
+                    TVS_HASBUTTONS | TVS_HASLINES | TVS_LINESATROOT | 
+                    TVS_DISABLEDRAGDROP | TVS_SHOWSELALWAYS | 
+                    TVS_TRACKSELECT | TVS_SINGLEEXPAND | WS_BORDER | 
+                    WS_TABSTOP,171,17,101,91
+    PUSHBUTTON      "Inserisci",IDC_BUTTON_CREA,171,113,41,15
+    PUSHBUTTON      "Elimina",IDC_BUTTON_ELIMINA,231,114,41,15
+    PUSHBUTTON      "--->",IDC_BUTTON_CTOE,130,54,25,19
+END
+
+IDD_DIALOG_ESPORTA_FATTURE DIALOG DISCARDABLE  0, 0, 237, 126
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Esporta fatture"
+FONT 8, "MS Sans Serif"
+BEGIN
+    EDITTEXT        IDC_EDIT_DA_FATTURA,111,36,22,12,ES_AUTOHSCROLL | 
+                    ES_NUMBER
+    EDITTEXT        IDC_EDIT_A_FATTURA,194,36,22,12,ES_AUTOHSCROLL | 
+                    ES_NUMBER
+    COMBOBOX        IDC_COMBO_ANNI,75,10,53,85,CBS_DROPDOWNLIST | CBS_SORT | 
+                    WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "Annulla",IDCANCEL,125,105,50,14
+    DEFPUSHBUTTON   "OK",IDOK,180,105,50,14
+    LTEXT           "da numero",IDC_STATIC_DA_FATTURA,73,40,34,8
+    LTEXT           "a numero",IDC_STATIC_A_FATTURA,155,40,30,8
+    LTEXT           "Seleziona anno",IDC_STATIC_ANNO,10,10,55,8
+    GROUPBOX        "Fatture",IDC_STATIC_ESPORTA_FATTURE,7,25,223,70
+    LTEXT           "Path",IDC_STATIC_PATH,15,75,16,8
+    EDITTEXT        IDC_EDIT_PATH,36,74,185,12,ES_AUTOHSCROLL
+    LTEXT           "Cartacea",IDC_STATIC_CARTACEA,20,40,30,8
+    LTEXT           "Elettronica",IDC_STATIC_ELETTRONICA,20,55,34,8
+    LTEXT           "da numero",IDC_STATIC_DA_FATTURA2,73,55,34,8
+    LTEXT           "a numero",IDC_STATIC_A_FATTURA2,155,55,30,8
+    EDITTEXT        IDC_EDIT_DA_ELETT,111,52,22,12,ES_AUTOHSCROLL | 
+                    ES_NUMBER
+    EDITTEXT        IDC_EDIT_A_ELETT,194,52,22,12,ES_AUTOHSCROLL | ES_NUMBER
+END
+
+IDD_FORM_STATISTICHE_PROVE DIALOG DISCARDABLE  0, 0, 440, 422
+STYLE WS_CHILD | WS_CAPTION
+FONT 8, "MS Sans Serif"
+BEGIN
+    COMBOBOX        IDC_COMBO_TIPI_CERTIFICATO,14,33,245,108,CBS_DROPDOWN | 
+                    WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_COMBO_ANNI,283,33,77,171,CBS_DROPDOWN | CBS_SORT | 
+                    WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "Ricerca",IDC_BUTTON_RICERCA,380,31,42,14,WS_DISABLED
+    CONTROL         "List1",IDC_LIST_SERVIZI,"SysListView32",LVS_REPORT | 
+                    LVS_SINGLESEL | LVS_SORTASCENDING | WS_BORDER | 
+                    WS_TABSTOP,15,55,407,190
+    CONTROL         "List1",IDC_LIST_RISULTATO,"SysListView32",LVS_REPORT | 
+                    LVS_SORTASCENDING | WS_BORDER | WS_TABSTOP,15,266,407,
+                    121
+    PUSHBUTTON      "Stampa report",IDC_BUTTON_REPORT,369,392,56,15,
+                    WS_DISABLED
+    GROUPBOX        "Prove",IDC_STATIC_STATISTICHE_PROVE,7,7,426,245
+    LTEXT           "Tipo",IDC_STATIC_TIPO,15,21,65,9
+    LTEXT           "Anno",IDC_STATIC_ANNO,285,21,65,9
+    GROUPBOX        "Risultato",IDC_STATIC_RISULTATO,7,254,426,158
+END
+
+IDD_FORM_STATISTICHE_FATTURATO DIALOG DISCARDABLE  0, 0, 514, 414
+STYLE WS_CHILD | WS_CAPTION
+FONT 8, "MS Sans Serif"
+BEGIN
+    EDITTEXT        IDC_EDIT_CODICE,50,33,41,12,ES_AUTOHSCROLL
+    PUSHBUTTON      "Trova cliente",IDC_BUTTON_TROVA_CLIENTE,106,32,72,15
+    COMBOBOX        IDC_COMBO_CLIENTE,20,66,315,285,CBS_DROPDOWNLIST | 
+                    WS_DISABLED | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_COMBO_ANNO,351,38,53,125,CBS_DROPDOWNLIST | CBS_SORT | 
+                    WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_COMBO_MESE,419,38,78,146,CBS_DROPDOWNLIST | CBS_SORT | 
+                    WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "Ricerca",IDC_BUTTON_RICERCA,445,64,52,15
+    CONTROL         "List1",IDC_LIST_FATTURATO,"SysListView32",LVS_REPORT | 
+                    LVS_SINGLESEL | LVS_SORTASCENDING | WS_BORDER | 
+                    WS_TABSTOP,13,109,487,259
+    PUSHBUTTON      "Stampa report",IDC_BUTTON_STAMPA_REPORT,445,374,53,14,
+                    WS_DISABLED
+    PUSHBUTTON      "Ordina Importi",IDC_BUTTON_ORDINA_IMPONIBILE,96,374,61,
+                    14,WS_DISABLED
+    PUSHBUTTON      "Ordina N° Verbali",IDC_BUTTON_ORDINA_VERBALI,15,374,61,
+                    14,WS_DISABLED
+    GROUPBOX        "Fatturato",IDC_STATIC_FATTURATO,7,7,500,85
+    LTEXT           "Cliente",IDC_STATIC_CLIENTE,21,52,34,9
+    LTEXT           "Anno",IDC_STATIC_ANNO,354,25,34,9
+    LTEXT           "Mese",IDC_STATIC_MESE,423,25,34,9
+    GROUPBOX        "Risultato",IDC_STATIC_RISULTATO,7,96,500,300
+    GROUPBOX        "Ricerca cliente",IDC_STATIC_RICERCA_CLIENTE,15,17,324,
+                    68
+    LTEXT           "Codice",IDC_STATIC_CODICE,21,36,28,9
+    GROUPBOX        "Ricerca",IDC_STATIC_RICERCA,347,17,154,68
+END
+
+IDD_FORM_TOTALI_FATTURATO DIALOG DISCARDABLE  0, 0, 520, 185
+STYLE WS_CHILD | WS_CAPTION
+FONT 8, "MS Sans Serif"
+BEGIN
+    GROUPBOX        "Totali fatturato",IDC_STATIC_TOTALI_FATTURATO,7,7,506,
+                    165
+    PUSHBUTTON      "Calcola",IDC_BUTTON_CALCOLA,175,26,48,19
+    CONTROL         "List1",IDC_LIST_TOTALI_FATTURATO,"SysListView32",
+                    LVS_REPORT | LVS_SINGLESEL | WS_BORDER | WS_TABSTOP,17,
+                    60,485,103
+    LTEXT           "Anno",IDC_STATIC_ANNO,15,21,23,8
+    COMBOBOX        IDC_COMBO_ANNO,14,33,65,72,CBS_DROPDOWN | CBS_SORT | 
+                    WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Mese",IDC_STATIC_MESE,89,21,36,8
+    COMBOBOX        IDC_COMBO_MESE,89,33,74,162,CBS_DROPDOWN | CBS_SORT | 
+                    WS_VSCROLL | WS_TABSTOP
+END
+
+IDD_FORM_ESPORTAZIONE_CSV DIALOG DISCARDABLE  0, 0, 260, 98
+STYLE WS_CHILD | WS_CAPTION
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "Esporta",IDOK,190,63,50,14
+    GROUPBOX        "Centro Trasformazione esportazione dati CSV",IDC_STATIC,
+                    7,7,246,80
+    CONTROL         "DateTimePicker1",IDC_DATETIMEPICKER_DA,
+                    "SysDateTimePick32",DTS_RIGHTALIGN | WS_TABSTOP,55,30,66,
+                    12
+    CONTROL         "DateTimePicker2",IDC_DATETIMEPICKER_A,"SysDateTimePick32",
+                    DTS_RIGHTALIGN | WS_TABSTOP,176,30,66,12
+    LTEXT           "Da data",IDC_STATIC_DA,13,34,33,8
+    LTEXT           "A data",IDC_STATIC_A,135,34,33,8
+END
+
+IDD_DIALOG_DB_REMOTO DIALOG DISCARDABLE  0, 0, 616, 340
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Archivio remoto"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,559,268,50,32
+    PUSHBUTTON      "Cancel",IDCANCEL,559,301,50,32
+    CONTROL         "List1",IDC_LIST_DB_REMOTO,"SysListView32",LVS_REPORT | 
+                    LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_SORTASCENDING | 
+                    WS_BORDER | WS_TABSTOP,7,7,549,326
+    PUSHBUTTON      "ID Mancante",IDC_BUTTON_ID_MISSING,559,70,50,31
+    PUSHBUTTON      "ID Presente",IDC_BUTTON_ID_PRESENT,559,39,50,31
+    PUSHBUTTON      "Tutti",IDC_BUTTON_TUTTI,559,7,50,31
+END
+
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 4,3,1,0
+ PRODUCTVERSION 4,3,1,0
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "041004b0"
+        BEGIN
+            VALUE "Comments", "\0"
+            VALUE "CompanyName", "\0"
+            VALUE "FileDescription", "WinSigma Applicazione MFC\0"
+            VALUE "FileVersion", "4, 3, 1, 0\0"
+            VALUE "InternalName", "WinSigma\0"
+            VALUE "LegalCopyright", "Copyright (C) 2003\0"
+            VALUE "LegalTrademarks", "\0"
+            VALUE "OriginalFilename", "WinSigma.EXE\0"
+            VALUE "PrivateBuild", "\0"
+            VALUE "ProductName", "WinSigma Applicazione\0"
+            VALUE "ProductVersion", "4, 3, 1, 0\0"
+            VALUE "SpecialBuild", "\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x410, 1200
+    END
+END
+
+#endif    // !_MAC
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 369
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 58
+    END
+
+    IDD_FORM_FATTURE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 507
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 422
+    END
+
+    IDD_FORM_VERBALI, DIALOG
+    BEGIN
+        RIGHTMARGIN, 505
+        VERTGUIDE, 320
+        VERTGUIDE, 370
+        BOTTOMMARGIN, 399
+    END
+
+    IDD_FORM_LISTINI, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 484
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 389
+    END
+
+    IDD_FORM_OPERATORI, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 487
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 352
+    END
+
+    IDD_DIALOG_CONNESSIONE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 194
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 115
+    END
+
+    IDD_FORM_PAGAMENTI, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 439
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 199
+    END
+
+    IDD_FORM_MATERIALI, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 439
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 269
+    END
+
+    IDD_DIALOG_CATEGORIE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 250
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 168
+    END
+
+    IDD_DIALOG_SERVIZI_FATTURA, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 262
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 166
+    END
+
+    IDD_DIALOG_ATTIVALISTINO, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 265
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 128
+    END
+
+    IDD_FORM_AZIENDE, DIALOG
+    BEGIN
+        LEFTMARGIN, 3
+        RIGHTMARGIN, 542
+        TOPMARGIN, 5
+        BOTTOMMARGIN, 423
+        HORZGUIDE, 5
+    END
+
+    IDD_DIALOG_TROVA_AZIENDA, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 580
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 284
+    END
+
+    IDD_DIALOG_SERIE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 412
+        VERTGUIDE, 198
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 403
+    END
+
+    IDD_DIALOG_EMISSIONE_CERTIFICATI, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 303
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 202
+    END
+
+    IDD_DIALOG_STAMPA_CERTIFICATI, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 256
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 160
+    END
+
+    IDD_DIALOG_SAVEPRN_VERBALI, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 179
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 112
+    END
+
+    IDD_FORM_MARCHI, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 439
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 272
+    END
+
+    IDD_FORM_ARCHIVIO_VERBALI, DIALOG
+    BEGIN
+        LEFTMARGIN, 5
+        RIGHTMARGIN, 512
+        TOPMARGIN, 5
+        BOTTOMMARGIN, 359
+    END
+
+    IDD_FORM_ARCHIVIO_CERTIFICATI, DIALOG
+    BEGIN
+        LEFTMARGIN, 5
+        RIGHTMARGIN, 496
+        TOPMARGIN, 5
+        BOTTOMMARGIN, 381
+    END
+
+    IDD_FORM_ARCHIVIO_FATTURE, DIALOG
+    BEGIN
+        LEFTMARGIN, 5
+        RIGHTMARGIN, 521
+        TOPMARGIN, 5
+        BOTTOMMARGIN, 378
+    END
+
+    IDD_DIALOG_FIND_VERBALI, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 579
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 192
+    END
+
+    IDD_DIALOG_PRINT_VERBALI, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 295
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 298
+    END
+
+    IDD_DIALOG_SERVIZILISTINO, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 631
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 312
+    END
+
+    IDD_DIALOG_ARCHIVIO_AZIENDE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 372
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 250
+    END
+
+    IDD_DIALOG_INSERT_VERBALI, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 198
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 121
+    END
+
+    IDD_DIALOG_STAMPA_FATTURE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 223
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 296
+    END
+
+    IDD_DIALOG_PREVIEW, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 656
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 429
+    END
+
+    IDD_DIALOG_MODIFICA_CERTIFICATO, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 292
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 95
+    END
+
+    IDD_DIALOG_EFFETTI, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 492
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 196
+    END
+
+    IDD_DIALOG_STAMPAMINUTE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 259
+        TOPMARGIN, 1
+        BOTTOMMARGIN, 259
+    END
+
+    IDD_DIALOG_ETICHETTE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 207
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 152
+    END
+
+    IDD_DIALOG_REPORT_VERBALI, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 532
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 275
+    END
+
+    IDD_DIALOG_INSERT_VERBALE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 308
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 96
+    END
+
+    IDD_DIALOG_FATTURA_PROFORMA, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 124
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 96
+    END
+
+    IDD_DIALOG_ARCHIVIA_FATTURE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 132
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 66
+    END
+
+    IDD_DIALOG_EMENDAMENTI, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 278
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 154
+    END
+
+    IDD_DIALOG_ESPORTA_FATTURE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 230
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 119
+    END
+
+    IDD_FORM_STATISTICHE_PROVE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 433
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 415
+    END
+
+    IDD_FORM_STATISTICHE_FATTURATO, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 507
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 407
+    END
+
+    IDD_FORM_TOTALI_FATTURATO, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 513
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 178
+    END
+
+    IDD_FORM_ESPORTAZIONE_CSV, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 253
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 91
+    END
+
+    IDD_DIALOG_DB_REMOTO, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 609
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 333
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Cursor
+//
+
+IDC_HANDCUR             CURSOR  DISCARDABLE     "res\\icr_hand.cur"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog Info
+//
+
+IDD_DIALOG_SERVIZI_FATTURA DLGINIT
+BEGIN
+    IDC_MASKEDBOX_PREZZO, 0x37a, 203, 0
+0x0024, 0x0000, 0x006d, 0x0067, 0x006b, 0x0067, 0x0074, 0x0067, 0x006e, 
+0x006e, 0x006d, 0x006e, 0x006d, 0x006e, 0x0069, 0x006e, 0x0069, 0x0067, 
+0x0074, 0x0068, 0x006b, 0x0067, 0x006f, 0x0067, 0x0067, 0x0067, 0x0076, 
+0x006d, 0x006b, 0x0068, 0x0069, 0x006e, 0x006a, 0x0067, 0x0067, 0x006e, 
+0x0076, 0x006d, 0x0023, 0x0000, 0x0001, 0x0000, 0x001b, 0x0000, 0x0001, 
+0x8001, 0x0000, 0x0016, 0x0000, 0x001a, 0x0000, 0x0002, 0x8001, 0x0001, 
+0x0000, 0x2100, 0x3443, 0x0812, 0x0000, 0x0f00, 0x000b, 0x6100, 0x0002, 
+0xed00, 0xedac, 0x00ac, 0x0600, 0x2400, 0x0000, 0x0100, 0x0000, 0x0000, 
+0x0100, 0x0000, 0x0000, 0xff00, 0xffff, 0x0800, 0x0000, 0xff80, 0xffff, 
+0x00ff, 0xff00, 0xffff, 0x00ff, 0x0000, 0x4000, 0x0200, 0x3000, 0x1200, 
+0x2300, 0x2300, 0x2e00, 0x2300, 0x2300, 0x2300, 0x2c00, 0x2300, 0x2300, 
+0x0200, 0x5f00, "\000" 
+    IDC_MASKEDBOX_IMPORTO, 0x37a, 205, 0
+0x0024, 0x0000, 0x006d, 0x0067, 0x006b, 0x0067, 0x0074, 0x0067, 0x006e, 
+0x006e, 0x006d, 0x006e, 0x006d, 0x006e, 0x0069, 0x006e, 0x0069, 0x0067, 
+0x0074, 0x0068, 0x006b, 0x0067, 0x006f, 0x0067, 0x0067, 0x0067, 0x0076, 
+0x006d, 0x006b, 0x0068, 0x0069, 0x006e, 0x006a, 0x0067, 0x0067, 0x006e, 
+0x0076, 0x006d, 0x0023, 0x0000, 0x0001, 0x0000, 0x001b, 0x0000, 0x0001, 
+0x8001, 0x0000, 0x0016, 0x0000, 0x001a, 0x0000, 0x0002, 0x8001, 0x0001, 
+0x0000, 0x2100, 0x3443, 0x0812, 0x0000, 0x0f00, 0x000b, 0x6100, 0x0002, 
+0xed00, 0xedac, 0x00ac, 0x0600, 0x2400, 0x0000, 0x0100, 0x0000, 0x0000, 
+0x0100, 0x0000, 0x0000, 0xff00, 0xffff, 0x0800, 0x0000, 0xff80, 0xffff, 
+0x00ff, 0xff00, 0xffff, 0x00ff, 0x0000, 0x4000, 0x0200, 0x3000, 0x1400, 
+0x2300, 0x2300, 0x2300, 0x2e00, 0x2300, 0x2300, 0x2300, 0x2c00, 0x2300, 
+0x2300, 0x0200, 0x5f00, "\000" 
+    0
+END
+
+IDD_DIALOG_SERVIZILISTINO DLGINIT
+BEGIN
+    IDC_MASKEDBOX_PREZZO, 0x37a, 201, 0
+0x0024, 0x0000, 0x006d, 0x0067, 0x006b, 0x0067, 0x0074, 0x0067, 0x006e, 
+0x006e, 0x006d, 0x006e, 0x006d, 0x006e, 0x0069, 0x006e, 0x0069, 0x0067, 
+0x0074, 0x0068, 0x006b, 0x0067, 0x006f, 0x0067, 0x0067, 0x0067, 0x0076, 
+0x006d, 0x006b, 0x0068, 0x0069, 0x006e, 0x006a, 0x0067, 0x0067, 0x006e, 
+0x0076, 0x006d, 0x0023, 0x0000, 0x0001, 0x0000, 0x001b, 0x0000, 0x0001, 
+0x8001, 0x0000, 0x0016, 0x0000, 0x001a, 0x0000, 0x0002, 0x8001, 0x0001, 
+0x0000, 0x2100, 0x3443, 0x0812, 0x0000, 0xc000, 0x0007, 0x6100, 0x0002, 
+0xed00, 0xedac, 0x00ac, 0x0600, 0x2400, 0x0000, 0x0100, 0x0000, 0x0000, 
+0x0100, 0x0000, 0x0000, 0xff00, 0xffff, 0x0800, 0x0000, 0xff80, 0xffff, 
+0x00ff, 0xff00, 0xffff, 0x00ff, 0x0000, 0x4000, 0x0200, 0x3000, 0x1000, 
+0x2300, 0x2e00, 0x2300, 0x2300, 0x2300, 0x2c00, 0x2300, 0x2300, 0x0200, 
+0x5f00, "\000" 
+    0
+END
+
+IDD_DIALOG_STAMPA_FATTURE DLGINIT
+BEGIN
+    IDC_MASKEDBOX_SPESE_SPEDIZIONE, 0x37a, 195, 0
+0x0024, 0x0000, 0x006d, 0x0067, 0x006b, 0x0067, 0x0074, 0x0067, 0x006e, 
+0x006e, 0x006d, 0x006e, 0x006d, 0x006e, 0x0069, 0x006e, 0x0069, 0x0067, 
+0x0074, 0x0068, 0x006b, 0x0067, 0x006f, 0x0067, 0x0067, 0x0067, 0x0076, 
+0x006d, 0x006b, 0x0068, 0x0069, 0x006e, 0x006a, 0x0067, 0x0067, 0x006e, 
+0x0076, 0x006d, 0x0023, 0x0000, 0x0001, 0x0000, 0x001b, 0x0000, 0x0001, 
+0x8001, 0x0000, 0x0016, 0x0000, 0x001a, 0x0000, 0x0002, 0x8001, 0x0001, 
+0x0000, 0x2100, 0x3443, 0x0812, 0x0000, 0x5700, 0x0007, 0x6100, 0x0002, 
+0xed00, 0xedac, 0x00ac, 0x0600, 0x2400, 0x0000, 0x0100, 0x0000, 0x0000, 
+0x0100, 0x0000, 0x0000, 0xff00, 0xffff, 0x0800, 0x0000, 0xff80, 0xffff, 
+0x00ff, 0xff00, 0xffff, 0x00ff, 0x0000, 0x4000, 0x0200, 0x3000, 0x0a00, 
+0x2300, 0x2300, 0x2c00, 0x2300, 0x2300, 0x0200, 0x5f00, "\000" 
+    0
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE PRELOAD DISCARDABLE 
+BEGIN
+    IDR_MAINFRAME           "WinSigma\n\nWinSig\n\n\nWinSigma.Document\nWinSig Document"
+END
+
+STRINGTABLE PRELOAD DISCARDABLE 
+BEGIN
+    AFX_IDS_APP_TITLE       "WinSigma"
+    AFX_IDS_IDLEMESSAGE     "Pronto"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_INDICATOR_EXT        "EST"
+    ID_INDICATOR_CAPS       "MA"
+    ID_INDICATOR_NUM        "NUM"
+    ID_INDICATOR_SCRL       "BS"
+    ID_INDICATOR_OVR        "SSC"
+    ID_INDICATOR_REC        "REG"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_FILE_NEW             "Crea un nuovo documento\nNuovo"
+    ID_FILE_OPEN            "Apre un documento esistente\nApri"
+    ID_FILE_CLOSE           "Chiude il documento attivo\nChiudi"
+    ID_FILE_SAVE            "Salva il documento attivo\nSalva"
+    ID_FILE_SAVE_AS         "Salva il documento attivo con un nuovo nome\nSalva con nome"
+    ID_FILE_PAGE_SETUP      "Modifica le impostazioni di stampa\nImposta pagina"
+    ID_FILE_PRINT_SETUP     "Modifica le impostazioni relative alla stampante e alla stampa\nImposta stampante"
+    ID_FILE_PRINT           "Stampa il documento attivo\nStampa"
+    ID_FILE_PRINT_PREVIEW   "Visualizza le pagine per intero\nAnteprima di stampa"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_APP_ABOUT            "Visualizza le informazioni sul programma, il numero di versione e le informazioni di copyright\nInformazioni su"
+    ID_APP_EXIT             "Esce dall'applicazione e chiede di salvare i documenti\nEsci"
+    ID_HELP_INDEX           "Indice"
+    ID_HELP                 "Help"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_FILE_MRU_FILE1       "Apre questo documento"
+    ID_FILE_MRU_FILE2       "Apre questo documento"
+    ID_FILE_MRU_FILE3       "Apre questo documento"
+    ID_FILE_MRU_FILE4       "Apre questo documento"
+    ID_FILE_MRU_FILE5       "Apre questo documento"
+    ID_FILE_MRU_FILE6       "Apre questo documento"
+    ID_FILE_MRU_FILE7       "Apre questo documento"
+    ID_FILE_MRU_FILE8       "Apre questo documento"
+    ID_FILE_MRU_FILE9       "Apre questo documento"
+    ID_FILE_MRU_FILE10      "Apre questo documento"
+    ID_FILE_MRU_FILE11      "Apre questo documento"
+    ID_FILE_MRU_FILE12      "Apre questo documento"
+    ID_FILE_MRU_FILE13      "Apre questo documento"
+    ID_FILE_MRU_FILE14      "Apre questo documento"
+    ID_FILE_MRU_FILE15      "Apre questo documento"
+    ID_FILE_MRU_FILE16      "Apre questo documento"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_NEXT_PANE            "Passa al riquadro della finestra successivo\nRiquadro successivo"
+    ID_PREV_PANE            "Ritorna al riquadro della finestra precedente\nRiquadro precedente"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_WINDOW_SPLIT         "Divide la finestra attiva in riquadri\nDividi"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_EDIT_CLEAR           "Cancella la selezione\nCancella"
+    ID_EDIT_CLEAR_ALL       "Cancella tutto\nCancella tutto"
+    ID_EDIT_COPY            "Copia la selezione e la pone negli Appunti\nCopia"
+    ID_EDIT_CUT             "Taglia la selezione e la pone negli Appunti\nTaglia"
+    ID_EDIT_FIND            "Trova il testo specificato\nTrova"
+    ID_EDIT_PASTE           "Inserisce il contenuto degli Appunti\nIncolla"
+    ID_EDIT_REPEAT          "Ripete l'ultima azione\nRipeti"
+    ID_EDIT_REPLACE         "Sostituisce il testo specifico con un testo differente\nSostituisci"
+    ID_EDIT_SELECT_ALL      "Seleziona l'intero documento\nSeleziona tutto"
+    ID_EDIT_UNDO            "Annulla l'ultima azione\nAnnulla"
+    ID_EDIT_REDO            "Ripristina l'azione precedentemente annullata\nRipristina"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_VIEW_TOOLBAR         "Mostra o nasconde la barra degli strumenti\nMostra/nascondi barra degli strumenti"
+    ID_VIEW_STATUS_BAR      "Mostra o nasconde la barra di stato\nMostra/nascondi barra di stato"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    AFX_IDS_SCSIZE          "Modifica le dimensioni della finestra"
+    AFX_IDS_SCMOVE          "Modifica la posizione della finestra"
+    AFX_IDS_SCMINIMIZE      "Riduce la finestra ad icona"
+    AFX_IDS_SCMAXIMIZE      "Allarga la finestra a tutto schermo"
+    AFX_IDS_SCNEXTWINDOW    "Passa alla finestra successiva del documento "
+    AFX_IDS_SCPREVWINDOW    "Passa alla precedente finestra del documento"
+    AFX_IDS_SCCLOSE         "Chiude la finestra attiva e chiede di salvare i documenti"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    AFX_IDS_SCRESTORE       "Ripristina la finestra alle dimensioni normali"
+    AFX_IDS_SCTASKLIST      "Attiva l'Elenco dei task"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    AFX_IDS_PREVIEW_CLOSE   "Chiude la modalità anteprima di stampa\n Annulla anteprima"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_AZIENDA_MODIFICA     "Modifica l'azienda selezionata\nModifica azienda"
+    ID_VERBALE_MODIFICA     "\nModifica il verbale selezionato"
+    ID_FATTURA_EMETTI       "Consente di emettere e stampare il documento proposto\nEmetti fattura o nota di credito"
+    ID_AZIENDA_NUOVA        "Aggiunge una nuova azienda\nNuova azienda"
+    ID_CATEGORIA_NUOVA      "\nNuova Categoria"
+    ID_NUOVO                "Procedura di inserimento\nNuova azienda"
+    ID_MODIFICA             "Procedura di modifica\nModifica"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_ESPORTA_FATTURE      "Esporta le fatture in un file testo per il programma di contabilità\nEsporta  fatture"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_VERBALE_ELIMINA      "\nElimina il verbale selezionato"
+    ID_VERBALE_NUOVO        "\nCrea un nuovo verbale"
+    ID_VERBALI_NUOVO        "\nCrea un nuovo verbale"
+    ID_NUOVO_VERBALE        "Crea un nuovo verbale per Rapporti di prova non in concessione ministeriale\nNuovo non in concessione"
+    ID_ANNULLA              "Consente l'annullamento di un verbale\nAnnulla verbale"
+    ID_BUTTON_AVVIA_EMISSIONE 
+                            "Procedura di emissione multipla dei certificati\nEmetti certificati"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_BUTTON_STAMPA_CERTIFICATI 
+                            "Procedura di stampa multipla dei certificati emessi\nStampa certificati"
+    ID_DATI_PROVINI         "Procedura di immissione dei dati dei provini\nAbilita dati provini"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_CHIUDI_VERBALE       "Consente la chiusura di un verbale\nChiudi verbale"
+    ID_METTI_IN_FATTURAZIONE 
+                            "Mette il verbale in fatturazione\nMetti in fatturazione"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_FATTURA_STAMPA_SINGOLA 
+                            "Stampa una copia della fattura selezionata\nStampa una copia"
+    ID_FATTURA_STAMPA_MULTIPLA 
+                            "Stampa due copie della fattura selezionata\nStampa due copie"
+    ID_PRINTPROFORMA        "Consente di stampare una fattura senza emetterla\nStampa una fattura proforma"
+    ID_SALVA_FATTURA        "Consente di salvare le modifiche apportate alla fattura\nSalva le modifiche alla fattura"
+    ID_VISUALIZZA_FATTURA   "Consente di modificare e ristampare il documento selezionato\nModifica e stampa la fattura o la nota di credito "
+    ID_BUTTON_MOD_CERTIFICATO "Procedura di modifica di un Certificato"
+    ID_CERTIFICATI_MODIFICA "Procedura di modifica dei Certificati"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_BUTTON_MODIFICA_CERTIFICATO "Procedura di modifica di un Certificato"
+    ID_ARCHIVIA_FATTURA     "Mette in archivio il documento selezionato\nArchivia la fattura o la nota di credito selezionata"
+    ID_NUOVA_SVERBALE       "Consente di compilare una fattura che non fa riferimento a nessun verbale\nNuova fattura senza verbale"
+    ID_RIPRISTINA_FATTURA   "Ripristina la fattura selezionata\nRipristina fattura"
+    IDC_ANTEPRIMA_FATTURA   "Mostra l'anteprima di stampa della fattura selezionata\nAnteprima di stampa"
+    ID_EMETTI_NOTA_CREDITO  "Consente l'emissione della nota di credito\nEmissione della nota di credito"
+    ID_CREA_NOTA_CREDITO    "Crea un nuovo documento di tipo nota di credito\nCrea una nota di credito"
+    ID_ARCHIVIA_NOTACREDITO "Mette in archivio la nota di credito selezionata\nArchivia la nota di credito selezionata"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_BUTTON_AGGIORNAALBERO 
+                            "Procedura di ricarica dei dati presenti nel database\nRicarica verbali"
+    ID_BUTTON_AGGIORNA_FATTURE 
+                            "Procedura di ricarica dei dati presenti nel database\nRicarica dati"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_BUTTON_AGGIORNA_AZIENDE 
+                            "Procedura di ricarica dei dati presenti nel database\nRicarica dati"
+    ID_BUTTON_AGGIORNAMATERIALI 
+                            "Procedura di ricarica dei dati presenti nel database\nRicarica materiali"
+    ID_BUTTON_AGGIORNAOPERATORI 
+                            "Procedura di ricarica dei dati presenti nel database\nRicarica operatori"
+    ID_BUTTON_AGGIORNAPAGAMENTI 
+                            "Procedura di ricarica dei dati presenti nel database\nRicarica pagamenti"
+    ID_BUTTON_AGGIORNAMARCHI 
+                            "Procedura di ricarica dei dati presenti nel database\nRicarica marchi"
+    ID_BUTTON_AGGIORNA      "Procedura di ricarica dei dati presenti nel database\nRicarica dati"
+    ID_DEL_INFATTURAZIONE   "Consente di togliere un documento dalla fatturazione"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_ELIMINA              "Procedura di eliminazione\nElimina"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_INSERTVERBALE        "Consente di inserire un verbale in una fattura già emessa"
+    ID_PRN_FATTURA_PROFORMA "\nStampa una fattura proforme del verbale selezionato"
+    IDD_PREVIEW_DOC         "\nVisualizza l'anteprima di stampa del documento selezionato"
+    IDD_OPEN_DOC            "\nApre il documento selezionato"
+    ID_LISTINI_STAMPA_INCONCESSIONE 
+                            "\nStampa il listino comprendendo solo i servizi in concessione"
+    ID_NUOVO_GEOLOGIA       "\nCrea un nuovo verbale per prove geotecniche"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDC_ELIMINA_DOC         "\nElimina il certificato selezionato"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_HELP_VERSIONEWINSIGMA "Versione Winsigma"
+    ID_HELP_HELPMANUAL      "Manuale"
+    ID_HELP_HELP            "Help"
+    ID_AZIENDE              "Aziende"
+    ID_AZIENDE_NUOVA        "Procedura di inserimento\nNuova"
+    ID_AZIENDE_MODIFICA     "Procedura di modifica\nModifica"
+    ID_AZIENDE_ELIMINA      "Procedura di eliminazione\nElimina"
+    ID_HELP_VERSION         "Version"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_FATTURA_ELETT_EMETTI "Emissione fattura elettronica"
+END
+
+#endif    // Italian (Italy) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ITA)
+#ifdef _WIN32
+LANGUAGE 16, 1
+#pragma code_page(1252)
+#endif //_WIN32
+#include "res\WinSigma.rc2"  // non-Microsoft Visual C++ edited resources
+#include "l.ita\afxres.rc"          // Standard components
+#include "l.ita\afxprint.rc"        // printing/print preview resources
+#include "l.ita\afxdb.rc"           // Database resources
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

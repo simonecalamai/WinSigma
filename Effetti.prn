@@ -1,0 +1,41 @@
+[general]
+x zero=0
+y zero=0
+
+; numero massimo di righe per pagina nella lista dei campioni
+tab lines=10
+
+[strings]
+10=400,160,1100,40,Arial,25,35,BC,Stampa distinta effetti incasso - SIGMA s.r.l.
+30=1650,+0,100,40,Arial,25,35,BL,Pag. 
+40=150,320,200,35,Arial,20,30,BL,RB 
+50=+65,+0,175,35,Arial,20,30,BC,Importo
+60=+400,+0,200,35,Arial,20,30,BC,Scadenza
+70=1150,+0,800,35,Arial,20,30,BL,Trassato
+80=250,+40,400,35,Arial,20,30,BL,Fattura
+90=250,+40,650,35,Arial,20,30,BL,Banca d'appoggio
+100=+550,+0,120,35,Arial,20,30,BL,CAB
+110=+120,+0,120,35,Arial,20,30,BL,ABI
+
+[fields]
+10=130,160,250,40,Arial,25,35,BL,Data
+20=1700,160,100,40,Arial,25,35,BR,@page
+
+[tabfields]
+10=160,500,100,220,Arial,30,40,L,Effetto N.
+20=+90,+0,350,220,Arial,35,40,LB,Importo
+30=+400,+0,300,220,Arial,35,40,LB,Scadenza
+40=1150,+0,800,220,Arial,20,30,L,Cliente
+60=250,+50,350,220,Arial,25,35,L,NFattura
+70=+300,+0,250,220,Arial,25,35,L,DataFattura
+90=1150,+0,800,220,Arial,20,30,L,Indirizzo
+100=250,+50,500,220,Arial,25,35,L,Banca
+110=+550,+0,120,220,Arial,25,35,L,CAB
+120=+140,+0,120,220,Arial,25,35,L,ABI
+130=1150,+20,800,220,Arial,25,35,L,PartitaIva
+140=100,490,1850,215,Arial,25,35,LNSWEVB,Borda
+
+[grids]
+10=100,300,1850,150,1,1
+
+[bitmaps]

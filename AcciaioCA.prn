@@ -1,0 +1,91 @@
+[general]
+x zero=-40
+y zero=-30
+
+; numero massimo di righe per pagina nella lista delle consegne
+tab lines=16
+
+; posizione e font del numero di pagina
+;Nr.Pagina=1700,2100,Times New Roman,24,48,C
+
+
+[strings]
+10=70,130,500,50,Courier New,40,50,BL,.DA. FERRI DA C.A.
+20=+650,130,500,50,Courier New,30,40,L, MINUTA DI PROVA
+30=+1000,+0,90,50,Courier New,30,40,L,PAG.
+35=70,+40,2000,50,Courier New,20,30,L,------------------------------------------------------------------------------------------------------------------------------------------------------------
+;40=220,220,350,50,Courier New,30,40,BL,UNI-EN 10002.1/04 
+40=220,220,450,50,Courier New,30,40,BL,UNI EN ISO 6892-1 
+50=+500,+0,850,50,Courier New,30,40,BL,ROTTURA A TRAZIONE SU TONDI DA C.A. E
+60=+950,+0,300,50,Courier New,30,40,BL,PT010-011-012
+61=220,+40,450,50,Courier New,30,40,BL,UNI EN 10065/94
+62=+500,+0,300,50,Courier New,30,40,BL,PIEGAMENTO
+70=70,350,300,50,Courier New,20,38,L,Verbale accett:
+80=+470,+0,80,50,Courier New,20,38,L,del
+;90=+600,+0,200,50,Courier New,20,38,L,CONSEGNA:
+100=70,430,650,50,Courier New,30,40,L,Numero verbale in Concessione
+130=70,+150,300,50,Courier New,20,38,L,Campioni N.....:
+140=70,+70,380,50,Courier New,20,38,L,Campioni consegnati    :
+150=70,+40,380,50,Courier New,20,38,L,Prove richieste e note :
+160=70,+80,1700,50,Courier New,20,38,L,Data prove: .../.../...
+;180=660,+70,1000,50,Courier New,38,40,BL,Risultati di PROVA A TRAZIONE
+190=70,+130,2000,50,Courier New,20,30,L,------------------------------------------------------------------------------------------------------------------------------------------------------------
+200=70,+40,100,50,Courier New,20,34,L,MAT.
+210=+230,+0,100,50,Courier New,20,34,L,SIGLA
+220=+130,+0,120,50,Courier New,20,34,L,Þ dich.
+230=+160,+0,80,50,Courier New,20,34,L,PESO
+240=+140,+0,100,50,Courier New,20,34,L,LUNGH.
+250=+230,+0,120,50,Courier New,20,34,L,CAR.SNE
+260=+150,+0,120,50,Courier New,20,34,L,CAR.ROT
+270=+160,+0,150,50,Courier New,20,34,L,TENS.SNE
+280=+160,+0,150,50,Courier New,20,34,L,TENS.ROT
+290=+180,+0,120,50,Courier New,20,34,L,ALLUNG.
+300=+170,+0,80,50,Courier New,20,34,L,Pieg.
+310=+100,+0,100,50,Courier New,20,34,L,Mandr.
+320=190,+40,100,50,Courier New,20,34,L,prove
+330=+270,+0,50,50,Courier New,20,34,L,mm
+340=+150,+0,50,50,Courier New,20,34,L,gr
+350=+150,+0,50,50,Courier New,20,34,L,mm
+360=+210,+0,50,50,Courier New,20,34,L,KN
+370=+150,+0,50,50,Courier New,20,34,L,KN
+380=+150,+0,100,50,Courier New,20,34,L,N/mm²
+390=+170,+0,100,50,Courier New,20,34,L,N/mm²
+400=+180,+0,50,50,Couier New,20,34,L,mm
+410=+240,+0,50,50,Couier New,20,34,L,mm
+420=70,+60,2000,50,Courier New,20,30,L,------------------------------------------------------------------------------------------------------------------------------------------------------------
+-900=1250,2400,500,50,Courier New,20,38,BC,Lo Sperimentatore
+-910=+50,+100,400,50,Courier New,20,30,BC,.......................
+
+
+[fields]
+5=1380,130,250,50,Courier New,30,40,L,dataMinuta
+10=1860,130,100,50,Courier New,30,40,L,@page
+75=430,350,100,50,Courier New,30,40,BL,totaleVerbali
+85=+200,+0,300,50,Courier New,30,40,BL,dataAccettazione
+100=+500,+0,1000,50,Courier New,30,40,BL,urgenza
+105=750,430,250,50,Courier New,30,40,L,progressivoVerbale
+125=1340,+100,150,50,Courier New,30,40,BL,spianpieg
+135=490,+50,100,50,Courier New,20,38,L,numeroCampioni
+145=490,+70,1000,50,Courier New,20,38,BL,materialeConsegnato
+155=490,+40,1400,60,Courier New,20,38,BL,proveRichieste
+160=430,+150,1200,50,Courier New,30,40,BC,titolo
+
+
+[tabfields]
+1=100,1070,1900,80,Courier New,40,80,L,separatore
+10=70,1070,70,80,Courier New,20,40,L,materiale
+40=+80,+0,120,80,Courier New,20,40,L,prove
+50=+130,+0,140,80,Courier New,20,40,L,sigla
+60=+150,+0,100,80,Courier New,20,40,L,diametro
+70=+150,+0,100,80,Courier New,20,40,L,peso
+80=+140,+0,200,80,Courier New,20,40,L,lunghezza
+90=+240,+0,120,80,Courier New,20,40,L,carSne
+100=+150,+0,120,80,Courier New,20,40,L,carRot
+110=+160,+0,120,80,Courier New,20,40,L,tensSne
+120=+160,+0,120,80,Courier New,20,40,L,tensRot
+130=+160,+0,120,80,Courier New,20,40,L,allungamento
+140=+200,+0,130,80,Courier New,20,40,L,piegMandr
+150=+180,+0,120,80,Courier New,20,40,L,posCertificato
+
+
+[grids]

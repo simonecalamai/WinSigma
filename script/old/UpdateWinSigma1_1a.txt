@@ -1,0 +1,10 @@
+update TIPI_CERTIFICATO set LayoutStampaMinuta='MinutaResilienza.prn' where Codice=5;
+update TIPI_CERTIFICATO set LayoutStampaMinuta='MinutaReti.prn' where Codice=6;
+alter table CERTIFICATI add EmendaIl int(10) unsigned;
+alter table CERTIFICATI add EmendatoDa int(10) unsigned;
+alter table FATTURE add InUso varchar(32);
+
+alter table AZIENDE modify Note varchar(255);
+alter table AZIENDE_VECCHIE modify Note varchar(255);
+
+alter table PROVINI add Marchio int(10) unsigned;

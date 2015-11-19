@@ -1,0 +1,7 @@
+alter table CERTIFICATI add NumeroPagine tinyint ;
+
+update TIPI_CERTIFICATO set FinestraDialogo='TrazioneTrefoli' where codice=7;
+update TIPI_CERTIFICATO set LayoutStampa='CertificatoTrefoli.prn' where codice=7;
+
+alter table OPERATORI add Titolo varchar(16);
+alter table OPERATORI add Responsabile tinyint;

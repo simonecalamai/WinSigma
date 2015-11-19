@@ -1,0 +1,107 @@
+[general]
+x zero=+20
+y zero=-50
+
+; numero massimo di righe per pagina nella lista delle consegne
+tab lines=12
+
+; posizione e font del numero di pagina
+;Nr.Pagina=1700,2100,Times New Roman,24,48,C
+
+
+[strings]
+5=140,430,1700,70,Times New Roman,28,50,BC,PROVA DI TRAZIONE E DISTACCO SU RETI ELETTROSALDATE
+10=140,560,300,40,Times New Roman,22,38,BL,CERTIFICATO N°
+20=+430,+0,50,40,Times New Roman,22,38,BL,del
+30=1200,+0,200,40,Times New Roman,22,38,BL,Rif. V.A. N°
+40=+400,+0,50,40,Times New Roman,22,38,BL,del
+50=200,760,400,40,Times New Roman,22,40,L,Richiedente
+60=+0,+120,400,40,Times New Roman,22,40,L,Direttore dei lavori
+70=+0,+80,400,40,Times New Roman,22,40,L,Impresa esecutrice
+80=+0,+120,400,40,Times New Roman,22,40,L,Cantiere
+90=+0,+190,300,40,Times New Roman,22,40,L,Tipo e caratteristiche
+100=680,+90,800,50,Times New Roman,28,50,BC,DATI DI LABORATORIO
+110=113,1430,238,50,Arial,25,45,BC,Ø Nom.
+120=+238,+0,271,50,Arial,25,45,BC,Sez.eff.
+130=+271,+0,271,50,Arial,25,45,BC,Snervam.
+140=+271,+0,271,50,Arial,25,45,BC,Rottura
+155=+271,+10,271,50,Arial,20,30,BCU,ft
+160=+271,-10,271,50,Arial,25,45,BC,All.
+170=+271,+0,271,50,Arial,25,45,BC,Distacco
+180=90,+45,50,50,Times New Roman,20,38,L,n.
+190=113,+0,238,50,Arial,20,38,C,mm
+200=+238,+0,271,50,Arial,20,38,C,* mm²
+210=+271,+0,271,50,Arial,20,38,C,fy N/mm²
+220=+271,+0,271,50,Arial,20,38,C,ft N/mm²
+230=+271,+0,271,50,Arial,20,30,BC,fy
+240=+271,+0,271,50,Arial,20,38,C,A10(%)
+250=+271,+0,271,50,Arial,20,38,C,N
+
+440=80,2010,150,40,Courier ,20,40,L,Norme
+450=+150,+10,1150,30,Courier New,18,30,L,UNI 8927/86 e D.M. 09/01/96 parte 1 punto 2.2.5.
+470=80,+35,2500,50,Courier New,18,30,L,*calcolata sulla barra liscia equipesante 
+480=+0,+35,1900,50,Courier New,18,30,L,(1): Il collasso è avvenuto per distacco dei fili in corrispondenza del nodo di saldatura
+490=+0,+35,1900,50,Courier New,18,30,L,(2): Il collasso è avvenuto per rottura del filo in trazione in prossimità del nodo di saldatura
+
+550=80,2200,270,44,Arial,22,36,L,Domanda di prove 
+560=1200,+0,380,44,*,Prove effettuate in data:
+
+580=230,2460,500,100,Times New Roman,22,40,C,Lo Sperimentatore
+600=1330,2460,400,100,Times New Roman,22,40,C,Il Direttore Responsabile del Laboratorio
+
+620=90,2700,520,50,Courier New,20,40,L,Il presente documento è costituito da n.
+630=+550,+0,100,50,Courier New,20,40,L,pagine 
+640=1680,+0,120,50,Courier New,20,40,L,pag. 1 /
+
+[fields]
+10=440,560,130,80,Times New Roman,22,38,BL,numeroCertificato
+20=+210,+0,200,80,Times New Roman,22,38,BL,dataCertificato
+30=1400,+0,220,80,Times New Roman,22,38,BL,numeroVerbale
+40=+285,+0,200,80,Times New Roman,22,38,BL,dataVerbale
+50=140,+40,1000,40,Times New Roman,22,38,BL,emendamento
+55=+0,+40,500,40,Times New Roman,22,38,L,duplicato
+60=200,680,330,40,Times New Roman,22,40,L,etichettaIncarico
+70=+350,+0,1300,40,Times New Roman,22,40,L,letteraIncarico
+80=+0,+80,1300,40,Times New Roman,22,40,L,richiedente
+90=+0,+40,1300,40,Times New Roman,22,40,L,indirizzoRichiedente
+100=+0,+80,1300,100,Times New Roman,22,40,L,direttoreLavori
+110=+0,+80,1300,40,Times New Roman,22,40,L,impresaEsecutrice
+120=+0,+40,1300,40,Times New Roman,22,40,L,indirizzoImpresaEsecutrice
+130=+0,+80,1300,120,Times New Roman,22,40,L,cantiere
+140=-350,+120,330,40,Times New Roman,22,40,L,etichettaProprietario
+150=+350,+0,1300,40,Times New Roman,22,40,L,proprietario
+160=+0,+70,1300,40,Times New Roman,22,40,L,caratteristiche
+170=80,2160,950,50,Courier New,18,30,L,macchina 
+180=380,2200,1000,44,Arial,22,36,L,domandaProve 
+190=1580,+0,180,44,Arial,22,36,L,dataProve
+200=80,+70,1000,44,Arial,22,36,L,richiestaPiegatura
+210=80,+74,1000,64,Arial,15,32,L,osservazioniLabel
+215=+150,+0,1000,64,Arial,15,32,L,osservazioni
+
+220=130,2540,700,100,Times New Roman,22,40,BC,sperimentatore
+230=1280,+0,500,100,Times New Roman,22,40,BC,responsabile
+
+240=600,2700,20,50,Courier New,20,40,C,pagine
+250=1800,+0,50,50,Courier New,20,40,L,diPagine
+
+
+[tabfields]
+10=80,1515,33,70,Arial,16,32,CWSV,numeroInterno
+20=+33,+0,238,70,Times New Roman,18,36,CSEV,fiNominale
+30=+238,+0,271,70,Times New Roman,18,36,CBSEV,sezioneEffettiva
+40=+271,+0,271,70,Times New Roman,18,36,CBSEV,snervamento
+50=+271,+0,271,70,Times New Roman,18,36,CBSEV,rottura
+60=+271,+0,271,70,Times New Roman,18,36,CBSEV,ftfy
+80=+271,+0,271,70,Times New Roman,16,32,CSEV,allungamento
+90=+271,+0,271,70,Times New Roman,16,32,CSEV,distacco
+
+[grids]
+10=80,1415,1897,100,1,1
+20=230,2660,500,0,1,1
+30=1280,+0,500,0,1,1
+
+[bitmaps]
+10=110,720,80,450,RCM,didascalia.bmp
+
+
+

@@ -1,0 +1,1 @@
+alter table VERBALI modify Proprietario VARCHAR(128);

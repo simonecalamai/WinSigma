@@ -1,0 +1,21 @@
+[general]
+x zero=+120
+y zero=-80
+
+; numero massimo di righe per pagina nella lista delle consegne
+tab lines=12
+
+; posizione e font del numero di pagina
+
+
+[strings]
+10=400,70,800,70,Times New Roman,38,64,BL,Laboratorio SIGMA s.r.l.
+
+[fields]
+
+[tabfields]
+
+[grids]
+
+[bitmaps]
+10=200,260,1400,500,RM,marchio.bmp

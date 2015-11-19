@@ -1,0 +1,17 @@
+[general]
+x zero=-50
+y zero=0
+
+; numero massimo di righe per pagina nella lista dei campioni
+tab lines=1
+
+[strings]
+
+[fields]
+
+[tabfields]
+10=60,60,800,380,Arial,30,40,L,indirizzo
+
+[grids]
+
+[bitmaps]

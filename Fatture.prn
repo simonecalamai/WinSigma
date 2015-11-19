@@ -1,0 +1,74 @@
+[general]
+x zero=0
+y zero=0
+
+; numero massimo di righe per pagina nella lista dei campioni
+tab lines=10
+
+[strings]
+10=1010,400,180,40,Times New Roman,25,35,IL,Spett.le
+50=80,+340,350,40,Arial,20,30,BL,Condizioni di pagamento :
+60=+0,+55,1300,40,Arial,20,30,L,In caso di ritardato pagamento saranno addebitati interessi di mora al tasso di legge
+70=+1660,+0,70,40,Arial,25,35,L,Pag.
+80=60,+70,110,40,Arial,25,35,L,Codici
+90=+260,+0,300,40,Arial,25,35,L,Descrizione
+100=+1050,+0,100,40,Arial,25,35,L,Num.
+110=+120,+0,120,40,Arial,25,35,L,Prezzo
+120=+170,+0,140,40,Arial,25,35,L,Importo
+-130=100,+1390,130,40,Arial,22,32,BL,Rif. V.A.
+-140=+130,+150,160,40,Arial,25,35,BL,Scadenza
+-150=+420,+0,130,40,Arial,25,35,BL,Importo
+-160=+630,+0,360,40,Arial,25,35,BL,Totale Imponibile
+-180=+0,+205,260,40,Arial,25,35,BL,Totale Fattura
+-190=170,-60,600,40,Arial,20,30,L,Totale imponibile delle voci riportate
+
+[fields]
+5=650,400,350,40,Arial,25,35,L,codice
+10=1010,450,920,84,Arial,35,45,BL,ragioneSociale
+20=+0,+84,920,42,Arial,30,45,L,indirizzo
+30=+0,+42,920,42,Arial,30,45,L,datiLocalita
+40=+0,+130,600,40,Arial,20,30,L,pIva
+43=+350,+0,600,40,Arial,20,30,L,codFiscale
+45=60 - 350,-40,400,40,Arial,30,40,BL,tipo_documento
+50=+240,+0,150,40,Arial,30,40,BR,numero
+60=+180,+0,300,40,Arial,30,40,BL,data
+70=+0,+74,1500,80,Arial,20,30,BL,tipoPagamento
+80=1800,+55,60,40,Arial,25,35,BR,@page
+85=+60,+0,100,40,Arial,25,35,BL,pagina
+-90=270,2255,1650,135,Arial,24,34,BL,verbali
+-95=160,+185,200,40,Arial,25,35,BR,scadenza
+-96=+390,+0,220,40,Arial,25,35,BR,totImporto
+-100=1600,2415,290,40,Arial,25,35,BR,importo
+-110=-315,+30,270,40,Arial,25,35,BL,aliquota
+-112=+315,+5,290,40,Arial,25,35,BR,iva
+-113=-360,+40,290,40,Arial,25,35,BR,ritacconto
+-114=+360,+0,290,40,Arial,25,35,BR,totritacconto	
+-115=-323,+40,290,40,Arial,25,35,BL,spedizione
+-120=+323,+0,290,40,Arial,25,35,BR,spesespedizione
+-130=+0,+83,290,40,Arial,25,35,BR,totale
+-140=760,-60,150,40,Arial,20,30,R,imponibile
+-150=170,+40,600,40,Arial,30,40,BL,sconto
+-170=170,+40,400,40,Arial,20,30,L,notaSpedizione
+
+[tabfields]
+10=60,950,110,110,Arial,22,32,L,codici
+20=+160,+0,1050,110,Times New Roman,20,30,BL,descrizione
+30=+1100,+0,120,110,Arial,25,35,BR,quantità
+40=+140,+0,145,110,Arial,25,35,BR,prezzo
+50=+190,+0,160,110,Arial,25,35,BR,importo
+
+
+[grids]
+10=1000,380,940,300,1,1
+20=40,640,720,70,1,1
+30=-10,+205,1920,70,1,1
+40=+160,+100,0,1250,1,1
+50=+1140,+0,0,1250,1,1
+60=+120,+0,0,1250,1,1
+70=+180,+0,0,1250,1,1
+80=40,+1300,1900,0,1,1
+-90=+130,+140,750,160,1,1
+-100=+1100,+0,630,185,1,1
+-110=+0,+205,630,65,1,1
+
+[bitmaps]

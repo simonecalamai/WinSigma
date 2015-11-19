@@ -1,0 +1,4 @@
+Delete from LISTINI;
+Delete from CATEGORIE;
+Delete from SERVIZI_LISTINO;
+

@@ -1,0 +1,248 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Italian (Italy) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ITA)
+#ifdef _WIN32
+LANGUAGE LANG_ITALIAN, SUBLANG_ITALIAN
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ITA)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 16, 1\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#endif //_WIN32\r\n"
+    "#include ""res\\TrazioneTrefoli.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""l.ita\\afxres.rc""          // Standard components\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 2,0,1,0
+ PRODUCTVERSION 2,0,1,0
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x2L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "041004b0"
+        BEGIN
+            VALUE "Comments", "\0"
+            VALUE "CompanyName", "\0"
+            VALUE "FileDescription", "TrazioneTrefoli DLL\0"
+            VALUE "FileVersion", "2, 0, 1, 0\0"
+            VALUE "InternalName", "TrazioneTrefoli\0"
+            VALUE "LegalCopyright", "Copyright (C) 2004\0"
+            VALUE "LegalTrademarks", "\0"
+            VALUE "OriginalFilename", "TrazioneTrefoli.DLL\0"
+            VALUE "PrivateBuild", "\0"
+            VALUE "ProductName", "TrazioneTrefoli Dynamic Link Library\0"
+            VALUE "ProductVersion", "2, 0, 1, 0\0"
+            VALUE "SpecialBuild", "\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x410, 1200
+    END
+END
+
+#endif    // !_MAC
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_DIALOG_MAIN DIALOG DISCARDABLE  0, 0, 331, 290
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "TRAZIONE SU TREFOLI"
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "Tree1",IDC_TREE_PROVINI,"SysTreeView32",WS_BORDER | 
+                    WS_TABSTOP,16,144,72,103
+    PUSHBUTTON      "Modifica",IDC_BTN_MODIFICA,23,250,79,14,WS_DISABLED
+    EDITTEXT        IDC_EDIT_OSSERVAZIONI,65,12,175,21,ES_MULTILINE | 
+                    ES_AUTOHSCROLL | ES_WANTRETURN
+    COMBOBOX        IDC_COMBO_SPERIMENTATORI,65,36,175,64,CBS_DROPDOWNLIST | 
+                    CBS_AUTOHSCROLL | CBS_NOINTEGRALHEIGHT | WS_VSCROLL | 
+                    WS_TABSTOP
+    COMBOBOX        IDC_COMBO_MACCHINE,65,53,175,64,CBS_DROPDOWNLIST | 
+                    CBS_AUTOHSCROLL | CBS_NOINTEGRALHEIGHT | WS_VSCROLL | 
+                    WS_TABSTOP
+    CONTROL         "DateTimePicker1",IDC_DATA_PROVA,"SysDateTimePick32",
+                    DTS_RIGHTALIGN | WS_TABSTOP,252,52,59,15
+    EDITTEXT        IDC_EDT_AREA,104,169,27,12,ES_RIGHT | ES_AUTOHSCROLL | 
+                    ES_READONLY
+    EDITTEXT        IDC_EDT_LIMITE1,188,169,27,12,ES_RIGHT | ES_AUTOHSCROLL | 
+                    ES_READONLY
+    EDITTEXT        IDC_EDT_LIMITE2,272,169,27,12,ES_RIGHT | ES_AUTOHSCROLL | 
+                    ES_READONLY
+    EDITTEXT        IDC_EDT_TESNSIONE,104,214,27,12,ES_RIGHT | 
+                    ES_AUTOHSCROLL | ES_READONLY
+    EDITTEXT        IDC_EDT_ROTTURA,160,214,27,12,ES_RIGHT | ES_AUTOHSCROLL | 
+                    ES_READONLY
+    EDITTEXT        IDC_EDT_MODULO,216,214,27,12,ES_RIGHT | ES_AUTOHSCROLL | 
+                    ES_READONLY
+    EDITTEXT        IDC_EDT_ALLUNGAMENTO,272,214,27,12,ES_RIGHT | 
+                    ES_AUTOHSCROLL | ES_READONLY
+    PUSHBUTTON      "Conferma modifiche",IDC_BUTTON_CONFERMA,126,250,79,14
+    PUSHBUTTON      "Annulla modifiche",IDC_BUTTON_ANNULLA,229,250,79,14,NOT 
+                    WS_TABSTOP
+    DEFPUSHBUTTON   "OK",IDOK,258,272,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,178,272,50,14
+    CTEXT           "Carico limite 0,1%",IDC_STATIC,173,151,56,8,
+                    SS_CENTERIMAGE
+    LTEXT           "(mm²)",IDC_STATIC,108,159,18,8
+    CTEXT           "(N/mm²)",IDC_STATIC,188,159,26,8
+    CTEXT           "Tensione 1,0%",IDC_STATIC,93,194,48,8
+    CTEXT           "(mm)",IDC_STATIC,109,203,16,8
+    LTEXT           "Data test",IDC_STATIC,252,43,30,8
+    GROUPBOX        "Provini",IDC_STATIC,8,135,311,134
+    CTEXT           "Carico limite 0,2%",IDC_STATIC,257,151,56,8,
+                    SS_CENTERIMAGE
+    CTEXT           "(N/mm²)",IDC_STATIC,272,159,26,8
+    LTEXT           "Area",IDC_STATIC,109,151,16,8
+    LTEXT           "Materiale",IDC_STATIC,146,94,30,8
+    GROUPBOX        "Serie",IDC_STATIC,8,80,311,51
+    EDITTEXT        IDC_EDIT_STRUTTURA,47,111,265,14,ES_AUTOHSCROLL | 
+                    ES_READONLY | NOT WS_TABSTOP
+    LTEXT           "Struttura",IDC_STATIC,16,114,28,8
+    GROUPBOX        "Certificato",IDC_STATIC,8,3,311,73
+    LTEXT           "Osservazioni",IDC_STATIC,21,15,41,8
+    LTEXT           "Sperimentatore",IDC_STATIC,14,38,48,8
+    LTEXT           "Macchina",IDC_STATIC,30,55,32,8
+    EDITTEXT        IDC_EDIT_SIGLA,105,91,23,12,ES_AUTOHSCROLL | ES_READONLY | 
+                    NOT WS_TABSTOP
+    LTEXT           "Sigla",IDC_STATIC,86,93,16,8
+    LTEXT           "Posizione",IDC_STATIC,13,93,31,8
+    EDITTEXT        IDC_EDIT_POSIZIONE,47,91,23,12,ES_CENTER | 
+                    ES_AUTOHSCROLL | ES_READONLY | NOT WS_TABSTOP
+    EDITTEXT        IDC_EDIT_MATERIALE,178,92,133,12,ES_AUTOHSCROLL | 
+                    ES_READONLY | NOT WS_TABSTOP
+    EDITTEXT        IDC_EDIT_DATA_VA,251,24,46,12,ES_CENTER | ES_READONLY
+    LTEXT           "Data V.A.",IDC_STATIC,251,15,38,8
+    DEFPUSHBUTTON   "",IDC_BUTTON_NEXT,90,272,50,14,NOT WS_VISIBLE | NOT 
+                    WS_TABSTOP
+    CTEXT           "Modulo elastico",IDC_STATIC,204,194,50,8,SS_CENTERIMAGE
+    CTEXT           "(mm²)",IDC_STATIC,164,203,18,8
+    CTEXT           "(N/mm²)",IDC_STATIC,216,203,26,8
+    CTEXT           "Allungamento",IDC_STATIC,263,194,44,8
+    CTEXT           "1%",IDC_STATIC,280,203,10,8
+    CTEXT           "Rottura",IDC_STATIC,161,194,24,8
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_DIALOG_MAIN, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 324
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 287
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_ICON_INTERA_SELECT  ICON    DISCARDABLE     "icon_int.ico"
+IDI_ICON_INTERA         ICON    DISCARDABLE     "ico00001.ico"
+IDI_ICON_SELECT         ICON    DISCARDABLE     "ico_empt.ico"
+IDI_ICON_NOSELECT       ICON    DISCARDABLE     "ico_prov.ico"
+#endif    // Italian (Italy) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ITA)
+#ifdef _WIN32
+LANGUAGE 16, 1
+#pragma code_page(1252)
+#endif //_WIN32
+#include "res\TrazioneTrefoli.rc2"  // non-Microsoft Visual C++ edited resources
+#include "l.ita\afxres.rc"          // Standard components
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

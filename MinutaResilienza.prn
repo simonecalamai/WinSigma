@@ -1,0 +1,73 @@
+[general]
+x zero=-40
+y zero=-30
+
+; numero massimo di righe per pagina nella lista delle consegne
+tab lines=16
+
+; posizione e font del numero di pagina
+;Nr.Pagina=1700,2100,Times New Roman,24,48,C
+
+
+[strings]
+10=70,130,500,50,Courier New,40,50,BL,-DB-
+20=+600,130,700,50,Courier New,30,40,BL,MINUTA DI PROVA DI RESILIENZA
+30=+1050,+0,100,50,Courier New,30,40,L,PAG.
+40=70,+40,2000,50,Courier New,20,30,L,------------------------------------------------------------------------------------------------------------------------------------------------------------
+70=70,300,300,50,Courier New,20,38,L,Verbale num  :
+80=+470,+0,80,50,Courier New,20,38,L,del
+;90=+600,+0,200,50,Courier New,20,38,L,CONSEGNA:
+100=70,380,650,50,Courier New,30,40,L,Numero verbale in Concessione
+130=70,+150,300,50,Courier New,20,38,L,Campioni N.....:
+140=70,+70,380,50,Courier New,20,38,L,Campioni consegnati    :
+150=70,+40,380,50,Courier New,20,38,L,Prove richieste e note :
+160=70,+60,1700,50,Courier New,20,38,L,PROVETTA/E RICAVATA/E IN LABORATORIO SI |_| NO |_|
+170=70,+50,1700,50,Courier New,20,38,L,TIPO DI ACCIAIO DICHIARATO: Fe ......... 
+180=1100,+0,800,50,Courier New,20,38,L,-ENERGIA DISPONIBILE MACCHINA DI PROVA: 292.63 J -
+185=70,+50,800,50,Courier New,20,38,L,DATA DI PROVA: .../.../...
+190=40,+100,2000,50,Courier New,20,30,L,------------------------------------------------------------------------------------------------------------------------------------------------------------
+200=110,+40,340,50,Courier New,20,34,EWC,CAMPIONE e/o SIGLA
+210=+340,+0,150,50,Courier New,20,34,EC,t °C
+220=+150,+0,330,50,Courier New,20,34,EC,PROVETTA
+230=+330,+0,330,50,Courier New,20,34,EC,SEZIONE (mm)
+240=+330,+0,320,50,Courier New,20,34,EC,SEZ.INDEBOLITA (mm)
+250=+320,+0,320,50,Courier New,20,34,EC,RESILIENZA KV (J)
+260=+320,+0,100,50,Courier New,20,34,EC,NOTE
+270=40,+50,2000,50,Courier New,20,34,L,------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+280=100,2370,100,50,Courier New,25,50,L,NOTE: 
+290=+90,+20,1200,50,Courier New,25,50,L,------------------------------------------------------------------------------------------------------------------------------------------------------------
+300=+0,+50,1200,50,Courier New,25,50,L,------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+-900=1350,2400,500,50,Courier New,20,38,BC,Lo Sperimentatore
+-910=+50,+100,400,50,Courier New,20,30,BC,...........................
+
+
+[fields]
+5=1470,130,250,50,Courier New,30,40,L,dataMinuta
+10=1860,+0,100,50,Courier New,30,40,L,@page
+20=430,300,100,50,Courier New,30,40,BL,totaleVerbali
+30=+200,+0,300,50,Courier New,30,40,BL,dataAccettazione
+40=+500,+0,1000,50,Courier New,30,40,BL,urgenza
+50=750,380,250,50,Courier New,30,40,L,progressivoVerbale
+60=1340,+100,550,50,Courier New,30,40,BL,spianpieg
+70=490,+50,100,50,Courier New,20,38,L,numeroCampioni
+80=490,+70,1000,50,Courier New,20,38,BL,materialeConsegnato
+90=490,+40,1400,60,Courier New,20,38,BL,proveRichieste
+100=430,+200,1200,50,Courier New,38,40,BC,titolo
+
+
+
+[tabfields]
+1=100,1020,1900,80,Courier New,40,80,L,separatore
+5=70,1020,30,80,Courier New,20,40,R,indiceResilienza
+10=+40,+0,340,80,Courier New,20,40,WEC,siglaResilienza
+40=+340,+0,150,80,Courier New,20,40,EC,temperaturaResilienza
+50=+150,+0,330,80,Courier New,20,40,EC,provettaResilienza
+60=+330,+0,330,80,Courier New,20,40,EC,sezioneResilienza
+70=+330,+0,320,80,Courier New,20,40,EC,indebolitaResilienza
+80=+320,+0,320,80,Courier New,20,40,EC,resilienzaResilienza
+90=+320,+0,100,80,Courier New,20,40,EC,noteResilienza
+[grids]
+
+

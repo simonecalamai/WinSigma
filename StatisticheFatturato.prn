@@ -1,0 +1,21 @@
+[general]
+x zero=+10
+y zero=-260
+
+; numero massimo di righe per pagina nella lista dei campioni
+tab lines=60
+
+[strings]
+10=50,360,600,40,Courier New,40,35,L,Statistiche Fatturato
+20=+0,+50,200,40,Courier New,40,35,L,Cliente
+30=+1050,+0,400,40,Courier New,40,35,L,N° Verbali
+40=+450,+0,400,40,Courier New,40,35,L,Fattuturato
+
+[fields]
+50=650,360,250,40,Courier New,40,35,L,mese
+60=+200,+0,500,40,Courier New,40,35,L,anno
+
+[tabfields]
+70=50,+100,1000,40,Courier New,40,35,L,cliente
+80=+1050,+0,200,40,Courier New,40,35,L,numeroverbali
+90=+450,+0,200,40,Courier New,40,35,L,imponibile

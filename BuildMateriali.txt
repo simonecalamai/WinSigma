@@ -1,0 +1,182 @@
+--
+-- INSERIMENTO DEI TIPI DI MATERIALE 
+--
+
+--
+-- CANCELLAZIONE DI EVENTUALI DATI PRESENTI
+--
+
+delete from TIPI_MATERIALE;
+
+
+--
+-- CUBI IN CALCESTRUZZO
+--
+
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('NDC', '- n.d. -', 'Composizione non dichiarata',0, 1, 1);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('315', 'Cemento 325/150', 'Cemento 325 con 150 kg/m²',0, 1, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('320', 'Cemento 325/200', 'Cemento 325 con 200 kg/m²',0, 1, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('325', 'Cemento 325/250', 'Cemento 325 con 250 kg/m²',0, 1, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('330', 'Cemento 325/300', 'Cemento 325 con 300 kg/m²',0, 1, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('335', 'Cemento 325/350', 'Cemento 325 con 350 kg/m²',0, 1, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('340', 'Cemento 325/400', 'Cemento 325 con 400 kg/m²',0, 1, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('345', 'Cemento 325/450', 'Cemento 325 con 450 kg/m²',0, 1, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('350', 'Cemento 325/500', 'Cemento 325 con 500 kg/m²',0, 1, 0);
+
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('415', 'Cemento 425/150', 'Cemento 425 con 150 kg/m²',0, 1, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('420', 'Cemento 425/200', 'Cemento 425 con 200 kg/m²',0, 1, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('425', 'Cemento 425/250', 'Cemento 425 con 250 kg/m²',0, 1, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('430', 'Cemento 425/300', 'Cemento 425 con 300 kg/m²',0, 1, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('435', 'Cemento 425/350', 'Cemento 425 con 350 kg/m²',0, 1, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('440', 'Cemento 425/400', 'Cemento 425 con 400 kg/m²',0, 1, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('445', 'Cemento 425/450', 'Cemento 425 con 450 kg/m²',0, 1, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('450', 'Cemento 425/500', 'Cemento 425 con 500 kg/m²',0, 1, 0);
+
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('515', 'Cemento 525/150', 'Cemento 525 con 150 kg/m²',0, 1, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('520', 'Cemento 525/200', 'Cemento 525 con 200 kg/m²',0, 1, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('525', 'Cemento 525/250', 'Cemento 525 con 250 kg/m²',0, 1, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('530', 'Cemento 525/300', 'Cemento 525 con 300 kg/m²',0, 1, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('535', 'Cemento 525/350', 'Cemento 525 con 350 kg/m²',0, 1, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('540', 'Cemento 525/400', 'Cemento 525 con 400 kg/m²',0, 1, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('545', 'Cemento 525/450', 'Cemento 525 con 450 kg/m²',0, 1, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('550', 'Cemento 525/500', 'Cemento 525 con 500 kg/m²',0, 1, 0);
+
+
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('R15', 'Rck15','Rck dichiarata 15 N/mm²', 0, 1, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('R20', 'Rck20','Rck dichiarata 20 N/mm²', 0, 1, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('R25', 'Rck25','Rck dichiarata 25 N/mm²', 0, 1, 0);													 
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('R30', 'Rck30','Rck dichiarata 30 N/mm²', 0, 1, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('R35', 'Rck35','Rck dichiarata 35 N/mm²', 0, 1, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('R40', 'Rck40','Rck dichiarata 40 N/mm²', 0, 1, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('R45', 'Rck45','Rck dichiarata 45 N/mm²', 0, 1, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('R50', 'Rck50','Rck dichiarata 50 N/mm²', 0, 1, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('R55', 'Rck55','Rck dichiarata 55 N/mm²', 0, 1, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('R60', 'Rck60','Rck dichiarata 60 N/mm²', 0, 1, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('R70', 'Rck70','Rck dichiarata 70 N/mm²', 0, 1, 0);
+
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('RM1', 'Rck15 alleg.','Rck dichiarata 15 N/mm² cls alleggerito', 0, 1, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('RP1', 'Rck20 alleg.','Rck dichiarata 20 N/mm² cls alleggerito', 0, 1, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('RP2', 'Rck25 alleg.','Rck dichiarata 25 N/mm² cls alleggerito', 0, 1, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('RQ1', 'Rck30 alleg.','Rck dichiarata 30 N/mm² cls alleggerito', 0, 1, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('RQ2', 'Rck35 alleg.','Rck dichiarata 35 N/mm² cls alleggerito', 0, 1, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('RQ3', 'Rck40 alleg.','Rck dichiarata 40 N/mm² cls alleggerito', 0, 1, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('RQ4', 'Rck45 alleg.','Rck dichiarata 45 N/mm² cls alleggerito', 0, 1, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('RQ5', 'Rck50 alleg.','Rck dichiarata 50 N/mm² cls alleggerito', 0, 1, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('RQ6', 'Rck55 alleg.','Rck dichiarata 55 N/mm² cls alleggerito', 0, 1, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('RQ7', 'Rck60 alleg.','Rck dichiarata 60 N/mm² cls alleggerito', 0, 1, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('RQ8', 'Rck70 alleg.','Rck dichiarata 70 N/mm² cls alleggerito', 0, 1, 0);
+
+
+--
+-- CAROTE
+--
+
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('NDT', '- n.d. -', 'Composizione non dichiarata',0, 2, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('CAR', 'CAROTE CLS','CAROTE CLS', 0, 2, 1);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('JET', 'CAROTE JET','CAROTE JET GROUTING', 0, 2, 0);
+
+
+--
+-- BARRE DI ACCIAIO 
+--
+
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('NDA', '  ', '',0, 3, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('Fe22', 'Acciaio Fe22', 'Acciaio dichiarato Fe B 22 k', 215, 3, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('Fe32', 'Acciaio Fe32', 'Acciaio dichiarato Fe B 32 k', 315, 3, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('Fe38', 'Acciaio Fe38', 'Acciaio dichiarato Fe B 38 k a.m.', 375, 3, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('Fe44', 'Acciaio Fe44', 'Acciaio dichiarato Fe B 44 k a.m.', 430, 3, 1);
+
+
+--
+-- TRAZIONE PROFILATI SEMPLICI
+--
+
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('NDP', '  ', '',0, 4, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('P36', 'Profilati Fe360', 'Profilati in acciaio dichiarato Fe 360',  235, 4, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('P3B', 'Profilati Fe360B','Profilati in acciaio dichiarato Fe 360B', 235, 4, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('P3C', 'Profilati Fe360C','Profilati in acciaio dichiarato Fe 360C', 235, 4, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('P3D', 'Profilati Fe360D','Profilati in acciaio dichiarato Fe 360D', 235, 4, 0);
+
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('P43', 'Profilati Fe430', 'Profilati in acciaio dichiarato Fe 430',  257, 4, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('P4B', 'Profilati Fe430B','Profilati in acciaio dichiarato Fe 430B', 257, 4, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('P4C', 'Profilati Fe430C','Profilati in acciaio dichiarato Fe 430C', 257, 4, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('P4D', 'Profilati Fe430D','Profilati in acciaio dichiarato Fe 430D', 257, 4, 0);
+
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('P51', 'Profilati Fe510', 'Profilati in acciaio dichiarato Fe 510',  355, 4, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('P5B', 'Profilati Fe510B','Profilati in acciaio dichiarato Fe 510B', 355, 4, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('P5C', 'Profilati Fe510C','Profilati in acciaio dichiarato Fe 510C', 355, 4, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('P5D', 'Profilati Fe510D','Profilati in acciaio dichiarato Fe 510D', 355, 4, 0);
+
+--
+-- TRAZIONE PROFILATI IN PROVETTE
+--
+
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('PV3', 'Provette Fe360', 'Provette in acciaio dichiarato Fe 360',  235, 4, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('PB3', 'Provette Fe360B','Provette in acciaio dichiarato Fe 360B', 235, 4, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('PC3', 'Provette Fe360C','Provette in acciaio dichiarato Fe 360C', 235, 4, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('PD3', 'Provette Fe360D','Provette in acciaio dichiarato Fe 360D', 235, 4, 0);
+
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('PV4', 'Provette Fe430', 'Provette in acciaio dichiarato Fe 430',  257, 4, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('PB4', 'Provette Fe430B','Provette in acciaio dichiarato Fe 430B', 257, 4, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('PC4', 'Provette Fe430C','Provette in acciaio dichiarato Fe 430C', 257, 4, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('PD4', 'Provette Fe430D','Provette in acciaio dichiarato Fe 430D', 257, 4, 0);
+
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('PV5', 'Provette Fe510', 'Provette in acciaio dichiarato Fe 510',  355, 4, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('PB5', 'Provette Fe510B','Provette in acciaio dichiarato Fe 510B', 355, 4, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('PC5', 'Provette Fe510C','Provette in acciaio dichiarato Fe 510C', 355, 4, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('PD5', 'Provette Fe510D','Provette in acciaio dichiarato Fe 510D', 355, 4, 0);
+
+
+--
+-- RESILIENZA PROFILATI SEMPLICI
+--
+
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('NDR', '  ', '',0, 5, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('RE36', 'Profilati Fe360', 'Profilati in acciaio dichiarato Fe 360',  235, 5, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('RE3B', 'Profilati Fe360B','Profilati in acciaio dichiarato Fe 360B', 235, 5, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('RE3C', 'Profilati Fe360C','Profilati in acciaio dichiarato Fe 360C', 235, 5, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('RE3D', 'Profilati Fe360D','Profilati in acciaio dichiarato Fe 360D', 235, 5, 0);
+
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('RE43', 'Profilati Fe430', 'Profilati in acciaio dichiarato Fe 430',  257, 5, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('RE4B', 'Profilati Fe430B','Profilati in acciaio dichiarato Fe 430B', 257, 5, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('RE4C', 'Profilati Fe430C','Profilati in acciaio dichiarato Fe 430C', 257, 5, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('RE4D', 'Profilati Fe430D','Profilati in acciaio dichiarato Fe 430D', 257, 5, 0);
+
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('RE51', 'Profilati Fe510', 'Profilati in acciaio dichiarato Fe 510',  355, 5, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('RE5B', 'Profilati Fe510B','Profilati in acciaio dichiarato Fe 510B', 355, 5, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('RE5C', 'Profilati Fe510C','Profilati in acciaio dichiarato Fe 510C', 355, 5, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('RE5D', 'Profilati Fe510D','Profilati in acciaio dichiarato Fe 510D', 355, 5, 0);
+
+--
+-- RESILIENZA PROFILATI IN PROVETTE
+--
+
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('REV3', 'Provette Fe360', 'Provette in acciaio dichiarato Fe 360',  235, 5, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('REB3', 'Provette Fe360B','Provette in acciaio dichiarato Fe 360B', 235, 5, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('REC3', 'Provette Fe360C','Provette in acciaio dichiarato Fe 360C', 235, 5, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('RED3', 'Provette Fe360D','Provette in acciaio dichiarato Fe 360D', 235, 5, 0);
+
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('REV4', 'Provette Fe430', 'Provette in acciaio dichiarato Fe 430',  257, 5, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('REB4', 'Provette Fe430B','Provette in acciaio dichiarato Fe 430B', 257, 5, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('REC4', 'Provette Fe430C','Provette in acciaio dichiarato Fe 430C', 257, 5, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('RED4', 'Provette Fe430D','Provette in acciaio dichiarato Fe 430D', 257, 5, 0);
+
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('REV5', 'Provette Fe510', 'Provette in acciaio dichiarato Fe 510',  355, 5, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('REB5', 'Provette Fe510B','Provette in acciaio dichiarato Fe 510B', 355, 5, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('REC5', 'Provette Fe510C','Provette in acciaio dichiarato Fe 510C', 355, 5, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('RED5', 'Provette Fe510D','Provette in acciaio dichiarato Fe 510D', 355, 5, 0);
+
+
+--
+-- TRAZIONE RETI
+--
+
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('NDE', '  ', '',0, 6, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('RET', 'Reti','Reti elettrosaldate', 0, 6, 1);
+
+--
+-- TRAZIONE TRECCE TREFOLI
+--
+
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('NDF', '  ', '',0, 7, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('TRE', 'Trefoli','Trefoli da C.A.P.', 0, 7, 1);

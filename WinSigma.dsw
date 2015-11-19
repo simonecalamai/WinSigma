@@ -1,0 +1,194 @@
+Microsoft Developer Studio Workspace File, Format Version 6.00
+# WARNING: DO NOT EDIT OR DELETE THIS WORKSPACE FILE!
+
+###############################################################################
+
+Project: "CompressioneCarote"=.\CompressioneCarote\CompressioneCarote.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "CompressioneCubi"=.\CompressioneCubi\CompressioneCubi.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "CompressioneCubiDM2008"=.\CompressioneCubiDM2008\CompressioneCubiDM2008.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "ResilienzaProfilati"=.\ResilienzaProfilati\ResilienzaProfilati.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "TrazionePiegamentoBarre"=.\TrazionePiegamentoBarre\TrazionePiegamentoBarre.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "TrazionePiegamentoBarreB450_2010"=.\TrazionePiegamentoBarreB450_2010\TrazionePiegamentoBarreB450_2010.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "TrazionePiegamentoBarreCT"=.\TrazionePiegamentoBarreCT\TrazionePiegamentoBarreCT.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "TrazioneProfilati"=.\TrazioneProfilati\TrazioneProfilati.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "TrazioneProfilati2011"=.\TrazioneProfilati2011\TrazioneProfilati2011.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "TrazioneReti"=.\TrazioneReti\TrazioneReti.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "TrazioneReti2011"=.\TrazioneReti2011\TrazioneReti2011.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "TrazioneTrefoli"=.\TrazioneTrefoli\TrazioneTrefoli.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "WinSigma"=.\WinSigma.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name CompressioneCarote
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name CompressioneCubi
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name ResilienzaProfilati
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name TrazionePiegamentoBarre
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name TrazioneProfilati
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name TrazioneReti
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name TrazioneTrefoli
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Global:
+
+Package=<5>
+{{{
+}}}
+
+Package=<3>
+{{{
+}}}
+
+###############################################################################
+

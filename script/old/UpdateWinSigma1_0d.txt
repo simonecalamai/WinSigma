@@ -1,0 +1,3 @@
+alter table VERBALI add InUso varchar(32);
+
+alter table SERIE modify StrutturaPrelievo varchar(64);

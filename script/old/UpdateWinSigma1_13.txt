@@ -1,0 +1,5 @@
+alter table TIPI_PAGAMENTO add CIN VARCHAR(8);
+alter table TIPI_PAGAMENTO add NumeroConto VARCHAR(32);
+
+alter table FATTURE add CINAppoggio VARCHAR(8);
+alter table FATTURE add ContoAppoggio VARCHAR(32);

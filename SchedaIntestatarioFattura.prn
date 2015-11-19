@@ -1,0 +1,32 @@
+[general]
+x zero=+0
+y zero=+0
+
+; numero massimo di righe per pagina nella lista dei campioni
+tab lines=36
+
+[strings]
+10=120,350,900,80,Arial,24,48,L,Scheda intestatario fattura
+20=120,1250,1800,40,Arial,22,44,CLB,DATI AGGIUNTIVI
+30=+0,460,100,50,Arial,18,36,L,Azienda
+40=+800,+0,100,50,Arial,18,36,L,Indirizzo 
+50=+0,720,500,50,Arial,18,36,L,Eventuale indirizzo spedizione alternativo
+
+[fields]
+10=120,150,1800,80,Times New Roman,32,68,CBL,datiVerbale
+20=250,460,1000,80,Arial,18,36,BL,id
+30=120,500,700,150,Arial,22,44,NWELB,ragSociale
+40=+0,+120,700,50,Arial,22,44,SWELB,piva
+50=+800,-120,900,100,Arial,22,44,NWELB,indirizzo
+60=+0,+80,900,50,Arial,22,44,WELB,cap
+70=+0,+40,900,50,Arial,22,44,SWELB,citta
+80=+0,760,900,100,Arial,22,44,NWELB,indirizzoSped
+90=+0,+80,900,50,Arial,22,44,WELB,capSped
+100=+0,+40,900,50,Arial,22,44,SWELB,cittaSped
+110=120,1300,1800,150,Arial,22,44,L,datiAggiuntivi
+
+[tabfields]
+
+[grids]
+
+[bitmaps]

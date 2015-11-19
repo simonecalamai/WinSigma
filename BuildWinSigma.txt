@@ -1,0 +1,599 @@
+DROP DATABASE IF EXISTS WinSigma;
+
+CREATE DATABASE IF NOT EXISTS WinSigma;
+
+USE WinSigma;
+
+
+CREATE TABLE AZIENDE(
+
+Codice				INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+TipoPagamento			INT UNSIGNED,
+Privato				TINYINT,
+ID				VARCHAR(8),
+P_IVA				VARCHAR(16),
+CodiceFiscale			VARCHAR(16),
+RagioneSociale			VARCHAR(64),
+RagioneSociale_Sped		VARCHAR(64),
+Nome				VARCHAR(32),
+Cognome				VARCHAR(32),
+Indirizzo			VARCHAR(32),
+CAP				VARCHAR(8),
+Citta				VARCHAR(32),
+Provincia			VARCHAR(4),
+Indirizzo_Sped			VARCHAR(32),
+CAP_Sped			VARCHAR(8),
+Citta_Sped			VARCHAR(32),
+Provincia_Sped			VARCHAR(4),
+E_Mail				VARCHAR(32),
+Telefono			VARCHAR(32),
+Cellulare           		VARCHAR(32),
+Fax				VARCHAR(32),
+Banca				VARCHAR(64),
+ABI				VARCHAR(8),
+CAB				VARCHAR(8),
+Note				VARCHAR(64),
+Sconto				DOUBLE,
+DataInserimento		DATE,
+DataUltimoRapporto	DATE,
+IsImportante		TINYINT,
+UsaTuttiListini		TINYINT,
+UNIQUE(ID, P_IVA)) TYPE=InnoDB;			
+
+CREATE TABLE AZIENDE_VECCHIE(
+
+Codice					INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+TipoPagamento			INT UNSIGNED,
+Privato					TINYINT,
+ID						VARCHAR(8),
+P_IVA					VARCHAR(16),
+CodiceFiscale			VARCHAR(16),
+RagioneSociale			VARCHAR(64),
+RagioneSociale_Sped		VARCHAR(64),
+Nome					VARCHAR(32),
+Cognome					VARCHAR(32),
+Indirizzo				VARCHAR(32),
+CAP						VARCHAR(8),
+Citta					VARCHAR(32),
+Provincia				VARCHAR(4),
+Indirizzo_Sped			VARCHAR(32),
+CAP_Sped				VARCHAR(8),
+Citta_Sped				VARCHAR(32),
+Provincia_Sped			VARCHAR(4),
+E_Mail					VARCHAR(32),
+Telefono				VARCHAR(32),
+Cellulare           	VARCHAR(32),
+Fax						VARCHAR(32),
+Banca					VARCHAR(64),
+ABI						VARCHAR(8),
+CAB						VARCHAR(8),
+Note					VARCHAR(64),
+Sconto					DOUBLE,
+DataInserimento			DATE,
+DataUltimoRapporto		DATE,
+IsImportante			TINYINT,
+UsaTuttiListini			TINYINT
+) TYPE=InnoDB;
+
+CREATE TABLE VERBALI(
+
+Codice						INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+TipoVerbale                 INT UNSIGNED,
+LungaScadenza               TINYINT,
+Fattura                     INT UNSIGNED,
+InFatturazione              TINYINT,
+IntestatarioCertificato		INT UNSIGNED,
+IntestatarioFattura			INT UNSIGNED,
+ImpresaRichiedente			INT UNSIGNED,
+ListinoGenerale             INT UNSIGNED,
+ListinoParticolare          INT UNSIGNED,
+NomeIntestatarioCertificato VARCHAR(64),
+NomeIntestatarioFattura     VARCHAR(64),
+NomeImpresaRichiedente      VARCHAR(64),
+IDIntestatarioCertificato   VARCHAR(8),
+IDIntestatarioFattura       VARCHAR(8),
+IDImpresaRichiedente        VARCHAR(8),
+IndirizzoIntCertificato     VARCHAR(64),
+IndirizzoIntFattura         VARCHAR(64),
+Pagamento			        VARCHAR(32),
+P_IVA				        VARCHAR(16),
+IndirizzoImpresaRichiedente VARCHAR(64),
+ProgressivoTotale			INT UNSIGNED,
+ProgressivoParziale			INT UNSIGNED,
+DirettoreLavori				VARCHAR(64),
+DomandaSottoscritta         TINYINT,
+Proprietario				VARCHAR(64),
+Richiedente 				VARCHAR(64),
+Cantiere					VARCHAR(255),
+DescrizioneProveRichieste	VARCHAR(255),
+DescrizioneMateriale        VARCHAR(255),
+NumLetteraIncarico  	    VARCHAR(64),
+LetteraIncarico             TINYINT,
+DataAccettazione			DATE,
+DataPrimaStampa				DATE,
+DataConsegna				DATE,
+OraConsegna					VARCHAR(16),
+DataChiusura				DATE,
+CertOgniSerie       		TINYINT,
+VuoiUrgenza					TINYINT,
+VuoiSpedizione				TINYINT,
+CopieRichieste				SMALLINT,
+Destinatario		        VARCHAR(255),
+NoteSpedizione              VARCHAR(255),
+Operatore                   VARCHAR(32)
+)TYPE=InnoDB;			
+
+
+CREATE TABLE TIPI_CERTIFICATO(
+
+Codice					INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+Nome					VARCHAR(64),
+Descrizione				VARCHAR(64),
+LayoutStampa			VARCHAR(40),
+LayoutStampaMinuta		VARCHAR(40),
+FinestraDialogo			VARCHAR(64),
+Struttura				BLOB,
+DimensioniProvini		VARCHAR(32),
+ProvaA					VARCHAR(64),
+ProvaB					VARCHAR(64),
+ProvaC					VARCHAR(64),
+DataPrelievo            DATE,
+Sigla                   VARCHAR(64),
+Materiale               VARCHAR(64),
+Dimensione1             VARCHAR(32),
+ValoreDim1              INT UNSIGNED,
+Dimensione2             VARCHAR(32),
+ValoreDim2              INT UNSIGNED,
+Dimensione3             VARCHAR(32),
+ValoreDim3              INT UNSIGNED,
+ProvXcertificato	INT UNSIGNED
+) TYPE=InnoDB;
+
+
+INSERT TIPI_CERTIFICATO (Codice, Nome, ProvaA, FinestraDialogo, Dimensione1, ValoreDim1,  Dimensione2, ValoreDim2, Dimensione3, ValoreDim3, Materiale, LayoutStampaMinuta, LayoutStampa, ProvXcertificato)
+	VALUES (1, 'Prova su cubi di calcestruzzo', 'Compressione su cubi', 'CompressioneCubi', 'Lunghezza(cm)', 15.0, 'Larghezza(cm)', 15.0, 'Altezza(cm)', 15.0, 'Cubetti cls', 'Cubetti.prn', 'CertificatoCubi.prn', 6);
+INSERT TIPI_CERTIFICATO (Codice, Nome, ProvaA, FinestraDialogo, Dimensione1, Dimensione2, Materiale, LayoutStampaMinuta, LayoutStampa, ProvXcertificato)
+	VALUES (2, 'Prova su carote di calcestruzzo indurito', 'Compressione su carote', 'CompressioneCarote', 'Diametro(cm)', 'Altezza(cm)', 'Carote cls', 'Carote.prn', 'CertificatoCarote.prn', 6);
+INSERT TIPI_CERTIFICATO (Codice, Nome, ProvaA, ProvaB, FinestraDialogo, Dimensione1, Dimensione2, Materiale, LayoutStampaMinuta, LayoutStampa, ProvXcertificato)
+	VALUES (3, 'Prova su barre di acciao da c.a.', 'Trazione barre', 'Piegamento barre', 'TrazionePiegamentoBarre', 'Diametro(mm)', 'Lunghezza(cm)', 'Ferri', 'AcciaioCA.prn', 'CertificatoBarre.prn', 6);
+INSERT TIPI_CERTIFICATO (Codice, Nome, ProvaA, FinestraDialogo, LayoutStampaMinuta, LayoutStampa, ProvXcertificato)
+	VALUES (4, 'Prova di trazione su profilati in acciaio', 'Trazione su profilati', 'TrazioneProfilati', 'Profilati.prn', 'CertificatoTrazioneProfilati.prn', 6);
+INSERT TIPI_CERTIFICATO (Codice, Nome, ProvaA, FinestraDialogo, LayoutStampa, ProvXcertificato)
+	VALUES (5, 'Prova di resilienza su profilati in acciaio', 'Resilienza su profilati', 'ResilienzaProfilati', 'CertificatoResilienzaProfilati.prn', 6);
+INSERT TIPI_CERTIFICATO (Codice, Nome, ProvaA, ProvaB, FinestraDialogo, Dimensione1, LayoutStampa, ProvXcertificato)
+	VALUES (6, 'Prova su reti elettrosaldate', 'Trazione su reti', 'Distacco sul nodo','TrazioneReti', 'Diametro(mm)', 'CertificatoReti.prn', 6);
+INSERT TIPI_CERTIFICATO (Codice, Nome, ProvaA, FinestraDialogo, LayoutStampa, ProvXcertificato)
+	VALUES (7, 'Prova su trecce o trefoli', 'Trazione su trefoli', 'TrazioneTrecceTrefoli', 'CertificatoTrecceTrefoli.prn', 10);
+		
+
+CREATE TABLE LISTINI(
+
+Codice				INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+Azienda				INT UNSIGNED,
+Nome				VARCHAR(32),
+Autore				VARCHAR(16),
+Inizio				DATE,
+Fine				DATE,
+CertOgniSerie		TINYINT)  TYPE=InnoDB;
+
+
+CREATE TABLE CATEGORIE(
+
+Codice				INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+ID					VARCHAR(8),
+Nome				VARCHAR(64),
+Descrizione			VARCHAR(128),
+Listino				INT UNSIGNED,
+UNIQUE(ID, Listino)) TYPE=InnoDB;
+		
+
+CREATE TABLE SERVIZI_LISTINO(
+
+Codice						INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+Certificato					INT UNSIGNED,
+Categoria					INT UNSIGNED,
+ID							VARCHAR(8),
+Descrizione					VARCHAR(255),
+Emissione					TINYINT,
+Campioni					SMALLINT UNSIGNED,
+Prove						SMALLINT,
+PerSerie					TINYINT,
+Prezzo						DOUBLE,
+Sconto						DOUBLE,
+Nome						VARCHAR(64),
+Aggiuntivo					TINYINT,
+Norma						VARCHAR(64),
+Riferimenti					VARCHAR(32),
+UNIQUE(ID, Categoria)) TYPE=InnoDB;
+
+
+CREATE TABLE SERVIZI_STANDARD(
+
+Codice				INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+TipoCertificato		INT UNSIGNED,
+ID1					VARCHAR(16),
+ID2					VARCHAR(16),
+ID3					VARCHAR(16),
+ID4					VARCHAR(16)) TYPE=InnoDB;
+
+CREATE TABLE SERIE(
+
+Codice			    INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+Verbale			    INT UNSIGNED,
+TipoCertificato		INT UNSIGNED,
+NumeroProvini		SMALLINT UNSIGNED,
+NuovoCertificato	TINYINT,
+Certificato		    INT UNSIGNED,
+DataPrelievo		DATE,
+Dataprova		    DATE,
+StrutturaPrelievo	VARCHAR(32),
+Sigla			    VARCHAR(8),
+Materiale           VARCHAR(80),
+Snervamento	    DOUBLE,
+Servizio1           INT UNSIGNED,
+Servizio2           INT UNSIGNED,
+Servizio3           INT UNSIGNED,
+Servizio4           INT UNSIGNED,
+Servizio5           INT UNSIGNED,
+Servizio6           INT UNSIGNED,
+ServAggiungibile    INT UNSIGNED,
+ServAggiunto        INT UNSIGNED,
+Sperimentatore	    VARCHAR(32),
+Macchina	    VARCHAR(64),
+Osservazioni        VARCHAR(255),
+TipoProva	    SMALLINT UNSIGNED,
+Dimensione1         DOUBLE,
+Dimensione2         DOUBLE,
+Dimensione3         DOUBLE,
+Marchio		    INT UNSIGNED
+) TYPE=InnoDB;
+
+
+CREATE TABLE FATTURE(
+
+Codice			INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+Intestatario	INT UNSIGNED,
+TipoPagamento	INT UNSIGNED,
+Numero			INT UNSIGNED,
+Data			DATE,
+Scadenza		DATE,
+P_IVA			VARCHAR(16),
+CodiceFiscale	VARCHAR(16),
+RagioneSociale	VARCHAR(64),
+IDIntestario    VARCHAR(8),
+Indirizzo		VARCHAR(32),
+CAP				VARCHAR(8),
+Citta			VARCHAR(32),
+Provincia		VARCHAR(4),
+Banca			VARCHAR(64),
+ABI				VARCHAR(8),
+CAB				VARCHAR(8),
+Sconto			DOUBLE,
+Note			VARCHAR(64)) TYPE=InnoDB;
+
+
+CREATE TABLE CERTIFICATI(
+
+Codice				INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+Verbale				INT UNSIGNED,
+TipoCertificato		INT UNSIGNED,
+NumeroCertificato	INT UNSIGNED,
+Posizione			INT UNSIGNED,
+Sperimentatore		VARCHAR(32),
+Macchina		VARCHAR(64),
+DataEmissione		DATE,
+DataProve			DATE,
+DataStampa			DATE) TYPE=InnoDB;			
+
+
+CREATE TABLE SERVIZI_EROGATI(
+
+Codice			INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+CodiceServizio		INT UNSIGNED,
+Verbale			INT UNSIGNED,
+Fattura			INT UNSIGNED,
+Serie			INT UNSIGNED,
+Descrizione		VARCHAR(255),
+ID_Listino		VARCHAR(8),
+Quantita		SMALLINT UNSIGNED,
+Prezzo			DOUBLE,
+Sconto			DOUBLE) TYPE=InnoDB;
+
+
+CREATE TABLE PROVINI(
+
+Codice				INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+Serie				INT UNSIGNED,
+DataInserimento		DATE,
+Collaudatore		INT UNSIGNED,
+Servizio            VARCHAR(8),
+Risultati			BLOB,
+InUso				VARCHAR(20)) TYPE=InnoDB;		
+
+
+CREATE TABLE OPERATORI(
+
+Codice			INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+Nome			VARCHAR(32),
+Cognome			VARCHAR(32),
+Password		VARCHAR(32),
+Privilegi		INT,
+Sperimentatore	SMALLINT,
+Macchina		VARCHAR(64),
+Inizio			DATE,
+Fine			DATE,
+Sospeso			SMALLINT,
+UNIQUE(Cognome, Nome)) TYPE=InnoDB;			
+
+
+CREATE TABLE OPERAZIONI(
+
+Codice				INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+TipoOperazione			VARCHAR(32),
+TipoDocumento			VARCHAR(32),
+DocumentoSostituito		INT UNSIGNED,
+CertificatoEmendato		INT UNSIGNED,
+Operatore				INT UNSIGNED) TYPE=InnoDB;
+
+
+CREATE TABLE TIPI_PAGAMENTO(
+
+Codice		INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+VecchioCod		SMALLINT,
+Nome			VARCHAR(32),
+Descrizione		VARCHAR(250),
+Allineamento	SMALLINT,
+NumRate		SMALLINT,
+GiorniPrimaScad	SMALLINT
+) TYPE=InnoDB;
+
+INSERT TIPI_PAGAMENTO (VecchioCod, Nome, Descrizione, Allineamento, NumRate, GiorniPrimaScad) VALUES (10, 	'R.B. 30 GG D.F.',			'R.B. 30 GG DF',				1,	1,	30	);
+INSERT TIPI_PAGAMENTO (VecchioCod, Nome, Descrizione, Allineamento, NumRate, GiorniPrimaScad) VALUES (20, 	'R.B. 60 GG D.F.',			'R.B. 60 GG DATA FT',			1,	1,	60	);
+INSERT TIPI_PAGAMENTO (VecchioCod, Nome, Descrizione, Allineamento, NumRate, GiorniPrimaScad) VALUES (11, 	'R.B. 30 GG F.M.',			'R.B. 30 GG FINE MESE',			3,	1,	30	);
+INSERT TIPI_PAGAMENTO (VecchioCod, Nome, Descrizione, Allineamento, NumRate, GiorniPrimaScad) VALUES (21, 	'R.B. 60 GG F.M.',			'R.B. 60 GG FINE MESE',			3,	1,	60	);
+INSERT TIPI_PAGAMENTO (VecchioCod, Nome, Descrizione, Allineamento, NumRate, GiorniPrimaScad) VALUES (30, 	'R.B. 90 GG D.F.',			'R.B. 90 GG DATA FT',			1,	1,	90	);
+INSERT TIPI_PAGAMENTO (VecchioCod, Nome, Descrizione, Allineamento, NumRate, GiorniPrimaScad) VALUES (31, 	'R.B. 90 GG F.M.',			'R.B. 90 GG FINE MESE',			3,	1,	90	);
+INSERT TIPI_PAGAMENTO (VecchioCod, Nome, Descrizione, Allineamento, NumRate, GiorniPrimaScad) VALUES (40, 	'RIM. DIR. D.R. O D.F.',		'VS. RIMESSA DIRETTA A RIC. O FT',	0,	0,	0	);
+INSERT TIPI_PAGAMENTO (VecchioCod, Nome, Descrizione, Allineamento, NumRate, GiorniPrimaScad) VALUES (41, 	'RIM. DIR. 30 GG D.F.',			'VS. RIMESSA DIRETTA A 30 GG D.F.',	0,	0,	30	);
+INSERT TIPI_PAGAMENTO (VecchioCod, Nome, Descrizione, Allineamento, NumRate, GiorniPrimaScad) VALUES (02, 	'CONTRASSEGNO',				'CONTRASSEGNO',				0,	0,	0	);
+INSERT TIPI_PAGAMENTO (VecchioCod, Nome, Descrizione, Allineamento, NumRate, GiorniPrimaScad) VALUES (42, 	'RIM. DIR. 60 GG D.F.',			'VS. RIM. DIRETTA A 60 GG D.F.',	0,	0,	60	);
+INSERT TIPI_PAGAMENTO (VecchioCod, Nome, Descrizione, Allineamento, NumRate, GiorniPrimaScad) VALUES (43, 	'RIM. DIR. 90 GG D.F.',			'VS. RIM. DIRETTA A 90 GG D.F.',	0,	0,	90	);
+INSERT TIPI_PAGAMENTO (VecchioCod, Nome, Descrizione, Allineamento, NumRate, GiorniPrimaScad) VALUES (44, 	'RIM. DIR. 120 GG D.F.',		'VS. RIM. DIRETTA A 120 GG D.F.',	0,	0,	120	);
+INSERT TIPI_PAGAMENTO (VecchioCod, Nome, Descrizione, Allineamento, NumRate, GiorniPrimaScad) VALUES (45, 	'ANTICIPATO',				'ANTICIPATO',				0,	0,	0	);
+INSERT TIPI_PAGAMENTO (VecchioCod, Nome, Descrizione, Allineamento, NumRate, GiorniPrimaScad) VALUES (12, 	'R.B. 30/60 GG D.F.',			'R.B. 30/60 GG. D.F.',			1,	2,	30	);
+INSERT TIPI_PAGAMENTO (VecchioCod, Nome, Descrizione, Allineamento, NumRate, GiorniPrimaScad) VALUES (13, 	'R.B. 30/60 GG F.M.',			'R.B. 30/60 GG. FINE MESE',		3,	2,	30	);
+INSERT TIPI_PAGAMENTO (VecchioCod, Nome, Descrizione, Allineamento, NumRate, GiorniPrimaScad) VALUES (46, 	'BON. BANC. 30 GG D.F.',		'VS. BONIF. BANCARIO A 30 GG D.F.',	0,	0,	30	);
+INSERT TIPI_PAGAMENTO (VecchioCod, Nome, Descrizione, Allineamento, NumRate, GiorniPrimaScad) VALUES (47, 	'BON. BANC. 60 GG D.F.',		'VS. BONIF. BANCARIO A 60 GG D.F.',	0,	0,	60	);
+INSERT TIPI_PAGAMENTO (VecchioCod, Nome, Descrizione, Allineamento, NumRate, GiorniPrimaScad) VALUES (60, 	'IMP. UNITO R.B. E D.F.',		'IMPORTO UNITO ALLA RB DELLA FT',	0,	0,	0	);
+INSERT TIPI_PAGAMENTO (VecchioCod, Nome, Descrizione, Allineamento, NumRate, GiorniPrimaScad) VALUES (61, 	'CON CESSIONI',				'CON CESSIONI',				0,	0,	0	);
+INSERT TIPI_PAGAMENTO (VecchioCod, Nome, Descrizione, Allineamento, NumRate, GiorniPrimaScad) VALUES (48, 	'BON. BANC. 30 GG F.M.',		'VS. BONIF. BANCARIO A 30 GG F.M.',	0,	0,	30	);
+INSERT TIPI_PAGAMENTO (VecchioCod, Nome, Descrizione, Allineamento, NumRate, GiorniPrimaScad) VALUES (14, 	'R.B. 30/60/90 GG D.F.',		'R.B. 30/60/90 GG D.F.',		1,	3,	30	);
+INSERT TIPI_PAGAMENTO (VecchioCod, Nome, Descrizione, Allineamento, NumRate, GiorniPrimaScad) VALUES (15, 	'R.B. 30/60/90 GG F.M.',		'R.B. 30/60/90 GG F.M.',		3,	3,	30	);
+INSERT TIPI_PAGAMENTO (VecchioCod, Nome, Descrizione, Allineamento, NumRate, GiorniPrimaScad) VALUES (17, 	'R.B. 60/90/120 GG D.F.',		'R.B. 60/90/120 GG D.F.',		1,	3,	60	);
+INSERT TIPI_PAGAMENTO (VecchioCod, Nome, Descrizione, Allineamento, NumRate, GiorniPrimaScad) VALUES (49, 	'RIM. DIR. 90 GG F.M.',			'VS. RIMESSA DIRETTA 90 GG F.M.',	0,	0,	0	);
+INSERT TIPI_PAGAMENTO (VecchioCod, Nome, Descrizione, Allineamento, NumRate, GiorniPrimaScad) VALUES (32, 	'R.B. 120 GG D.F.',			'R.B. 120 GG D.F.',			1,	1,	120	);
+INSERT TIPI_PAGAMENTO (VecchioCod, Nome, Descrizione, Allineamento, NumRate, GiorniPrimaScad) VALUES (33, 	'R.B. 120 GG F.M.',			'R.B. 120 GG FINE MESE',		3,	1,	120	);
+INSERT TIPI_PAGAMENTO (VecchioCod, Nome, Descrizione, Allineamento, NumRate, GiorniPrimaScad) VALUES (50, 	'BON. BANC. 90 GG D.F.',		'VS BONIF. BANCARIO A 90 GG D.F.',	0,	0,	90	);
+INSERT TIPI_PAGAMENTO (VecchioCod, Nome, Descrizione, Allineamento, NumRate, GiorniPrimaScad) VALUES (51, 	'BON. BANC. 60 GG F.M.',		'VS BONIF. BANCARIO A 60 GG F.M.',	0,	0,	60	);
+INSERT TIPI_PAGAMENTO (VecchioCod, Nome, Descrizione, Allineamento, NumRate, GiorniPrimaScad) VALUES (22, 	'RIM. DIR. 60 GG F.M. D.F.',		'VS RIM. DIRETTA 60 GG F.M.D.F.',	0,	0,	60	);
+INSERT TIPI_PAGAMENTO (VecchioCod, Nome, Descrizione, Allineamento, NumRate, GiorniPrimaScad) VALUES (52, 	'BON. BANC. 90 GG F.M.',		'VS. BONIFICO BANCARIO 90 GG F.M.',	0,	0,	90	);
+INSERT TIPI_PAGAMENTO (VecchioCod, Nome, Descrizione, Allineamento, NumRate, GiorniPrimaScad) VALUES (70, 	'RIM. DIR. 30 GG F.M.',			'VS RIMESSA DIRETTA 30 GG F.M.',	0,	0,	30	);
+INSERT TIPI_PAGAMENTO (VecchioCod, Nome, Descrizione, Allineamento, NumRate, GiorniPrimaScad) VALUES (71, 	'RIM. DIR. 60 GG F.M.',			'VS RIMESSA DIRETTA 60 GG F.M.',	0,	0,	60	);
+INSERT TIPI_PAGAMENTO (VecchioCod, Nome, Descrizione, Allineamento, NumRate, GiorniPrimaScad) VALUES (72, 	'RIM. DIR. 90 GG F.M.',			'VS RIMESSA DIRETTA 90 GG F.M.',	0,	0,	90	);
+INSERT TIPI_PAGAMENTO (VecchioCod, Nome, Descrizione, Allineamento, NumRate, GiorniPrimaScad) VALUES (73, 	'RIM. DIR. 120 GG F.M.',		'VS RIMESSA DIRETTA 120 GG F.M.',	0,	0,	120	);
+INSERT TIPI_PAGAMENTO (VecchioCod, Nome, Descrizione, Allineamento, NumRate, GiorniPrimaScad) VALUES (53, 	'RIM. DIR. 60 GG F.M.',			'RIMESSA DIRETTA 60 GG F.M.',		0,	0,	60	);
+INSERT TIPI_PAGAMENTO (VecchioCod, Nome, Descrizione, Allineamento, NumRate, GiorniPrimaScad) VALUES (55, 	'BON. BANC. D.R. D.F',			'VS. BONIFICO BANCARIO RIC. FT.',	0,	0,	0	);
+INSERT TIPI_PAGAMENTO (VecchioCod, Nome, Descrizione, Allineamento, NumRate, GiorniPrimaScad) VALUES (01, 	'RITIRO CERTIFICATI',			'AL RITIRO DEI CERTIFICATI',		0,	0,	0	);
+INSERT TIPI_PAGAMENTO (VecchioCod, Nome, Descrizione, Allineamento, NumRate, GiorniPrimaScad) VALUES (18, 	'R.B. 90/120 GG D.F.',			'R.B. 90/120 GG D.F.',			1,	2,	90	);
+INSERT TIPI_PAGAMENTO (VecchioCod, Nome, Descrizione, Allineamento, NumRate, GiorniPrimaScad) VALUES (54, 	'BON. BANC. 120 GG F.M.',		'VS. BONIFICO BANCARIO 120 GG F.M.',0,	0,	120	);
+INSERT TIPI_PAGAMENTO (VecchioCod, Nome, Descrizione, Allineamento, NumRate, GiorniPrimaScad) VALUES (88, 	'BOLLETTINO C/C POSTALE',		'BOLLETTINO C/C POSTALE',		0,	0,	0	);
+INSERT TIPI_PAGAMENTO (VecchioCod, Nome, Descrizione, Allineamento, NumRate, GiorniPrimaScad) VALUES (56, 	'BON. BANC. 60/90/120 GG D.F.',	'BON. BANCARIO 60/90/120 GG D.F.',	0,	0,	60	);
+INSERT TIPI_PAGAMENTO (VecchioCod, Nome, Descrizione, Allineamento, NumRate, GiorniPrimaScad) VALUES (57, 	'BON. BANC. 120 GG D.F.',		'VS. BONIF BANCARIO 120 GG D.F.',	0,	0,	120	);
+INSERT TIPI_PAGAMENTO (VecchioCod, Nome, Descrizione, Allineamento, NumRate, GiorniPrimaScad) VALUES (16, 	'R.B. 60/90 GG F.M.',			'R.B. 60/90 GG F.M.',			3,	2,	60	);
+INSERT TIPI_PAGAMENTO (VecchioCod, Nome, Descrizione, Allineamento, NumRate, GiorniPrimaScad) VALUES (90, 	'EFFETTO CAMBIARIO',			'EFFETTO CAMBIARIO',			0,	0,	0	);
+INSERT TIPI_PAGAMENTO (VecchioCod, Nome, Descrizione, Allineamento, NumRate, GiorniPrimaScad) VALUES (58,	'BONIFICO BANCARIO',			'VS. BONIFICO BANCARIO',		0,	0,	0	);
+
+CREATE TABLE TIPI_MATERIALE(
+
+Codice				INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+ID					VARCHAR(8),
+Nome				VARCHAR(32),
+Descrizione			VARCHAR(250),
+DiDefault			TINYINT,
+TipoCertificato     INT UNSIGNED,
+Snervamento			DOUBLE,
+UNIQUE(ID)) TYPE=InnoDB;
+
+
+--
+-- INSERIMENTO DEI TIPI DI MATERIALE 
+--
+
+--
+-- CUBI IN CALCESTRUZZO
+--
+
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('CBD', '- n.d. -', 'Composizione non dichiarata',0, 1, 1);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('315', 'Cemento 325/150', 'Cemento 325 con 150 kg/mq',0, 1, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('320', 'Cemento 325/200', 'Cemento 325 con 200 kg/mq',0, 1, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('325', 'Cemento 325/250', 'Cemento 325 con 250 kg/mq',0, 1, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('330', 'Cemento 325/300', 'Cemento 325 con 300 kg/mq',0, 1, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('335', 'Cemento 325/350', 'Cemento 325 con 350 kg/mq',0, 1, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('340', 'Cemento 325/400', 'Cemento 325 con 400 kg/mq',0, 1, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('345', 'Cemento 325/450', 'Cemento 325 con 450 kg/mq',0, 1, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('350', 'Cemento 325/500', 'Cemento 325 con 500 kg/mq',0, 1, 0);
+
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('415', 'Cemento 425/150', 'Cemento 425 con 150 kg/mq',0, 1, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('420', 'Cemento 425/200', 'Cemento 425 con 200 kg/mq',0, 1, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('425', 'Cemento 425/250', 'Cemento 425 con 250 kg/mq',0, 1, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('430', 'Cemento 425/300', 'Cemento 425 con 300 kg/mq',0, 1, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('435', 'Cemento 425/350', 'Cemento 425 con 350 kg/mq',0, 1, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('440', 'Cemento 425/400', 'Cemento 425 con 400 kg/mq',0, 1, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('445', 'Cemento 425/450', 'Cemento 425 con 450 kg/mq',0, 1, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('450', 'Cemento 425/500', 'Cemento 425 con 500 kg/mq',0, 1, 0);
+
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('515', 'Cemento 525/150', 'Cemento 525 con 150 kg/mq',0, 1, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('520', 'Cemento 525/200', 'Cemento 525 con 200 kg/mq',0, 1, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('525', 'Cemento 525/250', 'Cemento 525 con 250 kg/mq',0, 1, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('530', 'Cemento 525/300', 'Cemento 525 con 300 kg/mq',0, 1, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('535', 'Cemento 525/350', 'Cemento 525 con 350 kg/mq',0, 1, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('540', 'Cemento 525/400', 'Cemento 525 con 400 kg/mq',0, 1, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('545', 'Cemento 525/450', 'Cemento 525 con 450 kg/mq',0, 1, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('550', 'Cemento 525/500', 'Cemento 525 con 500 kg/mq',0, 1, 0);
+
+
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('R15', 'Rck15','Rck dichiarata 15 N/mmq', 0, 1, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('R20', 'Rck20','Rck dichiarata 20 N/mmq', 0, 1, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('R25', 'Rck25','Rck dichiarata 25 N/mmq', 0, 1, 0);													 
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('R30', 'Rck30','Rck dichiarata 30 N/mmq', 0, 1, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('R35', 'Rck35','Rck dichiarata 35 N/mmq', 0, 1, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('R40', 'Rck40','Rck dichiarata 40 N/mmq', 0, 1, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('R45', 'Rck45','Rck dichiarata 45 N/mmq', 0, 1, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('R50', 'Rck50','Rck dichiarata 50 N/mmq', 0, 1, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('R55', 'Rck55','Rck dichiarata 55 N/mmq', 0, 1, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('R60', 'Rck60','Rck dichiarata 60 N/mmq', 0, 1, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('R70', 'Rck70','Rck dichiarata 70 N/mmq', 0, 1, 0);
+
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('RM1', 'Rck15 alleg.','Rck dichiarata 15 N/mmq cls alleggerito', 0, 1, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('RP1', 'Rck20 alleg.','Rck dichiarata 20 N/mmq cls alleggerito', 0, 1, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('RP2', 'Rck25 alleg.','Rck dichiarata 25 N/mmq cls alleggerito', 0, 1, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('RQ1', 'Rck30 alleg.','Rck dichiarata 30 N/mmq cls alleggerito', 0, 1, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('RQ2', 'Rck35 alleg.','Rck dichiarata 35 N/mmq cls alleggerito', 0, 1, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('RQ3', 'Rck40 alleg.','Rck dichiarata 40 N/mmq cls alleggerito', 0, 1, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('RQ4', 'Rck45 alleg.','Rck dichiarata 45 N/mmq cls alleggerito', 0, 1, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('RQ5', 'Rck50 alleg.','Rck dichiarata 50 N/mmq cls alleggerito', 0, 1, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('RQ6', 'Rck55 alleg.','Rck dichiarata 55 N/mmq cls alleggerito', 0, 1, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('RQ7', 'Rck60 alleg.','Rck dichiarata 60 N/mmq cls alleggerito', 0, 1, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('RQ8', 'Rck70 alleg.','Rck dichiarata 70 N/mmq cls alleggerito', 0, 1, 0);
+
+
+--
+-- CAROTE
+--
+
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('CAR', 'CAROTE CLS','CAROTE CLS', 0, 2, 1);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('JET', 'CAROTE JET','CAROTE JET GROUTING', 0, 2, 0);
+
+
+--
+-- BARRE DI ACCIAIO 
+--
+
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('Fe22', 'Acciaio Fe22', 'Acciaio dichiarato Fe B 22 k', 215, 3, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('Fe32', 'Acciaio Fe32', 'Acciaio dichiarato Fe B 32 k', 315, 3, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('Fe38', 'Acciaio Fe38', 'Acciaio dichiarato Fe B 38 k a.m.', 375, 3, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('Fe44', 'Acciaio Fe44', 'Acciaio dichiarato Fe B 44 k a.m.', 430, 3, 1);
+
+
+--
+-- TRAZIONE PROFILATI SEMPLICI
+--
+
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('P36', 'Profilati Fe360', 'Profilati in acciaio dichiarato Fe 360',  235, 4, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('P3B', 'Profilati Fe360B','Profilati in acciaio dichiarato Fe 360B', 235, 4, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('P3C', 'Profilati Fe360C','Profilati in acciaio dichiarato Fe 360C', 235, 4, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('P3D', 'Profilati Fe360D','Profilati in acciaio dichiarato Fe 360D', 235, 4, 0);
+
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('P43', 'Profilati Fe430', 'Profilati in acciaio dichiarato Fe 430',  257, 4, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('P4B', 'Profilati Fe430B','Profilati in acciaio dichiarato Fe 430B', 257, 4, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('P4C', 'Profilati Fe430C','Profilati in acciaio dichiarato Fe 430C', 257, 4, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('P4D', 'Profilati Fe430D','Profilati in acciaio dichiarato Fe 430D', 257, 4, 0);
+
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('P51', 'Profilati Fe510', 'Profilati in acciaio dichiarato Fe 510',  355, 4, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('P5B', 'Profilati Fe510B','Profilati in acciaio dichiarato Fe 510B', 355, 4, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('P5C', 'Profilati Fe510C','Profilati in acciaio dichiarato Fe 510C', 355, 4, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('P5D', 'Profilati Fe510D','Profilati in acciaio dichiarato Fe 510D', 355, 4, 0);
+
+--
+-- TRAZIONE PROFILATI IN PROVETTE
+--
+
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('PV3', 'Provette Fe360', 'Provette in acciaio dichiarato Fe 360',  235, 4, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('PB3', 'Provette Fe360B','Provette in acciaio dichiarato Fe 360B', 235, 4, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('PC3', 'Provette Fe360C','Provette in acciaio dichiarato Fe 360C', 235, 4, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('PD3', 'Provette Fe360D','Provette in acciaio dichiarato Fe 360D', 235, 4, 0);
+
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('PV4', 'Provette Fe430', 'Provette in acciaio dichiarato Fe 430',  257, 4, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('PB4', 'Provette Fe430B','Provette in acciaio dichiarato Fe 430B', 257, 4, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('PC4', 'Provette Fe430C','Provette in acciaio dichiarato Fe 430C', 257, 4, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('PD4', 'Provette Fe430D','Provette in acciaio dichiarato Fe 430D', 257, 4, 0);
+
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('PV5', 'Provette Fe510', 'Provette in acciaio dichiarato Fe 510',  355, 4, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('PB5', 'Provette Fe510B','Provette in acciaio dichiarato Fe 510B', 355, 4, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('PC5', 'Provette Fe510C','Provette in acciaio dichiarato Fe 510C', 355, 4, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('PD5', 'Provette Fe510D','Provette in acciaio dichiarato Fe 510D', 355, 4, 0);
+
+
+--
+-- RESILIENZA PROFILATI SEMPLICI
+--
+
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('RE36', 'Profilati Fe360', 'Profilati in acciaio dichiarato Fe 360',  235, 5, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('RE3B', 'Profilati Fe360B','Profilati in acciaio dichiarato Fe 360B', 235, 5, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('RE3C', 'Profilati Fe360C','Profilati in acciaio dichiarato Fe 360C', 235, 5, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('RE3D', 'Profilati Fe360D','Profilati in acciaio dichiarato Fe 360D', 235, 5, 0);
+
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('RE43', 'Profilati Fe430', 'Profilati in acciaio dichiarato Fe 430',  257, 5, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('RE4B', 'Profilati Fe430B','Profilati in acciaio dichiarato Fe 430B', 257, 5, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('RE4C', 'Profilati Fe430C','Profilati in acciaio dichiarato Fe 430C', 257, 5, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('RE4D', 'Profilati Fe430D','Profilati in acciaio dichiarato Fe 430D', 257, 5, 0);
+
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('RE51', 'Profilati Fe510', 'Profilati in acciaio dichiarato Fe 510',  355, 5, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('RE5B', 'Profilati Fe510B','Profilati in acciaio dichiarato Fe 510B', 355, 5, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('RE5C', 'Profilati Fe510C','Profilati in acciaio dichiarato Fe 510C', 355, 5, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('RE5D', 'Profilati Fe510D','Profilati in acciaio dichiarato Fe 510D', 355, 5, 0);
+
+--
+-- RESILIENZA PROFILATI IN PROVETTE
+--
+
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('REV3', 'Provette Fe360', 'Provette in acciaio dichiarato Fe 360',  235, 5, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('REB3', 'Provette Fe360B','Provette in acciaio dichiarato Fe 360B', 235, 5, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('REC3', 'Provette Fe360C','Provette in acciaio dichiarato Fe 360C', 235, 5, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('RED3', 'Provette Fe360D','Provette in acciaio dichiarato Fe 360D', 235, 5, 0);
+
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('REV4', 'Provette Fe430', 'Provette in acciaio dichiarato Fe 430',  257, 5, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('REB4', 'Provette Fe430B','Provette in acciaio dichiarato Fe 430B', 257, 5, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('REC4', 'Provette Fe430C','Provette in acciaio dichiarato Fe 430C', 257, 5, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('RED4', 'Provette Fe430D','Provette in acciaio dichiarato Fe 430D', 257, 5, 0);
+
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('REV5', 'Provette Fe510', 'Provette in acciaio dichiarato Fe 510',  355, 5, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('REB5', 'Provette Fe510B','Provette in acciaio dichiarato Fe 510B', 355, 5, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('REC5', 'Provette Fe510C','Provette in acciaio dichiarato Fe 510C', 355, 5, 0);
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('RED5', 'Provette Fe510D','Provette in acciaio dichiarato Fe 510D', 355, 5, 0);
+
+
+--
+-- TRAZIONE RETI
+--
+
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('RET', 'Reti','Reti elettrosaldate', 0, 6, 1);
+
+--
+-- TRAZIONE TRECCE TREFOLI
+--
+
+insert into TIPI_MATERIALE(ID, Nome,Descrizione,snervamento,TipoCertificato,DiDefault) values ('TRE', 'Trefoli','Trefoli da C.A.P.', 0, 7, 1);
+
+
+
+
+CREATE TABLE MARCHI(
+Codice				INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+Nome				VARCHAR(32) UNIQUE,
+Descrizione			VARCHAR(250),
+Produttore			VARCHAR(64),
+Stabilimento		VARCHAR(64),
+Immagine			BLOB,
+UNIQUE(Nome)) TYPE=InnoDB;
+
+
+CREATE TABLE TIPI_SCONTO(
+Codice				INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+Soglia				INT,
+RiduzioneSoglia     DOUBLE,
+Livello1            SMALLINT,
+Riduzione1			DOUBLE,
+Livello2            SMALLINT, 
+Riduzione2			DOUBLE) TYPE=InnoDB;
+

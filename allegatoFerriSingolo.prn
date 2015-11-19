@@ -1,0 +1,68 @@
+[general]
+x zero=-50
+y zero=-40
+
+; numero massimo di righe per pagina nella lista delle consegne
+tab lines=12
+
+; posizione e font del numero di pagina
+;Nr.Pagina=1700,2100,Times New Roman,24,48,C
+
+
+[strings]
+10=500,410,1100,70,Times New Roman,28,50,BC,MARCHI DI IDENTIFICAZIONE
+
+20=150,540,300,40,Times New Roman,22,38,BL,CERTIFICATO N°
+30=+400,+0,50,40,Times New Roman,22,38,BL,del
+40=+650,+0,200,40,Times New Roman,22,38,BL,Rif. V.A. N°
+50=+350,+0,50,40,Times New Roman,22,38,BL,del
+
+60=150,1040,600,50,*,MARCHIO DI IDENTIFICAZIONE
+
+70=230,1800,500,100,Times New Roman,22,40,C,Lo Sperimentatore
+80=1340,+0,380,100,Times New Roman,22,40,C,Il Direttore Responsabile del Laboratorio
+
+100=1700,2680,70,50,Courier New,20,40,L,pag.
+110=+100,+0,20,50,Courier New,20,40,L,/
+
+[fields]
+10=450,540,100,40,Times New Roman,22,38,BL,numeroCertificato
+20=+180,+0,200,40,Times New Roman,22,38,BL,dataCertificato
+30=+760,+0,200,40,Times New Roman,22,38,BL,numeroVerbale
+40=+240,+0,200,40,Times New Roman,22,38,BL,dataVerbale
+45=150,+80,500,40,Times New Roman,22,38,L,duplicato
+
+50=150,730,170,70,Times New Roman,22,38,L,lblMateriale
+55=+280,730,1200,70,Times New Roman,22,38,L,materiale
+60=150,730,170,70,Times New Roman,22,38,L,primaEtichetta
+65=+170,+0,350,70,Times New Roman,22,38,BL,primoCampo
+70=+350,+0,350,70,Times New Roman,22,38,L,lblprovino
+75=+130,+0,400,70,Times New Roman,22,38,L,secondoCampo
+
+80=150,+70,280,70,Times New Roman,22,38,L,etichettaProduttore
+90=+280,+0,900,70,Times New Roman,22,38,L,produttore
+100=-280,+70,928000,70,Times New Roman,22,38,L,etichettaStabilimento
+110=+280,+0,900,70,Times New Roman,22,38,L,stabilimento
+120=-280,+70,280,70,Times New Roman,22,38,L,etichettaDescrizione
+130=+280,+0,900,70,Times New Roman,22,38,L,descrizione
+
+135=750,1040,600,50,Times New Roman,22,38,BL,nonRilevabile
+
+140=130,1880,700,40,Times New Roman,22,40,BC,sperimentatore
+145=1180,1880,700,40,Times New Roman,22,40,BC,responsabile
+
+150=1770,2680,20,50,Courier New,20,40,R,paginaCorrente
+160=+50,+0,20,50,Courier New,20,40,L,pagineTotali
+
+[tabfields]
+
+[grids]
+10=230,2000,500,0,1,1
+20=1280,+0,500,0,1,1
+
+[bitmaps]
+10=400,1120,1300,360,M,marchio1.bmp
+
+
+	
+	
