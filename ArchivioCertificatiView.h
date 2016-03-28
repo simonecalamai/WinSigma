@@ -26,7 +26,7 @@ private:
 	void Query();
 	void Popola_Lista();
 	bool Congruenza_Dati_Ricerca(CString* msg = NULL);
-  void StampaCertificato(void);
+  void StampaCertificato(BOOL bHeader = FALSE);
 // Form Data
 public:
 	//{{AFX_DATA(CArchivioCertificatiView)
@@ -87,6 +87,7 @@ protected:
 	afx_msg void OnBtnEliminacertificato();
 	afx_msg void OnPreviewDoc();
 	afx_msg void OnStampa();
+	afx_msg void OnStampaConHeader();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

@@ -502,6 +502,7 @@ BEGIN
         MENUITEM "&Visualizza",                 IDD_PREVIEW_DOC
         MENUITEM "&Elimina",                    ID_BTN_EILIMINACERTIFICATO
         MENUITEM "&Stampa",                     ID_STAMPA
+        MENUITEM "Stampa con &header",          ID_STAMPA_CON_HEADER
     END
     POPUP "&?"
     BEGIN

@@ -343,6 +343,7 @@ BEGIN_MESSAGE_MAP(CArchivioCertificatiView, CFormView)
 	ON_COMMAND(ID_BTN_EILIMINACERTIFICATO, OnBtnEliminacertificato)
 	ON_COMMAND(IDD_PREVIEW_DOC, OnPreviewDoc)
 	ON_COMMAND(ID_STAMPA, OnStampa)
+	ON_COMMAND(ID_STAMPA_CON_HEADER, OnStampaConHeader)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -691,7 +692,7 @@ void CArchivioCertificatiView::OnStampa()
 }
 
 
-void CArchivioCertificatiView::StampaCertificato(void)
+void CArchivioCertificatiView::StampaCertificato(BOOL bHeader)
 {
   POSITION pos;
   int n;
@@ -709,6 +710,11 @@ void CArchivioCertificatiView::StampaCertificato(void)
 	codCert = m_Risultati_Ricerca.GetItemData(n);
 	
 
-	CVerbaliView::StampaCertificato(m_pTipiCertSet, codCert, FALSE);
+	CVerbaliView::StampaCertificato(m_pTipiCertSet, codCert, FALSE, bHeader);
 //	CVerbaliView::StampaCertificato(codCert, FALSE);
+}
+
+void CArchivioCertificatiView::OnStampaConHeader() 
+{
+	StampaCertificato(TRUE);
 }

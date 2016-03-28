@@ -134,7 +134,7 @@ BOOL CPrintInterpreter::PrePrinting(HDC DC)
 	// memorizza informazioni (tra cui i nomi dei file) usate dalla funzione StartDoc
 	// della classe CDC
 	di.cbSize       =  sizeof(DOCINFO);  
-	di.lpszDocName  = "Stampa Fattura"; 	// nome del documento da stampare 
+	di.lpszDocName  = "stampa"; 	// nome del documento da stampare 
 	di.lpszOutput   = NULL;
 	di.lpszDatatype = NULL;
 	di.fwType       = 0;

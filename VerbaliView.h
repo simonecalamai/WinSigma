@@ -149,8 +149,8 @@ protected:
 // Operations
 public:
 	static BOOL m_bStampaCaratteri;
-	static void StampaCertificato(CTipiCertificatoSet* pSet, long codRif, BOOL isCodSerie = TRUE );
-	static void StampaCertificato(long codRif, BOOL isCodSerie = TRUE );
+	static void StampaCertificato(CTipiCertificatoSet* pSet, long codRif, BOOL isCodSerie = TRUE, BOOL bHeader = FALSE );
+	static void StampaCertificato(long codRif, BOOL isCodSerie = TRUE, BOOL bHeader = FALSE );
 	void CreaEmendamento(long codDoc);
 	static CStringArray m_aryCampiEtichette;
 	static int m_nContaEtichette;

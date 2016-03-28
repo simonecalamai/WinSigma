@@ -5334,13 +5334,13 @@ void CVerbaliView::SetProveMateriale(byte forzaProve, byte forzaMateriale)
 
 /////////////////////////////////////////////////////////
 //Stampa di un certificato 
-void CVerbaliView::StampaCertificato(CTipiCertificatoSet* pTipiCertSet, long codRif, BOOL isCodSerie)
+void CVerbaliView::StampaCertificato(CTipiCertificatoSet* pTipiCertSet, long codRif, BOOL isCodSerie, BOOL bHeader)
 {
 	m_pTipiCertificatoSet = pTipiCertSet;
-	StampaCertificato(codRif, isCodSerie);
+	StampaCertificato(codRif, isCodSerie, bHeader);
 }
 
-void CVerbaliView::StampaCertificato(long codRif, BOOL isCodSerie)
+void CVerbaliView::StampaCertificato(long codRif, BOOL isCodSerie, BOOL bHeader)
 {
 		//--------------- Istanze dei recordset utilizzati-----------------//
 
@@ -5409,6 +5409,9 @@ void CVerbaliView::StampaCertificato(long codRif, BOOL isCodSerie)
 				SINCRONIZE(m_pTipiCertificatoSet, pCertVerbSet->m_TipoCertificato);
 				
 				fileLayout = m_pTipiCertificatoSet->m_LayoutStampa;
+				if(bHeader == TRUE)
+					fileLayout = m_pTipiCertificatoSet->m_LayoutStampaHeader;
+					
 				m_strDllCorrente = GetNameModuloDll(m_pTipiCertificatoSet->m_Codice);
         
 				numeroPagine = LoadDatiStampa(pCertVerbSet->m_CodiceCertificato, &fieldNames, &fieldValues);
