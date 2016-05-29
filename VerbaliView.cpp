@@ -5429,7 +5429,9 @@ void CVerbaliView::StampaCertificato(long codRif, BOOL isCodSerie, BOOL bHeader)
           CCertificatiSet set(&pApp->m_db);
           set.m_strFilter.Format("Codice = %d", pCertVerbSet->m_EmendaIl);
           set.Open();
-          str.Format("Emendamento al certificato N° %d del %s", set.m_NumeroCertificato, set.m_DataEmissione.Format("%d/%m/%Y"));
+					// variazione dicitura emendamento 29.05.2016 s.c. 
+//          str.Format("Emendamento al certificato N° %d del %s", set.m_NumeroCertificato, set.m_DataEmissione.Format("%d/%m/%Y"));
+          str.Format("Emendamento che annulla e sostituisce il certificato N° %d del %s", set.m_NumeroCertificato, set.m_DataEmissione.Format("%d/%m/%Y"));
           set.Close();
         }
         if(!pCertVerbSet->IsFieldNull(&pCertVerbSet->m_EmendatoDa) && pCertVerbSet->m_EmendatoDa != 0)

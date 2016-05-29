@@ -51,7 +51,8 @@
 //
 //#define WINSIGMA2
 
-#define STR_VERSION							"4.4.0beta"
+//#define STR_VERSION							"4.4.0beta"
+#define STR_VERSION							"4.3.2"
 #define STR_BUILDTIME   __TIMESTAMP__  
 #define AZIENDE_BUFFER  1024
 #define FATTURE_BUFFER  1024
@@ -200,6 +201,11 @@ enum
 #define SERVIZIO_NON_CONC     0
 #define SERVIZIO_CONCESSIONE  1
 #define SERVIZIO_GEOLOGIA     2
+
+// sezioni file .ini
+#define GENERALE				"Generale"
+#define INSTALLAZIONE		"Installazione"
+
 
 // Nomi delle tabelle
 #define AZIENDE             "AZIENDE"

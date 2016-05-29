@@ -128,13 +128,22 @@ BOOL CWinSigmaApp::InitInstance()
 	CCommandLineInfo cmdInfo;
 	ParseCommandLine(cmdInfo);
 
-
+	int instCode = GetProfileInt(GENERALE, INSTALLAZIONE, 0);   // default WinSigma FI
 	// Imposta la stringa di connessione
-//#ifdef WINSIGMALI
-//	m_csDefaultConnect.Format("ODBC;UID=dbuser;PWD=59sigma03");     // LI
-//#else
-	m_csDefaultConnect.Format("ODBC;UID=dbuser;PWD=49sigma03");				// FI
-//#endif
+	switch(instCode)
+	{
+		case 0:  // WinSigma FI
+			m_csDefaultConnect.Format("ODBC;UID=dbuser;PWD=49sigma03");
+			break;
+
+		case 1:	// WinSigma LI
+			m_csDefaultConnect.Format("ODBC;UID=dbuser;PWD=59sigma03");
+			break;
+
+		case 2:	// WinSigmaDue FI
+			m_csDefaultConnect.Format("ODBC;UID=dbuser;PWD=49sigma03");
+			break;
+	}
 
   // prova ad aprire la connessione con i dati
 #ifdef WINSIGMA2
