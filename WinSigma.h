@@ -357,6 +357,7 @@ class CWinSigmaApp : public CWinApp
 		CString m_csUtente;
     bool m_bPrimaVolta;
 		BYTE m_byDBRemoto;
+		CString m_headerPrn;
   /*---- metodi -----*/
   public:
 	  BYTE IsDBRemoto();

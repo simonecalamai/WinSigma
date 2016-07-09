@@ -1,0 +1,23 @@
+[general]
+x zero=-20
+y zero=-50
+
+[strings]
+;header
+10=340,150,900,80,Arial Black,56,82,BL,Laboratorio SIGMA s.r.l.
+;20=+920,+20,30,40,Arial,30,40,-
+30=+920,+32,1000,40,Arial,22,38,IL,- Prove su Materiali da Costruzione dal 1973 
+40=340,240,1500,40,Arial,24,36,L,Autorizzazione Ministero delle Infrastrutture e Trasporti (legge 1086/71 art.20)
+50=340,+50,1500,40,Arial,24,36,L,D. M. n. 6786 del 15.10.2014 - Riconoscimento RINA - Associato A.L.I.G.
+
+;footer
+510=20,2880,2100,36,Arial,18,28,BC,Via P.Gobetti 8 - 50013 Capalle CAMPI BISENZIO - FIRENZE - Tel. 055/89.85.519 (r.a.) - Fax 055/89.85.520
+520=20,+36,2100,36,Arial,18,28,BC,www.laboratoriosigma.it - e-mail: info@laboratoriosigma.it - pec: sigma-srl@legalmail.it
+530=20,+36,2100,36,Arial,14,24,C,C.C.I.A.A. Firenze N. 240940 - Reg. Soc. Trib. di Firenze N. 21921 - C/C Postale N. 19025501 - Cod. Fisc./Part. I.V.A. 00667530489
+
+[bitmaps]
+10=80,130,240,240,RCM,logo_100.bmp
+20=1600,160,320,240,RCM,iso9001_100.bmp
+;20=1600,160,320,240,RCM,logo-rina.bmp
+
+

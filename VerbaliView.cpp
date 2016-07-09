@@ -5409,8 +5409,8 @@ void CVerbaliView::StampaCertificato(long codRif, BOOL isCodSerie, BOOL bHeader)
 				SINCRONIZE(m_pTipiCertificatoSet, pCertVerbSet->m_TipoCertificato);
 				
 				fileLayout = m_pTipiCertificatoSet->m_LayoutStampa;
-				if(bHeader == TRUE)
-					fileLayout = m_pTipiCertificatoSet->m_LayoutStampaHeader;
+	//			if(bHeader == TRUE)
+	//				fileLayout = m_pTipiCertificatoSet->m_LayoutStampaHeader;
 					
 				m_strDllCorrente = GetNameModuloDll(m_pTipiCertificatoSet->m_Codice);
         
@@ -5462,6 +5462,12 @@ void CVerbaliView::StampaCertificato(long codRif, BOOL isCodSerie, BOOL bHeader)
 					fieldNames.Add("paginaCorrente");
 					fieldValues.Add("1");
 					//--------------------------------------------------------//
+				}
+				
+				// imposta la stampa con l'header
+				if(bHeader == TRUE)
+				{
+					prn.SetHeaderFile(pApp->GetCurrentDirectory() + "\\" + pApp->m_headerPrn);
 				}
 
 				prn.Print(pApp->GetCurrentDirectory() + "\\" + fileLayout, 

@@ -24,7 +24,6 @@ CTipiCertificatoSet::CTipiCertificatoSet(CDatabase* pdb)
 	m_Nome = _T("");
 	m_Descrizione = _T("");
 	m_LayoutStampa = _T("");
-	m_LayoutStampaHeader = _T("");
 	m_ProvaA = _T("");
 	m_ProvaB = _T("");
 	m_ProvaC = _T("");
@@ -40,7 +39,7 @@ CTipiCertificatoSet::CTipiCertificatoSet(CDatabase* pdb)
 	m_Maturazione = 0;
   m_Ordinamento = 0;
 	m_Variante = 0;
-	m_nFields = 21;
+	m_nFields = 20;
 	//}}AFX_FIELD_INIT
 	m_nDefaultType = snapshot;
 }
@@ -64,7 +63,6 @@ void CTipiCertificatoSet::DoFieldExchange(CFieldExchange* pFX)
 	RFX_Text(pFX, _T("[Nome]"), m_Nome);
 	RFX_Text(pFX, _T("[Descrizione]"), m_Descrizione);
 	RFX_Text(pFX, _T("[LayoutStampa]"), m_LayoutStampa);
-	RFX_Text(pFX, _T("[LayoutStampaHeader]"), m_LayoutStampaHeader);
 	RFX_Text(pFX, _T("[FinestraDialogo]"), m_FinestraDialogo);
 	RFX_Text(pFX, _T("[ProvaA]"), m_ProvaA);
 	RFX_Text(pFX, _T("[ProvaB]"), m_ProvaB);

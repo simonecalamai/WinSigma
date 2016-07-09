@@ -46,7 +46,7 @@ class CPrintItemArray : public CObArray
     // distruttore
 		~CPrintItemArray(void);
     // costruzione dell'arry
-		int  Load(CString sec, CString layoutFName);
+		int  Load(CString sec, CString layoutFName, CString headerFName = "");
     //
 		CPrintItem& operator[](int i);
     // 
@@ -236,6 +236,7 @@ class CPrintInterpreter : public CObject
   public:
   protected:
     CString         m_LayoutFName;
+		CString					m_HeaderFName;
     CStringArray*   m_pFieldsName;
     CStringArray*   m_pFieldsValue;
     BOOL (CALLBACK * m_pfnSetFields)(CStringArray*, CStringArray*);
@@ -285,6 +286,8 @@ class CPrintInterpreter : public CObject
 								   CStringArray* pFieldsValue,
                    BOOL (CALLBACK *pfnSetFields)(CStringArray*, CStringArray*),
 								   BOOL (CALLBACK *pfnSetTabfields)(CStringArray*, CStringArray*));
+		void SetHeaderFile(CString headerFName);
+
   protected:
     BOOL PrintStrings  (CDC* pDC, int page);
     BOOL PrintFields   (CDC* pDC, int page);

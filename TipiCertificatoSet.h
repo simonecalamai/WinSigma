@@ -22,7 +22,6 @@ public:
 	CString	m_Nome;
 	CString	m_Descrizione;
 	CString	m_LayoutStampa;
-	CString	m_LayoutStampaHeader;
 	CString	m_FinestraDialogo;
 	CString	m_ProvaA;
 	CString	m_ProvaB;

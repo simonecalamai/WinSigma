@@ -82,6 +82,7 @@ int CGridItem::m_LastY = 0;
 CPrintInterpreter::CPrintInterpreter(void) : CObject()
 {
 	m_nPage = 1;
+	m_HeaderFName = "";
 }
 
 CPrintInterpreter::~CPrintInterpreter(void)
@@ -222,7 +223,7 @@ void CPrintInterpreter::SetPage(int n)
 * Ritorno    : 
 * Note       : 
 *********************************************************************/
- BOOL CPrintInterpreter::Print(
+BOOL CPrintInterpreter::Print(
        CString layoutFName,
        CStringArray* pNames,
        CStringArray* pValues,
@@ -251,12 +252,12 @@ void CPrintInterpreter::SetPage(int n)
     return FALSE;
   
 	// legge il file di layout per costruire i vari array di tipo CPrintItemArray  
-	m_StringItems.Load(SEC_STRINGS,                  layoutFName);
-	m_FieldItems.Load(SEC_FIELDS,                    layoutFName);
-	m_TabfieldItems.Load(SEC_TABFIELDS,              layoutFName);
-	m_TextItems.Load(SEC_TEXTS,                      layoutFName);
-  m_GridItems.Load(SEC_GRIDS,                      layoutFName);
-  m_BitmapItems.Load(SEC_BITMAPS,                  layoutFName);
+	m_StringItems.Load(SEC_STRINGS,                  layoutFName, m_HeaderFName);
+	m_FieldItems.Load(SEC_FIELDS,                    layoutFName, m_HeaderFName);
+	m_TabfieldItems.Load(SEC_TABFIELDS,              layoutFName, m_HeaderFName);
+	m_TextItems.Load(SEC_TEXTS,                      layoutFName, m_HeaderFName);
+  m_GridItems.Load(SEC_GRIDS,                      layoutFName, m_HeaderFName);
+  m_BitmapItems.Load(SEC_BITMAPS,                  layoutFName, m_HeaderFName);
   
 	  
 	CFont* pFont;
@@ -908,6 +909,12 @@ BOOL CPrintInterpreter::PrintBitmaps(CDC* pDC, int page)
   return bAgain;
 }
 
+void CPrintInterpreter::SetHeaderFile(CString	headerFName)
+{
+	m_HeaderFName = headerFName;
+}
+
+
 /*----- implementazione di CPrintItem -----*/
 CPrintItem::CPrintItem(void) : CObject()
 {
@@ -960,10 +967,11 @@ CPrintItemArray::~CPrintItemArray(void)
 * Ritorno    :     
 * Note       : 
 *********************************************************************/
-int CPrintItemArray::Load(CString sec, CString layoutFName)
+int CPrintItemArray::Load(CString sec, CString layoutFName, CString headerFName)
 {
   int         i, p;
   char        buffer[1536];
+	char				bufheader[512];
   CPrintItem* pPrintItem;
 
   for (i = 0; i < GetSize(); i++)
@@ -1029,6 +1037,58 @@ int CPrintItemArray::Load(CString sec, CString layoutFName)
       }
     }
   }
+
+	// Inserimento header (se definito) s.c. luglio 2016
+	if(headerFName.IsEmpty() == false)
+	{
+		GetPrivateProfileString(sec, NULL, "", bufheader, sizeof(bufheader) - 1, headerFName);
+		// esamina tutto il buffer, cioe' tutte le chiavi della sezione
+		for (p = 0; bufheader[p]; p += (strlen(bufheader + p) + 1))
+		{
+			// alloca un nuovo oggetto derivato da CPrintItem, in base alla sezione sec
+			if (sec == SEC_STRINGS)        
+				pPrintItem = new CStringItem();
+			else if(sec == SEC_FIELDS)
+				pPrintItem = new CFieldItem();
+			else if (sec == SEC_TABFIELDS)
+				pPrintItem = new CTabfieldItem();
+			else if(sec == SEC_TEXTS)
+				pPrintItem = new CTextItem();
+			else if(sec == SEC_GRIDS)
+				pPrintItem = new CGridItem();
+			else if(sec == SEC_BITMAPS)
+				pPrintItem = new CBitmapItem();
+			else
+				continue;
+    
+			// imposta le variabili membro dell'oggetto appena allocato in base al valore
+			// presente a destra della chiave corrente
+			if (pPrintItem->Load(sec, bufheader + p, headerFName))
+			{
+				int nChiave = atoi((LPCSTR)(bufheader + p));
+				
+				// stampa in tutte le pagine
+				pPrintItem->m_Page = 0;			
+				// inserisce il nuovo oggetto nell'array 
+				if(!GetSize())
+					Add(pPrintItem);
+				else
+				{
+					for(i = 0; i < GetSize(); i++)
+					{
+						if(GetAt(i)->m_Y > pPrintItem->m_Y)
+						{
+							InsertAt(i, pPrintItem);
+							break;
+						}
+					}
+					if(i == GetSize())
+						Add(pPrintItem);
+				}
+			}
+		}
+	}
+
   // restituisce il numero di oggetti allocati dell'array
 	return GetSize();
 }

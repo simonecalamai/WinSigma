@@ -60,6 +60,7 @@ CWinSigmaApp::CWinSigmaApp()
   m_nMode = FALSE;
   m_bPrimaVolta = true;
 	m_byDBRemoto = 1;
+	m_headerPrn = "header.prn";
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -128,28 +129,39 @@ BOOL CWinSigmaApp::InitInstance()
 	CCommandLineInfo cmdInfo;
 	ParseCommandLine(cmdInfo);
 
+	CString dbName;
 	int instCode = GetProfileInt(GENERALE, INSTALLAZIONE, 0);   // default WinSigma FI
 	// Imposta la stringa di connessione
 	switch(instCode)
 	{
 		case 0:  // WinSigma FI
+			dbName.Format("WinSigma");
 			m_csDefaultConnect.Format("ODBC;UID=dbuser;PWD=49sigma03");
+			m_headerPrn = GetProfileString("Impostazioni", "HdrSigma", "header.prn");
 			break;
 
 		case 1:	// WinSigma LI
+//			dbName.Format("winsigmali");
+//			m_csDefaultConnect.Format("ODBC;UID=dbuser;PWD=49sigma03");
+			dbName.Format("WinSigma");
 			m_csDefaultConnect.Format("ODBC;UID=dbuser;PWD=59sigma03");
+			m_headerPrn = GetProfileString("Impostazioni", "HdrSigmaE", "headerSE.prn");
 			break;
 
 		case 2:	// WinSigmaDue FI
+			dbName.Format("WinSigma2");
 			m_csDefaultConnect.Format("ODBC;UID=dbuser;PWD=49sigma03");
+			m_headerPrn = GetProfileString("Impostazioni", "HdrSigma2", "headerS2.prn");
 			break;
 	}
 
   // prova ad aprire la connessione con i dati
 #ifdef WINSIGMA2
-	if(!m_db.Open("WinSigma2", FALSE, FALSE, m_csDefaultConnect, TRUE))
+//	if(!m_db.Open("WinSigma2", FALSE, FALSE, m_csDefaultConnect, TRUE))
+	if(!m_db.Open(dbName, FALSE, FALSE, m_csDefaultConnect, TRUE))
 #else
-	if(!m_db.Open("WinSigma", FALSE, FALSE, m_csDefaultConnect, TRUE))
+//	if(!m_db.Open("WinSigma", FALSE, FALSE, m_csDefaultConnect, TRUE))
+	if(!m_db.Open(dbName, FALSE, FALSE, m_csDefaultConnect, TRUE))
 #endif	
 	{
 	  AfxMessageBox("Connessione alla base dati fallita."); 
@@ -208,7 +220,7 @@ BOOL CWinSigmaApp::InitInstance()
 
   // Dispatch commands specified on the command line
   if (!ProcessShellCommand(cmdInfo))
-	return FALSE;
+		return FALSE;
 
   // Change extension for help file
   CString strHelpFile = m_pszHelpFilePath;
