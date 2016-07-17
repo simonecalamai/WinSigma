@@ -212,7 +212,7 @@ protected:
 	long m_nCodSperiment;
 	static long m_nSerieInStampa;
 	void SetProveMateriale(byte forzaProve, byte forzaMateriale);
-	void StampaCertificati();
+	void StampaCertificati(BOOL bHeader = false);
 	static int LoadDatiStampa(long codCertificato, CStringArray* pFieldNames, CStringArray* pFieldValues);
 
 	void SetServiziAggiuntivi(CDWordArray* paryServiziAggiuntivi);
@@ -247,6 +247,7 @@ protected:
 	afx_msg void OnKillfocusEditNomeAzFattura();
 	afx_msg void OnKillfocusEditNomeAzImpresa();
 	afx_msg void OnButtonStampaCertificati();
+	afx_msg void OnButtonStampaCertificatiConHeader();
 	afx_msg void OnPrnCartaIntestata();
 	afx_msg void OnPrnCartaLibera();
 	afx_msg void OnCheckLungaScadenza();

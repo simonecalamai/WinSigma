@@ -13,8 +13,11 @@ y zero=-50
 530=20,+36,2100,36,Arial,14,24,C,R.E.A. Firenze N. 593011 - Cod. Fisc./Part. I.V.A. 06010480488
 
 [bitmaps]
-10=80,130,240,240,RCM,logo_100.bmp
-20=1600,120,320,240,RCM,iso9001_100.bmp
+;10=80,130,240,240,RCM,logo_100.bmp
+;20=1600,120,320,240,RCM,iso9001_100.bmp
 ;20=1600,160,320,240,RCM,logo-rina.bmp
 
+[images]
+10=60,130,280,280,RCM,logoa.png
+20=1580,140,320,240,RCM,isorina.png
 

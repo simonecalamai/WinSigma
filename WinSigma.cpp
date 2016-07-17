@@ -63,6 +63,10 @@ CWinSigmaApp::CWinSigmaApp()
 	m_headerPrn = "header.prn";
 }
 
+CWinSigmaApp::~CWinSigmaApp()
+{
+}
+
 /////////////////////////////////////////////////////////////////////////////
 // The one and only CWinSigmaApp object
 
@@ -131,6 +135,7 @@ BOOL CWinSigmaApp::InitInstance()
 
 	CString dbName;
 	int instCode = GetProfileInt(GENERALE, INSTALLAZIONE, 0);   // default WinSigma FI
+	int dbgLI = GetProfileInt(GENERALE, "DebugLI", 0);   // debug sigma etruria
 	// Imposta la stringa di connessione
 	switch(instCode)
 	{
@@ -141,10 +146,16 @@ BOOL CWinSigmaApp::InitInstance()
 			break;
 
 		case 1:	// WinSigma LI
-//			dbName.Format("winsigmali");
-//			m_csDefaultConnect.Format("ODBC;UID=dbuser;PWD=49sigma03");
-			dbName.Format("WinSigma");
-			m_csDefaultConnect.Format("ODBC;UID=dbuser;PWD=59sigma03");
+			if(dbgLI > 0)
+			{
+				dbName.Format("winsigmali");
+				m_csDefaultConnect.Format("ODBC;UID=dbuser;PWD=49sigma03");
+			}
+			else
+			{
+				dbName.Format("WinSigma");
+				m_csDefaultConnect.Format("ODBC;UID=dbuser;PWD=59sigma03");
+			}
 			m_headerPrn = GetProfileString("Impostazioni", "HdrSigmaE", "headerSE.prn");
 			break;
 
@@ -182,7 +193,6 @@ BOOL CWinSigmaApp::InitInstance()
 			return FALSE;
 		}
 	}
-
 
   //Controlla se ci sono malfunzionamenti hardware nel server
   CString str;

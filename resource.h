@@ -644,6 +644,7 @@
 #define ID_VERBALI_METTIINFATTURAZIONE  33043
 #define ID_FATTURA_ELETT_EMETTI         33044
 #define ID_STAMPA_CON_HEADER            33045
+#define ID_BUTTON_STAMPA_CERTIFICATI_CON_HEADER 33046
 
 // Next default values for new objects
 // 
@@ -651,7 +652,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        267
-#define _APS_NEXT_COMMAND_VALUE         33046
+#define _APS_NEXT_COMMAND_VALUE         33047
 #define _APS_NEXT_CONTROL_VALUE         1586
 #define _APS_NEXT_SYMED_VALUE           196
 #endif

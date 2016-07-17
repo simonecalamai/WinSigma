@@ -253,6 +253,7 @@ BEGIN_MESSAGE_MAP(CVerbaliView, CXFormView)
 	ON_EN_KILLFOCUS(IDC_EDIT_NOME_AZ_FATTURA, OnKillfocusEditNomeAzFattura)
 	ON_EN_KILLFOCUS(IDC_EDIT_NOME_AZ_IMPRESA, OnKillfocusEditNomeAzImpresa)
 	ON_COMMAND(ID_BUTTON_STAMPA_CERTIFICATI, OnButtonStampaCertificati)
+	ON_COMMAND(ID_BUTTON_STAMPA_CERTIFICATI_CON_HEADER, OnButtonStampaCertificatiConHeader)
 	ON_COMMAND(ID_PRN_CARTA_INTESTATA, OnPrnCartaIntestata)
 	ON_COMMAND(ID_PRN_CARTA_LIBERA, OnPrnCartaLibera)
 	ON_BN_CLICKED(IDC_CHECK_LUNGA_SCADENZA, OnCheckLungaScadenza)
@@ -4564,6 +4565,22 @@ void CVerbaliView::OnButtonStampaCertificati()
 		StampaCertificati();
 }
 
+void CVerbaliView::OnButtonStampaCertificatiConHeader() 
+{
+	CWnd* pWind = m_ListSerie.GetFocus();
+	if( pWind!=NULL && *pWind == m_ListSerie)
+	{
+		int n;
+		POSITION pos;
+		pos = m_ListSerie.GetFirstSelectedItemPosition();
+		if( (n = m_ListSerie.GetNextSelectedItem(pos)) >= 0)
+			StampaCertificato(m_ListSerie.GetItemData(n));
+		else
+			StampaCertificati(true);
+	}
+	else
+		StampaCertificati(true);
+}
 
 //////////////////////////////////////////////////////////////////////////////////
 //  La funzione riceve il recordset sincronizzato con il certificato da stampare e:
@@ -5083,7 +5100,7 @@ void CVerbaliView::OnAnnullaVerbale()
 }
 
 
-void CVerbaliView::StampaCertificati()
+void CVerbaliView::StampaCertificati(BOOL bHeader)
 {
 		//--------------- Istanze dei recordset utilizzati-----------------//
 
@@ -5176,6 +5193,12 @@ void CVerbaliView::StampaCertificati()
 					fieldValues.Add("1");
 					//--------------------------------------------------------//
 				}				
+
+				// imposta la stampa con l'header
+				if(bHeader == TRUE)
+				{
+					prn.SetHeaderFile(pApp->GetCurrentDirectory() + "\\" + pApp->m_headerPrn);
+				}
 				
 				prn.Print(pApp->GetCurrentDirectory() + "\\" + fileLayout, 
 							&fieldNames, &fieldValues, NULL, &ScanProvini );

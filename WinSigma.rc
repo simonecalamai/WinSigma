@@ -455,6 +455,8 @@ BEGIN
         MENUITEM "&Emissione",                  ID_BUTTON_AVVIA_EMISSIONE
         MENUITEM SEPARATOR
         MENUITEM "&Stampa",                     ID_BUTTON_STAMPA_CERTIFICATI
+        MENUITEM "Stampa con &header",          ID_BUTTON_STAMPA_CERTIFICATI_CON_HEADER
+
         MENUITEM SEPARATOR
         MENUITEM "S&blocca certificazione",     ID_SBLOCCACERTIFICAZIONE
     END
@@ -2039,8 +2041,8 @@ END
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 4,3,1,0
- PRODUCTVERSION 4,3,1,0
+ FILEVERSION 4,4,0,0
+ PRODUCTVERSION 4,4,0,0
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -2058,14 +2060,14 @@ BEGIN
             VALUE "Comments", "\0"
             VALUE "CompanyName", "\0"
             VALUE "FileDescription", "WinSigma Applicazione MFC\0"
-            VALUE "FileVersion", "4, 3, 1, 0\0"
+            VALUE "FileVersion", "4, 4, 0, 0\0"
             VALUE "InternalName", "WinSigma\0"
             VALUE "LegalCopyright", "Copyright (C) 2003\0"
             VALUE "LegalTrademarks", "\0"
             VALUE "OriginalFilename", "WinSigma.EXE\0"
             VALUE "PrivateBuild", "\0"
             VALUE "ProductName", "WinSigma Applicazione\0"
-            VALUE "ProductVersion", "4, 3, 1, 0\0"
+            VALUE "ProductVersion", "4, 4, 0, 0\0"
             VALUE "SpecialBuild", "\0"
         END
     END

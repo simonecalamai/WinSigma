@@ -16,8 +16,12 @@ y zero=-50
 530=20,+36,2100,36,Arial,14,24,C,C.C.I.A.A. Firenze N. 240940 - Reg. Soc. Trib. di Firenze N. 21921 - C/C Postale N. 19025501 - Cod. Fisc./Part. I.V.A. 00667530489
 
 [bitmaps]
-10=80,130,240,240,RCM,logo_100.bmp
-20=1600,160,320,240,RCM,iso9001_100.bmp
-;20=1600,160,320,240,RCM,logo-rina.bmp
+;10=80,130,240,240,RCM,logo_100.bmp
+;20=1600,160,320,240,RCM,iso9001_100.bmp
+
+[images]
+10=60,130,280,280,RCM,logoa.png
+;20=1600,160,320,240,RCM,iso9001.png
+20=1600,164,320,240,RCM,isorina.png
 
 

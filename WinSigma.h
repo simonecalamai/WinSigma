@@ -52,7 +52,7 @@
 //#define WINSIGMA2
 
 //#define STR_VERSION							"4.4.0beta"
-#define STR_VERSION							"4.3.2"
+#define STR_VERSION							"4.4.0"
 #define STR_BUILDTIME   __TIMESTAMP__  
 #define AZIENDE_BUFFER  1024
 #define FATTURE_BUFFER  1024
@@ -279,6 +279,7 @@ enum
 	if(pSet->m_Codice==cod) break; \
 	ASSERT(!pSet->IsEOF())
 
+typedef void (*EntryPointfuncPtr)(int argc, const char * argv);
 
 extern const char* STR_MESI[];
 
@@ -360,6 +361,7 @@ class CWinSigmaApp : public CWinApp
 		CString m_headerPrn;
   /*---- metodi -----*/
   public:
+		~CWinSigmaApp();
 	  BYTE IsDBRemoto();
     CConnessioneDlg m_dlg;
 	  BOOL SetFatturaInUso(CFattureSet* pFattSet, BOOL libera = FALSE);

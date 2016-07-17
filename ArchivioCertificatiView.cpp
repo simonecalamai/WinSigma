@@ -681,7 +681,7 @@ void CArchivioCertificatiView::OnPreviewDoc()
 
 void CArchivioCertificatiView::OnDblclkListRisultatoRicerca(NMHDR* pNMHDR, LRESULT* pResult) 
 {
-  StampaCertificato();
+  StampaCertificato(TRUE);
   *pResult = 0;
 }
 

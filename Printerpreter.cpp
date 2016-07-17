@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "resource.h"
-
+#include "WinSigma.h"
 #include "Printerpreter.h"
 
 #define BMP_MONOCHROME   1
@@ -15,6 +15,7 @@
 #define SEC_TEXTS        "texts"
 #define SEC_GRIDS        "grids"
 #define SEC_BITMAPS      "bitmaps"
+#define SEC_IMAGES	     "images"
 
 #define KEY_XZERO         "x zero"
 #define KEY_YZERO         "y zero"
@@ -258,8 +259,8 @@ BOOL CPrintInterpreter::Print(
 	m_TextItems.Load(SEC_TEXTS,                      layoutFName, m_HeaderFName);
   m_GridItems.Load(SEC_GRIDS,                      layoutFName, m_HeaderFName);
   m_BitmapItems.Load(SEC_BITMAPS,                  layoutFName, m_HeaderFName);
-  
-	  
+  m_ImageItems.Load(SEC_IMAGES,										 layoutFName, m_HeaderFName);
+  	  
 	CFont* pFont;
 
 	/*----- ciclo di stampa delle pagine -----*/
@@ -283,6 +284,8 @@ BOOL CPrintInterpreter::Print(
 		if (PrintGrids(&m_dcPrint, m_nPage))     bAgain = TRUE;
     // stampa le bitmap
 		if (PrintBitmaps(&m_dcPrint, m_nPage))   bAgain = TRUE;
+    // stampa le immagini (png, jpg, ...)
+		if (PrintImages(&m_dcPrint, m_nPage))   bAgain = TRUE;
 
     // se deve stampare il il numero di pagina, lo stampa secondo gli attributi
 		// memorizzati nell'oggetto m_PageItem
@@ -347,6 +350,7 @@ BOOL CPrintInterpreter::Print(
 	m_TextItems.Load(SEC_TEXTS,                      layoutFName);
   m_GridItems.Load(SEC_GRIDS,                      layoutFName);
   m_BitmapItems.Load(SEC_BITMAPS,                  layoutFName);
+  m_ImageItems.Load(SEC_BITMAPS,                  layoutFName);
   
 	  
 	CFont* pFont;
@@ -367,6 +371,8 @@ BOOL CPrintInterpreter::Print(
 	PrintGrids(&m_dcPrint, m_nPage);
   // stampa le bitmap
 	PrintBitmaps(&m_dcPrint, m_nPage);
+  // stampa le immagini (png, jpg, ...)
+	PrintImages(&m_dcPrint, m_nPage);
 
   // se deve stampare il il numero di pagina, lo stampa secondo gli attributi
 	// memorizzati nell'oggetto m_PageItem
@@ -909,6 +915,28 @@ BOOL CPrintInterpreter::PrintBitmaps(CDC* pDC, int page)
   return bAgain;
 }
 
+/********************************************************************
+* Funzione   : PrintImages
+* Descrizione: 
+* Parametri  : 
+* Ritorno    : 
+* Note       : 
+*********************************************************************/
+BOOL CPrintInterpreter::PrintImages(CDC* pDC, int page)
+{
+  int   i;
+  BOOL  bAgain = FALSE;
+
+  for(i = 0; i < m_ImageItems.GetSize(); i++)
+  {
+    if(!m_ImageItems[i].m_Page || m_ImageItems[i].m_Page == page)
+      m_ImageItems[i].Print(pDC, NULL);
+    if(m_ImageItems[i].m_Page > page)
+      bAgain = TRUE;
+  }
+  return bAgain;
+}
+
 void CPrintInterpreter::SetHeaderFile(CString	headerFName)
 {
 	m_HeaderFName = headerFName;
@@ -997,6 +1025,8 @@ int CPrintItemArray::Load(CString sec, CString layoutFName, CString headerFName)
 		  pPrintItem = new CGridItem();
     else if(sec == SEC_BITMAPS)
 		  pPrintItem = new CBitmapItem();
+    else if(sec == SEC_IMAGES)
+		  pPrintItem = new CImageItem();
     else
 		  continue;
     
@@ -1058,6 +1088,8 @@ int CPrintItemArray::Load(CString sec, CString layoutFName, CString headerFName)
 				pPrintItem = new CGridItem();
 			else if(sec == SEC_BITMAPS)
 				pPrintItem = new CBitmapItem();
+			else if(sec == SEC_IMAGES)
+				pPrintItem = new CImageItem();
 			else
 				continue;
     
@@ -1903,6 +1935,193 @@ BOOL CBitmapItem::Load(CString sec, CString key, CString layoutFName)
 }
 
 CGdiObject* CBitmapItem::Print(CDC* pDC, CGdiObject* pBitmap)
+{
+  HBITMAP  hBM;
+  CBitmap* pOldBM;
+  CDC      memDC;
+  double   w, h, x, y;
+
+
+  if(!m_W || !m_H)
+	  return NULL;
+  memDC.CreateCompatibleDC(pDC);
+	int n = memDC.GetDeviceCaps(BITSPIXEL);
+  hBM = CreateDIBitmap(pDC->m_hDC, m_pInfo, CBM_INIT,
+                       m_pBits, m_pHeader, DIB_RGB_COLORS);
+
+  w = m_pInfo->biWidth;
+	h = m_pInfo->biHeight;
+	if(m_pInfo->biWidth / m_pInfo->biHeight > m_W / m_H)
+		h = m_pInfo->biWidth * m_H / m_W;
+	else
+		w = m_pInfo->biHeight * m_W / m_H;
+
+  memDC.SetMapMode(MM_ISOTROPIC);
+	
+	memDC.SetWindowOrg(0, 0);
+	memDC.SetWindowExt(m_W, m_H);
+  
+	x = (m_pInfo->biWidth - (int)w) / 2;
+	y = (m_pInfo->biHeight - (int)h) / 2;
+	memDC.SetViewportOrg((int)x, (int)y);
+	memDC.SetViewportExt((int)w, (int)h);
+
+  pOldBM = memDC.SelectObject((CBitmap*)CBitmap::FromHandle(hBM));
+
+  CRect  r(0, 0, (int)m_pInfo->biWidth, (int)m_pInfo->biHeight);
+  CPen   whitePen(PS_SOLID, 2, RGB(0xFF, 0xFF, 0xFF));
+//  CPen   whitePen(PS_SOLID, 2, RGB(0x00, 0x00, 0x00));
+  memDC.DPtoLP(&r);
+	r += CPoint(m_X, m_Y);
+	pDC->BitBlt(m_X, m_Y, m_W, m_H, &memDC, 0, 0, SRCCOPY);
+
+	CPen*  pOldPen = pDC->SelectObject(&whitePen);
+	pDC->MoveTo(r.left, r.top);
+	pDC->LineTo(r.right, r.top);
+	pDC->LineTo(r.right, r.bottom);
+	pDC->LineTo(r.left, r.bottom);
+	pDC->LineTo(r.left, r.top);
+
+  pDC->SelectObject(pOldPen);
+  memDC.SelectObject(pOldBM);
+  DeleteObject((HBITMAP)hBM);
+
+ return NULL;
+}
+
+/*----- implementazione di CImageItem -----*/
+CImageItem::CImageItem(void) : CPrintItem()
+{
+	m_dib = NULL;
+  m_hHeader = NULL;
+  m_hBits = NULL;
+  m_pHeader = NULL;
+  m_pInfo = NULL;
+  m_pBits = NULL;
+  m_PathName = "";
+  m_WidthBytes = 0;
+  m_NColors = 0;
+}
+
+CImageItem::~CImageItem(void)
+{
+	if(m_dib != NULL)
+	{
+		FreeImage_Unload(m_dib);
+	}	
+#if 0
+  if(m_pBits)
+  {
+    GlobalUnlock(m_hBits);
+    GlobalFree(m_hBits);
+    m_pBits = NULL;
+  }
+  if(m_pHeader)
+  {
+    GlobalUnlock(m_hHeader);
+    GlobalFree(m_hHeader);
+    m_pHeader = NULL;
+    m_pInfo = NULL;
+  }
+#endif
+}
+
+BOOL CImageItem::Load(CString sec, CString key, CString layoutFName)
+{
+  int     p, zerox, zeroy;
+  char    buffer[128];
+  CString flags;
+//  DWORD   headerSize;
+//  BITMAPFILEHEADER fileHeader;
+ // CFile   f;
+
+  zerox = GetPrivateProfileInt(SEC_GENERAL, KEY_XZERO, 0, layoutFName);
+  zeroy = GetPrivateProfileInt(SEC_GENERAL, KEY_YZERO, 0, layoutFName);
+  GetPrivateProfileString(sec, key, "",
+                          buffer, sizeof(buffer) - 1, layoutFName);
+  /*----- sostituisco le virgole con 0 e termino con 00 -----*/
+  for(p = 0; buffer[p]; p++)
+    if(buffer[p] == ',') buffer[p] = 0;
+  buffer[p + 1] = 0;
+  /*----- m_X -----*/
+  if(!buffer[p = 0]) return FALSE;
+  sscanf(buffer + p, "%d", &m_X);
+  m_X += zerox;
+  p += (strlen(buffer + p) + 1);
+  /*----- m_Y -----*/
+  if(!buffer[p]) return FALSE;
+  sscanf(buffer + p, "%d", &m_Y);
+  m_Y += zeroy;
+  //m_Y = (m_Y * vRes / vSize);
+  p += (strlen(buffer + p) + 1);
+  /*----- m_Width -----*/
+  if(!buffer[p]) return FALSE;
+  sscanf(buffer + p, "%d", &m_W);
+  p += (strlen(buffer + p) + 1);
+  /*----- m_Height -----*/
+  if(!buffer[p]) return FALSE;
+  sscanf(buffer + p, "%d", &m_H);
+  //m_Height = (m_Height * vRes / vSize);
+  p += (strlen(buffer + p) + 1);
+  /*----- m_Flags -----*/
+  m_Flags = buffer + p;
+  p += (strlen(buffer + p) + 1);
+  /*----- m_PathName -----*/
+  if(!buffer[p]) return FALSE;
+  m_PathName = buffer + p;
+  p += (strlen(buffer + p) + 1);
+//  if(!f.Open(m_PathName, CFile::modeRead)) return FALSE;
+  /*----- carico l'immagine -----*/  
+	m_dib = FreeImage_Load(FIF_PNG, m_PathName, PNG_DEFAULT);
+
+#if 0
+//  f.Read((char*)&fileHeader, sizeof(BITMAPFILEHEADER));
+//  headerSize = fileHeader.bfOffBits - sizeof(BITMAPFILEHEADER);
+//  if((m_hHeader = GlobalAlloc(GHND, headerSize)) == NULL) return FALSE;
+//  if((m_pHeader = (LPBITMAPINFO)GlobalLock(m_hHeader)) == NULL)
+//  {
+//    GlobalFree(m_hHeader);
+//    return FALSE;
+//  }
+#endif
+
+//  m_pInfo = &(m_pHeader->bmiHeader);
+	m_pInfo = FreeImage_GetInfoHeader(m_dib);
+//  f.Read((char*)m_pHeader, (UINT)headerSize);
+	m_pHeader = FreeImage_GetInfo(m_dib);
+  m_WidthBytes = (m_pInfo->biWidth * m_pInfo->biBitCount + 31) / 32;
+  m_WidthBytes *= 4;
+  m_pInfo->biSizeImage = m_pInfo->biHeight * m_WidthBytes;
+  m_pInfo->biXPelsPerMeter = 2250;
+  m_pInfo->biYPelsPerMeter = 2250;
+  if(m_pInfo->biBitCount == BMP_24BITS) m_NColors = 0;
+  else if(m_pInfo->biClrUsed) m_NColors = m_pInfo->biClrUsed;
+  else m_NColors = (0x1 << m_pInfo->biBitCount);
+
+	m_pBits = FreeImage_GetBits(m_dib);
+#if 0
+  if((m_hBits = GlobalAlloc(GHND, m_pInfo->biSizeImage)) == NULL)
+  {
+    GlobalUnlock(m_hHeader);
+    GlobalFree(m_hHeader);
+    return FALSE;
+  }
+  if((m_pBits = (BYTE*)GlobalLock(m_hBits)) == NULL)
+  {
+    GlobalUnlock(m_hHeader);
+    GlobalFree(m_hHeader);
+    GlobalFree(m_hBits);
+    return FALSE;
+  }
+  for(r = 0; r < m_pInfo->biHeight; r++)
+    f.Read((char*)m_pBits + m_WidthBytes * r, (UINT)m_WidthBytes);
+  f.Close();
+#endif
+
+  return TRUE;
+}
+
+CGdiObject* CImageItem::Print(CDC* pDC, CGdiObject* pBitmap)
 {
   HBITMAP  hBM;
   CBitmap* pOldBM;

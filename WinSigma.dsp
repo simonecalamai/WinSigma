@@ -83,7 +83,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 /nologo /subsystem:windows /debug /machine:I386 /pdbtype:sept
-# ADD LINK32 C:\Lavori\Sigma\WinSigma\html\lib\htmlhelp.lib /nologo /subsystem:windows /debug /machine:I386 /pdbtype:sept /libpath:"C:\Lavori\Sigma\WinSigma\html\lib"
+# ADD LINK32 C:\Lavori\Sigma\WinSigma\FreeImage.lib C:\Lavori\Sigma\WinSigma\html\lib\htmlhelp.lib /nologo /subsystem:windows /debug /machine:I386 /pdbtype:sept /libpath:"C:\Lavori\Sigma\WinSigma\html\lib"
 # SUBTRACT LINK32 /nodefaultlib
 
 !ELSEIF  "$(CFG)" == "WinSigma - Win32 W2Release"
@@ -1210,6 +1210,15 @@ SOURCE=.\html\WinSigma.hhp
 # End Source File
 # End Target
 # End Project
+# Section WinSigma : {7BF80981-BF32-101A-8BBB-00AA00300CAB}
+# 	2:5:Class:CPicture
+# 	2:10:HeaderFile:picture.h
+# 	2:8:ImplFile:picture.cpp
+# End Section
+# Section WinSigma : {C932BA85-4374-101B-A56C-00AA003668DC}
+# 	2:21:DefaultSinkHeaderFile:msmask.h
+# 	2:16:DefaultSinkClass:CMSMask
+# End Section
 # Section WinSigma : {BEF6E003-A874-101A-8BBA-00AA00300CAB}
 # 	2:5:Class:COleFont1
 # 	2:10:HeaderFile:font1.h
@@ -1219,13 +1228,4 @@ SOURCE=.\html\WinSigma.hhp
 # 	2:5:Class:CMSMask
 # 	2:10:HeaderFile:msmask.h
 # 	2:8:ImplFile:msmask.cpp
-# End Section
-# Section WinSigma : {7BF80981-BF32-101A-8BBB-00AA00300CAB}
-# 	2:5:Class:CPicture
-# 	2:10:HeaderFile:picture.h
-# 	2:8:ImplFile:picture.cpp
-# End Section
-# Section WinSigma : {C932BA85-4374-101B-A56C-00AA003668DC}
-# 	2:21:DefaultSinkHeaderFile:msmask.h
-# 	2:16:DefaultSinkClass:CMSMask
 # End Section

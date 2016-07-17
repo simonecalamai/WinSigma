@@ -1,3 +1,5 @@
+#include "FreeImage.h"
+
 /********************************************************************
 * Classe     : CPrintItem
 * Descrizione: Classe base da cui deriveremo le varie classi per
@@ -225,6 +227,33 @@ class CBitmapItem : public CPrintItem
 };
 
 /********************************************************************
+* Classe     : CImageItem
+* Descrizione: 
+* Note       : 
+*********************************************************************/
+class CImageItem : public CPrintItem
+{
+  /*----- dati -----*/
+  protected:
+		FIBITMAP*					 m_dib;	
+	  CString            m_Flags;
+    HGLOBAL            m_hHeader;
+    HGLOBAL            m_hBits;
+    LPBITMAPINFO       m_pHeader;
+    LPBITMAPINFOHEADER m_pInfo;
+    BYTE*              m_pBits;
+    CString            m_PathName;
+    DWORD              m_WidthBytes; /* num. di byte per riga        */
+    DWORD              m_NColors;    /* num. di colori nella palette */
+  /*----- metodi -----*/
+  public:
+    CImageItem(void);
+    ~CImageItem(void);
+    BOOL Load(CString sec, CString key, CString layoutFName);
+    CGdiObject* Print(CDC* pDC, CGdiObject* pBitmap);
+};
+
+/********************************************************************
 * Classe     : CPrintInterpreter
 * Descrizione: Classe usata per stampare che incapsula array di oggetti
                istanziati dalle classi precedentemente definite
@@ -252,6 +281,7 @@ class CPrintInterpreter : public CObject
     CPrintItemArray m_TextItems;
     CPrintItemArray m_GridItems;
     CPrintItemArray m_BitmapItems;
+    CPrintItemArray m_ImageItems;
     // oggetto per stampare il numero di pagina
     CPageItem m_PageItem;
 
@@ -295,5 +325,6 @@ class CPrintInterpreter : public CObject
     BOOL PrintTexts    (CDC* pDC, int page);
     BOOL PrintGrids    (CDC* pDC, int page);
     BOOL PrintBitmaps  (CDC* pDC, int page);
+    BOOL PrintImages  (CDC* pDC, int page);
 };
 
