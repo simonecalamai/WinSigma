@@ -2031,9 +2031,6 @@ BOOL CImageItem::Load(CString sec, CString key, CString layoutFName)
   int     p, zerox, zeroy;
   char    buffer[128];
   CString flags;
-//  DWORD   headerSize;
-//  BITMAPFILEHEADER fileHeader;
- // CFile   f;
 
   zerox = GetPrivateProfileInt(SEC_GENERAL, KEY_XZERO, 0, layoutFName);
   zeroy = GetPrivateProfileInt(SEC_GENERAL, KEY_YZERO, 0, layoutFName);

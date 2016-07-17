@@ -86,7 +86,7 @@ const int FINE_MESE_BISESTILE[] = {0, 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30
 // CWinSigmaApp initialization
 
 BOOL CWinSigmaApp::InitInstance()
-{
+{ 
 	AfxEnableControlContainer();
 	// Standard initialization
 	// If you are not using these features and wish to reduce the size
