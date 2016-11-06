@@ -1,6 +1,6 @@
 [general]
 x zero=-20
-y zero=-50
+y zero=-60
 
 [strings]
 ;header
@@ -8,9 +8,14 @@ y zero=-50
 40=340,260,1500,40,Arial,28,40,L,Prove ed indagini su materiali da costruzione
 
 ;footer
+500=80,2790,800,50,Courier New,18,28,L,Firmato digitalmente ai sensi del D.Lgs 82/2005
 510=20,2880,2100,36,Arial,18,28,BC,Via P.Gobetti 8 - 50013 Capalle CAMPI BISENZIO - FIRENZE - Tel. 055/89.85.519 (r.a.) - Fax 055/89.85.520
 520=20,+36,2100,36,Arial,18,28,BC,www.laboratoriosigma.it - e-mail: sigmadue@laboratoriosigma.it - pec: sigmadue@legalmail.it
 530=20,+36,2100,36,Arial,14,24,C,R.E.A. Firenze N. 593011 - Cod. Fisc./Part. I.V.A. 06010480488
+
+[grids]
+10=80,400,1970,0,1,1
+20=80,2820,1970,0,1,1
 
 [bitmaps]
 ;10=80,130,240,240,RCM,logo_100.bmp

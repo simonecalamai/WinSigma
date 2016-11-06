@@ -1,27 +1,32 @@
 [general]
 x zero=-20
-y zero=-50
+y zero=-60
 
 [strings]
 ;header
-10=340,150,900,80,Arial Black,56,82,BL,Laboratorio SIGMA s.r.l.
+10=340,140,900,80,Arial Black,56,82,BL,Laboratorio SIGMA s.r.l.
 ;20=+920,+20,30,40,Arial,30,40,-
 30=+920,+32,1000,40,Arial,22,38,IL,- Prove su Materiali da Costruzione dal 1973 
-40=340,240,1500,40,Arial,24,36,L,Autorizzazione Ministero delle Infrastrutture e Trasporti (legge 1086/71 art.20)
-50=340,+50,1500,40,Arial,24,36,L,D. M. n. 6786 del 15.10.2014 - Riconoscimento RINA - Associato A.L.I.G.
+40=340,230,1500,40,Arial,24,36,L,Autorizzazione Ministero delle Infrastrutture e Trasporti (legge 1086/71 art.20)
+50=580,+50,1260,40,Arial,24,36,L,D. M. n. 6786 del 15.10.2014 - Associato A.L.I.G.
 
 ;footer
-510=20,2880,2100,36,Arial,18,28,BC,Via P.Gobetti 8 - 50013 Capalle CAMPI BISENZIO - FIRENZE - Tel. 055/89.85.519 (r.a.) - Fax 055/89.85.520
+500=80,2790,800,50,Courier New,18,28,L,Firmato digitalmente ai sensi del D.Lgs 82/2005
+510=20,2855,2100,36,Arial,18,28,BC,Via P.Gobetti 8 - 50013 Capalle CAMPI BISENZIO - FIRENZE - Tel. 055/89.85.519 (r.a.) - Fax 055/89.85.520
 520=20,+36,2100,36,Arial,18,28,BC,www.laboratoriosigma.it - e-mail: info@laboratoriosigma.it - pec: sigma-srl@legalmail.it
 530=20,+36,2100,36,Arial,14,24,C,C.C.I.A.A. Firenze N. 240940 - Reg. Soc. Trib. di Firenze N. 21921 - C/C Postale N. 19025501 - Cod. Fisc./Part. I.V.A. 00667530489
+
+[grids]
+10=80,400,1970,0,1,1
+20=80,2820,1970,0,1,1
 
 [bitmaps]
 ;10=80,130,240,240,RCM,logo_100.bmp
 ;20=1600,160,320,240,RCM,iso9001_100.bmp
 
 [images]
-10=60,130,280,280,RCM,logoa.png
+10=60,120,280,280,RCM,logoa.png
 ;20=1600,160,320,240,RCM,iso9001.png
-20=1600,164,320,240,RCM,isorina.png
+20=1600,154,320,240,RCM,isorina.png
 
 

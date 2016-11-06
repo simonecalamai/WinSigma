@@ -1,16 +1,21 @@
 [general]
 x zero=-20
-y zero=-50
+y zero=-60
 
 [strings]
 ;header
-10=340,150,900,80,Arial Black,60,90,BL,SIGMA ETRURIA s.r.l.
+10=340,140,900,80,Arial Black,60,90,BL,SIGMA ETRURIA s.r.l.
 30=+900,+44,1000,40,Arial Black,20,32,BL,D.M. 196 del 25.06.2015 
-40=340,240,1500,40,Arial,16,24,L,Concessione Ministero Infrastrutture e Trasporti ad effettuare e certificare prove su materiali da costruzione (Legge 1086/71 art.20)
+40=340,230,1500,40,Arial,16,24,L,Concessione Ministero Infrastrutture e Trasporti ad effettuare e certificare prove su materiali da costruzione (Legge 1086/71 art.20)
 
 ;footer
-510=20,2920,2100,36,Arial,18,28,BC,Via A. Nicolodi 36 - 57121 LIVORNO - tel. 0586 409247 - fax 0586 409383 - e-mail: etruria@laboratoriosigma.it - www.laboratoriosigma.it
+500=80,2790,800,50,Courier New,18,28,L,Firmato digitalmente ai sensi del D.Lgs 82/2005
+510=20,2895,2100,36,Arial,18,28,BC,Via A. Nicolodi 36 - 57121 LIVORNO - tel. 0586 409247 - fax 0586 409383 - e-mail: etruria@laboratoriosigma.it - www.laboratoriosigma.it
 530=20,+36,2100,36,Arial,14,24,C,C.C.I.A.A. Livorno N. 75052 - Reg. Soc. Trib. Livorno N. 10182 - C/C Postale n. 14692578 - Cod. Fisc./Part. I.V.A. 00770070498
+
+[grids]
+10=80,400,1970,0,1,1
+20=80,2820,1970,0,1,1
 
 [bitmaps]
 ;10=80,130,240,240,RCM,logo_100.bmp
@@ -20,5 +25,5 @@ y zero=-50
 
 
 [images]
-10=60,130,280,280,RCM,logoa.png
+10=60,120,280,280,RCM,logoa.png
 ;20=1580,140,320,240,RCM,isorina.png
