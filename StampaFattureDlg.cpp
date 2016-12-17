@@ -84,6 +84,7 @@ CStampaFattureDlg::CStampaFattureDlg(CWnd* pParent /*=NULL*/)
 	m_strCodFiscale = _T("");
 	m_csRitAcconto = _T("");
 	m_csTotRitAcconto = _T("");
+	m_bHeader = TRUE;
 	//}}AFX_DATA_INIT
   m_strImporto.Empty();
   m_strIVA.Empty();
@@ -138,6 +139,7 @@ void CStampaFattureDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Text(pDX, IDC_EDIT_CODFISCALE, m_strCodFiscale);
 	DDX_Text(pDX, IDC_EDIT_RIT_ACCONTO, m_csRitAcconto);
 	DDX_Text(pDX, IDC_EDIT_TOT_RIT_ACCONTO, m_csTotRitAcconto);
+	DDX_Check(pDX, IDC_CHECK_HEADER, m_bHeader);
 	//}}AFX_DATA_MAP
 }
 
@@ -735,6 +737,11 @@ void CStampaFattureDlg::PrnFromFattToFatt(int DaNumFatt, int ANumFatt, CString A
 		prn.StartSimulation();
 		SET_START(m_pVerbaliInfatturazione);
 		SET_START(m_pServiziErogati);
+		// imposta la stampa con l'header
+		if(m_bHeader == TRUE)
+		{
+			prn.SetHeaderFile(pApp->GetCurrentDirectory() + "\\" + pApp->m_headerFatturePrn);
+		}
 		if(m_bRaggruppaPerServizio)
 			prn.Print(pApp->GetCurrentDirectory() + strLayout, &strNames, &strValues, &ScanDatiFattura, &ScanPerServizio);
 		else
@@ -756,6 +763,11 @@ void CStampaFattureDlg::PrnFromFattToFatt(int DaNumFatt, int ANumFatt, CString A
 			SET_START(m_pVerbaliInfatturazione);
 			SET_START(m_pServiziErogati);
 
+			// imposta la stampa con l'header
+			if(m_bHeader == TRUE)
+			{
+				prn.SetHeaderFile(pApp->GetCurrentDirectory() + "\\" + pApp->m_headerFatturePrn);
+			}
 			if(m_bRaggruppaPerServizio)
 				prn.Print(pApp->GetCurrentDirectory() + strLayout, &strNames, &strValues, &ScanDatiFattura, &ScanPerServizio);
 			else
@@ -946,6 +958,13 @@ void CStampaFattureDlg::OnButtonPrintFattura()
   prn.StartSimulation();
   SET_START(m_pVerbaliInfatturazione);
   SET_START(m_pServiziErogati);
+
+	// imposta la stampa con l'header
+	if(m_bHeader == TRUE)
+	{
+		prn.SetHeaderFile(pApp->GetCurrentDirectory() + "\\" + pApp->m_headerFatturePrn);
+	}
+
   if(m_bRaggruppaPerServizio)
     prn.Print(pApp->GetCurrentDirectory() + strLayout, &strNames, &strValues, &ScanDatiFattura, &ScanPerServizio);
   else
@@ -965,6 +984,11 @@ void CStampaFattureDlg::OnButtonPrintFattura()
     prn.SetPage(1);
     SET_START(m_pVerbaliInfatturazione);
     SET_START(m_pServiziErogati);
+		// imposta la stampa con l'header
+		if(m_bHeader == TRUE)
+		{
+			prn.SetHeaderFile(pApp->GetCurrentDirectory() + "\\" + pApp->m_headerFatturePrn);
+		}
     if(m_bRaggruppaPerServizio)
       prn.Print(pApp->GetCurrentDirectory() + strLayout, &strNames, &strValues, &ScanDatiFattura, &ScanPerServizio);
     else
@@ -1804,4 +1828,9 @@ void CStampaFattureDlg::OnChangeEditTotale()
   Valuta iva((double)m_nIVA);
   m_strImportoIVA = m_strIVA = iva.Format(-1, TRUE);
   UpdateData(FALSE);
+}
+
+void CStampaFattureDlg::SetHeader(BOOL bon)
+{
+	m_bHeader = bon;
 }

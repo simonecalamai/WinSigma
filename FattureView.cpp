@@ -169,7 +169,6 @@ BEGIN_MESSAGE_MAP(CFattureView, CXFormView)
 	ON_COMMAND(ID_INSERTVERBALE, OnInsertVerbale)
 	ON_COMMAND(ID_FATTURA_ARCHIVIA_SINGOLAFATTURA, OnFatturaArchiviaSingolafattura)
 	ON_COMMAND(ID_FATTURA_ARCHIVIA_GRUPPOFATTURE, OnFatturaArchiviaGruppofatture)
-  ON_COMMAND(ID_PRINTPROFORMA, OnPrintProforma)
 	ON_NOTIFY(DTN_DATETIMECHANGE, IDC_DATETIMEPICKER_DATA_EMISSIONE, OnDatetimechangeDatetimepickerDataEmissione)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
@@ -1699,8 +1698,14 @@ void CFattureView::OnDblclkListServizi(NMHDR* pNMHDR, LRESULT* pResult)
 // Stampa una fattura proforma, cioè senza emetterla e con numero 0
 void CFattureView::OnPrintProforma() 
 {
+	PrintProforma(TRUE);
+}
+
+void CFattureView::PrintProforma(BOOL bheader)
+{
   CWinSigmaApp* pApp = (CWinSigmaApp*)AfxGetApp();
   CStampaFattureDlg dlg;
+	dlg.SetHeader(bheader);
   int n;  
   CString str;
   if(m_pVerbaliInFatturazione->IsBOF() || m_pVerbaliInFatturazione->IsEOF() || m_lCodiceFattura > 0)
@@ -1736,6 +1741,7 @@ void CFattureView::OnPrintProforma()
     dlg.m_aryCodiciServizi.Add(m_aryCodServiziSelezionati.GetAt(n));
   dlg.DoModal();
 }
+
 
 void CFattureView::OnTrovaAzienda() 
 {
@@ -2449,3 +2455,4 @@ void CFattureView::OnDatetimechangeDatetimepickerDataEmissione(NMHDR* pNMHDR, LR
   m_pVerbaliInFatturazione->Requery();
 	*pResult = 0;
 }
+

@@ -454,8 +454,8 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "&Emissione",                  ID_BUTTON_AVVIA_EMISSIONE
         MENUITEM SEPARATOR
-        MENUITEM "&Stampa",                     ID_BUTTON_STAMPA_CERTIFICATI
-        MENUITEM "Stampa con &header",          ID_BUTTON_STAMPA_CERTIFICATI_CON_HEADER
+        MENUITEM "S&tampa senza header",        ID_BUTTON_STAMPA_CERTIFICATI
+        MENUITEM "&Stampa",                     ID_BUTTON_STAMPA_CERTIFICATI_CON_HEADER
 
         MENUITEM SEPARATOR
         MENUITEM "S&blocca certificazione",     ID_SBLOCCACERTIFICAZIONE
@@ -503,8 +503,8 @@ BEGIN
     BEGIN
         MENUITEM "&Visualizza",                 IDD_PREVIEW_DOC
         MENUITEM "&Elimina",                    ID_BTN_EILIMINACERTIFICATO
-        MENUITEM "&Stampa",                     ID_STAMPA
-        MENUITEM "Stampa con &header",          ID_STAMPA_CON_HEADER
+        MENUITEM "S&tampa senza header",        ID_STAMPA
+        MENUITEM "&Stampa",                     ID_STAMPA_CON_HEADER
     END
     POPUP "&?"
     BEGIN
@@ -524,6 +524,10 @@ BEGIN
             MENUITEM "D&oppia copia",               ID_FATTURA_STAMPA_MULTIPLA
 
             MENUITEM "S&ingola copia",              ID_FATTURA_STAMPA_SINGOLA
+
+            MENUITEM "Doppia copia senza header",   ID_ARCHIVIOFATTURE_STAMPA_DOPPIACOPIASENZAHEADER
+
+            MENUITEM "Singola copia senza header",  ID_ARCHIVIOFATTURE_STAMPA_SINGOLACOPIASENZAHEADER
 
         END
     END
@@ -626,12 +630,12 @@ STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Informazioni su WinSigma"
 FONT 8, "MS Sans Serif"
 BEGIN
-    LTEXT           "WinSigma Versione 4.1.1 Copyright (C) 2003-2010 by Quadrante s.n.c.",
+    LTEXT           "WinSigma Versione 4.1.1 Copyright (C) 2003-2016 by Quadrante s.n.c.",
                     IDC_STATIC_VERSION,72,7,297,9,SS_NOPREFIX
     CONTROL         239,IDC_STATIC,"Static",SS_BITMAP,7,7,54,49
-    LTEXT           "Via A. De Gasperi n° 26",IDC_STATIC,71,21,148,9
-    LTEXT           "50013 Campi Bisenzio (FI)",IDC_STATIC,71,34,148,9
-    LTEXT           "Tel : 055-8996461 Fax : 055-8947382",IDC_STATIC,71,49,
+    LTEXT           "",IDC_STATIC,71,21,148,9
+    LTEXT           "",IDC_STATIC,71,34,148,9
+    LTEXT           "",IDC_STATIC,71,49,
                     148,9
 END
 
@@ -1437,7 +1441,7 @@ IDD_FORM_ARCHIVIO_FATTURE DIALOG DISCARDABLE  0, 0, 528, 385
 STYLE WS_CHILD
 FONT 8, "MS Sans Serif"
 BEGIN
-    COMBOBOX        IDC_COMBO_ANNO,41,18,65,70,CBS_DROPDOWNLIST | 
+    COMBOBOX        IDC_COMBO_ANNO,41,18,65,164,CBS_DROPDOWNLIST | 
                     CBS_AUTOHSCROLL | CBS_SORT | WS_TABSTOP
     EDITTEXT        IDC_EDIT_NUMERO_VERBALE,321,18,78,12,ES_AUTOHSCROLL
     EDITTEXT        IDC_EDIT_RAGIONE_SOCIALE,77,61,217,12,ES_AUTOHSCROLL
@@ -1677,8 +1681,8 @@ BEGIN
     EDITTEXT        IDC_EDIT_IVA,169,49,47,14,ES_RIGHT | ES_AUTOHSCROLL | 
                     ES_READONLY
     EDITTEXT        IDC_EDIT_TOTALE,169,100,47,14,ES_RIGHT | ES_AUTOHSCROLL
-    CONTROL         "Raggruppa per servizio",IDC_CHECK_PERSERVIZIO,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,7,262,89,10
+    CONTROL         "Raggr. per servizio",IDC_CHECK_PERSERVIZIO,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,262,75,10
     COMBOBOX        IDC_COMBO_TIPO_PAGAMENTO,39,220,113,110,CBS_DROPDOWN | 
                     CBS_SORT | WS_VSCROLL | WS_TABSTOP
     CONTROL         "DateTimePicker1",IDC_DATETIMEPICKER_DATA_FATTURA,
@@ -1705,6 +1709,8 @@ BEGIN
                     BS_AUTOCHECKBOX | WS_TABSTOP,20,100,53,10
     CONTROL         263,IDC_STATIC_ELETT,"Static",SS_BITMAP | NOT WS_VISIBLE,
                     107,18,11,10
+    CONTROL         "Intestazione",IDC_CHECK_HEADER,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,91,262,57,10
 END
 
 IDD_DIALOG_PREVIEW DIALOGEX 0, 0, 663, 436

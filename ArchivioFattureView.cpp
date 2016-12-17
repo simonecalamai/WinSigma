@@ -251,6 +251,8 @@ BEGIN_MESSAGE_MAP(CArchivioFattureView, CFormView)
 	ON_NOTIFY(NM_DBLCLK, IDC_LIST_RISULTATO_RICERCA, OnDblclkListRisultatoRicerca)
 	ON_COMMAND(ID_FATTURA_STAMPA_MULTIPLA, OnFatturaStampaMultipla)
 	ON_COMMAND(ID_FATTURA_STAMPA_SINGOLA, OnFatturaStampaSingola)
+	ON_COMMAND(ID_ARCHIVIOFATTURE_STAMPA_DOPPIACOPIASENZAHEADER, OnFatturaStampaMultiplaNoHeader)
+	ON_COMMAND(ID_ARCHIVIOFATTURE_STAMPA_SINGOLACOPIASENZAHEADER, OnFatturaStampaSingolaNoHeader)
 	ON_COMMAND(ID_RIPRISTINA_FATTURA, OnRipristinaFattura)
 	ON_COMMAND(IDD_PREVIEW_DOC, OnPreviewDoc)
 	//}}AFX_MSG_MAP
@@ -358,7 +360,17 @@ void CArchivioFattureView::OnFatturaStampaSingola()
   PrintFattura(FALSE, FALSE);
 }
 
-void CArchivioFattureView::PrintFattura(BOOL bAnteprima, BOOL bDoppiaCopia)
+void CArchivioFattureView::OnFatturaStampaMultiplaNoHeader() 
+{
+  PrintFattura(FALSE, TRUE, FALSE);
+}
+
+void CArchivioFattureView::OnFatturaStampaSingolaNoHeader() 
+{
+  PrintFattura(FALSE, FALSE, FALSE);
+}
+
+void CArchivioFattureView::PrintFattura(BOOL bAnteprima, BOOL bDoppiaCopia, BOOL bHeader)
 {
   int n;
   POSITION pos;
@@ -393,7 +405,11 @@ void CArchivioFattureView::PrintFattura(BOOL bAnteprima, BOOL bDoppiaCopia)
   prnPreview.m_dSpeseSpedizione = m_pFattureSet->m_Spese;
   prnPreview.m_dImportoFattura = m_pFattureSet->m_Imponibile;
   prnPreview.m_bRaggruppaPerServizio = FALSE;
-  prnPreview.m_strTipoDocumento = m_Risultati_Ricerca.GetItemText(n, TIPO_COL);
+	if(m_pFattureSet->m_Elett == TRUE)
+	  prnPreview.m_strTipoDocumento = m_Risultati_Ricerca.GetItemText(n, TIPO_COL) + " elettronica ";
+	else
+	  prnPreview.m_strTipoDocumento = m_Risultati_Ricerca.GetItemText(n, TIPO_COL);
+	prnPreview.SetHeader(bHeader);
   if(bAnteprima)
     if(dlg.DoModal() != IDOK)
       return;

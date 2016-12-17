@@ -58,6 +58,7 @@ public:
 	CString	m_strCodFiscale;
 	CString	m_csRitAcconto;
 	CString	m_csTotRitAcconto;
+	BOOL m_bHeader;
 	//}}AFX_DATA
 
   CWinSigmaDoc* m_pDoc;
@@ -101,6 +102,7 @@ public:
   static CString m_strCoordinateBancarie;
 	BOOL m_bElett;
   int m_nTipoDocumento;
+	void SetHeader(BOOL bon);
 	void PrnFromFattToFatt(int DaNumFatt = 0, int ANumFatt = 0, CString Anno = "", CWinSigmaDoc* m_pDoc = NULL);
 
 // Overrides

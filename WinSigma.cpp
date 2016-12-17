@@ -61,6 +61,7 @@ CWinSigmaApp::CWinSigmaApp()
   m_bPrimaVolta = true;
 	m_byDBRemoto = 1;
 	m_headerPrn = "header.prn";
+	m_headerFatturePrn = "headerfatture.prn";
 }
 
 CWinSigmaApp::~CWinSigmaApp()
@@ -143,6 +144,7 @@ BOOL CWinSigmaApp::InitInstance()
 			dbName.Format("WinSigma");
 			m_csDefaultConnect.Format("ODBC;UID=dbuser;PWD=49sigma03");
 			m_headerPrn = GetProfileString("Impostazioni", "HdrSigma", "header.prn");
+			m_headerFatturePrn = GetProfileString("Impostazioni", "HdrFattureSigma", "headerfatture.prn");
 			break;
 
 		case 1:	// WinSigma LI
@@ -157,12 +159,14 @@ BOOL CWinSigmaApp::InitInstance()
 				m_csDefaultConnect.Format("ODBC;UID=dbuser;PWD=59sigma03");
 			}
 			m_headerPrn = GetProfileString("Impostazioni", "HdrSigmaE", "headerSE.prn");
+			m_headerFatturePrn = GetProfileString("Impostazioni", "HdrFattureSigmaE", "headerfattureSE.prn");
 			break;
 
 		case 2:	// WinSigmaDue FI
 			dbName.Format("WinSigma2");
 			m_csDefaultConnect.Format("ODBC;UID=dbuser;PWD=49sigma03");
 			m_headerPrn = GetProfileString("Impostazioni", "HdrSigma2", "headerS2.prn");
+			m_headerFatturePrn = GetProfileString("Impostazioni", "HdrFattureSigma2", "headerFattureS2.prn");
 			break;
 	}
 
@@ -431,9 +435,9 @@ CAboutDlg::CAboutDlg() : CDialog(CAboutDlg::IDD)
 	//{{AFX_DATA_INIT(CAboutDlg)
 	m_csVersion = _T("");
 #ifdef WINSIGMA2
-	m_csVersion.Format("WinSigmaDUE %s %s Copyright (C) 2003-2011 by Quadrante s.n.c.", STR_VERSION, STR_BUILDTIME);
+	m_csVersion.Format("WinSigmaDUE %s %s Copyright (C) 2003-2016 by Quadrante s.n.c.", STR_VERSION, STR_BUILDTIME);
 #else
-	m_csVersion.Format("WinSigma %s %s Copyright (C) 2003-2011 by Quadrante s.n.c.", STR_VERSION, STR_BUILDTIME);
+	m_csVersion.Format("WinSigma %s %s Copyright (C) 2003-2016 by Quadrante s.n.c.", STR_VERSION, STR_BUILDTIME);
 #endif
 	//}}AFX_DATA_INIT
 } 

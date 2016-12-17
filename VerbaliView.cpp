@@ -3750,7 +3750,7 @@ void CVerbaliView::OnButtonEmissioneCertificati()
           }
         }
       }
-			StampaCertificati();
+			StampaCertificati(true);
       m_pVerbaliSet->Requery();
       pApp->ReloadTree(TREELABEL_VERBALIFATTPROFORMA, -1);
       pApp->ReloadTree(TREELABEL_VERBALIPRECEDENTI, -1);

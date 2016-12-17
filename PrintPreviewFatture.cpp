@@ -48,6 +48,7 @@ CPrintPreviewFatture::CPrintPreviewFatture()
   m_pVerbaliInfatturazione = new CVerbaliSet(&pApp->m_db);
   m_pServiziErogati = new CServiziErogatiSet(&pApp->m_db);
   m_pAziendeSet = new CAziendeSet(&pApp->m_db);
+	m_bHeader = TRUE;
 }
 
 CPrintPreviewFatture::~CPrintPreviewFatture()
@@ -109,6 +110,13 @@ void CPrintPreviewFatture::Print(long lCodice, CDC* pDC, CRect* pRect)
   prn.StartSimulation();
   SET_START(m_pVerbaliInfatturazione);
   SET_START(m_pServiziErogati);
+
+	// imposta la stampa con l'header
+	if(m_bHeader == TRUE)
+	{
+		prn.SetHeaderFile(pApp->GetCurrentDirectory() + "\\" + pApp->m_headerFatturePrn);
+	}
+
   if(m_bRaggruppaPerServizio)
     prn.Print(pApp->GetCurrentDirectory() + m_strLayout, &strNames, &strValues, &ScanDatiFattura, &ScanPerServizio);
   else
@@ -128,6 +136,11 @@ void CPrintPreviewFatture::Print(long lCodice, CDC* pDC, CRect* pRect)
     prn.SetPage(1);
     SET_START(m_pVerbaliInfatturazione);
     SET_START(m_pServiziErogati);
+		// imposta la stampa con l'header
+		if(m_bHeader == TRUE)
+		{
+			prn.SetHeaderFile(pApp->GetCurrentDirectory() + "\\" + pApp->m_headerFatturePrn);
+		}
     if(m_bRaggruppaPerServizio)
       prn.Print(pApp->GetCurrentDirectory() + m_strLayout, &strNames, &strValues, &ScanDatiFattura, &ScanPerServizio);
     else
@@ -874,4 +887,9 @@ void CPrintPreviewFatture::SincronizeData(void)
       m_bRiba = FALSE;
   }
   pPagamentiSet->Close();
+}
+
+void CPrintPreviewFatture::SetHeader(BOOL bHeader)
+{
+	m_bHeader = bHeader;
 }

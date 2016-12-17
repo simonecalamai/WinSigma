@@ -26,7 +26,7 @@ private:
 	void Query();
 	void Popola_Lista();
   CString CalcolaTotale(void);
-  void PrintFattura(BOOL bAnteprima, BOOL bDoppiaCopia);
+  void PrintFattura(BOOL bAnteprima, BOOL bDoppiaCopia, BOOL bHeader = TRUE);
 // Form Data
 public:
 	//{{AFX_DATA(CArchivioFattureView)
@@ -69,6 +69,8 @@ protected:
 	afx_msg void OnDblclkListRisultatoRicerca(NMHDR* pNMHDR, LRESULT* pResult);
 	afx_msg void OnFatturaStampaMultipla();
 	afx_msg void OnFatturaStampaSingola();
+	afx_msg void OnFatturaStampaMultiplaNoHeader();
+	afx_msg void OnFatturaStampaSingolaNoHeader();
 	afx_msg void OnRipristinaFattura();
 	afx_msg void OnPreviewDoc();
 	//}}AFX_MSG

@@ -534,6 +534,7 @@
 #define IDC_CHECK_PA                    1577
 #define IDC_CHECK_IVADIFF               1578
 #define IDC_STATIC_ELETT                1585
+#define IDC_CHECK_HEADER                1586
 #define ID_AZIENDA_MODIFICA             32771
 #define ID_VERBALE_MODIFICA             32772
 #define ID_FATTURA_EMETTI               32773
@@ -645,6 +646,8 @@
 #define ID_FATTURA_ELETT_EMETTI         33044
 #define ID_STAMPA_CON_HEADER            33045
 #define ID_BUTTON_STAMPA_CERTIFICATI_CON_HEADER 33046
+#define ID_ARCHIVIOFATTURE_STAMPA_DOPPIACOPIASENZAHEADER 33048
+#define ID_ARCHIVIOFATTURE_STAMPA_SINGOLACOPIASENZAHEADER 33049
 
 // Next default values for new objects
 // 
@@ -652,8 +655,8 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        267
-#define _APS_NEXT_COMMAND_VALUE         33047
-#define _APS_NEXT_CONTROL_VALUE         1586
+#define _APS_NEXT_COMMAND_VALUE         33050
+#define _APS_NEXT_CONTROL_VALUE         1587
 #define _APS_NEXT_SYMED_VALUE           196
 #endif
 #endif

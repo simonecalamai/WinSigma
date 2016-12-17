@@ -121,6 +121,7 @@ protected:
 
 // Implementation
 protected:
+	void PrintProforma(BOOL bheader = TRUE);
 	void AggiornaAlbero();
 	virtual ~CFattureView();
 #ifdef _DEBUG

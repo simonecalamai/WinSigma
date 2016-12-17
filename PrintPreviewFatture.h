@@ -55,6 +55,8 @@ public:
   static BOOL m_bRiba;
   static CString m_strProgressiviVerbali;
   CString m_strLayout;
+	BOOL m_bHeader;
+	void SetHeader(BOOL bHeader);
 
 protected:
   void CalcolaTotale(void);
