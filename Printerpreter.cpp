@@ -84,6 +84,7 @@ CPrintInterpreter::CPrintInterpreter(void) : CObject()
 {
 	m_nPage = 1;
 	m_HeaderFName = "";
+	m_DocName = "printdoc";
 }
 
 CPrintInterpreter::~CPrintInterpreter(void)
@@ -136,7 +137,7 @@ BOOL CPrintInterpreter::PrePrinting(HDC DC)
 	// memorizza informazioni (tra cui i nomi dei file) usate dalla funzione StartDoc
 	// della classe CDC
 	di.cbSize       =  sizeof(DOCINFO);  
-	di.lpszDocName  = "stampa"; 	// nome del documento da stampare 
+	di.lpszDocName  = m_DocName; 	// nome del documento da stampare 
 	di.lpszOutput   = NULL;
 	di.lpszDatatype = NULL;
 	di.fwType       = 0;
@@ -940,6 +941,11 @@ BOOL CPrintInterpreter::PrintImages(CDC* pDC, int page)
 void CPrintInterpreter::SetHeaderFile(CString	headerFName)
 {
 	m_HeaderFName = headerFName;
+}
+
+void CPrintInterpreter::SetDocName(CString	docName)
+{
+	m_DocName = docName;
 }
 
 

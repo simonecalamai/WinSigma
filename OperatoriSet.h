@@ -30,6 +30,7 @@ public:
 	int		m_Sospeso;
 	BYTE	m_Responsabile;
 	CString	m_Titolo;
+	CString m_Sigla;
 	//}}AFX_FIELD
 
 

@@ -35,6 +35,7 @@ COperatoriView::COperatoriView()
 	m_bSperimentatore = FALSE;
 	m_bResponsabile = FALSE;
 	m_strTitoli = _T("");
+	m_strSigla = _T("");
 	//}}AFX_DATA_INIT
 }
 
@@ -48,6 +49,7 @@ void COperatoriView::DoDataExchange(CDataExchange* pDX)
 	//{{AFX_DATA_MAP(COperatoriView)
 	DDX_Control(pDX, IDC_CHECK_INVALIDPICKER, m_ctrlChkInvalidatePicker);
 	DDX_Control(pDX, IDC_EDIT_TITOLI, m_EdtTitoli);
+	DDX_Control(pDX, IDC_EDIT_SIGLA, m_EdtSigla);
 	DDX_Control(pDX, IDC_CHECK_RESPONSABILE, m_BtnResponsabile);
 	DDX_Control(pDX, IDC_EDIT_MACCHINA, m_EdtMacchina);
 	DDX_Control(pDX, IDC_CHECK_SPERIMENTATORE, m_BtnSperimentatore);
@@ -74,6 +76,8 @@ void COperatoriView::DoDataExchange(CDataExchange* pDX)
 	DDX_Check(pDX, IDC_CHECK_RESPONSABILE, m_bResponsabile);
 	DDX_Text(pDX, IDC_EDIT_TITOLI, m_strTitoli);
 	DDV_MaxChars(pDX, m_strTitoli, 16);
+	DDX_Text(pDX, IDC_EDIT_SIGLA, m_strSigla);
+	DDV_MaxChars(pDX, m_strSigla, 4);
 	//}}AFX_DATA_MAP
 }
 
@@ -138,6 +142,7 @@ void COperatoriView::LoadCurRecord(BOOL bData)
 		m_strPassword		= m_pSet->m_Password;
 		m_strVerifica		= m_pSet->m_Password;
 		m_strTitoli			= m_pSet->m_Titolo;
+		m_strSigla			= m_pSet->m_Sigla;
 		m_bResponsabile	= m_pSet->m_Responsabile;
 
 		for(i = 0; i < m_ComboLivello.GetCount(); i++)
@@ -170,6 +175,7 @@ void COperatoriView::LoadCurRecord(BOOL bData)
     m_strVerifica.Empty();
 		m_strMacchina.Empty();
 		m_strTitoli.Empty();
+		m_strSigla.Empty();
 		m_bResponsabile = FALSE;
 		m_bSperimentatore = FALSE;
 		m_bSospeso = FALSE;
@@ -205,6 +211,7 @@ BOOL COperatoriView::IsDataChanged()
 		 || m_strMacchina			!= m_pSet->m_Macchina
 		 || m_bResponsabile		!= m_pSet->m_Responsabile
 		 || m_strTitoli				!= m_pSet->m_Titolo
+		 || m_strSigla				!= m_pSet->m_Sigla
      || m_iEndActChecked  != m_ctrlChkInvalidatePicker.GetCheck())
 		return TRUE;
 
@@ -260,6 +267,7 @@ BOOL COperatoriView::NewRecord()
 	m_pSet->m_Sperimentatore	= m_BtnSperimentatore.GetCheck();
 	m_pSet->m_Macchina				= m_strMacchina;
 	m_pSet->m_Titolo					= m_strTitoli;
+	m_pSet->m_Sigla						= m_strSigla;
 	m_pSet->m_Responsabile		= m_bResponsabile;
 
 	m_pSet->Update();
@@ -300,6 +308,7 @@ BOOL COperatoriView::SaveRecord()
 			m_pSet->m_Sperimentatore	= m_BtnSperimentatore.GetCheck();
 			m_pSet->m_Macchina				= m_strMacchina;
 			m_pSet->m_Titolo					= m_strTitoli;
+			m_pSet->m_Sigla				 	  = m_strSigla;
 			m_pSet->m_Responsabile		= m_bResponsabile;
 	    m_pSet->Update();
 	    pApp->ReloadTree(TREELABEL_OPERATORI, m_pSet->m_Codice);
@@ -349,6 +358,7 @@ void COperatoriView::EnableControls(BOOL bEditMode)
 	m_ComboLivello.EnableWindow(bEditMode);
 	m_BtnSperimentatore.EnableWindow(bEditMode);
 	m_EdtTitoli.EnableWindow(bEditMode);
+	m_EdtSigla.EnableWindow(bEditMode);
 	m_BtnResponsabile.EnableWindow(bEditMode);
   m_ctrlChkInvalidatePicker.EnableWindow(bEditMode);
 	if( m_bSperimentatore )

@@ -264,6 +264,7 @@ class CPrintInterpreter : public CObject
   /*----- dati -----*/
   public:
   protected:
+		CString					m_DocName;
     CString         m_LayoutFName;
 		CString					m_HeaderFName;
     CStringArray*   m_pFieldsName;
@@ -317,6 +318,7 @@ class CPrintInterpreter : public CObject
                    BOOL (CALLBACK *pfnSetFields)(CStringArray*, CStringArray*),
 								   BOOL (CALLBACK *pfnSetTabfields)(CStringArray*, CStringArray*));
 		void SetHeaderFile(CString headerFName);
+		void SetDocName(CString docName);
 
   protected:
     BOOL PrintStrings  (CDC* pDC, int page);

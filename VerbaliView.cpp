@@ -5155,23 +5155,26 @@ void CVerbaliView::StampaCertificati(BOOL bHeader)
 	{
 		CString temp, fileLayout = "";	// contenitore del nome del file di layout
 		int numeroPagine = 0;
-		CPrintInterpreter prn;
 		CStringArray fieldNames, fieldValues;
-		if( prn.PrePrinting() )
+
+		SetCursor(LoadCursor(NULL, IDC_WAIT));
+		for(int i=0; i<CertScelti.GetSize(); i++)
 		{
-			SetCursor(LoadCursor(NULL, IDC_WAIT));
-			for(int i=0; i<CertScelti.GetSize(); i++)
+			//sincronizzo il recordset con il certificato scelto
+			for( SET_START(pCertVerbSet); !pCertVerbSet->IsEOF(); pCertVerbSet->MoveNext() )
+				if( pCertVerbSet->m_CodiceCertificato == (long)CertScelti.GetAt(i) )
+					break;
+
+			SINCRONIZE(m_pTipiCertificatoSet, pCertVerbSet->m_TipoCertificato);
+			// Individuo la dll associata per richiamare opportunamente le funzioni
+			m_strDllCorrente = GetNameModuloDll(m_pTipiCertificatoSet->m_Codice);
+			fileLayout = m_pTipiCertificatoSet->m_LayoutStampa;
+
+			CPrintInterpreter prn;
+			CString docname = BuildCertificateName(pCertVerbSet);
+			prn.SetDocName(docname);
+			if(prn.PrePrinting())
 			{
-				//sincronizzo il recordset con il certificato scelto
-				for( SET_START(pCertVerbSet); !pCertVerbSet->IsEOF(); pCertVerbSet->MoveNext() )
-					if( pCertVerbSet->m_CodiceCertificato == (long)CertScelti.GetAt(i) )
-						break;
-
-				SINCRONIZE(m_pTipiCertificatoSet, pCertVerbSet->m_TipoCertificato);
-				// Individuo la dll associata per richiamare opportunamente le funzioni
-				m_strDllCorrente = GetNameModuloDll(m_pTipiCertificatoSet->m_Codice);
-				fileLayout = m_pTipiCertificatoSet->m_LayoutStampa;
-
 				numeroPagine = LoadDatiStampa(pCertVerbSet->m_CodiceCertificato, &fieldNames, &fieldValues);	
 
 				//Preparazione del recordset dei provini per la scanProvini
@@ -5245,14 +5248,15 @@ void CVerbaliView::StampaCertificati(BOOL bHeader)
 				fieldNames.RemoveAll();
 				fieldValues.RemoveAll();
 
+				prn.PostPrinting();
+
 				//--- inserimento della data di stampa nella tabella certificati ---//
 				SINCRONIZE(pCertificatiSet, pCertVerbSet->m_CodiceCertificato);
 				pCertificatiSet->Edit();
 				pCertificatiSet->m_DataStampa		= CTime::GetCurrentTime();
 				pCertificatiSet->Update();
-			} 
-			prn.PostPrinting();
-		} // if preprinting()
+			} // if preprinting()
+		} // for sui certificati scelti  
 	}
 
 	pCertVerbSet->Close();
@@ -5417,6 +5421,190 @@ void CVerbaliView::StampaCertificato(long codRif, BOOL isCodSerie, BOOL bHeader)
 
 		CString fileLayout = "";	// contenitore del nome del file di layout
 		int numeroPagine = 0;
+		CStringArray fieldNames, fieldValues;
+
+		for(int i = 0; i < CertScelti.GetSize(); i++)
+		{
+			//sincronizzo il recordset con il certificato scelto
+			for(SET_START(pCertVerbSet); !pCertVerbSet->IsEOF(); pCertVerbSet->MoveNext())
+				if(pCertVerbSet->m_CodiceCertificato == (long)CertScelti.GetAt(i))
+					break;
+
+			// Settaggio della dll associata per richiamare opportunamente le funzioni
+			SINCRONIZE(m_pTipiCertificatoSet, pCertVerbSet->m_TipoCertificato);
+			
+			fileLayout = m_pTipiCertificatoSet->m_LayoutStampa;
+					
+			m_strDllCorrente = GetNameModuloDll(m_pTipiCertificatoSet->m_Codice);
+        
+			CPrintInterpreter prn;
+			CString docname = BuildCertificateName(pCertVerbSet);
+			prn.SetDocName(docname);
+			if(prn.PrePrinting())
+			{
+				numeroPagine = LoadDatiStampa(pCertVerbSet->m_CodiceCertificato, &fieldNames, &fieldValues);
+
+				//--- Gestione del duplicato e dell'emendamento ---//
+				CString str = "";
+				fieldNames.Add("duplicato");
+				if(stampaDuplicato)					
+					str.Format("DUPLICATO del %s", dlg.m_DataDuplicato.Format("%d/%m/%Y"));
+ 				fieldValues.Add(str);
+				str.Empty();
+				fieldNames.Add("emendamento");
+				if(!pCertVerbSet->IsFieldNull(&pCertVerbSet->m_EmendaIl) && pCertVerbSet->m_EmendaIl != 0)
+				{
+					CCertificatiSet set(&pApp->m_db);
+					set.m_strFilter.Format("Codice = %d", pCertVerbSet->m_EmendaIl);
+					set.Open();
+				// variazione dicitura emendamento 29.05.2016 s.c. 
+					str.Format("Emendamento che annulla e sostituisce il certificato N° %d del %s", set.m_NumeroCertificato, set.m_DataEmissione.Format("%d/%m/%Y"));
+					set.Close();
+				}
+				if(!pCertVerbSet->IsFieldNull(&pCertVerbSet->m_EmendatoDa) && pCertVerbSet->m_EmendatoDa != 0)
+				{
+					CCertificatiSet set(&pApp->m_db);
+					set.m_strFilter.Format("Codice = %d", pCertVerbSet->m_EmendatoDa);
+					set.Open();
+					str.Format("Emendato dal certificato N° %d del %s", set.m_NumeroCertificato, set.m_DataEmissione.Format("%d/%m/%Y"));
+					set.Close();
+				}
+ 				fieldValues.Add(str);
+        
+				CString debug = pCertVerbSet->m_Cantiere;
+
+				//Preparazione del recordset dei provini 
+				//m_pTabelle->m_pSerieProviniSet->m_strSort = "SERIE.Codice, PROVINI.Codice ASC";
+				m_pTabelle->m_pSerieProviniSet->m_strFilter.Format("SERIE.Codice = PROVINI.Serie AND SERIE.Certificato = %d ", pCertVerbSet->m_CodiceCertificato);
+				m_pTabelle->m_pSerieProviniSet->m_strSort = "SERIE.Codice, PROVINI.Codice ASC";
+				m_pTabelle->m_pSerieProviniSet->Requery();
+				m_nCodSerieStampata = 0;//serve per stampare la prima riga di una serie in maniera diversa 
+				m_nContaProvini = 0;		// serve per indicare il numero del provino alla dll
+
+				if(numeroPagine == 1)
+				{
+					//--------- gestione numeri di pagina --------------------//
+					fieldNames.Add("pagineTotali");
+					fieldValues.Add("1");
+					fieldNames.Add("paginaCorrente");
+					fieldValues.Add("1");
+					//--------------------------------------------------------//
+				}
+				
+				// imposta la stampa con l'header
+				if(bHeader == TRUE)
+				{
+					prn.SetHeaderFile(pApp->GetCurrentDirectory() + "\\" + pApp->m_headerPrn);
+				}
+
+				prn.Print(pApp->GetCurrentDirectory() + "\\" + fileLayout, 
+							&fieldNames, &fieldValues, NULL, &ScanProvini);
+					// (andrea) Modifica provvisoria per saltare la stampa degli allegati
+				// numeroPagine = 1;
+				// --------------------------------------------------------------- //
+				if(numeroPagine > 1)
+				{
+					int contaProvini = 1;
+					byte stampaAllegati = TRUE;
+					SET_START(m_pTabelle->m_pSerieProviniSet);
+					typedef BOOL (PROCESTERNA)(CString*,CAllTables*,CStringArray*,CStringArray*, int*, BOOL*, CTime* );	
+					HINSTANCE hist = NULL;
+					PROCESTERNA* pFunc;		
+					BOOL esito = 0;
+					ASSERT(hist = ::LoadLibrary(m_strDllCorrente));
+					if(pFunc = (PROCESTERNA*)::GetProcAddress(hist,"StampaAllegato"))
+					{
+						int pagCorrente = 0;
+						CString str;
+						while(stampaAllegati)
+						{
+							fieldNames.RemoveAll();
+							fieldValues.RemoveAll();
+							//stampaAllegati = (pFunc)(&fileLayout,m_pTabelle,&fieldNames,&fieldValues,&contaProvini);
+							SET_START(m_pTabelle->m_pSerieProviniSet);
+							stampaAllegati = (pFunc)(&fileLayout,m_pTabelle,&fieldNames,&fieldValues,&pagCorrente,&stampaDuplicato, &dlg.m_DataDuplicato);
+							//--------- gestione numeri di pagina --------------------//
+							fieldNames.Add("pagineTotali");
+							str.Format("%d",numeroPagine);
+							fieldValues.Add(str);
+							fieldNames.Add("paginaCorrente");
+							str.Format("%d",pagCorrente + 2 );
+							fieldValues.Add(str);
+							//--------------------------------------------------------//	
+							pagCorrente++;
+							prn.Print(pApp->GetCurrentDirectory() + "\\" + fileLayout, 
+								&fieldNames, &fieldValues, NULL, NULL);
+						}
+					}					
+				}
+				fieldNames.RemoveAll();
+				fieldValues.RemoveAll();
+				prn.PostPrinting();
+			} // endif preprinting()
+		} // for sui certificati scelti
+	}
+
+	pCertVerbSet->Close();
+
+	delete m_pTabelle;
+  delete pCertVerbSet;
+}
+
+#if 0   // backup
+void CVerbaliView::StampaCertificato(long codRif, BOOL isCodSerie, BOOL bHeader)
+{
+		//--------------- Istanze dei recordset utilizzati-----------------//
+
+	CWinSigmaApp* pApp	= (CWinSigmaApp*)AfxGetApp();
+	m_pTabelle					= new CAllTables(&pApp->m_db);
+	CCertificatiVerbaliSet* pCertVerbSet	= new CCertificatiVerbaliSet(&pApp->m_db);
+	long codCertificato;
+
+	m_pTabelle->m_pSerieProviniSet->m_strFilter.Format("SERIE.Codice = PROVINI.Serie AND SERIE.Codice = %d ", codRif);
+	m_pTabelle->m_pSerieProviniSet->m_strSort = "SERIE.Codice , PROVINI.Codice";
+  m_pTabelle->m_pSerieProviniSet->Open();
+
+	if(isCodSerie)
+		codCertificato = m_pTabelle->m_pSerieProviniSet->m_Certificato;
+	else
+		codCertificato = codRif;
+		
+	pCertVerbSet->m_strFilter.Format("VERBALI.Codice = CERTIFICATI.Verbale AND CERTIFICATI.Codice = %d", codCertificato);
+	pCertVerbSet->Open();
+
+  if(pApp->GetViewMode() != MODE_VIEW)
+	{
+	  MessageBeep(-1);
+		return;
+	}
+
+	if( pCertVerbSet->IsEOF() )
+	{
+		pCertVerbSet->Close();
+		delete pCertVerbSet;
+		delete m_pTabelle;
+		AfxMessageBox("Operazione non disponibile!\nNon è stato trovato il documento richiesto.");
+		return;
+	}
+
+
+	//----------- Apertura del dialogo di selezione --------//
+
+	CDWordArray CertScelti;
+	CStampaCertificatiDlg dlg;
+
+	dlg.m_pCertVerbSet				= pCertVerbSet;
+	dlg.m_pTipiCertificatoSet = m_pTipiCertificatoSet;
+	dlg.m_pCertificatiScelti	= &CertScelti;
+	dlg.m_bRistampa						= TRUE;
+
+	if(dlg.DoModal() == IDOK && CertScelti.GetSize() > 0)
+	{
+		BOOL stampaDuplicato = dlg.m_bDuplicato;
+		CWinSigmaApp* pApp = (CWinSigmaApp*)AfxGetApp();
+
+		CString fileLayout = "";	// contenitore del nome del file di layout
+		int numeroPagine = 0;
 		CPrintInterpreter prn;
 		CStringArray fieldNames, fieldValues;
 		if(prn.PrePrinting())
@@ -5437,6 +5625,9 @@ void CVerbaliView::StampaCertificato(long codRif, BOOL isCodSerie, BOOL bHeader)
 					
 				m_strDllCorrente = GetNameModuloDll(m_pTipiCertificatoSet->m_Codice);
         
+				CString docname;
+				docname.Format("%d", pCertVerbSet->m_CodiceCertificato);
+				prn.SetDocName(docname);
 				numeroPagine = LoadDatiStampa(pCertVerbSet->m_CodiceCertificato, &fieldNames, &fieldValues);
 
 				//--- Gestione del duplicato e dell'emendamento ---//
@@ -5547,6 +5738,7 @@ void CVerbaliView::StampaCertificato(long codRif, BOOL isCodSerie, BOOL bHeader)
 	delete m_pTabelle;
   delete pCertVerbSet;
 }
+#endif
 
 
 // Effettua la ricerca dei verbali secondo la chiave impostata
@@ -6528,4 +6720,37 @@ void CVerbaliView::OnCheckRitiro()
 void CVerbaliView::OnFindVerbNumero() 
 {
 	FindVerbali(SEARCH_NUMERO);	
+}
+
+#define SAFETY_OPEN(pSet) pSet->IsOpen() ? pSet->Requery() : pSet->Open();
+// compone il nome del file certificato pdf secondo la specifica fornita (27.06.2017) 
+CString CVerbaliView::BuildCertificateName(CCertificatiVerbaliSet* pCertVerbSet)
+{
+	CString docname;
+	CString siglasp = "XX";
+
+	int numverb = pCertVerbSet->m_ProgressivoTotale;
+	int annoverb = pCertVerbSet->m_DataAccettazione.GetYear();
+	int numcert = pCertVerbSet->m_NumeroCertificato;
+	int annocert = pCertVerbSet->m_DataEmissione.GetYear();
+
+	// trova la serie corrispondente al certificato per determinare lo sperimentatore
+	CSerieSet* pSerieSet = m_pTabelle->m_pSerieSet;
+	pSerieSet->m_strFilter.Format(" NuovoCertificato = 1 AND Certificato = %d ", pCertVerbSet->m_CodiceCertificato);
+	SAFETY_OPEN(pSerieSet);
+
+	if(!pSerieSet->IsEOF())
+	{
+		// trovata la serie determina la sigla dello sperimentatore
+		CString exper = pSerieSet->m_Sperimentatore;
+		COperatoriSet* pOperatSet = m_pTabelle->m_pOperatoriSet;
+		pOperatSet->m_strFilter.Format(" REPLACE(CONCAT(IFNULL(Titolo, ''), Nome, Cognome), ' ', '') = REPLACE('%s', ' ', '') ", exper);
+		SAFETY_OPEN(pOperatSet);
+		if(!pOperatSet->IsEOF())
+		{
+			siglasp.Format("%s", pOperatSet->m_Sigla);
+		}
+	}
+	docname.Format("CE-1-%d-%d-%s-C-%d-%d-0", numverb, annoverb, siglasp, numcert, annocert);
+	return docname;
 }

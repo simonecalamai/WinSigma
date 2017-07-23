@@ -32,7 +32,8 @@ COperatoriSet::COperatoriSet(CDatabase* pdb)
 	m_Sospeso = 0;
 	m_Responsabile = 0;
 	m_Titolo = _T("");
-	m_nFields = 12;
+	m_Sigla = _T("");
+	m_nFields = 13;
 	//}}AFX_FIELD_INIT
 	m_nDefaultType = snapshot;
 }
@@ -64,6 +65,7 @@ void COperatoriSet::DoFieldExchange(CFieldExchange* pFX)
 	RFX_Int(pFX, _T("[Sospeso]"), m_Sospeso);
 	RFX_Byte(pFX, _T("[Responsabile]"), m_Responsabile);
 	RFX_Text(pFX, _T("[Titolo]"), m_Titolo);
+	RFX_Text(pFX, _T("[Sigla]"), m_Sigla);
 	//}}AFX_FIELD_MAP
 }
 

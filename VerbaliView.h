@@ -191,6 +191,7 @@ protected:
   void    FindDatiAziendaSpedizione(int nCodice);
   void		PrintVerbale();
   BOOL    VerificaProviniPerCertificato(int nVerbale);
+	static  CString BuildCertificateName(CCertificatiVerbaliSet* pCertVerbSet);
   // Overrides
 	// ClassWizard generated virtual function overrides
 	//{{AFX_VIRTUAL(CVerbaliView)

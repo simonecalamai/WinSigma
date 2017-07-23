@@ -26,6 +26,7 @@ public:
 	enum { IDD = IDD_FORM_OPERATORI };
 	CButton	m_ctrlChkInvalidatePicker;
 	CEdit	m_EdtTitoli;
+	CEdit	m_EdtSigla;
 	CButton	m_BtnResponsabile;
 	CEdit	m_EdtMacchina;
 	CButton	m_BtnSperimentatore;
@@ -49,6 +50,7 @@ public:
 	BOOL	m_bSperimentatore;
 	BOOL	m_bResponsabile;
 	CString	m_strTitoli;
+	CString m_strSigla;
 	//}}AFX_DATA
 
 // Attributes
