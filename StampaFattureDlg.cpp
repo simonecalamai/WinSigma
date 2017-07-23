@@ -808,9 +808,10 @@ void CStampaFattureDlg::OnButtonPrintFattura()
 
 	UpdateData(TRUE);
 
-	if(!prn.PrePrinting())
-		return;
+//	if(!prn.PrePrinting())
+//		return;
 
+	CString fname;
   // Recordset delle fatture e dei verbali - servizi erogati
   if(!m_bFatturaProForma)
   {
@@ -818,6 +819,11 @@ void CStampaFattureDlg::OnButtonPrintFattura()
     m_pVerbaliInfatturazione->m_strFilter.Format("Fattura = %d", m_lCodiceFatturaEmessa);
     m_pServiziErogati->m_strFilter.Format("Fattura = %d", m_lCodiceFatturaEmessa);
     m_lCodiceAzienda = m_pFattureEmesseSet->m_Intestatario;
+		int gg = m_pFattureEmesseSet->m_Data.GetDay();
+		int mm = m_pFattureEmesseSet->m_Data.GetMonth();
+		int aa = m_pFattureEmesseSet->m_Data.GetYear();
+		int numero = m_pFattureEmesseSet->m_Numero;
+		fname.Format("FA-%02d-%02d-%d-%d-%d", gg, mm, aa, numero, m_lCodiceAzienda);
   }
   else
   {
@@ -836,7 +842,15 @@ void CStampaFattureDlg::OnButtonPrintFattura()
     strFilter.TrimRight(" OR ");
     str.Format("Fattura = 0 AND (%s)", strFilter);
     m_pServiziErogati->m_strFilter = str;
+		CTime curdate = CTime::GetCurrentTime();
+		int gg = curdate.GetDay();
+		int mm = curdate.GetMonth();
+		int aa = curdate.GetYear();
+		fname.Format("FA-PROFORMA-%02d-%02d-%d-%d", gg, mm, aa, m_lCodiceAzienda);
   }
+	prn.SetDocName(fname);
+	if(!prn.PrePrinting())
+		return;
   m_pVerbaliInfatturazione->m_strSort = "Codice";
   m_pServiziErogati->m_strSort = "Verbale,ID_Listino,Codice";
   m_pVerbaliInfatturazione->Requery();
