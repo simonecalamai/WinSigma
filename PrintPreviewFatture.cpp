@@ -84,6 +84,16 @@ void CPrintPreviewFatture::Print(long lCodice, CDC* pDC, CRect* pRect)
 {
   CPrintInterpreter prn;
 
+  SincronizeData();    // sincronizza il recordset m_pFattureEmesseSet sulla fattura da stampare
+	CString fname;
+	int gg = m_pFattureEmesseSet->m_Data.GetDay();
+	int mm = m_pFattureEmesseSet->m_Data.GetMonth();
+	int aa = m_pFattureEmesseSet->m_Data.GetYear();
+	int numero = m_pFattureEmesseSet->m_Numero;
+	int codiceazienda = m_pFattureEmesseSet->m_Intestatario;
+	fname.Format("FA-%02d-%02d-%d-%d-%d", gg, mm, aa, numero, codiceazienda);
+
+	prn.SetDocName(fname);
   if(pDC == NULL)
   {
     if(!prn.PrePrinting())
@@ -94,7 +104,7 @@ void CPrintPreviewFatture::Print(long lCodice, CDC* pDC, CRect* pRect)
     if(!prn.PrePrinting(pDC, pRect, 0, 0))
       return;
   }
-  SincronizeData();
+
   CWinSigmaApp* pApp = (CWinSigmaApp*)AfxGetApp();
   CStringArray strNames, strValues;
 

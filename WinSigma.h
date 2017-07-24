@@ -51,7 +51,7 @@
 //
 //#define WINSIGMA2
 
-#define STR_VERSION							"4.5.0" 
+#define STR_VERSION							"4.5.1" 
 #define STR_BUILDTIME   __TIMESTAMP__  
 #define AZIENDE_BUFFER  1024
 #define FATTURE_BUFFER  1024
