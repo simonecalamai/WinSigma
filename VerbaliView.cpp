@@ -3801,7 +3801,7 @@ void CVerbaliView::PrintVerbale()
   CStringArray strNames, strValues;
   BOOL bPrint = FALSE;
   CTime data = CTime::GetCurrentTime();
-  CString printFileName, strPrinter, strPrnFile;
+  CString printFileName, strPrinter, strPrnFile, docname;
 	int TipoCertificato = 0;
   int VerID;
 
@@ -3813,6 +3813,10 @@ void CVerbaliView::PrintVerbale()
 	// La stampa viene fatta su un file che ha come nome il progressivo totale del verbale
   printFileName.Format("%d_%d.txt", m_pVerbaliSet->m_ProgressivoParziale, m_pVerbaliSet->m_ProgressivoTotale);
   VerID = m_pVerbaliSet->m_Codice;
+
+	// imposta il nome del file secondo le specifiche della gestione documentale (s.c. 14.09.2017)
+  docname.Format("VA-%d-%d", m_pVerbaliSet->m_ProgressivoTotale, m_pVerbaliSet->m_DataAccettazione.GetYear());
+	prnInterpreter.SetDocName(docname);
 
 #ifdef WINSIGMA2
   if(!prnInterpreter.PrePrinting())

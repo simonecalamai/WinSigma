@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "resource.h"
 #include "WinSigma.h"
+#include "barcode.h"
 #include "Printerpreter.h"
 
 #define BMP_MONOCHROME   1
@@ -16,6 +17,7 @@
 #define SEC_GRIDS        "grids"
 #define SEC_BITMAPS      "bitmaps"
 #define SEC_IMAGES	     "images"
+#define SEC_BARCODES		 "barcodes"
 
 #define KEY_XZERO         "x zero"
 #define KEY_YZERO         "y zero"
@@ -261,6 +263,7 @@ BOOL CPrintInterpreter::Print(
   m_GridItems.Load(SEC_GRIDS,                      layoutFName, m_HeaderFName);
   m_BitmapItems.Load(SEC_BITMAPS,                  layoutFName, m_HeaderFName);
   m_ImageItems.Load(SEC_IMAGES,										 layoutFName, m_HeaderFName);
+  m_BarcodeItems.Load(SEC_BARCODES,                layoutFName, m_HeaderFName);
   	  
 	CFont* pFont;
 
@@ -287,6 +290,8 @@ BOOL CPrintInterpreter::Print(
 		if (PrintBitmaps(&m_dcPrint, m_nPage))   bAgain = TRUE;
     // stampa le immagini (png, jpg, ...)
 		if (PrintImages(&m_dcPrint, m_nPage))   bAgain = TRUE;
+    // stampa i barcode
+		if (PrintBarcodes(&m_dcPrint, m_nPage))   bAgain = TRUE;
 
     // se deve stampare il il numero di pagina, lo stampa secondo gli attributi
 		// memorizzati nell'oggetto m_PageItem
@@ -351,7 +356,8 @@ BOOL CPrintInterpreter::Print(
 	m_TextItems.Load(SEC_TEXTS,                      layoutFName);
   m_GridItems.Load(SEC_GRIDS,                      layoutFName);
   m_BitmapItems.Load(SEC_BITMAPS,                  layoutFName);
-  m_ImageItems.Load(SEC_BITMAPS,                  layoutFName);
+  m_ImageItems.Load(SEC_IMAGES,                    layoutFName);
+  m_BarcodeItems.Load(SEC_BARCODES,                layoutFName);
   
 	  
 	CFont* pFont;
@@ -374,6 +380,8 @@ BOOL CPrintInterpreter::Print(
 	PrintBitmaps(&m_dcPrint, m_nPage);
   // stampa le immagini (png, jpg, ...)
 	PrintImages(&m_dcPrint, m_nPage);
+  // stampa i barcode
+	PrintBarcodes(&m_dcPrint, m_nPage);
 
   // se deve stampare il il numero di pagina, lo stampa secondo gli attributi
 	// memorizzati nell'oggetto m_PageItem
@@ -938,6 +946,28 @@ BOOL CPrintInterpreter::PrintImages(CDC* pDC, int page)
   return bAgain;
 }
 
+/********************************************************************
+* Funzione   : PrintBarcodes
+* Descrizione: 
+* Parametri  : 
+* Ritorno    : 
+* Note       : 
+*********************************************************************/
+BOOL CPrintInterpreter::PrintBarcodes(CDC* pDC, int page)
+{
+  int   i;
+  BOOL  bAgain = FALSE;
+
+  for(i = 0; i < m_BarcodeItems.GetSize(); i++)
+  {
+    if(!m_BarcodeItems[i].m_Page || m_BarcodeItems[i].m_Page == page)
+      m_BarcodeItems[i].Print(pDC, NULL);
+    if(m_BarcodeItems[i].m_Page > page)
+      bAgain = TRUE;
+  }
+  return bAgain;
+}
+
 void CPrintInterpreter::SetHeaderFile(CString	headerFName)
 {
 	m_HeaderFName = headerFName;
@@ -1033,6 +1063,8 @@ int CPrintItemArray::Load(CString sec, CString layoutFName, CString headerFName)
 		  pPrintItem = new CBitmapItem();
     else if(sec == SEC_IMAGES)
 		  pPrintItem = new CImageItem();
+    else if(sec == SEC_BARCODES)
+		  pPrintItem = new CBarcodeItem();
     else
 		  continue;
     
@@ -1096,6 +1128,8 @@ int CPrintItemArray::Load(CString sec, CString layoutFName, CString headerFName)
 				pPrintItem = new CBitmapItem();
 			else if(sec == SEC_IMAGES)
 				pPrintItem = new CImageItem();
+			else if(sec == SEC_BARCODES)
+				pPrintItem = new CBarcodeItem();
 			else
 				continue;
     
@@ -1992,7 +2026,7 @@ CGdiObject* CBitmapItem::Print(CDC* pDC, CGdiObject* pBitmap)
   memDC.SelectObject(pOldBM);
   DeleteObject((HBITMAP)hBM);
 
- return NULL;
+	return NULL;
 }
 
 /*----- implementazione di CImageItem -----*/
@@ -2177,4 +2211,68 @@ CGdiObject* CImageItem::Print(CDC* pDC, CGdiObject* pBitmap)
   DeleteObject((HBITMAP)hBM);
 
  return NULL;
+}
+
+
+/*----- implementazione di CBarcodeItem -----*/
+
+CBarcodeItem::CBarcodeItem(void) : CPrintItem()
+{
+	m_Flags = "";
+	m_Code = "Barcode128";
+}
+
+CBarcodeItem::~CBarcodeItem(void)
+{
+}
+
+BOOL CBarcodeItem::Load(CString sec, CString key, CString layoutFName)
+{
+  int     p, zerox, zeroy;
+  char    buffer[128];
+  CString flags;
+
+  zerox = GetPrivateProfileInt(SEC_GENERAL, KEY_XZERO, 0, layoutFName);
+  zeroy = GetPrivateProfileInt(SEC_GENERAL, KEY_YZERO, 0, layoutFName);
+  GetPrivateProfileString(sec, key, "",
+                          buffer, sizeof(buffer) - 1, layoutFName);
+  /*----- sostituisco le virgole con 0 e termino con 00 -----*/
+  for(p = 0; buffer[p]; p++)
+    if(buffer[p] == ',') buffer[p] = 0;
+  buffer[p + 1] = 0;
+  /*----- m_X -----*/
+  if(!buffer[p = 0]) return FALSE;
+  sscanf(buffer + p, "%d", &m_X);
+  m_X += zerox;
+  p += (strlen(buffer + p) + 1);
+  /*----- m_Y -----*/
+  if(!buffer[p]) return FALSE;
+  sscanf(buffer + p, "%d", &m_Y);
+  m_Y += zeroy;
+  //m_Y = (m_Y * vRes / vSize);
+  p += (strlen(buffer + p) + 1);
+  /*----- m_Width -----*/
+  if(!buffer[p]) return FALSE;
+  sscanf(buffer + p, "%d", &m_W);
+  p += (strlen(buffer + p) + 1);
+  /*----- m_Height -----*/
+  if(!buffer[p]) return FALSE;
+  sscanf(buffer + p, "%d", &m_H);
+  //m_Height = (m_Height * vRes / vSize);
+  p += (strlen(buffer + p) + 1);
+  /*----- m_Flags -----*/
+  m_Flags = buffer + p;
+  p += (strlen(buffer + p) + 1);
+  return TRUE;
+}
+
+CGdiObject* CBarcodeItem::Print(CDC* pDC, CGdiObject* pBitmap)
+{
+	Barcode128 code;
+	COLORREF clrBar		=RGB(0,0,0);
+	COLORREF clrSpace	=RGB(255,255,255);
+	int iPenW = 4;
+	code.Encode128A("VA-456-2017");
+	code.DrawBarcode(pDC->m_hDC, m_X, m_Y, m_Y + m_H - 10, m_Y + m_H, clrBar, clrSpace, iPenW);
+	return NULL;
 }

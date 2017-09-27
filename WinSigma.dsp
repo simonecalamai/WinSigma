@@ -638,6 +638,10 @@ SOURCE=.\AziendeView.h
 # End Source File
 # Begin Source File
 
+SOURCE=.\Barcode.h
+# End Source File
+# Begin Source File
+
 SOURCE=.\Bmobject.h
 # End Source File
 # Begin Source File
@@ -1210,11 +1214,6 @@ SOURCE=.\html\WinSigma.hhp
 # End Source File
 # End Target
 # End Project
-# Section WinSigma : {7BF80981-BF32-101A-8BBB-00AA00300CAB}
-# 	2:5:Class:CPicture
-# 	2:10:HeaderFile:picture.h
-# 	2:8:ImplFile:picture.cpp
-# End Section
 # Section WinSigma : {C932BA85-4374-101B-A56C-00AA003668DC}
 # 	2:21:DefaultSinkHeaderFile:msmask.h
 # 	2:16:DefaultSinkClass:CMSMask
@@ -1228,4 +1227,9 @@ SOURCE=.\html\WinSigma.hhp
 # 	2:5:Class:CMSMask
 # 	2:10:HeaderFile:msmask.h
 # 	2:8:ImplFile:msmask.cpp
+# End Section
+# Section WinSigma : {7BF80981-BF32-101A-8BBB-00AA00300CAB}
+# 	2:5:Class:CPicture
+# 	2:10:HeaderFile:picture.h
+# 	2:8:ImplFile:picture.cpp
 # End Section
