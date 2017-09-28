@@ -17,10 +17,14 @@ class CPrintItem : public CObject
     int  m_HDrawn;
 		int  m_Page; // numero di pagina
     FILE*  m_pPrintFile;
+
+	protected:
+		CString		m_Nomefile;
   
 	/*----- metodi -----*/
   public:
     CPrintItem(void);
+		void SetNomefile(CString nomefile);
     // imposta le variabili in base ai valori letti dal file alla sezione sec 
 		virtual BOOL Load(CString sec, CString key, CString layoutFName);
     // stampa l'oggetto in base alle sue caratteristiche
@@ -262,7 +266,8 @@ class CBarcodeItem : public CPrintItem
 {
   /*----- dati -----*/
   protected:
-		CString		m_Flags;
+		int				m_Type;					// 0: BARCODE128  !=0: BARCODE39
+		int				m_PenWidth;			// default = 4
 	  CString		m_Code;
   /*----- metodi -----*/
   public:

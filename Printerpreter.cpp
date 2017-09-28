@@ -293,7 +293,7 @@ BOOL CPrintInterpreter::Print(
     // stampa i barcode
 		if (PrintBarcodes(&m_dcPrint, m_nPage))   bAgain = TRUE;
 
-    // se deve stampare il il numero di pagina, lo stampa secondo gli attributi
+    // se deve stampare il numero di pagina, lo stampa secondo gli attributi
 		// memorizzati nell'oggetto m_PageItem
 		if (bStampaNumeroPagina)
 		{
@@ -960,6 +960,7 @@ BOOL CPrintInterpreter::PrintBarcodes(CDC* pDC, int page)
 
   for(i = 0; i < m_BarcodeItems.GetSize(); i++)
   {
+		m_BarcodeItems[i].SetNomefile(m_DocName);
     if(!m_BarcodeItems[i].m_Page || m_BarcodeItems[i].m_Page == page)
       m_BarcodeItems[i].Print(pDC, NULL);
     if(m_BarcodeItems[i].m_Page > page)
@@ -987,11 +988,17 @@ CPrintItem::CPrintItem(void) : CObject()
   m_W      = 0;
   m_H      = 0;
   m_Page   = 0;
+	m_Nomefile = "";
 }
 
 BOOL CPrintItem::Load(CString sec, CString key, CString layoutFName)
 {
   return TRUE;
+}
+
+void CPrintItem::SetNomefile(CString nomefile)
+{
+	m_Nomefile = nomefile;
 }
 
 CGdiObject* CPrintItem::Print(CDC* pDC, CGdiObject* pGdiObject)
@@ -2218,8 +2225,9 @@ CGdiObject* CImageItem::Print(CDC* pDC, CGdiObject* pBitmap)
 
 CBarcodeItem::CBarcodeItem(void) : CPrintItem()
 {
-	m_Flags = "";
-	m_Code = "Barcode128";
+	m_Type = 0;   // default type: BARCODE128
+	m_PenWidth = 4;
+	m_Code = "";
 }
 
 CBarcodeItem::~CBarcodeItem(void)
@@ -2260,19 +2268,47 @@ BOOL CBarcodeItem::Load(CString sec, CString key, CString layoutFName)
   sscanf(buffer + p, "%d", &m_H);
   //m_Height = (m_Height * vRes / vSize);
   p += (strlen(buffer + p) + 1);
-  /*----- m_Flags -----*/
-  m_Flags = buffer + p;
+  /*----- m_Type -----*/ 
+	/* barcode type, per ora 0: BARCODE128 */
+  if(!buffer[p]) return FALSE;
+  sscanf(buffer + p, "%d", &m_Type);
+  p += (strlen(buffer + p) + 1);
+  /*----- m_PenWidth -----*/ 
+  if(!buffer[p]) return FALSE;
+  sscanf(buffer + p, "%d", &m_PenWidth);
+  p += (strlen(buffer + p) + 1);
+  /*----- m_Code -----*/
+  m_Code = buffer + p;
   p += (strlen(buffer + p) + 1);
   return TRUE;
 }
 
 CGdiObject* CBarcodeItem::Print(CDC* pDC, CGdiObject* pBitmap)
 {
-	Barcode128 code;
-	COLORREF clrBar		=RGB(0,0,0);
-	COLORREF clrSpace	=RGB(255,255,255);
-	int iPenW = 4;
-	code.Encode128A("VA-456-2017");
-	code.DrawBarcode(pDC->m_hDC, m_X, m_Y, m_Y + m_H - 10, m_Y + m_H, clrBar, clrSpace, iPenW);
+	COLORREF clrBar		= RGB(0,0,0);
+	COLORREF clrSpace	= RGB(255,255,255);
+	CString text2code;
+
+	if(!m_Code.CompareNoCase("@nomefile"))
+	{
+		text2code = m_Nomefile;
+	}
+	else
+	{
+		text2code = m_Code;
+	}
+
+	if(m_Type == 0)
+	{
+		Barcode128 code;
+		code.Encode128A(text2code);
+		code.DrawBarcode(pDC->m_hDC, m_X, m_Y, m_Y + m_H - 10, m_Y + m_H, clrBar, clrSpace, m_PenWidth);
+	}
+	else
+	{
+		Barcode39 code;
+		code.Encode39(text2code);
+		code.DrawBarcode(pDC->m_hDC, m_X, m_Y, m_Y + m_H - 10, m_Y + m_H, clrBar, clrSpace, m_PenWidth);
+	}
 	return NULL;
 }

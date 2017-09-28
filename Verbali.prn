@@ -109,5 +109,5 @@ tab lines=10
 [bitmaps]
 
 [barcodes]
-10=1200,2900,1000,150,CODE128,*,nomefile
+10=1200,2900,1000,150,0,4,@nomefile
 
