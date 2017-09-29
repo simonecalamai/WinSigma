@@ -988,6 +988,7 @@ CPrintItem::CPrintItem(void) : CObject()
   m_W      = 0;
   m_H      = 0;
   m_Page   = 0;
+	m_Color	 = 0x00000000;    // nero
 	m_Nomefile = "";
 }
 
@@ -1304,7 +1305,9 @@ BOOL CStringItem::Load(CString sec, CString key, CString layoutFName)
 		m_nEdge |= EDGE_NONEIFNULL; 
   /*----- la stringa -----*/
   m_Text = buffer + p;
-
+  p += (strlen(buffer + p) + 1);
+	/*----- colore -----*/
+  sscanf(buffer + p, "%x", &m_Color);
   return TRUE;
 }
 
@@ -1324,7 +1327,6 @@ CGdiObject* CStringItem::Print(CDC* pDC, CGdiObject* pOldFont)
 
   CFont* pFont;
   CPen   penBlack(PS_SOLID, 2, RGB(0x00, 0x00, 0x00));
-
 
 	if(!pOldFont
 		 || nFontWidth != m_FontWidth || nFontHeight != m_FontHeight 
@@ -1356,6 +1358,9 @@ CGdiObject* CStringItem::Print(CDC* pDC, CGdiObject* pOldFont)
 	}
 	else
 	  pFont = (CFont*)pOldFont;
+	/* impostazione colore */
+//	COLORREF col = RGB(0, 32, 96);
+	pDC->SetTextColor(m_Color);
 	/*---- memorizzo i dati del font -----*/
 	nFontWidth     = m_FontWidth;
 	nFontHeight    = m_FontHeight;
@@ -1825,6 +1830,8 @@ BOOL CGridItem::Load(CString sec, CString key, CString layoutFName)
   sscanf(buffer + p, "%d", &m_Cols);
   if(m_Cols > 100) m_Cols = 100;
   p += (strlen(buffer + p) + 1);
+	/*----- colore -----*/
+  sscanf(buffer + p, "%x", &m_Color);
   return TRUE;
 }
 
@@ -1841,7 +1848,8 @@ CGdiObject* CGridItem::Print(CDC* pDC, CGdiObject* pOldPen)
   int dx = (m_W + m_Cols * 2);
   int dy = (m_H + m_Rows * 2);
   int y = m_Y;
-  CPen   penBlack(PS_SOLID, 2, RGB(0x00, 0x00, 0x00));
+//  CPen   penBlack(PS_SOLID, 2, RGB(0x00, 0x00, 0x00));
+  CPen   penBlack(PS_SOLID, 2, m_Color);
 
   pOldPen = pDC->SelectObject(&penBlack);
   /*----- stampo il frame esterno -----*/

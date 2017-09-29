@@ -17,6 +17,7 @@ class CPrintItem : public CObject
     int  m_HDrawn;
 		int  m_Page; // numero di pagina
     FILE*  m_pPrintFile;
+		COLORREF m_Color;
 
 	protected:
 		CString		m_Nomefile;
