@@ -90,8 +90,9 @@ void CPrintPreviewFatture::Print(long lCodice, CDC* pDC, CRect* pRect)
 	int mm = m_pFattureEmesseSet->m_Data.GetMonth();
 	int aa = m_pFattureEmesseSet->m_Data.GetYear();
 	int numero = m_pFattureEmesseSet->m_Numero;
-	int codiceazienda = m_pFattureEmesseSet->m_Intestatario;
-	fname.Format("FA-%02d-%02d-%d-%d-%d", gg, mm, aa, numero, codiceazienda);
+//	int codiceazienda = m_pFattureEmesseSet->m_Intestatario;
+//	fname.Format("FA-%02d-%02d-%d-%d-%d", gg, mm, aa, numero, codiceazienda);
+	fname.Format("FA-%02d-%02d-%d-%d-%s", gg, mm, aa, numero, m_pAziendeSet->m_ID);
 
 	prn.SetDocName(fname);
   if(pDC == NULL)

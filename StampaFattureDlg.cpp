@@ -823,7 +823,8 @@ void CStampaFattureDlg::OnButtonPrintFattura()
 		int mm = m_pFattureEmesseSet->m_Data.GetMonth();
 		int aa = m_pFattureEmesseSet->m_Data.GetYear();
 		int numero = m_pFattureEmesseSet->m_Numero;
-		fname.Format("FA-%02d-%02d-%d-%d-%d", gg, mm, aa, numero, m_lCodiceAzienda);
+//		fname.Format("FA-%02d-%02d-%d-%d-%d", gg, mm, aa, numero, m_lCodiceAzienda);
+		fname.Format("FA-%02d-%02d-%d-%d-%s", gg, mm, aa, numero, m_pAziendeSet->m_ID);
   }
   else
   {
@@ -846,7 +847,8 @@ void CStampaFattureDlg::OnButtonPrintFattura()
 		int gg = curdate.GetDay();
 		int mm = curdate.GetMonth();
 		int aa = curdate.GetYear();
-		fname.Format("FA-PROFORMA-%02d-%02d-%d-%d", gg, mm, aa, m_lCodiceAzienda);
+//		fname.Format("FA-PROFORMA-%02d-%02d-%d-%d", gg, mm, aa, m_lCodiceAzienda);
+		fname.Format("FA-PROFORMA-%02d-%02d-%d-%s", gg, mm, aa, m_pAziendeSet->m_ID);
   }
 	prn.SetDocName(fname);
 	if(!prn.PrePrinting())
