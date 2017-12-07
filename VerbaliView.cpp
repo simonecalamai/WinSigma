@@ -4578,7 +4578,7 @@ void CVerbaliView::OnButtonStampaCertificatiConHeader()
 		POSITION pos;
 		pos = m_ListSerie.GetFirstSelectedItemPosition();
 		if( (n = m_ListSerie.GetNextSelectedItem(pos)) >= 0)
-			StampaCertificato(m_ListSerie.GetItemData(n));
+			StampaCertificato(m_ListSerie.GetItemData(n), true, true);
 		else
 			StampaCertificati(true);
 	}
@@ -5374,7 +5374,7 @@ void CVerbaliView::StampaCertificato(CTipiCertificatoSet* pTipiCertSet, long cod
 void CVerbaliView::StampaCertificato(long codRif, BOOL isCodSerie, BOOL bHeader)
 {
 		//--------------- Istanze dei recordset utilizzati-----------------//
-
+  BOOL bIsEmendamento = FALSE; 
 	CWinSigmaApp* pApp	= (CWinSigmaApp*)AfxGetApp();
 	m_pTabelle					= new CAllTables(&pApp->m_db);
 	CCertificatiVerbaliSet* pCertVerbSet	= new CCertificatiVerbaliSet(&pApp->m_db);
@@ -5450,6 +5450,7 @@ void CVerbaliView::StampaCertificato(long codRif, BOOL isCodSerie, BOOL bHeader)
 
 				//--- Gestione del duplicato e dell'emendamento ---//
 				CString str = "";
+				CString strAmend = "";
 				fieldNames.Add("duplicato");
 				if(stampaDuplicato)					
 					str.Format("DUPLICATO del %s", dlg.m_DataDuplicato.Format("%d/%m/%Y"));
@@ -5458,22 +5459,24 @@ void CVerbaliView::StampaCertificato(long codRif, BOOL isCodSerie, BOOL bHeader)
 				fieldNames.Add("emendamento");
 				if(!pCertVerbSet->IsFieldNull(&pCertVerbSet->m_EmendaIl) && pCertVerbSet->m_EmendaIl != 0)
 				{
+					bIsEmendamento = TRUE;
 					CCertificatiSet set(&pApp->m_db);
 					set.m_strFilter.Format("Codice = %d", pCertVerbSet->m_EmendaIl);
 					set.Open();
 				// variazione dicitura emendamento 29.05.2016 s.c. 
-					str.Format("Emendamento che annulla e sostituisce il certificato N° %d del %s", set.m_NumeroCertificato, set.m_DataEmissione.Format("%d/%m/%Y"));
+					strAmend.Format("Emendamento che annulla e sostituisce il certificato N° %d del %s", set.m_NumeroCertificato, set.m_DataEmissione.Format("%d/%m/%Y"));
 					set.Close();
 				}
 				if(!pCertVerbSet->IsFieldNull(&pCertVerbSet->m_EmendatoDa) && pCertVerbSet->m_EmendatoDa != 0)
 				{
+					bIsEmendamento = TRUE;
 					CCertificatiSet set(&pApp->m_db);
 					set.m_strFilter.Format("Codice = %d", pCertVerbSet->m_EmendatoDa);
 					set.Open();
-					str.Format("Emendato dal certificato N° %d del %s", set.m_NumeroCertificato, set.m_DataEmissione.Format("%d/%m/%Y"));
+					strAmend.Format("Emendato dal certificato N° %d del %s", set.m_NumeroCertificato, set.m_DataEmissione.Format("%d/%m/%Y"));
 					set.Close();
 				}
- 				fieldValues.Add(str);
+ 				fieldValues.Add(strAmend);
         
 				CString debug = pCertVerbSet->m_Cantiere;
 
@@ -5534,6 +5537,12 @@ void CVerbaliView::StampaCertificato(long codRif, BOOL isCodSerie, BOOL bHeader)
 							fieldNames.Add("paginaCorrente");
 							str.Format("%d",pagCorrente + 2 );
 							fieldValues.Add(str);
+
+							if(bIsEmendamento == TRUE) // 4.12.2017 s.c.
+							{
+								fieldNames.Add("emendamento");
+								fieldValues.Add(strAmend);
+							}
 							//--------------------------------------------------------//	
 							pagCorrente++;
 							prn.Print(pApp->GetCurrentDirectory() + "\\" + fileLayout, 
@@ -6649,7 +6658,9 @@ void CVerbaliView::OnButtonEmenda()
 				      pNewProvini->m_DataInserimento = pOldProvini->m_DataInserimento;
 				      pNewProvini->m_Servizio				= pOldProvini->m_Servizio;
 				      pNewProvini->m_Serie						= codNuovaSerie;
-
+							// [Fix] 7.12.2017 aggiunti Marchio e RotoliCT s.c.
+							pNewProvini->m_Marchio = pOldProvini->m_Marchio;
+							pNewProvini->m_RotoliCT = pOldProvini->m_RotoliCT;
               pNewProvini->Update();
         
               pNewProvini->Close();

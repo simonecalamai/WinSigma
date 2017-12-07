@@ -30,6 +30,7 @@ tab lines=12
 20=+180,+0,200,40,Times New Roman,22,38,BL,dataCertificato
 30=+760,+0,200,40,Times New Roman,22,38,BL,numeroVerbale
 40=+240,+0,200,40,Times New Roman,22,38,BL,dataVerbale
+44=150,+40,1600,40,Times New Roman,22,38,BL,emendamento
 45=150,+80,500,40,Times New Roman,22,38,L,duplicato
 
 50=150,730,170,70,Times New Roman,22,38,L,lblMateriale
