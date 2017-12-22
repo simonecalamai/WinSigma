@@ -334,7 +334,7 @@ void CAziendeView::DoDataExchange(CDataExchange* pDX)
 	DDX_Text(pDX, IDC_EDIT_CODFISC, m_strCodiceFiscale);
 	DDV_MaxChars(pDX, m_strCodiceFiscale, 16);
 	DDX_Text(pDX, IDC_EDIT_EMAIL, m_strEMail);
-	DDV_MaxChars(pDX, m_strEMail, 32);
+	DDV_MaxChars(pDX, m_strEMail, 200);
 	DDX_Text(pDX, IDC_EDIT_FAX, m_strFax);
 	DDV_MaxChars(pDX, m_strFax, 32);
 	DDX_Text(pDX, IDC_EDIT_INDIRIZZO, m_strIndirizzo);
