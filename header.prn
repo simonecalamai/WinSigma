@@ -8,7 +8,7 @@ y zero=-60
 ;20=+920,+20,30,40,Times,30,40,-
 30=+630,+16,1100,40,Times,25,40,BL,- Prove su materiali da costruzione ed indagini geotecniche dal 1973,0x602000
 40=340,230,1500,42,Times,24,40,L,Autorizzazione Ministero Infrastrutture e Trasporti - Associato ALIG,0x602000
-50=340,280,1260,42,Times,24,40,L,D.M. n. 6786 del 15.10.2014 (Legge 1086/71 art. 20 - Circ. 7617/STC Settore A),0x602000
+50=340,280,1290,42,Times,24,40,L,D.M. n. 6786 del 15.10.2014 (Legge 1086/71 art. 20 - Circ. 7617/STC Settore A),0x602000
 60=340,330,1260,42,Times,24,40,L,D.M. n.  244 del 10.08.2015 (DPR 380/01 art. 59 - Circ.7618 Settori A e B),0x602000
 
 ;footer

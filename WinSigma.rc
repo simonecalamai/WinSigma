@@ -454,8 +454,8 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "&Emissione",                  ID_BUTTON_AVVIA_EMISSIONE
         MENUITEM SEPARATOR
-        MENUITEM "S&tampa senza header",        ID_BUTTON_STAMPA_CERTIFICATI
-        MENUITEM "&Stampa",                     ID_BUTTON_STAMPA_CERTIFICATI_CON_HEADER
+        MENUITEM "&Stampa",                     ID_BUTTON_STAMPA_CERTIFICATI
+        MENUITEM "S&tampa senza header",        ID_BUTTON_STAMPA_CERTIFICATI_SENZA_HEADER
 
         MENUITEM SEPARATOR
         MENUITEM "S&blocca certificazione",     ID_SBLOCCACERTIFICAZIONE
@@ -851,7 +851,7 @@ END
 
 IDD_FORM_OPERATORI DIALOGEX 0, 0, 494, 359
 STYLE WS_CHILD | WS_BORDER
-FONT 8, "MS Sans Serif"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
 BEGIN
     EDITTEXT        IDC_EDIT_NOME,150,25,260,14,ES_AUTOHSCROLL
     EDITTEXT        IDC_EDIT_COGNOME,150,46,260,14,ES_AUTOHSCROLL
@@ -1396,7 +1396,7 @@ IDD_FORM_ARCHIVIO_CERTIFICATI DIALOG DISCARDABLE  0, 0, 503, 388
 STYLE WS_CHILD
 FONT 8, "MS Sans Serif"
 BEGIN
-    COMBOBOX        IDC_COMBO_ANNO,36,18,57,44,CBS_DROPDOWNLIST | 
+    COMBOBOX        IDC_COMBO_ANNO,36,18,57,230,CBS_DROPDOWNLIST | 
                     CBS_AUTOHSCROLL | CBS_SORT | WS_TABSTOP
     EDITTEXT        IDC_EDIT_NUMERO_CERTIFICATO,186,18,50,12,ES_AUTOHSCROLL
     EDITTEXT        IDC_EDIT_NUMEROVERBALE,70,38,50,12,ES_AUTOHSCROLL
@@ -2673,8 +2673,13 @@ END
 
 STRINGTABLE DISCARDABLE 
 BEGIN
+    ID_FATTURA_ELETT_EMETTI "Emissione fattura elettronica"
     ID_BUTTON_STAMPA_CERTIFICATI 
                             "Procedura di stampa multipla dei certificati emessi\nStampa certificati"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
     ID_DATI_PROVINI         "Procedura di immissione dei dati dei provini\nAbilita dati provini"
 END
 
@@ -2765,11 +2770,6 @@ BEGIN
     ID_AZIENDE_MODIFICA     "Procedura di modifica\nModifica"
     ID_AZIENDE_ELIMINA      "Procedura di eliminazione\nElimina"
     ID_HELP_VERSION         "Version"
-END
-
-STRINGTABLE DISCARDABLE 
-BEGIN
-    ID_FATTURA_ELETT_EMETTI "Emissione fattura elettronica"
 END
 
 #endif    // Italian (Italy) resources
