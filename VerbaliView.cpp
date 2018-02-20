@@ -69,7 +69,8 @@ CString               CVerbaliView::FormatIndirizzo(CAziendeSet* m_pSet);
 int										CVerbaliView::m_nContaEtichette;
 int										CVerbaliView::m_nSaltaEtichette;
 CStringArray					CVerbaliView::m_aryCampiEtichette;
-BOOL                  CVerbaliView::m_bStampaCaratteri;
+//BOOL                  CVerbaliView::m_bStampaCaratteri;
+int                  CVerbaliView::m_nPrintMode;
 
 /////////////////////////////////////////////////////////////////////////////
 // CVerbaliView
@@ -256,6 +257,7 @@ BEGIN_MESSAGE_MAP(CVerbaliView, CXFormView)
 	ON_COMMAND(ID_BUTTON_STAMPA_CERTIFICATI, OnButtonStampaCertificatiConHeader)
 	ON_COMMAND(ID_PRN_CARTA_INTESTATA, OnPrnCartaIntestata)
 	ON_COMMAND(ID_PRN_CARTA_LIBERA, OnPrnCartaLibera)
+	ON_COMMAND(ID_VERBALI_STAMPA_VERBALECONINTESTAZIONE, OnPrnVerbaleConIntestazione)
 	ON_BN_CLICKED(IDC_CHECK_LUNGA_SCADENZA, OnCheckLungaScadenza)
 	ON_BN_CLICKED(IDC_BUTTON_AUTO_MAT, OnButtonAutoMateriale)
 	ON_BN_CLICKED(IDC_BUTTON_AUTO_PROVE, OnButtonAutoProve)
@@ -3781,19 +3783,27 @@ void CVerbaliView::OnPrintMinuta()
 	}
 }
 
+#define STAMPA_VERBALE_AD_AGHI					0
+#define STAMPA_VERBALE_CARTA_LIBERA			1
+#define STAMPA_VERBALE_CON_INTESTAZIONE	2
+
 void CVerbaliView::OnPrnCartaIntestata() 
 {
-	m_bStampaCaratteri = TRUE;
+	m_nPrintMode = STAMPA_VERBALE_AD_AGHI;
   PrintVerbale();	
 }
 
 void CVerbaliView::OnPrnCartaLibera() 
 {
-	m_bStampaCaratteri = FALSE;
+	m_nPrintMode = STAMPA_VERBALE_CARTA_LIBERA;
   PrintVerbale();	
 }
 
-
+void CVerbaliView::OnPrnVerbaleConIntestazione()
+{
+	m_nPrintMode = STAMPA_VERBALE_CON_INTESTAZIONE;
+  PrintVerbale();	
+}
 
 void CVerbaliView::PrintVerbale()
 {
@@ -3804,6 +3814,7 @@ void CVerbaliView::PrintVerbale()
   CString printFileName, strPrinter, strPrnFile, docname;
 	int TipoCertificato = 0;
   int VerID;
+	CWinSigmaApp* pApp	= (CWinSigmaApp*)AfxGetApp();
 
   if(m_pVerbaliSet->IsBOF() || m_pVerbaliSet->IsEOF())
 	{
@@ -3822,7 +3833,7 @@ void CVerbaliView::PrintVerbale()
   if(!prnInterpreter.PrePrinting())
     return;
 #else
-  if(!m_bStampaCaratteri)
+  if(m_nPrintMode != STAMPA_VERBALE_AD_AGHI)
   {
     if(!prnInterpreter.PrePrinting())
       return;
@@ -3898,7 +3909,7 @@ void CVerbaliView::PrintVerbale()
   ScanFields(&strNames, &strValues);
   prnInterpreter.Print(strPrnFile, &strNames, &strValues, NULL, &ScanCampioni);
 	prnInterpreter.PostPrinting();
-	if(m_bStampaCaratteri)
+	if(m_nPrintMode == STAMPA_VERBALE_AD_AGHI)
 	{
 		// Scrivo la data nel record
 		CString strSql("");
@@ -3921,11 +3932,20 @@ void CVerbaliView::PrintVerbale()
 		pTipiCertificato->Close();
 		delete pTipiCertificato;
 	}
+
+	// imposta la stampa con l'header
+	if(m_nPrintMode == STAMPA_VERBALE_CON_INTESTAZIONE)
+	{
+		int pos = strPrnFile.Find(".prn");
+		strPrnFile.Insert(pos, "_H");
+		prnInterpreter.SetHeaderFile(pApp->GetCurrentDirectory() + "\\" + pApp->m_headerVerbaliPrn);
+	}
+
 	// Simulazione
   m_nTotalePagine = 0;
   prnInterpreter.SetPage(1);
   prnInterpreter.StartSimulation();
-  if(m_bStampaCaratteri)
+  if(m_nPrintMode == STAMPA_VERBALE_AD_AGHI)
     prnInterpreter.PrintText(strPrnFile, printFileName, &strNames, &strValues, NULL, &ScanCampioni);
   else
     prnInterpreter.Print(strPrnFile, &strNames, &strValues, NULL, &ScanCampioni);
@@ -3934,7 +3954,7 @@ void CVerbaliView::PrintVerbale()
   prnInterpreter.SetPage(1);
   SET_START(m_pSerieSet);
   ScanFields(&strNames, &strValues);
-  if(m_bStampaCaratteri)
+  if(m_nPrintMode == STAMPA_VERBALE_AD_AGHI)
   {
     if(prnInterpreter.PrintText(strPrnFile, printFileName, &strNames, &strValues, NULL, &ScanCampioni))
     {
@@ -4301,7 +4321,7 @@ BOOL CVerbaliView::ScanCampioni(CStringArray* pFieldNames, CStringArray* pFieldV
 
   pFieldNames->Add("tipoCaratteristiche");
 	str = m_pSerieSet->m_Materiale;
-	if(m_bStampaCaratteri)
+	if(m_nPrintMode == STAMPA_VERBALE_AD_AGHI)
 	{
 		str.Replace("²", "ý");
 		str.Replace("°", "ø");
@@ -4332,7 +4352,7 @@ BOOL CVerbaliView::ScanCampioni(CStringArray* pFieldNames, CStringArray* pFieldV
   if(!m_pSerieSet->IsFieldNull(&m_pSerieSet->m_Sigla))
 	{
 		str = m_pSerieSet->m_Sigla;
-		if(m_bStampaCaratteri)
+		if(m_nPrintMode == STAMPA_VERBALE_AD_AGHI)
 		{
 			str.Replace("°", "ø");
   		str.Replace("²", "ý");
@@ -4351,7 +4371,7 @@ BOOL CVerbaliView::ScanCampioni(CStringArray* pFieldNames, CStringArray* pFieldV
 		{
 			str = m_pSerieSet->m_StrutturaPrelievo;
 		}
-		if(m_bStampaCaratteri)
+		if(m_nPrintMode == STAMPA_VERBALE_AD_AGHI)
 		{
 			str.Replace("°", "ø");
 			str.Replace("²", "ý");
@@ -5563,197 +5583,6 @@ void CVerbaliView::StampaCertificato(long codRif, BOOL isCodSerie, BOOL bHeader)
   delete pCertVerbSet;
 }
 
-#if 0   // backup
-void CVerbaliView::StampaCertificato(long codRif, BOOL isCodSerie, BOOL bHeader)
-{
-		//--------------- Istanze dei recordset utilizzati-----------------//
-
-	CWinSigmaApp* pApp	= (CWinSigmaApp*)AfxGetApp();
-	m_pTabelle					= new CAllTables(&pApp->m_db);
-	CCertificatiVerbaliSet* pCertVerbSet	= new CCertificatiVerbaliSet(&pApp->m_db);
-	long codCertificato;
-
-	m_pTabelle->m_pSerieProviniSet->m_strFilter.Format("SERIE.Codice = PROVINI.Serie AND SERIE.Codice = %d ", codRif);
-	m_pTabelle->m_pSerieProviniSet->m_strSort = "SERIE.Codice , PROVINI.Codice";
-  m_pTabelle->m_pSerieProviniSet->Open();
-
-	if(isCodSerie)
-		codCertificato = m_pTabelle->m_pSerieProviniSet->m_Certificato;
-	else
-		codCertificato = codRif;
-		
-	pCertVerbSet->m_strFilter.Format("VERBALI.Codice = CERTIFICATI.Verbale AND CERTIFICATI.Codice = %d", codCertificato);
-	pCertVerbSet->Open();
-
-  if(pApp->GetViewMode() != MODE_VIEW)
-	{
-	  MessageBeep(-1);
-		return;
-	}
-
-	if( pCertVerbSet->IsEOF() )
-	{
-		pCertVerbSet->Close();
-		delete pCertVerbSet;
-		delete m_pTabelle;
-		AfxMessageBox("Operazione non disponibile!\nNon è stato trovato il documento richiesto.");
-		return;
-	}
-
-
-	//----------- Apertura del dialogo di selezione --------//
-
-	CDWordArray CertScelti;
-	CStampaCertificatiDlg dlg;
-
-	dlg.m_pCertVerbSet				= pCertVerbSet;
-	dlg.m_pTipiCertificatoSet = m_pTipiCertificatoSet;
-	dlg.m_pCertificatiScelti	= &CertScelti;
-	dlg.m_bRistampa						= TRUE;
-
-	if(dlg.DoModal() == IDOK && CertScelti.GetSize() > 0)
-	{
-		BOOL stampaDuplicato = dlg.m_bDuplicato;
-		CWinSigmaApp* pApp = (CWinSigmaApp*)AfxGetApp();
-
-		CString fileLayout = "";	// contenitore del nome del file di layout
-		int numeroPagine = 0;
-		CPrintInterpreter prn;
-		CStringArray fieldNames, fieldValues;
-		if(prn.PrePrinting())
-		{
-			for(int i = 0; i < CertScelti.GetSize(); i++)
-			{
-				//sincronizzo il recordset con il certificato scelto
-				for(SET_START(pCertVerbSet); !pCertVerbSet->IsEOF(); pCertVerbSet->MoveNext())
-					if(pCertVerbSet->m_CodiceCertificato == (long)CertScelti.GetAt(i))
-						break;
-
-				// Settaggio della dll associata per richiamare opportunamente le funzioni
-				SINCRONIZE(m_pTipiCertificatoSet, pCertVerbSet->m_TipoCertificato);
-				
-				fileLayout = m_pTipiCertificatoSet->m_LayoutStampa;
-	//			if(bHeader == TRUE)
-	//				fileLayout = m_pTipiCertificatoSet->m_LayoutStampaHeader;
-					
-				m_strDllCorrente = GetNameModuloDll(m_pTipiCertificatoSet->m_Codice);
-        
-				CString docname;
-				docname.Format("%d", pCertVerbSet->m_CodiceCertificato);
-				prn.SetDocName(docname);
-				numeroPagine = LoadDatiStampa(pCertVerbSet->m_CodiceCertificato, &fieldNames, &fieldValues);
-
-				//--- Gestione del duplicato e dell'emendamento ---//
-				CString str = "";
-				fieldNames.Add("duplicato");
-				if(stampaDuplicato)					
-					str.Format("DUPLICATO del %s", dlg.m_DataDuplicato.Format("%d/%m/%Y"));
-  			fieldValues.Add(str);
-        str.Empty();
-        fieldNames.Add("emendamento");
-				if(!pCertVerbSet->IsFieldNull(&pCertVerbSet->m_EmendaIl) && pCertVerbSet->m_EmendaIl != 0)
-        {
-          CCertificatiSet set(&pApp->m_db);
-          set.m_strFilter.Format("Codice = %d", pCertVerbSet->m_EmendaIl);
-          set.Open();
-					// variazione dicitura emendamento 29.05.2016 s.c. 
-//          str.Format("Emendamento al certificato N° %d del %s", set.m_NumeroCertificato, set.m_DataEmissione.Format("%d/%m/%Y"));
-          str.Format("Emendamento che annulla e sostituisce il certificato N° %d del %s", set.m_NumeroCertificato, set.m_DataEmissione.Format("%d/%m/%Y"));
-          set.Close();
-        }
-        if(!pCertVerbSet->IsFieldNull(&pCertVerbSet->m_EmendatoDa) && pCertVerbSet->m_EmendatoDa != 0)
-        {
-          CCertificatiSet set(&pApp->m_db);
-          set.m_strFilter.Format("Codice = %d", pCertVerbSet->m_EmendatoDa);
-          set.Open();
-          str.Format("Emendato dal certificato N° %d del %s", set.m_NumeroCertificato, set.m_DataEmissione.Format("%d/%m/%Y"));
-          set.Close();
-        }
-  			fieldValues.Add(str);
-        
-				CString debug = pCertVerbSet->m_Cantiere;
-
-				//Preparazione del recordset dei provini 
-				//m_pTabelle->m_pSerieProviniSet->m_strSort = "SERIE.Codice, PROVINI.Codice ASC";
-				m_pTabelle->m_pSerieProviniSet->m_strFilter.Format("SERIE.Codice = PROVINI.Serie AND SERIE.Certificato = %d ", pCertVerbSet->m_CodiceCertificato);
-				m_pTabelle->m_pSerieProviniSet->m_strSort = "SERIE.Codice, PROVINI.Codice ASC";
-        m_pTabelle->m_pSerieProviniSet->Requery();
-				m_nCodSerieStampata = 0;//serve per stampare la prima riga di una serie in maniera diversa 
-				m_nContaProvini = 0;		// serve per indicare il numero del provino alla dll
-
-				if(numeroPagine == 1)
-				{
-					//--------- gestione numeri di pagina --------------------//
-					fieldNames.Add("pagineTotali");
-					fieldValues.Add("1");
-					fieldNames.Add("paginaCorrente");
-					fieldValues.Add("1");
-					//--------------------------------------------------------//
-				}
-				
-				// imposta la stampa con l'header
-				if(bHeader == TRUE)
-				{
-					prn.SetHeaderFile(pApp->GetCurrentDirectory() + "\\" + pApp->m_headerPrn);
-				}
-
-				prn.Print(pApp->GetCurrentDirectory() + "\\" + fileLayout, 
-							&fieldNames, &fieldValues, NULL, &ScanProvini);
-
-				// (andrea) Modifica provvisoria per saltare la stampa degli allegati
-				// numeroPagine = 1;
-				// --------------------------------------------------------------- //
-				if(numeroPagine > 1)
-				{
-					int contaProvini = 1;
-					byte stampaAllegati = TRUE;
-					SET_START(m_pTabelle->m_pSerieProviniSet);
-					typedef BOOL (PROCESTERNA)(CString*,CAllTables*,CStringArray*,CStringArray*, int*, BOOL*, CTime* );	
-					HINSTANCE hist = NULL;
-					PROCESTERNA* pFunc;		
-					BOOL esito = 0;
-					ASSERT(hist = ::LoadLibrary(m_strDllCorrente));
-					if(pFunc = (PROCESTERNA*)::GetProcAddress(hist,"StampaAllegato"))
-					{
-						int pagCorrente = 0;
-						CString str;
-						while(stampaAllegati)
-						{
-							fieldNames.RemoveAll();
-							fieldValues.RemoveAll();
-							//stampaAllegati = (pFunc)(&fileLayout,m_pTabelle,&fieldNames,&fieldValues,&contaProvini);
-							SET_START(m_pTabelle->m_pSerieProviniSet);
-							stampaAllegati = (pFunc)(&fileLayout,m_pTabelle,&fieldNames,&fieldValues,&pagCorrente,&stampaDuplicato, &dlg.m_DataDuplicato);
-							//--------- gestione numeri di pagina --------------------//
-							fieldNames.Add("pagineTotali");
-							str.Format("%d",numeroPagine);
-							fieldValues.Add(str);
-							fieldNames.Add("paginaCorrente");
-							str.Format("%d",pagCorrente + 2 );
-							fieldValues.Add(str);
-							//--------------------------------------------------------//
-
-							pagCorrente++;
-							prn.Print(pApp->GetCurrentDirectory() + "\\" + fileLayout, 
-								&fieldNames, &fieldValues, NULL, NULL);
-						}
-					}					
-				}
-				fieldNames.RemoveAll();
-				fieldValues.RemoveAll();
-			}
-			prn.PostPrinting();
-		} // if preprinting()
-	}
-
-	pCertVerbSet->Close();
-
-	delete m_pTabelle;
-  delete pCertVerbSet;
-}
-#endif
-
-
 // Effettua la ricerca dei verbali secondo la chiave impostata
 void CVerbaliView::FindVerbali(int searchParam)
 {
@@ -6769,3 +6598,190 @@ CString CVerbaliView::BuildCertificateName(CCertificatiVerbaliSet* pCertVerbSet)
 	docname.Format("CE-1-%d-%d-%s-C-%d-%d-0", numverb, annoverb, siglasp, numcert, annocert);
 	return docname;
 }
+
+
+
+#if 0    // da cancellare
+void CVerbaliView::PrintVerbale(int mode)
+{
+  CPrintInterpreter prnInterpreter;
+  CStringArray strNames, strValues;
+  BOOL bPrint = FALSE;
+  CTime data = CTime::GetCurrentTime();
+  CString printFileName, strPrinter, strPrnFile, docname;
+	int TipoCertificato = 0;
+  int VerID;
+
+  if(m_pVerbaliSet->IsBOF() || m_pVerbaliSet->IsEOF())
+	{
+	  MessageBeep(-1);
+		return;
+	}
+	// La stampa viene fatta su un file che ha come nome il progressivo totale del verbale
+  printFileName.Format("%d_%d.txt", m_pVerbaliSet->m_ProgressivoParziale, m_pVerbaliSet->m_ProgressivoTotale);
+  VerID = m_pVerbaliSet->m_Codice;
+
+	// imposta il nome del file secondo le specifiche della gestione documentale (s.c. 14.09.2017)
+  docname.Format("VA-%d-%d", m_pVerbaliSet->m_ProgressivoTotale, m_pVerbaliSet->m_DataAccettazione.GetYear());
+	prnInterpreter.SetDocName(docname);
+
+#ifdef WINSIGMA2
+  if(!prnInterpreter.PrePrinting())
+    return;
+#else
+  if(!m_bStampaCaratteri)
+  {
+    if(!prnInterpreter.PrePrinting())
+      return;
+  }
+#endif
+  m_pSerieSet->m_strFilter.Format("Verbale = %d", m_pVerbaliSet->m_Codice);
+  m_pSerieSet->m_strSort = "TipoCertificato, Codice ASC";
+  m_pSerieSet->Requery();
+  m_bSpianatura = FALSE;
+  for(SET_START(m_pSerieSet); !m_pSerieSet->IsEOF(); m_pSerieSet->MoveNext())
+  {
+		TipoCertificato = m_pSerieSet->m_TipoCertificato;
+	  ASSERT(!m_pSerieSet->IsFieldNull(&m_pSerieSet->m_ServAggiungibile));
+    if(m_pSerieSet->m_ServAggiungibile)
+    {
+      if(m_pSerieSet->m_Servizio1 == m_pSerieSet->m_ServAggiungibile
+			   || m_pSerieSet->m_Servizio2 == m_pSerieSet->m_ServAggiungibile
+			   || m_pSerieSet->m_Servizio3 == m_pSerieSet->m_ServAggiungibile
+			   || m_pSerieSet->m_Servizio4 == m_pSerieSet->m_ServAggiungibile
+			   || m_pSerieSet->m_Servizio5 == m_pSerieSet->m_ServAggiungibile
+			   || m_pSerieSet->m_Servizio6 == m_pSerieSet->m_ServAggiungibile)
+        m_bSpianatura = TRUE;  	     
+			else
+			{
+        m_bSpianatura = FALSE;  
+			  break;
+			}
+		}
+  }
+  SET_START(m_pSerieSet);
+
+  CAziendeSet* pAziende = new CAziendeSet(&((CWinSigmaApp*)AfxGetApp())->m_db);
+  pAziende->m_strFilter.Format("Codice = %d", m_pVerbaliSet->m_CodiceAzFattura);
+  pAziende->Open();
+  m_bPrivato = pAziende->m_Privato;
+  if (!pAziende->m_Note.IsEmpty())
+    m_bNote = TRUE;
+  else
+    m_bNote = FALSE;
+  pAziende->Close();
+
+  if(m_pVerbaliSet->m_TipoVerbale == VERB_GEOLOGIA)
+	{
+    strPrnFile = ".\\VerbaliGeo.prn";
+	}
+  else
+	{
+#ifdef WINSIGMA2
+		CTipiCertificatoSet* pTipiCertificato = new CTipiCertificatoSet(&((CWinSigmaApp*)AfxGetApp())->m_db);
+		pTipiCertificato->m_strFilter.Format("Codice = %d", TipoCertificato);
+		pTipiCertificato->Open();
+		if (!pTipiCertificato->IsEOF())
+		{
+			strPrnFile.Format(".\\%s", pTipiCertificato->m_LayoutStampaVerbali);
+		}
+		else
+		{
+			strPrnFile = ".\\VerbaliSigma2.prn";
+		}
+		
+		pTipiCertificato->Close();
+		delete pTipiCertificato;
+	}
+	// Simulazione
+  m_nTotalePagine = 0;
+  prnInterpreter.SetPage(1);
+  prnInterpreter.StartSimulation();
+  prnInterpreter.Print(strPrnFile, &strNames, &strValues, NULL, &ScanCampioni);
+  m_nTotalePagine = prnInterpreter.GetPage() - 1;
+  prnInterpreter.EndSimulation();
+  prnInterpreter.SetPage(1);
+  SET_START(m_pSerieSet);
+  ScanFields(&strNames, &strValues);
+  prnInterpreter.Print(strPrnFile, &strNames, &strValues, NULL, &ScanCampioni);
+	prnInterpreter.PostPrinting();
+	if(m_bStampaCaratteri)
+	{
+		// Scrivo la data nel record
+		CString strSql("");
+		strSql.Format("UPDATE VERBALI SET DataPrimaStampa = '%s' Where Codice = %d", data.Format("%Y-%m-%d"), VerID);
+		((CWinSigmaApp*)AfxGetApp())->m_db.ExecuteSQL(strSql);
+	}
+#else
+		CTipiCertificatoSet* pTipiCertificato = new CTipiCertificatoSet(&((CWinSigmaApp*)AfxGetApp())->m_db);
+		pTipiCertificato->m_strFilter.Format("Codice = %d", TipoCertificato);
+		pTipiCertificato->Open();
+		if (!pTipiCertificato->IsEOF())
+		{
+			strPrnFile.Format(".\\%s", pTipiCertificato->m_LayoutStampaVerbali);
+		}
+		else
+		{
+			strPrnFile = ".\\Verbali.prn";
+		}
+		
+		pTipiCertificato->Close();
+		delete pTipiCertificato;
+	}
+	// Simulazione
+  m_nTotalePagine = 0;
+  prnInterpreter.SetPage(1);
+  prnInterpreter.StartSimulation();
+  if(m_bStampaCaratteri)
+    prnInterpreter.PrintText(strPrnFile, printFileName, &strNames, &strValues, NULL, &ScanCampioni);
+  else
+    prnInterpreter.Print(strPrnFile, &strNames, &strValues, NULL, &ScanCampioni);
+  m_nTotalePagine = prnInterpreter.GetPage() - 1;
+  prnInterpreter.EndSimulation();
+  prnInterpreter.SetPage(1);
+  SET_START(m_pSerieSet);
+  ScanFields(&strNames, &strValues);
+  if(m_bStampaCaratteri)
+  {
+    if(prnInterpreter.PrintText(strPrnFile, printFileName, &strNames, &strValues, NULL, &ScanCampioni))
+    {
+      CWinSigmaApp* pApp = (CWinSigmaApp*)AfxGetApp();
+      SetTimer(TIME_OUT_MSG_ID, 10000, NULL);
+      // Il file è pronto, posso lanciare il thread di stampa
+      CPrinterThread prnThread;
+      switch(m_pVerbaliSet->m_TipoVerbale)
+      {
+      case VERB_IN_CONCESSIONE:
+        strPrinter = pApp->GetProfileString(CONFIGURAZIONE, STAMPA_CONCESSIONE);
+        break;
+      case VERB_NON_IN_CONCESSIONE:
+			case VERB_NC_PROVE_DI_CARICO :
+			case VERB_NC_CONGL_BITUMINOSI	:
+			case VERB_NC_INERTI	:
+			case VERB_NC_MONITORAGGI :
+			case VERB_NC_VARIE	:
+			case VERB_NC_GEOTECNICA :
+        strPrinter = pApp->GetProfileString(CONFIGURAZIONE, STAMPA_NONCONCESSIONE);
+        break;
+      case VERB_GEOLOGIA:
+        strPrinter = pApp->GetProfileString(CONFIGURAZIONE, STAMPA_GEOLOGIA);
+        break;
+      }
+      prnThread.BeginPrinterThread(printFileName, strPrinter, this->m_hWnd);
+      
+			// Scrivo la data nel record
+			CString strSql("");
+			strSql.Format("UPDATE VERBALI SET DataPrimaStampa = '%s' Where Codice = %d", data.Format("%Y-%m-%d"), VerID);
+			((CWinSigmaApp*)AfxGetApp())->m_db.ExecuteSQL(strSql);
+    }
+  }
+  else
+  {
+    prnInterpreter.Print(strPrnFile, &strNames, &strValues, NULL, &ScanCampioni);
+  	prnInterpreter.PostPrinting();
+  }
+#endif 
+  m_pSerieSet->m_strFilter.Empty();
+  m_pSerieSet->Requery();
+}
+#endif

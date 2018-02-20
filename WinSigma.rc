@@ -423,6 +423,8 @@ BEGIN
         BEGIN
             MENUITEM "&Verbale su carta intestata", ID_PRN_CARTA_INTESTATA
             MENUITEM "Ver&bale su carta libera",    ID_PRN_CARTA_LIBERA
+            MENUITEM "Verbale",                     ID_VERBALI_STAMPA_VERBALECONINTESTAZIONE
+
             MENUITEM "&Minute",                     ID_PRINT_MINUTA
             MENUITEM "&Etichette",                  ID_STAMPA_ETICHETTE
             MENUITEM "Sc&heda intestatario fattura", 

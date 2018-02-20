@@ -33,6 +33,7 @@ tab lines=10
 -290=-150,+80,750,40, Courier New,26,35,L,_____________________________
 -300=+1200,-80,600,40,Courier New,26,35,L,Il Richiedente
 -310=-150,+80,750,40,Courier New,26,35,L,_____________________________
+-320=80,2800,2100,50,Courier New,18,28,L,I certificati originali sono costituiti da files firmati digitalmente e la consegna avverra' mediante spedizione email pec.
 
 [fields]
 10=1450,360,250,40,Courier New,40,35,L,numeroVerbale

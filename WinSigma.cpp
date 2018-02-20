@@ -145,6 +145,7 @@ BOOL CWinSigmaApp::InitInstance()
 			m_csDefaultConnect.Format("ODBC;UID=dbuser;PWD=49sigma03");
 			m_headerPrn = GetProfileString("Impostazioni", "HdrSigma", "header.prn");
 			m_headerFatturePrn = GetProfileString("Impostazioni", "HdrFattureSigma", "headerfatture.prn");
+			m_headerVerbaliPrn = GetProfileString("Impostazioni", "HdrVerbaliSigma", "headerverbali.prn");
 			break;
 
 		case 1:	// WinSigma LI
@@ -160,6 +161,7 @@ BOOL CWinSigmaApp::InitInstance()
 			}
 			m_headerPrn = GetProfileString("Impostazioni", "HdrSigmaE", "headerSE.prn");
 			m_headerFatturePrn = GetProfileString("Impostazioni", "HdrFattureSigmaE", "headerfattureSE.prn");
+			m_headerVerbaliPrn = GetProfileString("Impostazioni", "HdrVerbaliSigmaE", "headerverbaliSE.prn");
 			break;
 
 		case 2:	// WinSigmaDue FI
@@ -167,6 +169,7 @@ BOOL CWinSigmaApp::InitInstance()
 			m_csDefaultConnect.Format("ODBC;UID=dbuser;PWD=49sigma03");
 			m_headerPrn = GetProfileString("Impostazioni", "HdrSigma2", "headerS2.prn");
 			m_headerFatturePrn = GetProfileString("Impostazioni", "HdrFattureSigma2", "headerFattureS2.prn");
+			m_headerVerbaliPrn = GetProfileString("Impostazioni", "HdrVerbaliSigma", "headerverbali.prn");
 			break;
 	}
 

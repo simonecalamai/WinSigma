@@ -51,7 +51,7 @@
 //
 //#define WINSIGMA2
 
-#define STR_VERSION							"4.5.6" 
+#define STR_VERSION							"4.5.7" 
 #define STR_BUILDTIME   __TIMESTAMP__  
 #define AZIENDE_BUFFER  1024
 #define FATTURE_BUFFER  1024
@@ -359,6 +359,7 @@ class CWinSigmaApp : public CWinApp
 		BYTE m_byDBRemoto;
 		CString m_headerPrn;
 		CString m_headerFatturePrn;
+		CString m_headerVerbaliPrn;
   /*---- metodi -----*/
   public:
 		~CWinSigmaApp();

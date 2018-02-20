@@ -148,7 +148,8 @@ protected:
 	CFont m_FontLarge;
 // Operations
 public:
-	static BOOL m_bStampaCaratteri;
+//	static BOOL m_bStampaCaratteri;
+	static int m_nPrintMode;
 	static void StampaCertificato(CTipiCertificatoSet* pSet, long codRif, BOOL isCodSerie = TRUE, BOOL bHeader = FALSE );
 	static void StampaCertificato(long codRif, BOOL isCodSerie = TRUE, BOOL bHeader = FALSE );
 	void CreaEmendamento(long codDoc);
@@ -251,6 +252,7 @@ protected:
 	afx_msg void OnButtonStampaCertificatiConHeader();
 	afx_msg void OnPrnCartaIntestata();
 	afx_msg void OnPrnCartaLibera();
+	afx_msg void OnPrnVerbaleConIntestazione();
 	afx_msg void OnCheckLungaScadenza();
 	afx_msg void OnButtonAutoMateriale();
 	afx_msg void OnButtonAutoProve();
