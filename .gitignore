@@ -9,6 +9,7 @@
 *.pch
 *.hm
 *.htm
+*.chm
 /Clienti/data1.dbc
 /Clienti/clienti.dbf
 /Clienti/data1.DCT
@@ -28,7 +29,6 @@
 /TrazioneReti2011.dll
 /TrazioneTrefoli.dll
 /TrazioneTrefoli/Release/TrazioneTrefoli.dll
-/html/MakeIDH/MakeIDH.exe
 /Debug/WinSigma.exe
 /Release/WinSigma.exe
 /WinSigma___Win32_W2Debug/WinSigma2.exe
@@ -41,11 +41,9 @@
 /WinSigma2.ini
 /WinSigma___Win32_W2Debug/WinSigma2.ini
 /WinSigma___Win32_W2Release/WinSigma2.ini
-/html/WinSigma.chm
 /CompressioneCarote.lib
 /CompressioneCubi.lib
 /CompressioneCubiDM2008.lib
-/html/lib/htmlhelp.lib
 /ResilienzaProfilati.lib
 /ResilienzaProfilati/Release/ResilienzaProfilati.lib
 /TrazionePiegamentoBarre.lib
@@ -63,7 +61,6 @@
 *.plg
 *.exp
 *.def
-html/**
 .vs/*
 **/Debug/*
 *.user
