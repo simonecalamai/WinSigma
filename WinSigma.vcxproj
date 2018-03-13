@@ -1,0 +1,737 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="LIDebug|Win32">
+      <Configuration>LIDebug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="LIRelease|Win32">
+      <Configuration>LIRelease</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Template|Win32">
+      <Configuration>Template</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="W2Debug|Win32">
+      <Configuration>W2Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="W2Release|Win32">
+      <Configuration>W2Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <SccProjectName />
+    <SccLocalPath />
+    <Keyword>MFCProj</Keyword>
+    <ProjectGuid>{4AD355C2-EB2D-4E97-8C41-506E1F116783}</ProjectGuid>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Template|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='W2Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v141</PlatformToolset>
+    <UseOfMfc>Dynamic</UseOfMfc>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='LIRelease|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v141</PlatformToolset>
+    <UseOfMfc>Dynamic</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='W2Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v141</PlatformToolset>
+    <UseOfMfc>Dynamic</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v141</PlatformToolset>
+    <UseOfMfc>Dynamic</UseOfMfc>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='LIDebug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v141</PlatformToolset>
+    <UseOfMfc>Dynamic</UseOfMfc>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v141</PlatformToolset>
+    <UseOfMfc>Dynamic</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Template|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='W2Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.Cpp.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='LIRelease|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.Cpp.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='W2Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.Cpp.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.Cpp.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='LIDebug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.Cpp.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.Cpp.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>.\Release\</OutDir>
+    <IntDir>.\Release\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules />
+    <CodeAnalysisRuleAssemblies />
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='LIDebug|Win32'">
+    <OutDir>.\WinSigma___Win32_LIDebug\</OutDir>
+    <IntDir>.\WinSigma___Win32_LIDebug\</IntDir>
+    <LinkIncremental>true</LinkIncremental>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules />
+    <CodeAnalysisRuleAssemblies />
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>.\Debug\</OutDir>
+    <IntDir>.\Debug\</IntDir>
+    <LinkIncremental>true</LinkIncremental>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules />
+    <CodeAnalysisRuleAssemblies />
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='W2Release|Win32'">
+    <OutDir>.\WinSigma___Win32_W2Release\</OutDir>
+    <IntDir>.\WinSigma___Win32_W2Release\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules />
+    <CodeAnalysisRuleAssemblies />
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='LIRelease|Win32'">
+    <OutDir>.\WinSigma___Win32_LIRelease\</OutDir>
+    <IntDir>.\WinSigma___Win32_LIRelease\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules />
+    <CodeAnalysisRuleAssemblies />
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='W2Debug|Win32'">
+    <OutDir>.\WinSigma___Win32_W2Debug\</OutDir>
+    <IntDir>.\WinSigma___Win32_W2Debug\</IntDir>
+    <LinkIncremental>true</LinkIncremental>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules />
+    <CodeAnalysisRuleAssemblies />
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Template|Win32'">
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules />
+    <CodeAnalysisRuleAssemblies />
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
+      <StringPooling>true</StringPooling>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <Optimization>MaxSpeed</Optimization>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <WarningLevel>Level3</WarningLevel>
+      <AdditionalIncludeDirectories>..\html\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AssemblerListingLocation>.\Release\</AssemblerListingLocation>
+      <PrecompiledHeaderOutputFile>.\Release\WinSigma.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <ObjectFileName>.\Release\</ObjectFileName>
+      <ProgramDataBaseFileName>.\Release\</ProgramDataBaseFileName>
+    </ClCompile>
+    <Midl>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <TypeLibraryName>.\Release\WinSigma.tlb</TypeLibraryName>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <TargetEnvironment>Win32</TargetEnvironment>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0410</Culture>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\Release\WinSigma.bsc</OutputFile>
+    </Bscmake>
+    <Link>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <SubSystem>Windows</SubSystem>
+      <OutputFile>.\Release\WinSigma.exe</OutputFile>
+      <AdditionalDependencies>C:\Lavori\Sigma\WinSigma\html\lib\htmlhelp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='LIDebug|Win32'">
+    <ClCompile>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
+      <Optimization>Disabled</Optimization>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <WarningLevel>Level3</WarningLevel>
+      <MinimalRebuild>true</MinimalRebuild>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <AdditionalIncludeDirectories>C:\Lavori\Sigma\WinSigma\html\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;WINSIGMALI;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AssemblerListingLocation>.\WinSigma___Win32_LIDebug\</AssemblerListingLocation>
+      <BrowseInformation>true</BrowseInformation>
+      <PrecompiledHeaderOutputFile>.\WinSigma___Win32_LIDebug\WinSigma.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <ObjectFileName>.\WinSigma___Win32_LIDebug\</ObjectFileName>
+      <ProgramDataBaseFileName>.\WinSigma___Win32_LIDebug\</ProgramDataBaseFileName>
+    </ClCompile>
+    <Midl>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <TypeLibraryName>.\WinSigma___Win32_LIDebug\WinSigma.tlb</TypeLibraryName>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <TargetEnvironment>Win32</TargetEnvironment>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0410</Culture>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\WinSigma___Win32_LIDebug\WinSigma.bsc</OutputFile>
+    </Bscmake>
+    <Link>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <OutputFile>WinSigma___Win32_LIDebug/WinSigmaLI.exe</OutputFile>
+      <AdditionalLibraryDirectories>C:\Lavori\Sigma\WinSigma\html\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>C:\Lavori\Sigma\WinSigma\html\lib\htmlhelp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
+      <Optimization>Disabled</Optimization>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <WarningLevel>Level3</WarningLevel>
+      <MinimalRebuild>true</MinimalRebuild>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <AdditionalIncludeDirectories>C:\Lavori\Sigma\WinSigma\html\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AssemblerListingLocation>.\Debug\</AssemblerListingLocation>
+      <BrowseInformation>true</BrowseInformation>
+      <PrecompiledHeaderOutputFile>.\Debug\WinSigma.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <ObjectFileName>.\Debug\</ObjectFileName>
+      <ProgramDataBaseFileName>.\Debug\</ProgramDataBaseFileName>
+    </ClCompile>
+    <Midl>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <TypeLibraryName>.\Debug\WinSigma.tlb</TypeLibraryName>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <TargetEnvironment>Win32</TargetEnvironment>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0410</Culture>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\Debug\WinSigma.bsc</OutputFile>
+    </Bscmake>
+    <Link>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <OutputFile>.\Debug\WinSigma.exe</OutputFile>
+      <AdditionalLibraryDirectories>C:\Lavori\Sigma\WinSigma\html\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>C:\Lavori\Sigma\WinSigma\FreeImage.lib;C:\Lavori\Sigma\WinSigma\html\lib\htmlhelp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='W2Release|Win32'">
+    <ClCompile>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
+      <StringPooling>true</StringPooling>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <Optimization>MaxSpeed</Optimization>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <WarningLevel>Level3</WarningLevel>
+      <AdditionalIncludeDirectories>..\html\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;WINSIGMA2;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AssemblerListingLocation>.\WinSigma___Win32_W2Release\</AssemblerListingLocation>
+      <PrecompiledHeaderOutputFile>.\WinSigma___Win32_W2Release\WinSigma.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <ObjectFileName>.\WinSigma___Win32_W2Release\</ObjectFileName>
+      <ProgramDataBaseFileName>.\WinSigma___Win32_W2Release\</ProgramDataBaseFileName>
+    </ClCompile>
+    <Midl>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <TypeLibraryName>.\WinSigma___Win32_W2Release\WinSigma.tlb</TypeLibraryName>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <TargetEnvironment>Win32</TargetEnvironment>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0410</Culture>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\WinSigma___Win32_W2Release\WinSigma.bsc</OutputFile>
+    </Bscmake>
+    <Link>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <SubSystem>Windows</SubSystem>
+      <OutputFile>WinSigma___Win32_W2Release/WinSigma2.exe</OutputFile>
+      <AdditionalDependencies>C:\Lavori\Sigma\WinSigma\html\lib\htmlhelp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='LIRelease|Win32'">
+    <ClCompile>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
+      <StringPooling>true</StringPooling>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <Optimization>MaxSpeed</Optimization>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <WarningLevel>Level3</WarningLevel>
+      <AdditionalIncludeDirectories>..\html\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;WINSIGMALI;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AssemblerListingLocation>.\WinSigma___Win32_LIRelease\</AssemblerListingLocation>
+      <PrecompiledHeaderOutputFile>.\WinSigma___Win32_LIRelease\WinSigma.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <ObjectFileName>.\WinSigma___Win32_LIRelease\</ObjectFileName>
+      <ProgramDataBaseFileName>.\WinSigma___Win32_LIRelease\</ProgramDataBaseFileName>
+    </ClCompile>
+    <Midl>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <TypeLibraryName>.\WinSigma___Win32_LIRelease\WinSigma.tlb</TypeLibraryName>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <TargetEnvironment>Win32</TargetEnvironment>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0410</Culture>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\WinSigma___Win32_LIRelease\WinSigma.bsc</OutputFile>
+    </Bscmake>
+    <Link>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <SubSystem>Windows</SubSystem>
+      <OutputFile>WinSigma___Win32_LIRelease/WinSigma2.exe</OutputFile>
+      <AdditionalDependencies>C:\Lavori\Sigma\WinSigma\html\lib\htmlhelp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='W2Debug|Win32'">
+    <ClCompile>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
+      <Optimization>Disabled</Optimization>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <WarningLevel>Level3</WarningLevel>
+      <MinimalRebuild>true</MinimalRebuild>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <AdditionalIncludeDirectories>C:\Lavori\Sigma\WinSigma\html\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;WINSIGMA2;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AssemblerListingLocation>.\WinSigma___Win32_W2Debug\</AssemblerListingLocation>
+      <BrowseInformation>true</BrowseInformation>
+      <PrecompiledHeaderOutputFile>.\WinSigma___Win32_W2Debug\WinSigma.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <ObjectFileName>.\WinSigma___Win32_W2Debug\</ObjectFileName>
+      <ProgramDataBaseFileName>.\WinSigma___Win32_W2Debug\</ProgramDataBaseFileName>
+    </ClCompile>
+    <Midl>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <TypeLibraryName>.\WinSigma___Win32_W2Debug\WinSigma.tlb</TypeLibraryName>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <TargetEnvironment>Win32</TargetEnvironment>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0410</Culture>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\WinSigma___Win32_W2Debug\WinSigma.bsc</OutputFile>
+    </Bscmake>
+    <Link>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <OutputFile>WinSigma___Win32_W2Debug/WinSigma2.exe</OutputFile>
+      <AdditionalLibraryDirectories>C:\Lavori\Sigma\WinSigma\html\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>C:\Lavori\Sigma\WinSigma\html\lib\htmlhelp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="ArchiviaFattureDlg.cpp" />
+    <ClCompile Include="ArchivioAziende.cpp" />
+    <ClCompile Include="ArchivioCertificatiView.cpp" />
+    <ClCompile Include="ArchivioFattureView.cpp" />
+    <ClCompile Include="ArchivioVerbaliView.cpp" />
+    <ClCompile Include="AziendeOldSet.cpp" />
+    <ClCompile Include="AziendeSet.cpp" />
+    <ClCompile Include="AziendeTreeCtrl.cpp" />
+    <ClCompile Include="AziendeTurboSet.cpp" />
+    <ClCompile Include="AziendeView.cpp" />
+    <ClCompile Include="Bmobject.cpp" />
+    <ClCompile Include="CategorieDlg.cpp" />
+    <ClCompile Include="CategorieServiziSet.cpp" />
+    <ClCompile Include="CategorieSet.cpp" />
+    <ClCompile Include="CertificatiSet.cpp" />
+    <ClCompile Include="CertificatiVerbaliSet.cpp" />
+    <ClCompile Include="CompressioneCubi\maindlg.cpp" />
+    <ClCompile Include="ConnessioneDlg.cpp" />
+    <ClCompile Include="DatiAziende.cpp" />
+    <ClCompile Include="DatiFatturaProforma.cpp" />
+    <ClCompile Include="DBRemotoDlg.cpp" />
+    <ClCompile Include="EmendaDlg.cpp" />
+    <ClCompile Include="EmissioneCertificatiDlg.cpp" />
+    <ClCompile Include="EsportaFattureDlg.cpp" />
+    <ClCompile Include="EsportazioneCSVView.cpp" />
+    <ClCompile Include="EtichetteDlg.cpp" />
+    <ClCompile Include="FattureSerEroVerSet.cpp" />
+    <ClCompile Include="FattureSet.cpp" />
+    <ClCompile Include="FattureTreeCtrl.cpp" />
+    <ClCompile Include="FattureView.cpp" />
+    <ClCompile Include="FindVerbaliDlg.cpp" />
+    <ClCompile Include="GfxGroupEdit.cpp" />
+    <ClCompile Include="GfxOutBarCtrl.cpp" />
+    <ClCompile Include="GfxPopupMenu.cpp" />
+    <ClCompile Include="GfxSplitterWnd.cpp" />
+    <ClCompile Include="InsertVerbaliDlg.cpp" />
+    <ClCompile Include="InsertVerbaliInFatturaDlg.cpp" />
+    <ClCompile Include="ListiniSet.cpp" />
+    <ClCompile Include="ListiniTreeCtrl.cpp" />
+    <ClCompile Include="ListiniView.cpp" />
+    <ClCompile Include="LocalitaSet.cpp" />
+    <ClCompile Include="LogSet.cpp" />
+    <ClCompile Include="MainFrm.cpp" />
+    <ClCompile Include="MarchiSet.cpp" />
+    <ClCompile Include="MarchiTurboSet.cpp" />
+    <ClCompile Include="MarchiView.cpp" />
+    <ClCompile Include="MinuteDlg.cpp" />
+    <ClCompile Include="ModificaCertificatoDlg.cpp" />
+    <ClCompile Include="msmask.cpp" />
+    <ClCompile Include="OperatoriSet.cpp" />
+    <ClCompile Include="OperatoriView.cpp" />
+    <ClCompile Include="PreviewDlg.cpp" />
+    <ClCompile Include="Printerpreter.cpp" />
+    <ClCompile Include="PrinterThread.cpp" />
+    <ClCompile Include="PrintPreviewCertificati.cpp" />
+    <ClCompile Include="PrintPreviewFatture.cpp" />
+    <ClCompile Include="PrintPreviewVerbali.cpp" />
+    <ClCompile Include="ProviniSet.cpp" />
+    <ClCompile Include="ReportVerbali.cpp" />
+    <ClCompile Include="SalvaStampaVerbaliDlg.cpp" />
+    <ClCompile Include="SerieDlg.cpp" />
+    <ClCompile Include="SerieProviniSet.cpp" />
+    <ClCompile Include="SerieSet.cpp" />
+    <ClCompile Include="ServiziErogatiSet.cpp" />
+    <ClCompile Include="ServiziFatturaDlg.cpp" />
+    <ClCompile Include="ServiziListinoDlg.cpp" />
+    <ClCompile Include="ServiziListinoSet.cpp" />
+    <ClCompile Include="StampaCertificatiDlg.cpp" />
+    <ClCompile Include="StampaEffetti.cpp" />
+    <ClCompile Include="StampaFattureDlg.cpp" />
+    <ClCompile Include="StatFatturatoView.cpp" />
+    <ClCompile Include="StatProveView.cpp" />
+    <ClCompile Include="StdAfx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LIDebug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='LIDebug|Win32'">stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='W2Release|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='W2Release|Win32'">stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LIRelease|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='LIRelease|Win32'">stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='W2Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='W2Debug|Win32'">stdafx.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="StrumentiTreeCtrl.cpp" />
+    <ClCompile Include="TipiCertificatoSet.cpp" />
+    <ClCompile Include="TipiMaterialeSet.cpp" />
+    <ClCompile Include="TipiMaterialeView.cpp" />
+    <ClCompile Include="TipiPagamentoSet.cpp" />
+    <ClCompile Include="TipiPagamentoView.cpp" />
+    <ClCompile Include="TotFatturatoView.cpp" />
+    <ClCompile Include="TrovaAziendaDlg.cpp" />
+    <ClCompile Include="VerbaliServErogatiSet.cpp" />
+    <ClCompile Include="VerbaliSet.cpp" />
+    <ClCompile Include="VerbaliTreeCtrl.cpp" />
+    <ClCompile Include="VerbaliView.cpp" />
+    <ClCompile Include="VerbSerProSet.cpp" />
+    <ClCompile Include="WinSigma.cpp" />
+    <ClCompile Include="WinSigmaDoc.cpp" />
+    <ClCompile Include="XBMPControl.cpp" />
+    <ClCompile Include="XDialog.cpp" />
+    <ClCompile Include="XFormView.cpp" />
+    <ClCompile Include="XTreeCtrl.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="AllTables.h" />
+    <ClInclude Include="ArchiviaFattureDlg.h" />
+    <ClInclude Include="ArchivioAziende.h" />
+    <ClInclude Include="ArchivioCertificatiView.h" />
+    <ClInclude Include="ArchivioFattureView.h" />
+    <ClInclude Include="ArchivioVerbaliView.h" />
+    <ClInclude Include="AziendeOldSet.h" />
+    <ClInclude Include="AziendeSet.h" />
+    <ClInclude Include="AziendeTreeCtrl.h" />
+    <ClInclude Include="AziendeTurboSet.h" />
+    <ClInclude Include="AziendeView.h" />
+    <ClInclude Include="Barcode.h" />
+    <ClInclude Include="Bmobject.h" />
+    <ClInclude Include="CategorieDlg.h" />
+    <ClInclude Include="CategorieServiziSet.h" />
+    <ClInclude Include="CategorieSet.h" />
+    <ClInclude Include="CertificatiSet.h" />
+    <ClInclude Include="CertificatiVerbaliSet.h" />
+    <ClInclude Include="ConnessioneDlg.h" />
+    <ClInclude Include="DatiAziende.h" />
+    <ClInclude Include="DatiFatturaProforma.h" />
+    <ClInclude Include="DBRemotoDlg.h" />
+    <ClInclude Include="EmendaDlg.h" />
+    <ClInclude Include="EmissioneCertificatiDlg.h" />
+    <ClInclude Include="EsportaFattureDlg.h" />
+    <ClInclude Include="EsportazioneCSVView.h" />
+    <ClInclude Include="EtichetteDlg.h" />
+    <ClInclude Include="FattureSerEroVerSet.h" />
+    <ClInclude Include="FattureSet.h" />
+    <ClInclude Include="FattureTreeCtrl.h" />
+    <ClInclude Include="FattureView.h" />
+    <ClInclude Include="FindVerbaliDlg.h" />
+    <ClInclude Include="GfxGroupEdit.h" />
+    <ClInclude Include="GfxOutBarCtrl.h" />
+    <ClInclude Include="GfxPopupMenu.h" />
+    <ClInclude Include="GfxSplitterWnd.h" />
+    <ClInclude Include="InsertVerbaliDlg.h" />
+    <ClInclude Include="InsertVerbaliInFatturaDlg.h" />
+    <ClInclude Include="ListiniSet.h" />
+    <ClInclude Include="ListiniTreeCtrl.h" />
+    <ClInclude Include="ListiniView.h" />
+    <ClInclude Include="LocalitaSet.h" />
+    <ClInclude Include="LogSet.h" />
+    <ClInclude Include="MainFrm.h" />
+    <ClInclude Include="MarchiSet.h" />
+    <ClInclude Include="MarchiTurboSet.h" />
+    <ClInclude Include="MarchiView.h" />
+    <ClInclude Include="MinuteDlg.h" />
+    <ClInclude Include="ModificaCertificatoDlg.h" />
+    <ClInclude Include="msmask.h" />
+    <ClInclude Include="OperatoriSet.h" />
+    <ClInclude Include="OperatoriView.h" />
+    <ClInclude Include="PreviewDlg.h" />
+    <ClInclude Include="Printerpreter.h" />
+    <ClInclude Include="PrinterThread.h" />
+    <ClInclude Include="PrintPreviewCertificati.h" />
+    <ClInclude Include="PrintPreviewFatture.h" />
+    <ClInclude Include="PrintPreviewVerbali.h" />
+    <ClInclude Include="ProviniSet.h" />
+    <ClInclude Include="ReportVerbali.h" />
+    <CustomBuild Include="Resource.h">
+      <Command Condition="'$(Configuration)|$(Platform)'=='LIDebug|Win32'">makehm ID_,IDH_,0x10000 IDM_,IDH_,0x10000 resource.h &gt;&gt;"\html\$(TargetName).hm" 
+makehm IDP_,IDH_,0x30000 resource.h &gt;&gt;"html\$(TargetName).hm" 
+makehm IDR_,IDH_,0x20000 resource.h &gt;&gt;"html\$(TargetName).hm" 
+makehm IDD_,IDH_,0x00000 resource.h &gt;&gt;"html\$(TargetName).hm" 
+makehm IDC_,IDH_,0x00000 resource.h &gt;&gt;"html\$(TargetName).hm" 
+makehm IDW_,IDH_,0x50000 resource.h &gt;&gt;"html\$(TargetName).hm" 
+echo. &gt;&gt;"html\$(TargetName).hm" 
+c:\Quadrante\WinSigma\html\MakeIDH\MakeIDH "C:\Quadrante\WinSigma\html\$(TargetName).hm" </Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='LIDebug|Win32'">Making HTML Help Include File...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='LIDebug|Win32'">html\$(TargetName).hm;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">makehm ID_,IDH_,0x10000 IDM_,IDH_,0x10000 resource.h &gt;&gt;"\html\$(TargetName).hm" 
+makehm IDP_,IDH_,0x30000 resource.h &gt;&gt;"html\$(TargetName).hm" 
+makehm IDR_,IDH_,0x20000 resource.h &gt;&gt;"html\$(TargetName).hm" 
+makehm IDD_,IDH_,0x00000 resource.h &gt;&gt;"html\$(TargetName).hm" 
+makehm IDC_,IDH_,0x00000 resource.h &gt;&gt;"html\$(TargetName).hm" 
+makehm IDW_,IDH_,0x50000 resource.h &gt;&gt;"html\$(TargetName).hm" 
+echo. &gt;&gt;"html\$(TargetName).hm" 
+c:\Quadrante\WinSigma\html\MakeIDH\MakeIDH "C:\Quadrante\WinSigma\html\$(TargetName).hm" </Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Making HTML Help Include File...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">html\$(TargetName).hm;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='W2Debug|Win32'">makehm ID_,IDH_,0x10000 IDM_,IDH_,0x10000 resource.h &gt;&gt;"\html\$(TargetName).hm" 
+makehm IDP_,IDH_,0x30000 resource.h &gt;&gt;"html\$(TargetName).hm" 
+makehm IDR_,IDH_,0x20000 resource.h &gt;&gt;"html\$(TargetName).hm" 
+makehm IDD_,IDH_,0x00000 resource.h &gt;&gt;"html\$(TargetName).hm" 
+makehm IDC_,IDH_,0x00000 resource.h &gt;&gt;"html\$(TargetName).hm" 
+makehm IDW_,IDH_,0x50000 resource.h &gt;&gt;"html\$(TargetName).hm" 
+echo. &gt;&gt;"html\$(TargetName).hm" 
+c:\Quadrante\WinSigma\html\MakeIDH\MakeIDH "C:\Quadrante\WinSigma\html\$(TargetName).hm" </Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='W2Debug|Win32'">Making HTML Help Include File...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='W2Debug|Win32'">html\$(TargetName).hm;%(Outputs)</Outputs>
+    </CustomBuild>
+    <ClInclude Include="SalvaStampaVerbaliDlg.h" />
+    <ClInclude Include="SerieDlg.h" />
+    <ClInclude Include="SerieProviniSet.h" />
+    <ClInclude Include="SerieSet.h" />
+    <ClInclude Include="ServiziErogatiSet.h" />
+    <ClInclude Include="ServiziFatturaDlg.h" />
+    <ClInclude Include="ServiziListinoDlg.h" />
+    <ClInclude Include="ServiziListinoSet.h" />
+    <ClInclude Include="StampaCertificatiDlg.h" />
+    <ClInclude Include="StampaEffetti.h" />
+    <ClInclude Include="StampaFattureDlg.h" />
+    <ClInclude Include="StatFatturatoView.h" />
+    <ClInclude Include="StatProveView.h" />
+    <ClInclude Include="StdAfx.h" />
+    <ClInclude Include="StrumentiTreeCtrl.h" />
+    <ClInclude Include="TipiCertificatoSet.h" />
+    <ClInclude Include="TipiMaterialeSet.h" />
+    <ClInclude Include="TipiMaterialeView.h" />
+    <ClInclude Include="TipiPagamentoSet.h" />
+    <ClInclude Include="TipiPagamentoView.h" />
+    <ClInclude Include="TotFatturatoView.h" />
+    <ClInclude Include="TrovaAziendaDlg.h" />
+    <ClInclude Include="VerbaliServErogatiSet.h" />
+    <ClInclude Include="VerbaliSet.h" />
+    <ClInclude Include="VerbaliTreeCtrl.h" />
+    <ClInclude Include="VerbaliView.h" />
+    <ClInclude Include="VerbSerProSet.h" />
+    <ClInclude Include="WinSigma.h" />
+    <ClInclude Include="WinSigmaDoc.h" />
+    <ClInclude Include="XBMPControl.h" />
+    <ClInclude Include="XDialog.h" />
+    <ClInclude Include="XFormView.h" />
+    <ClInclude Include="XTreeCtrl.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="WinSigma.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="html\Images\lgq.bmp" />
+    <Image Include="html\Images\LogoQUADRANTE.bmp" />
+    <Image Include="res\archivio.bmp" />
+    <Image Include="res\aziende.bmp" />
+    <Image Include="res\bitmap2.bmp" />
+    <Image Include="res\bitmap3.bmp" />
+    <Image Include="res\bitmap4.bmp" />
+    <Image Include="res\bmp00001.bmp" />
+    <Image Include="res\bmp00002.bmp" />
+    <Image Include="res\bmpSaveVerbali.bmp" />
+    <Image Include="res\clock-2-icon-32x32.ico" />
+    <Image Include="res\disk-4-icon-32x32.ico" />
+    <Image Include="res\elett16.bmp" />
+    <Image Include="res\fatture.bmp" />
+    <Image Include="res\icon1.ico" />
+    <Image Include="res\iconMsg.ico" />
+    <Image Include="res\imagelis.bmp" />
+    <Image Include="res\listini.bmp" />
+    <Image Include="res\quarkxpress-passport-icon-32x32.ico" />
+    <Image Include="res\serie.bmp" />
+    <Image Include="res\stampaCertificati.bmp" />
+    <Image Include="res\Strumenti.bmp" />
+    <Image Include="res\Toolbar.bmp" />
+    <Image Include="res\toolbar1.bmp" />
+    <Image Include="res\toolbar2.bmp" />
+    <Image Include="res\toolbar_.bmp" />
+    <Image Include="res\toolbar_arccert.bmp" />
+    <Image Include="res\toolbar_arcfatt.bmp" />
+    <Image Include="res\toolbar_arcverb.bmp" />
+    <Image Include="res\toolbar_aziende.bmp" />
+    <Image Include="res\toolbar_fatture.bmp" />
+    <Image Include="res\toolbar_listini.bmp" />
+    <Image Include="res\toolbar_marchi.bmp" />
+    <Image Include="res\toolbar_materiali.bmp" />
+    <Image Include="res\toolbar_operatori.bmp" />
+    <Image Include="res\toolbar_pagamenti.bmp" />
+    <Image Include="res\toolbar_verbali.bmp" />
+    <Image Include="res\verbali.bmp" />
+    <Image Include="res\WinSigma.ico" />
+    <Image Include="res\WinSigma2.ico" />
+    <Image Include="res\WinSigmaDoc.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="html\WinSigma.hhp" />
+    <CustomBuild Include="res\icr_hand.cur" />
+    <CustomBuild Include="res\WinSigma.rc2" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="CompressioneCarote\CompressioneCarote.vcxproj">
+      <Project>{7d5e2534-d391-4164-8575-1e40caefbf8f}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="CompressioneCubi\CompressioneCubi.vcxproj">
+      <Project>{5d786284-3430-4187-a88f-590e8c37dd3d}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="ResilienzaProfilati\ResilienzaProfilati.vcxproj">
+      <Project>{bda2b845-d11a-48a2-bd8e-e3d9fd5a16c1}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="TrazionePiegamentoBarre\TrazionePiegamentoBarre.vcxproj">
+      <Project>{9f799299-f943-4989-8128-2d85941caf20}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="TrazioneProfilati\TrazioneProfilati.vcxproj">
+      <Project>{4dadda2b-2f20-4786-bcc3-ba6dfd98f5dd}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="TrazioneReti\TrazioneReti.vcxproj">
+      <Project>{489282f3-10c3-4259-ba9c-9f2ef4534dfe}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="TrazioneTrefoli\TrazioneTrefoli.vcxproj">
+      <Project>{91a0dff1-116c-46bc-9e7c-5c3828bc58a0}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

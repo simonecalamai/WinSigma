@@ -64,3 +64,6 @@
 *.exp
 *.def
 html/**
+.vs/*
+**/Debug/*
+*.user
