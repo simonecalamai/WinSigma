@@ -409,7 +409,7 @@ void CMainDlg::OnBtnAnnulla()
 				m_lfDiametro				= m_pDatiCorrenti->diametro;
 				m_lfLunghezza				= m_pDatiCorrenti->lunghezza;
 				m_lfMassa						= m_pDatiCorrenti->massa;
-				m_strCbTipoRottura	= m_pDatiCorrenti->tipoRottura;
+				m_strCbTipoRottura.Format("%d", m_pDatiCorrenti->tipoRottura);
 				m_lfCaricoSp				= m_pDatiCorrenti->caricoSpinta;
 				// Cancello i dati eventualmente presenti nei campi relativi ai dati calcolati
 				m_strArea = "";

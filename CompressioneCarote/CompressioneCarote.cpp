@@ -590,7 +590,8 @@ __declspec( dllexport ) int LoadProveMateriale(CStringArray* stringhe, CAllTable
 	//Scorro il recordset delle serie per esaminare le serie relative a questo tipo di certificato
 	while( !pSerieSet->IsEOF() && pSerieSet->m_TipoCertificato == pTCertSet->m_Codice)
 		{
-		for(int i =0; i < parySerieEliminate->GetSize(); i++)
+        int i;
+		for(i =0; i < parySerieEliminate->GetSize(); i++)
 			if(pSerieSet->m_Codice == (long)parySerieEliminate->GetAt(i))
 				break;
 		if( i != parySerieEliminate->GetSize())
