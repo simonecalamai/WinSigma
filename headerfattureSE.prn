@@ -11,14 +11,14 @@ y zero=-60
 50=340,280,1260,42,Times,24,40,L,D.M. n. 196 del 25.06.2015 (Legge 1086/71 art. 20 - Circ. 7617/STC Settore A),0x602000
 
 ;footer
-500=80,2850,800,50,Courier New,18,28,L,Firmato digitalmente ai sensi del D.Lgs 82/2005,0x602000
-510=20,2915,2100,36,Times,18,28,BC,Via A.Nicolodi 36 - 57121 LIVORNO - Tel. 0586.409247 - Fax 0586.409383,0x602000
+500=80,2800,800,50,Courier New,18,28,L,Firmato digitalmente ai sensi del D.Lgs 82/2005,0x602000
+510=20,2855,2100,36,Times,18,28,BC,Via A.Nicolodi 36 - 57121 LIVORNO - Tel. 0586.409247 - Fax 0586.409383,0x602000
 520=20,+36,2100,36,Times,18,28,BC,www.laboratoriosigma.it - e-mail: etruria@laboratoriosigma.it - pec: sigmaetruria@legalmail.it,0x602000
 530=20,+36,2100,36,Times,14,24,C,C.I.A.A. Livorno N. 75052 - Reg. Soc. Trib. Livorno N. 10182 - Cod. Fisc./Part. I.V.A. 00770070498,0x602000
 
 [grids]
 10=80,400,1970,0,1,1,0xD59B5B
-20=80,2880,1970,0,1,1,0xD59B5B
+20=80,2830,1970,0,1,1,0xD59B5B
 
 [bitmaps]
 ;10=80,130,240,240,RCM,logo_100.bmp

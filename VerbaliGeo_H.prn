@@ -1,6 +1,6 @@
 [general]
 x zero=+10
-y zero=+5
+y zero=+10
 
 ; numero massimo di righe per pagina nella lista dei campioni
 tab lines=10

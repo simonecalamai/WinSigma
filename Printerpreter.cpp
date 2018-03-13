@@ -86,7 +86,7 @@ CPrintInterpreter::CPrintInterpreter(void) : CObject()
 {
 	m_nPage = 1;
 	m_HeaderFName = "";
-	m_DocName = "printdoc";
+	m_DocName = "PRINTDOC";
 }
 
 CPrintInterpreter::~CPrintInterpreter(void)

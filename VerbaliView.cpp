@@ -3940,6 +3940,11 @@ void CVerbaliView::PrintVerbale()
 		strPrnFile.Insert(pos, "_H");
 		prnInterpreter.SetHeaderFile(pApp->GetCurrentDirectory() + "\\" + pApp->m_headerVerbaliPrn);
 	}
+	else if(m_nPrintMode == STAMPA_VERBALE_CARTA_LIBERA)
+	{
+		int pos = strPrnFile.Find(".prn");
+		strPrnFile.Insert(pos, "_H");
+	}
 
 	// Simulazione
   m_nTotalePagine = 0;

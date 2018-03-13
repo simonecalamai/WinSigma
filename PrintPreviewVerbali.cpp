@@ -87,6 +87,11 @@ void CPrintPreviewVerbali::Print(long lCodVerbale, CDC* pDC, CRect* pRect)
 	// La stampa viene fatta su un file che ha come nome il progressivo totale del verbale
   printFileName.Format("%d_%d.txt", m_pVerbaliSet->m_ProgressivoParziale, m_pVerbaliSet->m_ProgressivoTotale);
 
+	// imposta il nome del file secondo le specifiche della gestione documentale (s.c. 14.09.2017)
+	CString docname;
+  docname.Format("VA-%d-%d", m_pVerbaliSet->m_ProgressivoTotale, m_pVerbaliSet->m_DataAccettazione.GetYear());
+	prnInterpreter.SetDocName(docname);
+
   if(!prnInterpreter.PrePrinting())
     return;
   m_pSerieSet->m_strFilter.Format("Verbale = %d", m_pVerbaliSet->m_Codice);
@@ -118,6 +123,7 @@ void CPrintPreviewVerbali::Print(long lCodVerbale, CDC* pDC, CRect* pRect)
   pAziende->Open();
   m_bPrivato = pAziende->m_Privato;
   pAziende->Close();
+
   // Simulazione
   m_nTotalePagine = 0;
   prnInterpreter.SetPage(1);
@@ -191,6 +197,12 @@ int CPrintPreviewVerbali::PrintPage(long lCodVerbale, CDC* pDC, CRect* pRect, in
   m_bPrivato = pAziende->m_Privato;
   pAziende->Close();
   SET_START(m_pSerieSet);
+
+	// imposta il nome del file secondo le specifiche della gestione documentale (s.c. 14.09.2017)
+	CString docname;
+  docname.Format("VA-%d-%d", m_pVerbaliSet->m_ProgressivoTotale, m_pVerbaliSet->m_DataAccettazione.GetYear());
+	prnInterpreter.SetDocName(docname);
+
   // Simulazione
   m_nTotalePagine = 0;
   prnInterpreter.SetPage(1);
