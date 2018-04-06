@@ -22,6 +22,8 @@ public:
 // Dialog Data
 	//{{AFX_DATA(CSerieDlg)
 	enum { IDD = IDD_DIALOG_SERIE };
+	CEdit	m_EditSigla2;
+	CStatic	m_StaticSigla2;
 	CEdit	m_ctrlOsservazioni;
 	CEdit	m_ctrlVerbalePrelievo;
 	CEdit	m_ctrlSiglaFornitore;
@@ -65,6 +67,7 @@ public:
 	CString	m_sSiglaFornitore;
 	CString	m_sVerbalePrelievo;
 	CString	m_csOsservazioni;
+	CString	m_strSigla2;
 	//}}AFX_DATA
 
   int m_nCodiceTipoCertificato;

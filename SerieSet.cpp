@@ -38,6 +38,7 @@ CSerieSet::CSerieSet(CDatabase* pdb)
 	m_ServAggiungibile = 0;
 	m_ServAggiunto = 0;
 	m_Sigla = _T("");
+	m_Sigla2 = _T("");
 	m_StrutturaPrelievo = _T("");
 	m_Dimensione1 = 0.0;
 	m_Dimensione2 = 0.0;
@@ -54,7 +55,7 @@ CSerieSet::CSerieSet(CDatabase* pdb)
   m_Ordinamento = 0;
 	m_SiglaFornitore =  _T("");
 	m_VerbalePrelievo =  _T("");
-	m_nFields = 34;
+	m_nFields = 35;
 	//}}AFX_FIELD_INIT
 	m_nDefaultType = snapshot;
 }
@@ -92,6 +93,7 @@ void CSerieSet::DoFieldExchange(CFieldExchange* pFX)
 	RFX_Long(pFX, _T("[ServAggiungibile]"), m_ServAggiungibile);
 	RFX_Long(pFX, _T("[ServAggiunto]"), m_ServAggiunto);
 	RFX_Text(pFX, _T("[Sigla]"), m_Sigla);
+	RFX_Text(pFX, _T("[Sigla2]"), m_Sigla2);
 	RFX_Text(pFX, _T("[StrutturaPrelievo]"), m_StrutturaPrelievo);
 	RFX_Double(pFX, _T("[Dimensione1]"), m_Dimensione1);
 	RFX_Double(pFX, _T("[Dimensione2]"), m_Dimensione2);

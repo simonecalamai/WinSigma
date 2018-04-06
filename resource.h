@@ -223,6 +223,7 @@
 #define IDC_DATETIMEPICKER_PRELIEVO     1159
 #define IDC_EDIT_SIGLA                  1161
 #define IDC_EDIT_MATERIALE              1162
+#define IDC_EDIT_SIGLA2                 1162
 #define IDC_EDIT_STRUTTURA              1163
 #define IDC_STATIC_DIM1                 1164
 #define IDC_STATIC_DIM2                 1165
@@ -236,6 +237,7 @@
 #define IDC_STATIC_STRUTTURA            1172
 #define IDC_STATIC_SIGLA                1173
 #define IDC_COMBO_OPERATORE             1174
+#define IDC_STATIC_SIGLA2               1174
 #define IDC_STATIC_DNS                  1175
 #define IDC_LIST_CERTIFICATI            1176
 #define IDC_EDIT_COSTO                  1177

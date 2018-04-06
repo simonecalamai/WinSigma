@@ -44,6 +44,7 @@ CSerieDlg::CSerieDlg(CWnd* pParent /*=NULL*/)
 	m_sSiglaFornitore = _T("");
 	m_sVerbalePrelievo = _T("");
 	m_csOsservazioni = _T("");
+	m_strSigla2 = _T("");
 	//}}AFX_DATA_INIT
   m_pDoc = NULL;
   m_pTCertificatoSet = NULL;
@@ -79,6 +80,8 @@ void CSerieDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialog::DoDataExchange(pDX);
 	//{{AFX_DATA_MAP(CSerieDlg)
+	DDX_Control(pDX, IDC_EDIT_SIGLA2, m_EditSigla2);
+	DDX_Control(pDX, IDC_STATIC_SIGLA2, m_StaticSigla2);
 	DDX_Control(pDX, IDC_EDIT_OSSERVAZIONI, m_ctrlOsservazioni);
 	DDX_Control(pDX, IDC_EDIT_VERBALE_PRELIEVO, m_ctrlVerbalePrelievo);
 	DDX_Control(pDX, IDC_EDIT_SIGLA_FORNITORE, m_ctrlSiglaFornitore);
@@ -105,7 +108,7 @@ void CSerieDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Text(pDX, IDC_EDIT_POSIZIONE, m_strPosizione);
 	DDX_DateTimeCtrl(pDX, IDC_DATETIMEPICKER_PRELIEVO, m_DataPrelievo);
 	DDX_Text(pDX, IDC_EDIT_SIGLA, m_strSigla);
-	DDV_MaxChars(pDX, m_strSigla, 7);
+	DDV_MaxChars(pDX, m_strSigla, 14);
 	DDX_Text(pDX, IDC_EDIT_STRUTTURA, m_strStruttura);
 	DDV_MaxChars(pDX, m_strStruttura, 44);
 	DDX_Text(pDX, IDC_STATIC_DIM1, m_StaticDim1);
@@ -124,8 +127,10 @@ void CSerieDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_DateTimeCtrl(pDX, IDC_DATETIMEPICKER_SCADENZA, m_DataScadenza);
 	DDX_Text(pDX, IDC_EDIT_SIGLA_FORNITORE, m_sSiglaFornitore);
 	DDX_Text(pDX, IDC_EDIT_VERBALE_PRELIEVO, m_sVerbalePrelievo);
-	DDV_MaxChars(pDX, m_sVerbalePrelievo, 6);
+	DDV_MaxChars(pDX, m_sVerbalePrelievo, 16);
 	DDX_Text(pDX, IDC_EDIT_OSSERVAZIONI, m_csOsservazioni);
+	DDX_Text(pDX, IDC_EDIT_SIGLA2, m_strSigla2);
+	DDV_MaxChars(pDX, m_strSigla2, 14);
 	//}}AFX_DATA_MAP
 }
 
@@ -159,6 +164,11 @@ BOOL CSerieDlg::OnInitDialog()
 	CXDialog::OnInitDialog();
 	SetWindowText(m_strTitolo);
 
+	
+	// controlli sigla2 non visibili di default
+	m_StaticSigla2.ShowWindow(SW_HIDE);
+	m_EditSigla2.ShowWindow(SW_HIDE);;
+
 	// Inizializza i controlli
 	m_sVerbalePrelievo.Empty();
 	m_sSiglaFornitore.Empty();
@@ -188,7 +198,7 @@ BOOL CSerieDlg::OnInitDialog()
 				(m_pTCertificatoSet->m_Codice != 8) &&
 				(m_pTCertificatoSet->m_Codice != 10) &&
 				(m_pTCertificatoSet->m_Codice != 4) &&
-				(m_pTCertificatoSet->m_Codice != 6))
+				(m_pTCertificatoSet->m_Codice != 6))     // escludere certificato 12 Compressione Cubi DM 2008  s.c. 6.4.2018
 		{
 			str.Format("%d - %s", m_pTCertificatoSet->m_Codice, m_pTCertificatoSet->m_Nome);
 			n = m_ComboTipoCertificato.AddString(str);
@@ -303,6 +313,7 @@ void CSerieDlg::OnOK()
   m_pSerieSet->m_NumeroProvini			= m_nProviniRichiesti;
   m_pSerieSet->m_StrutturaPrelievo	= m_strStruttura;
   m_pSerieSet->m_Sigla							= m_strSigla;
+  m_pSerieSet->m_Sigla2							= m_strSigla2;
   m_pSerieSet->m_Dimensione1				= m_dDimensione1;
   m_pSerieSet->m_Dimensione2				= m_dDimensione2;
   m_pSerieSet->m_Dimensione3				= m_dDimensione3;
@@ -440,7 +451,8 @@ void CSerieDlg::OnSelchangeTipiCertificato()
   i = m_ComboTipoCertificato.GetCurSel();
 // questa e' una vera nefandezza !!!! s.c. 22-2-2010
   if ((m_ComboTipoCertificato.GetItemData(i) == 8) || (m_ComboTipoCertificato.GetItemData(i) == 9) ||
-				m_ComboTipoCertificato.GetItemData(i) == 12)
+				m_ComboTipoCertificato.GetItemData(i) == 12 || 
+				m_ComboTipoCertificato.GetItemData(i) == 16)
 	{
 	  m_strDataND = STR_DATAND_12390;
 	}
@@ -452,7 +464,8 @@ void CSerieDlg::OnSelchangeTipiCertificato()
 	// Abilita/Disabilita i controlli per l'inserimento del Verbale di Prelievo e della Sigla del Fornitore
 	if ((m_ComboTipoCertificato.GetItemData(i) == 11) ||
 			(m_ComboTipoCertificato.GetItemData(i) == 12) ||
-			(m_ComboTipoCertificato.GetItemData(i) == 13))		
+			(m_ComboTipoCertificato.GetItemData(i) == 13) ||
+			(m_ComboTipoCertificato.GetItemData(i) == 16))		
 	{
 		m_ctrlVerbalePrelievo.EnableWindow(TRUE);
 	}
@@ -642,6 +655,12 @@ void CSerieDlg::LoadLastSerie(byte CambiaTipiCertificato)
 			m_ListServizi.SetCheck(n);
 		if(m_ListServizi.GetCheck(n))
 		{
+			if(m_pTCertificatoSet->m_Codice == 16 && !(m_ListServizi.GetItemText(n, 0).CompareNoCase("CA02")))
+			{
+				m_StaticSigla.SetWindowText("Sigla1");
+				m_StaticSigla2.ShowWindow(SW_SHOW);
+				m_EditSigla2.ShowWindow(SW_SHOW);
+			}
 			for(SET_START(m_pCatServSet); !m_pCatServSet->IsEOF(); m_pCatServSet->MoveNext())
 			{
 				if((long)m_ListServizi.GetItemData(n) == m_pCatServSet->m_Codice)
@@ -856,14 +875,14 @@ void CSerieDlg::LoadTCertData(void)
 	int codCert = m_ComboTipoCertificato.GetItemData(n);
 	if(m_pSerieSet->IsFieldNull(&m_pSerieSet->m_strDataND))
 	{
-		if(codCert == 8 || codCert == 9 || codCert == 12)
+		if(codCert == 8 || codCert == 9 || codCert == 12 || codCert == 16)
 		{	
 			m_strDataND = STR_DATAND_12390;
 		}
 	}
 
 	// Abilita/Disabilita i controlli per l'inserimento del Verbale di Prelievo e della Sigla del Fornitore
-	if (codCert == 11 || codCert == 12 || codCert == 13)
+	if (codCert == 11 || codCert == 12 || codCert == 13 || codCert == 16)
 	{
 		m_ctrlVerbalePrelievo.EnableWindow(TRUE);
 		if(!m_pSerieSet->IsFieldNull(&m_pSerieSet->m_VerbalePrelievo))
@@ -1074,9 +1093,19 @@ void CSerieDlg::OnItemchangedListServizi(NMHDR* pNMHDR, LRESULT* pResult)
 
 	//--- Ripristino il contenuto dell'array dei servizi richiesti ---//
 	m_arySelectedServices.RemoveAll();
+  m_StaticSigla.SetWindowText("Sigla");
+	m_StaticSigla2.ShowWindow(SW_HIDE);
+	m_EditSigla2.ShowWindow(SW_HIDE);
   for(int x =0; x < m_ListServizi.GetItemCount(); x++)
 		if(m_ListServizi.GetCheck(x))
 			{
+			CString serviceID = m_ListServizi.GetItemText(x, 0);
+			if(m_pTCertificatoSet->m_Codice == 16 && !serviceID.CompareNoCase("CA02"))
+			{
+				m_StaticSigla.SetWindowText("Sigla1");
+				m_StaticSigla2.ShowWindow(SW_SHOW);
+				m_EditSigla2.ShowWindow(SW_SHOW);
+			}
 			m_arySelectedServices.Add(m_ListServizi.GetItemData(x));
 			}
 	m_nNumeroServizi = m_arySelectedServices.GetSize();

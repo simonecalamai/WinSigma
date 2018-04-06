@@ -36,6 +36,7 @@ public:
 	long	m_ServAggiungibile;
 	long	m_ServAggiunto;
 	CString	m_Sigla;
+	CString m_Sigla2;
 	CString	m_StrutturaPrelievo;
 	double	m_Dimensione1;
 	double	m_Dimensione2;
