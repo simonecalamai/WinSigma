@@ -39,6 +39,18 @@ Package=<4>
 
 ###############################################################################
 
+Project: "CompressioneCubiDM2018"=.\CompressioneCubiDM2018\CompressioneCubiDM2018.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
 Project: "ResilienzaProfilati"=.\ResilienzaProfilati\ResilienzaProfilati.dsp - Package Owner=<4>
 
 Package=<5>
@@ -159,22 +171,31 @@ Package=<4>
     Project_Dep_Name CompressioneCarote
     End Project Dependency
     Begin Project Dependency
-    Project_Dep_Name CompressioneCubi
-    End Project Dependency
-    Begin Project Dependency
     Project_Dep_Name ResilienzaProfilati
     End Project Dependency
     Begin Project Dependency
     Project_Dep_Name TrazionePiegamentoBarre
     End Project Dependency
     Begin Project Dependency
-    Project_Dep_Name TrazioneProfilati
-    End Project Dependency
-    Begin Project Dependency
-    Project_Dep_Name TrazioneReti
-    End Project Dependency
-    Begin Project Dependency
     Project_Dep_Name TrazioneTrefoli
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name CompressioneCubiDM2008
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name CompressioneCubiDM2018
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name TrazionePiegamentoBarreB450_2010
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name TrazionePiegamentoBarreCT
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name TrazioneProfilati2011
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name TrazioneReti2011
     End Project Dependency
 }}}
 

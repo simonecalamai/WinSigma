@@ -1,0 +1,247 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Italian (Italy) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ITA)
+#ifdef _WIN32
+LANGUAGE LANG_ITALIAN, SUBLANG_ITALIAN
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ITA)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 16, 1\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#endif //_WIN32\r\n"
+    "#include ""res\\CompressioneCubiDM2018.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""l.ita\\afxres.rc""          // Standard components\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 2,0,1,0
+ PRODUCTVERSION 2,0,1,0
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x2L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "041004b0"
+        BEGIN
+            VALUE "Comments", "\0"
+            VALUE "CompanyName", "\0"
+            VALUE "FileDescription", "CompressioneCubiDM2018 DLL\0"
+            VALUE "FileVersion", "2, 0, 1, 0\0"
+            VALUE "InternalName", "CompressioneCubiDM2018\0"
+            VALUE "LegalCopyright", "Copyright (C) 2018\0"
+            VALUE "LegalTrademarks", "\0"
+            VALUE "OriginalFilename", "CompressioneCubiDM2018.DLL\0"
+            VALUE "PrivateBuild", "\0"
+            VALUE "ProductName", "CompressioneCubiDM2018 Dynamic Link Library\0"
+            VALUE "ProductVersion", "2, 0, 1, 0\0"
+            VALUE "SpecialBuild", "\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x410, 1200
+    END
+END
+
+#endif    // !_MAC
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_DIALOG_COMPRESSIONI_CUBI_2018 DIALOG DISCARDABLE  0, 0, 420, 294
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION
+CAPTION "PROVA A COMPRESSIONE SU CUBI DI CALCESTRUZZO D.M. 2018 "
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "Tree2",IDC_TREE_PROVINI,"SysTreeView32",TVS_HASBUTTONS | 
+                    TVS_HASLINES | TVS_SHOWSELALWAYS | WS_BORDER | 
+                    WS_TABSTOP,15,155,125,75
+    PUSHBUTTON      "Modifica",IDC_BTN_MODIFICA,46,240,76,14,WS_DISABLED
+    EDITTEXT        IDC_EDIT_OSSERVAZIONI,61,22,345,21,ES_MULTILINE | 
+                    ES_AUTOHSCROLL | ES_WANTRETURN
+    COMBOBOX        IDC_COMBO_SPERIMENTATORI,16,59,157,69,CBS_DROPDOWNLIST | 
+                    CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_COMBO_MACCHINE,229,59,179,68,CBS_DROPDOWNLIST | 
+                    CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "DateTimePicker1",IDC_DATA_PROVA,"SysDateTimePick32",
+                    DTS_RIGHTALIGN | WS_TABSTOP,159,121,59,12
+    CONTROL         "Eseguita spianatura",IDC_CHECK_SPIANATURA,"Button",
+                    BS_AUTOCHECKBOX | BS_LEFTTEXT | WS_TABSTOP,313,122,75,10
+    PUSHBUTTON      "Cancel",IDCANCEL,184,270,50,14,NOT WS_TABSTOP
+    PUSHBUTTON      "OK",IDOK,306,270,50,14,NOT WS_TABSTOP
+    EDITTEXT        IDC_EDIT_LUNGHEZZA,157,168,34,12,ES_RIGHT | 
+                    ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_LARGHEZZA,208,168,34,12,ES_RIGHT | 
+                    ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_ALTEZZA,261,168,34,12,ES_RIGHT | ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_MASSA,307,168,34,12,ES_RIGHT | ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_CARICO_SP,354,168,48,12,ES_RIGHT | 
+                    ES_AUTOHSCROLL
+    COMBOBOX        IDC_COMBO_TIPO_ROTTURA,264,190,138,116,CBS_DROPDOWNLIST | 
+                    CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "Annulla",IDC_BTN_ANNULLA,298,240,76,14,NOT WS_TABSTOP
+    PUSHBUTTON      "Conferma",IDC_BTN_CONFERMA,174,240,76,14
+    GROUPBOX        "Provini",IDC_STATIC,7,140,408,125
+    EDITTEXT        IDC_EDIT_AREA,178,216,37,14,ES_RIGHT | ES_AUTOHSCROLL | 
+                    ES_READONLY | NOT WS_TABSTOP
+    EDITTEXT        IDC_EDIT_ROTTURA,271,216,37,14,ES_RIGHT | ES_AUTOHSCROLL | 
+                    ES_READONLY | NOT WS_TABSTOP
+    CTEXT           "Tipo rottura",IDC_STATIC,223,192,37,8
+    CTEXT           "Car. Rottura (kN)",IDC_STATIC,353,153,54,8
+    CTEXT           "Data prelievo",IDC_STATIC,12,123,43,8
+    CTEXT           "Massa (kg)",IDC_STATIC,308,153,36,8
+    CTEXT           "Lunghezza (cm)",IDC_STC_DIM1,149,153,52,8
+    CTEXT           "Larghezza (cm)",IDC_STC_DIM2,202,153,53,8
+    CTEXT           "Altezza (cm)",IDC_STC_3,256,153,45,8
+    LTEXT           "Area",IDC_STATIC,155,209,16,8
+    LTEXT           "Compress.",IDC_STATIC,326,209,34,8
+    EDITTEXT        IDC_EDIT_COMPRESSIONE,364,216,37,14,ES_RIGHT | 
+                    ES_AUTOHSCROLL | ES_READONLY | NOT WS_TABSTOP
+    LTEXT           "Rottura",IDC_STATIC,239,209,24,8
+    LTEXT           "Sigla",IDC_STATIC,61,89,16,8,NOT WS_VISIBLE
+    EDITTEXT        IDC_EDIT_SIGLA,83,89,26,12,ES_AUTOHSCROLL | ES_READONLY | 
+                    NOT WS_VISIBLE | NOT WS_TABSTOP
+    CTEXT           "Data prova",IDC_STATIC,116,123,36,8
+    LTEXT           "(N/mm²)",IDC_STATIC,238,220,26,8
+    LTEXT           "(cm²)",IDC_STATIC_AREA,155,220,19,8
+    LTEXT           "(kgf/cm²)",IDC_STATIC,328,220,30,8
+    EDITTEXT        IDC_EDIT_DATA_PRELIEVO,60,121,49,12,ES_CENTER | 
+                    ES_AUTOHSCROLL | ES_READONLY | NOT WS_TABSTOP
+    GROUPBOX        "Serie",IDC_STATIC,7,79,408,60
+    GROUPBOX        "Certificato",IDC_STATIC,7,10,408,68
+    LTEXT           "Osservazioni",IDC_STATIC,14,23,41,8
+    LTEXT           "Sperimentatore",IDC_STATIC,16,49,48,8
+    LTEXT           "Macchina",IDC_STATIC,229,49,32,8
+    EDITTEXT        IDC_EDIT_STRUTTURA,159,89,246,26,ES_MULTILINE | 
+                    ES_READONLY | NOT WS_TABSTOP
+    LTEXT           "Struttura",IDC_STATIC,116,89,27,8
+    LTEXT           "Pos.",IDC_STATIC,14,89,15,8
+    EDITTEXT        IDC_EDIT_POSIZIONE,31,89,23,12,ES_CENTER | 
+                    ES_AUTOHSCROLL | ES_READONLY | NOT WS_TABSTOP
+    DEFPUSHBUTTON   "",IDC_BUTTON_NEXT,75,270,50,14,NOT WS_VISIBLE | NOT 
+                    WS_TABSTOP
+    EDITTEXT        IDC_EDID_DATA_VA,60,105,49,12,ES_CENTER | ES_AUTOHSCROLL | 
+                    ES_READONLY
+    CTEXT           "Data V.A.",IDC_STATIC,23,107,32,8
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_DIALOG_COMPRESSIONI_CUBI_2018, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 413
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 287
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_ICON_NOSELECT       ICON    DISCARDABLE     "ico_prov.ico"
+IDI_ICON_SELECT         ICON    DISCARDABLE     "ico_empt.ico"
+IDI_ICON_INTERA         ICON    DISCARDABLE     "ico00001.ico"
+IDI_ICON_INTERA_SELECT  ICON    DISCARDABLE     "icon_int.ico"
+#endif    // Italian (Italy) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ITA)
+#ifdef _WIN32
+LANGUAGE 16, 1
+#pragma code_page(1252)
+#endif //_WIN32
+#include "res\CompressioneCubiDM2018.rc2"  // non-Microsoft Visual C++ edited resources
+#include "l.ita\afxres.rc"          // Standard components
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

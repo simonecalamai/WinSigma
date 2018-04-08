@@ -551,6 +551,12 @@ void CSerieDlg::InitDialogData(void)
         {
           m_ListServizi.SetCheck(n);  
           m_arySelectedServices.Add(nServizio);
+					if(m_pTCertificatoSet->m_Codice == 16 && !(m_ListServizi.GetItemText(n, 0).CompareNoCase("CA02")))
+					{
+						m_StaticSigla.SetWindowText("Sigla1");
+						m_StaticSigla2.ShowWindow(SW_SHOW);
+						m_EditSigla2.ShowWindow(SW_SHOW);
+					}
           // Se è una prova aggiorno il numero di provini richiesti
           for(SET_START(m_pCatServSet); !m_pCatServSet->IsEOF(); m_pCatServSet->MoveNext())
           {
@@ -811,6 +817,7 @@ void CSerieDlg::LoadSeriesData(void)
 		SetNuovoCertificato(TRUE);
   m_strStruttura				= m_pSerieSet->m_StrutturaPrelievo;
   m_strSigla						= m_pSerieSet->m_Sigla;
+  m_strSigla2						= m_pSerieSet->m_Sigla2;
 
 	if(!m_pSerieSet->IsFieldNull(&m_pSerieSet->m_Dimensione1) )
 		m_dDimensione1 = m_pSerieSet->m_Dimensione1;
