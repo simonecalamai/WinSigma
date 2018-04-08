@@ -28,6 +28,7 @@ public:
 	CTime m_DataProva;
 	CString	m_StrutturaPrelievo;
 	CString	m_Sigla;
+	CString	m_Sigla2;
 	long	m_Servizio1;
 	long	m_Servizio2;
 	long	m_Servizio3;

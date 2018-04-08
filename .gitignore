@@ -16,6 +16,7 @@
 /CompressioneCarote.dll
 /CompressioneCubi.dll
 /CompressioneCubiDM2008.dll
+/CompressioneCubiDM2018.dll
 /ResilienzaProfilati.dll
 /ResilienzaProfilati/Release/ResilienzaProfilati.dll
 /TrazionePiegamentoBarre.dll
@@ -45,6 +46,7 @@
 /CompressioneCarote.lib
 /CompressioneCubi.lib
 /CompressioneCubiDM2008.lib
+/CompressioneCubiDM2018.lib
 /html/lib/htmlhelp.lib
 /ResilienzaProfilati.lib
 /ResilienzaProfilati/Release/ResilienzaProfilati.lib

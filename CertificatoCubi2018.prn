@@ -10,7 +10,7 @@ Nr.Pagina=1700,2100,Times New Roman,24,48,C
 
 
 [strings]
-5=80,430,1850,70,Times New Roman,28,50,BC,PROVA A COMPRESSIONE SU CUBI IN CALCESTRUZZO
+5=80,430,1850,70,Times New Roman,28,50,BC,PROVA A COMPRESSIONE SU CUBI IN MALTA CEMENTIZIA
 10=160,560,300,40,Times New Roman,22,38,BL,CERTIFICATO N°
 20=+400,+0,50,40,Times New Roman,22,38,BL,del
 30=1200,+0,200,40,Times New Roman,22,38,BL,Rif. V.A. N°
@@ -91,11 +91,16 @@ Nr.Pagina=1700,2100,Times New Roman,24,48,C
 
 [tabfields]
 5=70,1580,20,71,Times New Roman,18,36,LWSV,
-20=+20,+0,390,71,Times New Roman,12,30,LS,strutturaPrelievoLunga
-30=+0,+0,390,71,Times New Roman,12,30,LSV,strutturaPrelievoBreve
-35=+370,+0,210,71,Times New Roman,12,30,CSV,verbale_prelievo
-40=+175,+0,120,71,Times New Roman,12,30,CSV,sigla
-50=+110,+0,210,71,Times New Roman,18,36,CSV,dataPrelievo
+;20=+20,+0,390,71,Times New Roman,12,30,LS,strutturaPrelievoLunga
+;30=+0,+0,390,71,Times New Roman,12,30,LSV,strutturaPrelievoBreve
+;35=+370,+0,210,71,Times New Roman,12,30,CSV,verbale_prelievo
+;40=+175,+0,120,71,Times New Roman,12,30,CSV,sigla
+;50=+110,+0,210,71,Times New Roman,18,36,CSV,dataPrelievo
+20=+20,+0,390,71,Times New Roman,12,30,L,strutturaPrelievoLunga
+30=+0,+0,390,71,Times New Roman,12,30,L,strutturaPrelievoBreve
+35=+370,+0,210,71,Times New Roman,12,30,C,verbale_prelievo
+40=+175,+0,120,71,Times New Roman,12,30,C,sigla
+50=+110,+0,210,71,Times New Roman,18,36,C,dataPrelievo
 60=950,1580,70,71,Times New Roman,18,36,CSWV,lunghezza
 70=+70,+0,70,71,Times New Roman,18,36,CSV,larghezza
 80=+70,+0,70,71,Times New Roman,18,36,CSV,altezza

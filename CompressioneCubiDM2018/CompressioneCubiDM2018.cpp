@@ -470,7 +470,7 @@ __declspec( dllexport ) BOOL DatiProvino(CAllTables* pTabelle, CStringArray* pFi
 
 		  pFieldValues->Add("");
 			pFieldValues->Add("");
-		  pFieldValues->Add("");
+		  pFieldValues->Add(pSerieProviniSet->m_Sigla2);
 		  pFieldValues->Add(" \"  \" ");
 		}
 			

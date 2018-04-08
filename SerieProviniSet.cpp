@@ -30,6 +30,7 @@ CSerieProviniSet::CSerieProviniSet(CDatabase* pdb)
 	m_DataProva = CTime::GetCurrentTime();
 	m_StrutturaPrelievo = _T("");
 	m_Sigla = _T("");
+	m_Sigla2 = _T("");
 	m_Servizio1 = 0;
 	m_Servizio2 = 0;
 	m_Servizio3 = 0;
@@ -58,7 +59,7 @@ CSerieProviniSet::CSerieProviniSet(CDatabase* pdb)
 	m_VerbalePrelievo = _T("");
 	m_SiglaFornitore = _T("");
 	m_RotoliCT = 0;
-	m_nFields = 39;
+	m_nFields = 40;
 	//}}AFX_FIELD_INIT
 	m_nDefaultType = snapshot;
 }
@@ -88,6 +89,7 @@ void CSerieProviniSet::DoFieldExchange(CFieldExchange* pFX)
 	RFX_Date(pFX, _T("[DataProva]"),				m_DataProva);
 	RFX_Text(pFX, _T("[StrutturaPrelievo]"),m_StrutturaPrelievo);
 	RFX_Text(pFX, _T("[Sigla]"),						m_Sigla); 
+	RFX_Text(pFX, _T("[Sigla2]"),						m_Sigla2); 
 	RFX_Long(pFX, _T("[Servizio1]"),				m_Servizio1);
 	RFX_Long(pFX, _T("[Servizio2]"),				m_Servizio2);
 	RFX_Long(pFX, _T("[Servizio3]"),				m_Servizio3);
