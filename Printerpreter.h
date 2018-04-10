@@ -313,6 +313,8 @@ class CPrintInterpreter : public CObject
     // oggetto per stampare il numero di pagina
     CPageItem m_PageItem;
 
+		int m_nRowSeries;
+
   /*----- metodi -----*/
   public:
     CPrintInterpreter();

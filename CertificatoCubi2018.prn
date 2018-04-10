@@ -20,44 +20,57 @@ Nr.Pagina=1700,2100,Times New Roman,24,48,C
 70=+0,+80,400,40,Times New Roman,22,40,L,Impresa esecutrice
 80=+0,+120,400,40,Times New Roman,22,40,L,Cantiere
 90=+0,+190,300,40,Times New Roman,22,40,L,Tipo e caratteristiche
-100=120,1400,700,40,Times New Roman,24,40,BC,DATI DICHIARATI
-110=870,1400,1060,40,Times New Roman,24,40,BC,RISULTATI DI PROVA
-120=130,1495,450,40,Arial,22,38,BL,Struttura
-125=+360,+0,150,40,Arial,22,38,BL,Verbale di 
-130=+165,+0,150,40,Arial,22,38,BL,Sigla
-140=+95,+0,190,40,Arial,22,38,BC,Data prelievo
-150=880,1495,345,40,Arial,22,38,BC,Dimensioni
+100=240,1400,700,40,Times New Roman,24,40,BC,DATI DICHIARATI
+110=1060,1400,1060,40,Times New Roman,24,40,BC,RISULTATI DI PROVA
+
+120=110,1495,150,40,Arial,22,38,BL,Sigla
+125=+200,+0,450,40,Arial,22,38,BL,Struttura
+130=+310,+0,150,40,Arial,22,38,BL,Verbale di
+140=+180,+0,190,40,Arial,22,38,BC,Data prelievo
+145=+220,+0,155,40,Arial,22,38,BC,Data prova
+150=1150,1495,345,40,Arial,22,38,BC,Dimensioni
 170=+280,+0,280,40,Arial,22,38,BL,Massa Vol.
 180=+190,+0,80,40,Arial,22,38,BC,T.R.
 190=+80,+0,40,40,Arial,22,38,BC,R.
 195=+85,+0,40,40,Arial,22,38,BC,Fc
 200=+55,+0,190,40,Arial,22,38,BC,Rc
-210=+190,+0,155,40,Arial,22,38,BC,Data prova
-215=495,1535,345,40,Arial,22,38,BL,prelievo n.
-220=890,1535,345,40,Arial,22,38,C,mm
+215=620,1535,345,40,Arial,22,38,BL,prelievo n.
+220=1160,1535,345,40,Arial,22,38,C,mm
 240=+280,+0,140,40,Arial,22,38,C,kg/m
 245=+300,+0,140,40,Arial,22,38,C,kN
 250=+110,+0,190,40,Arial,22,38,C,N/mm²
+
+;
 260=90,2010,100,30,Arial,18,34,R,NORME
 270=+0,2050,100,30,Arial,18,34,R,T.R.
 280=+0,+33,100,30,Arial,18,34,R,R.
-300=+130,2005,1300,38,Courier New,20,38,L,Compressione e rettifica UNI EN 12390-3
+290=+0,+100,100,30,Arial,22,38,R,*
+295=+0,+67,100,30,Arial,22,38,R,**
+300=+130,2005,1300,38,Courier New,20,38,L,Compressione e rettifica UNI EN 12390-3 / D.M. 17/01/2018
 310=+0,2050,1300,30,Courier New,18,30,L,Tipo Rottura:  1=soddisfacente;  2=non soddisfacente
 320=+0,+33,1300,30,Courier New,18,30,L,Rettifica:  A=effettuata;  B=non effettuata: provino conforme UNI EN 12390-1
 325=+0,+65,1800,30,Courier New,18,30,L,Attenzione: il numero minimo di campioni necessario per il controllo Tipo A previsto dalle norme tecniche vigenti è pari a 6 (3 prelievi)
-340=90,2190,270,44,Arial,22,36,L,Domanda di prove 
 
-360=230,2340,500,100,Times New Roman,22,40,C,Lo Sperimentatore
-370=1330,2340,400,100,Times New Roman,22,40,C,Il Direttore Responsabile del Laboratorio
+330=+0,+33,1800,30,Courier New,18,30,L,"ai sensi §11.2.5.3 del D.M. 17.01.2018 le prove di compressione vanno integrate da quelle riferite al controllo della resistenza del 
+331=+0,+33,1800,30,Courier New,18,30,L,calcestruzzo in opera" (campioni provati oltre il 45° giorno della data di prelievo)
 
-380=90,2580,550,50,Courier New,20,40,L,Il presente documento è costituito da
-390=+550,+0,100,50,Courier New,20,40,L,pagina
+340=+0,+33,1800,30,Courier New,18,30,L,"ai sensi §11.2.4 del D.M. 17.01.2018 i risultati non sono impiegabili per controlli di accettazione di cui al §11.2.5 del D.M. 17.01.2018
+341=+0,+33,1800,30,Courier New,18,30,L,e pertanto dovranno applicarsi le procedure di cui al §11.2.5.3 ultimi tre capoversi dello stesso D.M. 17.01.2018" 
+342=+0,+33,1800,30,Courier New,18,30,L,(campioni per cui la differenza fra i valori di resistenza dei due provini superi il 20% del valore inferiore) 
+
+440=90,2350,270,44,Arial,22,36,L,Domanda di prove 
+
+460=230,2440,500,100,Times New Roman,22,40,C,Lo Sperimentatore
+470=1330,2440,400,100,Times New Roman,22,40,C,Il Direttore Responsabile del Laboratorio
+
+480=90,2620,550,50,Courier New,20,40,L,Il presente documento è costituito da
+490=+550,+0,100,50,Courier New,20,40,L,pagina
 
 ;potenze
-400=1275,1535,20,30,Arial,11,19,L,3
+500=1545,1535,20,30,Arial,11,19,L,3
 
-420=1700,2580,70,50,Courier New,20,40,L,pag.
-430=+100,+0,20,50,Courier New,20,40,L,/
+520=1700,2620,70,50,Courier New,20,40,L,pag.
+530=+100,+0,20,50,Courier New,20,40,L,/
 
 [fields]
 10=460,560,130,80,Times New Roman,22,38,BL,numeroCertificato
@@ -78,42 +91,52 @@ Nr.Pagina=1700,2100,Times New Roman,24,48,C
 150=+350,+0,1300,40,Times New Roman,22,40,L,proprietario
 160=+0,+70,1300,40,Times New Roman,22,40,L,caratteristiche
 170=220,2116,950,50,Courier New,18,30,L,macchina 
-180=370,2190,350,44,Arial,22,36,L,domandaProve 
-190=90,2230,1000,64,Arial,15,32,L,osservazioniLabel
-200=+160,+0,1000,64,Arial,15,32,L,osservazioni
+180=370,2350,350,44,Arial,22,36,L,domandaProve
+;ATTENZIONE: commentate le osservazioni in attesa di rivedere il layout 
+;190=90,2230,1000,64,Arial,15,32,L,osservazioniLabel
+;200=+160,+0,1000,64,Arial,15,32,L,osservazioni
 
-210=130,2420,700,100,Times New Roman,22,40,BC,sperimentatore
-220=1280,2420,500,100,Times New Roman,22,40,BC,responsabile
+210=130,2520,700,100,Times New Roman,22,40,BC,sperimentatore
+220=1280,2520,500,100,Times New Roman,22,40,BC,responsabile
 
-225=600,2580,20,50,Courier New,20,40,R,pagineTotali
-230=1770,2580,20,50,Courier New,20,40,R,paginaCorrente
+225=600,2620,20,50,Courier New,20,40,R,pagineTotali
+230=1770,2620,20,50,Courier New,20,40,R,paginaCorrente
 240=+50,+0,20,50,Courier New,20,40,L,pagineTotali
 
 [tabfields]
-5=70,1580,20,71,Times New Roman,18,36,LWSV,
-;20=+20,+0,390,71,Times New Roman,12,30,LS,strutturaPrelievoLunga
-;30=+0,+0,390,71,Times New Roman,12,30,LSV,strutturaPrelievoBreve
-;35=+370,+0,210,71,Times New Roman,12,30,CSV,verbale_prelievo
-;40=+175,+0,120,71,Times New Roman,12,30,CSV,sigla
-;50=+110,+0,210,71,Times New Roman,18,36,CSV,dataPrelievo
-20=+20,+0,390,71,Times New Roman,12,30,L,strutturaPrelievoLunga
-30=+0,+0,390,71,Times New Roman,12,30,L,strutturaPrelievoBreve
-35=+370,+0,210,71,Times New Roman,12,30,C,verbale_prelievo
-40=+175,+0,120,71,Times New Roman,12,30,C,sigla
-50=+110,+0,210,71,Times New Roman,18,36,C,dataPrelievo
-60=950,1580,70,71,Times New Roman,18,36,CSWV,lunghezza
-70=+70,+0,70,71,Times New Roman,18,36,CSV,larghezza
-80=+70,+0,70,71,Times New Roman,18,36,CSV,altezza
-100=+30,+0,240,71,Times New Roman,18,36,CSEV,massa
-110=+240,+0,70,71,Times New Roman,18,36,CSV,tipoRottura
-120=+60,+0,60,71,Times New Roman,18,36,CSEV,spianatura
-125=+60,+0,120,71,Times New Roman,18,36,CSWEV,fc
-130=+120,+0,140,71,Times New Roman,18,36,BCSWEV,rottura
-140=+140,+0,210,71,Times New Roman,18,36,CSWEV,dataProva
+; dati dichiarati
+5=70,1580,20,56,Times New Roman,18,36,LVWS,
+10=+5,+0,155,56,Times New Roman,12,30,CVSE,sigla
+
+; caso 1 provino per serie
+20=240,1580,420,56,Times New Roman,12,30,L,strutturaPrelievoLunga
+21=240,1580,420,56,Times New Roman,12,30,CV,strutturaPrelievoBreve
+30=+340,+0,210,56,Times New Roman,12,30,CV,verbale_prelievo
+40=+210,+0,210,56,Times New Roman,18,36,CV,dataPrelievo
+50=+210,+0,210,56,Times New Roman,18,36,CV,dataProva
+
+; caso 2 provini per serie
+120=240,1610,420,56,Times New Roman,12,30,L,strutturaPrelievoLunga02
+121=240,1610,420,56,Times New Roman,12,30,LV,strutturaPrelievoBreve02
+130=580,1610,210,56,Times New Roman,12,30,CV,verbale_prelievo02
+140=+210,+0,210,56,Times New Roman,18,36,CV,dataPrelievo02
+150=+210,+0,210,56,Times New Roman,18,36,CV,dataProva02
+160=+170,-8,30,56,Times New Roman,12,30,CV,astDataProva45gg 
+
+; risultati
+200=1210,1580,70,56,Times New Roman,18,36,CSWV,lunghezza
+210=+70,+0,70,56,Times New Roman,18,36,CSV,larghezza
+220=+70,+0,70,56,Times New Roman,18,36,CSV,altezza
+230=+30,+0,240,56,Times New Roman,18,36,CSEV,massa
+240=+240,+0,70,56,Times New Roman,18,36,CSV,tipoRottura
+250=+60,+0,60,56,Times New Roman,18,36,CSEV,spianatura
+260=+60,+0,120,56,Times New Roman,18,36,CSWEV,fc
+270=+120,+0,140,56,Times New Roman,18,36,BCSWEV,rottura
+280=+100,-10,30,56,Times New Roman,12,30,CV,astDiffRottura
 
 [grids]
-10=70,1478,880,100,1,1
-20=+880,+0,1000,100,1,1
+10=70,1478,1140,100,1,1
+20=+1140,+0,790,100,1,1
 ;90=230,2540,500,0,1,1
 ;100=1280,2540,500,0,1,1
 

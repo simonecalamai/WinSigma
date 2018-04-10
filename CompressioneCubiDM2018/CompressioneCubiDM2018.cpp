@@ -38,6 +38,8 @@ static char THIS_FILE[] = __FILE__;
 //		details.
 //
 
+static double OldRottura = 0.0f;
+
 /////////////////////////////////////////////////////////////////////////////
 // CCompressioneCubiDM2018App
 
@@ -429,56 +431,140 @@ __declspec( dllexport ) BOOL DatiProvino(CAllTables* pTabelle, CStringArray* pFi
 //--- Gestione dei campi da scrivere unicamente per il primo provino ---//
 	struttura = pSerieProviniSet->m_StrutturaPrelievo;
 //	struttura.Insert(0, " ");
-	if(struttura.GetLength() > LIMITE_RIGA)
-		nomeStruttura = "strutturaPrelievoLunga";
-	else
-		nomeStruttura = "strutturaPrelievoBreve";
 
-	if( primoCampo )
+	switch(pSerieProviniSet->m_NumeroProvini)
+	{
+		case 1:    // servizi CA01
 		{
-		  pFieldNames->Add(nomeStruttura);
+			if(struttura.GetLength() > LIMITE_RIGA)
+				nomeStruttura = "strutturaPrelievoLunga";
+			else
+				nomeStruttura = "strutturaPrelievoBreve";
+			pFieldNames->Add(nomeStruttura);
 			pFieldNames->Add("verbale_prelievo");
-		  pFieldNames->Add("sigla");
-		  pFieldNames->Add("dataPrelievo");
-		  pFieldValues->Add(struttura);
-//		  pFieldValues->Add(pSerieProviniSet->m_StrutturaPrelievo);
+			pFieldNames->Add("sigla");
+			pFieldNames->Add("dataPrelievo");
+			pFieldNames->Add("dataProva");
+			pFieldValues->Add(struttura);
 			pFieldValues->Add(pSerieProviniSet->m_VerbalePrelievo);
-		  pFieldValues->Add(pSerieProviniSet->m_Sigla);
-		  if( 
-        !pSerieProviniSet->IsFieldNull(&pSerieProviniSet->m_DataPrelievo) 
-			  && (pSerieProviniSet->m_DataPrelievo != 0) 
-        )
-			  pFieldValues->Add(pSerieProviniSet->m_DataPrelievo.Format("%d/%m/%Y"));	
-		  else 
-      {
-			  if (pSerieProviniSet->m_strDataND.IsEmpty())
-        {
-          CString s("");
-          s = "> 28 gg";
-          pFieldValues->Add(s);
-        }
-        else
-          pFieldValues->Add(pSerieProviniSet->m_strDataND);
-      }
-		}
-	else
-		{
-		  pFieldNames->Add("strutturaPrelievoBreve");
-			pFieldNames->Add("verbale_prelievo");
-		  pFieldNames->Add("sigla");
-		  pFieldNames->Add("dataPrelievo");
-
-		  pFieldValues->Add("");
-			pFieldValues->Add("");
-		  pFieldValues->Add(pSerieProviniSet->m_Sigla2);
-		  pFieldValues->Add(" \"  \" ");
-		}
-			
-
-	switch(pDati->nVersione)
-		{
-		case 0:
+			pFieldValues->Add(pSerieProviniSet->m_Sigla);
+			if(!pSerieProviniSet->IsFieldNull(&pSerieProviniSet->m_DataPrelievo) 
+					&& (pSerieProviniSet->m_DataPrelievo != 0))
 			{
+				pFieldValues->Add(pSerieProviniSet->m_DataPrelievo.Format("%d/%m/%Y"));
+			}
+			else 
+			{
+				if (pSerieProviniSet->m_strDataND.IsEmpty())
+				{
+					CString s("");
+					s = "> 28 gg";
+					pFieldValues->Add(s);
+				}
+				else
+				{
+					pFieldValues->Add(pSerieProviniSet->m_strDataND);
+				}
+			}
+			if(!pSerieProviniSet->IsFieldNull(&pSerieProviniSet->m_DataProva))
+			{
+				pFieldValues->Add(pSerieProviniSet->m_DataProva.Format("%d/%m/%Y") );
+			}
+			else
+			{
+				pFieldValues->Add("- n. d. -" );
+			}
+			break;
+		}
+
+		case 2:		// servizi CA02 (da raggruppare, modifica aprile 2018, s.c.)
+		{
+			if(struttura.GetLength() > LIMITE_RIGA)
+				nomeStruttura = "strutturaPrelievoLunga02";
+			else
+				nomeStruttura = "strutturaPrelievoBreve02";
+			if(primoCampo)
+			{
+				pFieldNames->Add(nomeStruttura);
+				pFieldNames->Add("verbale_prelievo02");
+				pFieldNames->Add("sigla");
+				pFieldNames->Add("dataPrelievo02");
+				pFieldNames->Add("dataProva02");
+				pFieldValues->Add(struttura);
+				pFieldValues->Add(pSerieProviniSet->m_VerbalePrelievo);
+				pFieldValues->Add(pSerieProviniSet->m_Sigla);
+				if(!pSerieProviniSet->IsFieldNull(&pSerieProviniSet->m_DataPrelievo) 
+						&& (pSerieProviniSet->m_DataPrelievo != 0))
+				{
+					pFieldValues->Add(pSerieProviniSet->m_DataPrelievo.Format("%d/%m/%Y"));
+				}
+				else 
+				{
+					if (pSerieProviniSet->m_strDataND.IsEmpty())
+					{
+						CString s("");
+						s = "> 28 gg";
+						pFieldValues->Add(s);
+					}
+					else
+					{
+						pFieldValues->Add(pSerieProviniSet->m_strDataND);
+					}
+				}
+				if(!pSerieProviniSet->IsFieldNull(&pSerieProviniSet->m_DataProva))
+				{
+					pFieldValues->Add(pSerieProviniSet->m_DataProva.Format("%d/%m/%Y") );
+					// controllo data prova > data prelievo + 45 gg
+					if(!pSerieProviniSet->IsFieldNull(&pSerieProviniSet->m_DataPrelievo) && (pSerieProviniSet->m_DataPrelievo != 0))
+					{
+						CString prel = pSerieProviniSet->m_DataPrelievo.Format("%d/%m/%Y"); 
+						CString prov = pSerieProviniSet->m_DataProva.Format("%d/%m/%Y"); 
+						CTimeSpan diff = CTimeSpan(45, 0, 0, 0);
+						CTime ct = pSerieProviniSet->m_DataPrelievo + diff;
+						CString cts = ct.Format("%d/%m/%Y"); 
+						if(pSerieProviniSet->m_DataProva > (pSerieProviniSet->m_DataPrelievo + diff))
+						{
+							pFieldNames->Add("astDataProva45gg");
+							pFieldValues->Add("*");
+						}
+					}
+				}
+				else
+				{
+					pFieldValues->Add("- n. d. -" );
+				}
+				OldRottura = rottura;
+			}
+			else
+			{
+				pFieldNames->Add("verbale_prelievo02");
+				pFieldNames->Add("sigla");
+				pFieldNames->Add("dataPrelievo02");
+				pFieldNames->Add("dataProva02");
+
+				pFieldValues->Add("");
+				pFieldValues->Add(pSerieProviniSet->m_Sigla2);
+				pFieldValues->Add("");
+				pFieldValues->Add("");
+
+				double minRottura = (rottura > OldRottura) ? OldRottura : rottura;
+				double limRottura = 0.20f * minRottura;
+				double diffRottura = OldRottura - rottura;
+				diffRottura = (diffRottura > 0) ? diffRottura : -diffRottura;
+				if(diffRottura > limRottura)
+				{
+					pFieldNames->Add("astDiffRottura");
+					pFieldValues->Add("**");
+				}
+			}
+			break;
+		}
+	}
+			
+	switch(pDati->nVersione)
+	{
+		case 0:
+		{
 			pFieldNames->Add("lunghezza");
 			pFieldNames->Add("larghezza");
 			pFieldNames->Add("altezza");
@@ -525,22 +611,12 @@ __declspec( dllexport ) BOOL DatiProvino(CAllTables* pTabelle, CStringArray* pFi
 			pFieldNames->Add("fc");
 			str.Format("%.1f",pDati->caricoSp);
 			pFieldValues->Add(str);
-			
-			}
-			break;
+
+			break;		
+		}
+
 		case 1:;
-		};
-	pFieldNames->Add("dataProva");
-	if( primoCampo )
-  {
-		if(!pSerieProviniSet->IsFieldNull(&pSerieProviniSet->m_DataProva))
-      pFieldValues->Add(pSerieProviniSet->m_DataProva.Format("%d/%m/%Y") );
-    else
-      pFieldValues->Add("- n. d. -" );
-  }
-  else
-		pFieldValues->Add(" \"  \" ");
-	
+	};
   return TRUE;
 }
 
