@@ -88,6 +88,7 @@ CPrintInterpreter::CPrintInterpreter(void) : CObject()
 	m_HeaderFName = "";
 	m_DocName = "PRINTDOC";
 	m_nRowSeries = 0;
+	m_nGroup = 0;
 }
 
 CPrintInterpreter::~CPrintInterpreter(void)
@@ -272,6 +273,8 @@ BOOL CPrintInterpreter::Print(
   // n conteggia il numero delle pagine 
 	for (; bAgain; m_nPage++)
   {
+		m_nRowSeries = 0;
+		m_nGroup = 0;
     // prepara il driver della stampante a ricevere dati 
 		m_dcPrint.StartPage();
 
@@ -790,6 +793,20 @@ BOOL CPrintInterpreter::PrintTabfields(CDC* pDC, int page)
       bAgain = (*m_pfnSetTabfields)(&names, &values);
     else 
 		  return FALSE;
+		// determina se raggruppare i provini per serie (e il loro numero) (Cubi DM 2018 s.c. aprile 2018)
+		for(int i = 0; i < names.GetSize(); i++)
+		{
+			if(names.GetAt(i).CompareNoCase("verbale_prelievo02") == 0)
+			{
+				m_nRowSeries++;
+				m_nGroup = 1;
+			}
+			if(names.GetAt(i).CompareNoCase("verbale_prelievo") == 0)
+			{
+				m_nRowSeries++;
+				m_nGroup = 0;
+			}
+		}
     // Altezza dei tabfield
     hMax = m_TabfieldItems.GetAt(0)->m_H;
     if(hMax < 0)
@@ -892,6 +909,24 @@ BOOL CPrintInterpreter::PrintGrids(CDC* pDC, int page)
 {
   int   i;
   BOOL  bAgain = FALSE;
+
+	if(m_nRowSeries > 0)
+	{
+		// espansione delle griglie multiple per raggruppamento provini 
+		// se m_Rows = -1 (Cubi DM2018 s.c. aprile 2018)
+	  for(i = 0; i < m_GridItems.GetSize(); i++)
+		{
+			CGridItem * pItem = (CGridItem*)(m_GridItems.GetAt(i));
+			if(pItem->m_Rows == -1)
+			{
+				int firsty = pItem->m_LastY - pItem->m_H;
+				int h = m_nRowSeries * pItem->m_H;
+				pItem->m_H = h;
+				pItem->m_LastY = firsty + h;
+				pItem->m_Rows = (m_nGroup == 1) ? m_nRowSeries/2 : m_nRowSeries;
+			}
+		}
+	}
 
   for(i = 0; i < m_GridItems.GetSize(); i++)
   {
@@ -1096,23 +1131,24 @@ int CPrintItemArray::Load(CString sec, CString layoutFName, CString headerFName)
 			  pPrintItem->m_Page = LAST_PAGE;			
 			else
 			  pPrintItem->m_Page = nChiave / 1000;
-      // inserisce il nuovo oggetto nell'array 
-      if(!GetSize())
-        Add(pPrintItem);
-      else
-      {
-        for(i = 0; i < GetSize(); i++)
-        {
-          if(GetAt(i)->m_Y > pPrintItem->m_Y)
-          {
-            InsertAt(i, pPrintItem);
-            break;
-          }
-        }
-        if(i == GetSize())
-          Add(pPrintItem);
-      }
-    }
+
+      // inserisce il nuovo oggetto nell'array
+			if(!GetSize())
+				Add(pPrintItem);
+			else
+			{
+				for(i = 0; i < GetSize(); i++)
+				{
+					if(GetAt(i)->m_Y > pPrintItem->m_Y)
+					{
+						InsertAt(i, pPrintItem);
+						break;
+					}
+				}
+				if(i == GetSize())
+					Add(pPrintItem);
+			}
+		} 
   }
 
 	// Inserimento header (se definito) s.c. luglio 2016

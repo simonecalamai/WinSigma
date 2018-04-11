@@ -192,9 +192,9 @@ class CGridItem : public CPrintItem
 {
   /*----- dati -----*/
   protected:
+  public:
     int  m_Rows;   // numero di righe contenute nella griglia
     int  m_Cols;   // numero di colonne contenute nella griglia
-  public:
     static m_LastX;
     static m_LastY;
 
@@ -314,6 +314,7 @@ class CPrintInterpreter : public CObject
     CPageItem m_PageItem;
 
 		int m_nRowSeries;
+		int m_nGroup;
 
   /*----- metodi -----*/
   public:

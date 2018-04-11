@@ -377,13 +377,14 @@ __declspec( dllexport ) int RiempiCampi(long numCertificato, CAllTables* pTabell
 	str.TrimLeft();
 	str.TrimRight();
 	if(str.GetLength() > 1 )
-		{
-		fieldNames->Add("osservazioniLabel");
+	{
+		// s.c. aprile 2018 provvisorio 
+/*		fieldNames->Add("osservazioniLabel");
 		fieldValues->Add("Osservazioni:");
 		fieldNames->Add("osservazioni");
 		str.Replace("&", "&&");
-		fieldValues->Add(str);
-		}
+		fieldValues->Add(str); */
+	}
 
 	
 //---------------	

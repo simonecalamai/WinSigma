@@ -4658,7 +4658,7 @@ BOOL CVerbaliView::ScanProvini(CStringArray* pFieldNames, CStringArray* pFieldVa
 		if(pFunc = (PROCESTERNA*)::GetProcAddress(hist,"DatiProvino"))
 			esito = (pFunc)(m_pTabelle, pFieldNames, pFieldValues, bPrimoProvino, m_nContaProvini, m_pTabelle->m_pSerieProviniSet->m_Certificato);
 	}	
-
+	
 	m_pTabelle->m_pSerieProviniSet->MoveNext();
   if( m_pTabelle->m_pSerieProviniSet->IsEOF())
 	  return FALSE;
@@ -5215,7 +5215,6 @@ void CVerbaliView::StampaCertificati(BOOL bHeader)
 					
 				m_nCodSerieStampata = 0;// serve per stampare in maniera diversa la prima riga di una serie 															
 				m_nContaProvini = 0;		// serve per indicare il numero del provino alla dll
-
 				if(numeroPagine == 1)
 				{
 					//--------- gestione numeri di pagina --------------------//
@@ -5512,7 +5511,6 @@ void CVerbaliView::StampaCertificato(long codRif, BOOL isCodSerie, BOOL bHeader)
 				m_pTabelle->m_pSerieProviniSet->Requery();
 				m_nCodSerieStampata = 0;//serve per stampare la prima riga di una serie in maniera diversa 
 				m_nContaProvini = 0;		// serve per indicare il numero del provino alla dll
-
 				if(numeroPagine == 1)
 				{
 					//--------- gestione numeri di pagina --------------------//
