@@ -378,12 +378,11 @@ __declspec( dllexport ) int RiempiCampi(long numCertificato, CAllTables* pTabell
 	str.TrimRight();
 	if(str.GetLength() > 1 )
 	{
-		// s.c. aprile 2018 provvisorio 
-/*		fieldNames->Add("osservazioniLabel");
+		fieldNames->Add("osservazioniLabel");
 		fieldValues->Add("Osservazioni:");
 		fieldNames->Add("osservazioni");
 		str.Replace("&", "&&");
-		fieldValues->Add(str); */
+		fieldValues->Add(str);
 	}
 
 	
@@ -467,9 +466,31 @@ __declspec( dllexport ) BOOL DatiProvino(CAllTables* pTabelle, CStringArray* pFi
 					pFieldValues->Add(pSerieProviniSet->m_strDataND);
 				}
 			}
+/*			if(!pSerieProviniSet->IsFieldNull(&pSerieProviniSet->m_DataProva))
+			{
+				pFieldValues->Add(pSerieProviniSet->m_DataProva.Format("%d/%m/%Y") );
+			}
+			else
+			{
+				pFieldValues->Add("- n. d. -" );
+			}*/
 			if(!pSerieProviniSet->IsFieldNull(&pSerieProviniSet->m_DataProva))
 			{
 				pFieldValues->Add(pSerieProviniSet->m_DataProva.Format("%d/%m/%Y") );
+				// controllo data prova > data prelievo + 45 gg
+				if(!pSerieProviniSet->IsFieldNull(&pSerieProviniSet->m_DataPrelievo) && (pSerieProviniSet->m_DataPrelievo != 0))
+				{
+					CString prel = pSerieProviniSet->m_DataPrelievo.Format("%d/%m/%Y"); 
+					CString prov = pSerieProviniSet->m_DataProva.Format("%d/%m/%Y"); 
+					CTimeSpan diff = CTimeSpan(45, 0, 0, 0);
+					CTime ct = pSerieProviniSet->m_DataPrelievo + diff;
+					CString cts = ct.Format("%d/%m/%Y"); 
+					if(pSerieProviniSet->m_DataProva > (pSerieProviniSet->m_DataPrelievo + diff))
+					{
+						pFieldNames->Add("astDataProva45gg");
+						pFieldValues->Add("*");
+					}
+				}
 			}
 			else
 			{
@@ -554,7 +575,9 @@ __declspec( dllexport ) BOOL DatiProvino(CAllTables* pTabelle, CStringArray* pFi
 				diffRottura = (diffRottura > 0) ? diffRottura : -diffRottura;
 				if(diffRottura > limRottura)
 				{
-					pFieldNames->Add("astDiffRottura");
+					pFieldNames->Add("astDiffRotturaPrimoProvino");
+					pFieldValues->Add("**");
+					pFieldNames->Add("astDiffRotturaSecondoProvino");
 					pFieldValues->Add("**");
 				}
 			}
