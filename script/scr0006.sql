@@ -13,7 +13,7 @@ update tipi_materiale set TipoCertificato4 = 16 where TipoCertificato3 = 12
 -- campo serie.Sigla 16 caratteri
 ALTER TABLE serie MODIFY Sigla VARCHAR(16);
 
--- aggiunta campo.Sigla2
+-- aggiunta campo serie.Sigla2
 alter table serie add column Sigla2 varchar(16) DEFAULT '';
 
 
@@ -24,3 +24,7 @@ VALUES (17, 'Prove su barre da c.a. B450 D.M. 2018', NULL, 'CertificatoBarreB450
 update servizi_listino set certificato2 = 17, prove2 = 1 where categoria = 551 and ID in ('DA01', 'DA02', 'DA03', 'DA04', 'DA05', 'DA09', 'DA10')
 
 update tipi_materiale set TipoCertificato4 = 17 where (TipoCertificato = 11 or TipoCertificato2 = 11 or TipoCertificato3 = 11)
+
+-- aggiunta campo tipi_certificato.Attivo
+alter table tipi_certificato add column Attivo INT DEFAULT 1;
+update tipi_certificato set Attivo = 0 where Codice in (1, 2, 4, 6, 8, 10);

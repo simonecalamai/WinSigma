@@ -87,6 +87,18 @@ Package=<4>
 
 ###############################################################################
 
+Project: "TrazionePiegamentoBarreB450_2018"=.\TrazionePiegamentoBarreB450_2018\TrazionePiegamentoBarreB450_2018.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
 Project: "TrazionePiegamentoBarreCT"=.\TrazionePiegamentoBarreCT\TrazionePiegamentoBarreCT.dsp - Package Owner=<4>
 
 Package=<5>
@@ -196,6 +208,9 @@ Package=<4>
     End Project Dependency
     Begin Project Dependency
     Project_Dep_Name TrazioneReti2011
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name TrazionePiegamentoBarreB450_2018
     End Project Dependency
 }}}
 

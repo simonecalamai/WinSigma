@@ -38,6 +38,7 @@ public:
 	long  m_Maturazione;
   long  m_Ordinamento;
 	int   m_Variante;
+	int		m_Attivo;
 	//}}AFX_FIELD
 
 

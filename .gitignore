@@ -21,6 +21,7 @@
 /ResilienzaProfilati/Release/ResilienzaProfilati.dll
 /TrazionePiegamentoBarre.dll
 /TrazionePiegamentoBarreB450_2010.dll
+/TrazionePiegamentoBarreB450_2018.dll
 /TrazionePiegamentoBarreCT.dll
 /TrazioneProfilati.dll
 /TrazioneProfilati/Release/TrazioneProfilati.dll
@@ -30,6 +31,7 @@
 /TrazioneTrefoli.dll
 /TrazioneTrefoli/Release/TrazioneTrefoli.dll
 /html/MakeIDH/MakeIDH.exe
+/TrazionePiegamentoBarreB450_2018/debug/*
 /Debug/WinSigma.exe
 /Release/WinSigma.exe
 /WinSigma___Win32_W2Debug/WinSigma2.exe
@@ -52,6 +54,7 @@
 /ResilienzaProfilati/Release/ResilienzaProfilati.lib
 /TrazionePiegamentoBarre.lib
 /TrazionePiegamentoBarreB450_2010.lib
+/TrazionePiegamentoBarreB450_2018.lib
 /TrazionePiegamentoBarreCT.lib
 /TrazioneProfilati.lib
 /TrazioneProfilati/Release/TrazioneProfilati.lib

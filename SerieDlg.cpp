@@ -193,12 +193,7 @@ BOOL CSerieDlg::OnInitDialog()
   m_ComboTipoCertificato.SetCurSel(0);
   for(SET_START(m_pTCertificatoSet); !m_pTCertificatoSet->IsEOF(); m_pTCertificatoSet->MoveNext())
   {
-		if ((m_pTCertificatoSet->m_Codice != 1) &&
-				(m_pTCertificatoSet->m_Codice != 2) &&
-				(m_pTCertificatoSet->m_Codice != 8) &&
-				(m_pTCertificatoSet->m_Codice != 10) &&
-				(m_pTCertificatoSet->m_Codice != 4) &&
-				(m_pTCertificatoSet->m_Codice != 6))     // escludere certificato 12 Compressione Cubi DM 2008  s.c. 6.4.2018
+		if(m_pTCertificatoSet->m_Attivo == 1)
 		{
 			str.Format("%d - %s", m_pTCertificatoSet->m_Codice, m_pTCertificatoSet->m_Nome);
 			n = m_ComboTipoCertificato.AddString(str);
@@ -465,7 +460,8 @@ void CSerieDlg::OnSelchangeTipiCertificato()
 	if ((m_ComboTipoCertificato.GetItemData(i) == 11) ||
 			(m_ComboTipoCertificato.GetItemData(i) == 12) ||
 			(m_ComboTipoCertificato.GetItemData(i) == 13) ||
-			(m_ComboTipoCertificato.GetItemData(i) == 16))		
+			(m_ComboTipoCertificato.GetItemData(i) == 16) || 
+			(m_ComboTipoCertificato.GetItemData(i) == 17))		
 	{
 		m_ctrlVerbalePrelievo.EnableWindow(TRUE);
 	}
@@ -474,7 +470,8 @@ void CSerieDlg::OnSelchangeTipiCertificato()
 		m_ctrlVerbalePrelievo.EnableWindow(FALSE);
 	}
 	if ((m_ComboTipoCertificato.GetItemData(i) == 11) ||
-			(m_ComboTipoCertificato.GetItemData(i) == 13))
+			(m_ComboTipoCertificato.GetItemData(i) == 13) || 
+			(m_ComboTipoCertificato.GetItemData(i) == 17))
 	{
 		m_ctrlSiglaFornitore.EnableWindow(TRUE);
 	}
@@ -482,7 +479,8 @@ void CSerieDlg::OnSelchangeTipiCertificato()
 	{
 		m_ctrlSiglaFornitore.EnableWindow(FALSE);
 	}
-	if (m_ComboTipoCertificato.GetItemData(i) == 11)
+	if (m_ComboTipoCertificato.GetItemData(i) == 11 ||
+	(m_ComboTipoCertificato.GetItemData(i) == 17))
 	{
 		m_ctrlOsservazioni.EnableWindow(TRUE);
 	}
