@@ -28,3 +28,22 @@ update tipi_materiale set TipoCertificato4 = 17 where (TipoCertificato = 11 or T
 -- aggiunta campo tipi_certificato.Attivo
 alter table tipi_certificato add column Attivo INT DEFAULT 1;
 update tipi_certificato set Attivo = 0 where Codice in (1, 2, 4, 6, 8, 10);
+
+-- correzione ID certificato Cubi da 16 a 18
+select * from tipi_materiale where TipoCertificato = 16
+select * from tipi_materiale where TipoCertificato2 = 16
+select * from tipi_materiale where TipoCertificato3 = 16
+select * from tipi_materiale where TipoCertificato4 = 16
+
+update tipi_materiale set TipoCertificato = 18 where TipoCertificato = 16
+update tipi_materiale set TipoCertificato2 = 18 where TipoCertificato2 = 16
+update tipi_materiale set TipoCertificato3 = 18 where TipoCertificato3 = 16
+update tipi_materiale set TipoCertificato4 = 18 where TipoCertificato4 = 16
+
+select * from certificati where TipoCertificato = 16
+update certificati set TipoCertificato = 18 where TipoCertificato = 16
+
+select * from servizi_listino where Certificato = 16 Or Certificato2 = 16 or certificato3 = 16 or certificato4 = 16
+update servizi_listino set Certificato4 = 18 where Certificato4 = 16
+
+update serie set TipoCertificato = 18 where TipoCertificato = 16

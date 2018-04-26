@@ -412,8 +412,8 @@ void CSerieDlg::OnSelchangeTipiCertificato()
     LoadTCertData();
     // Aggiorno la lista dei servizi associati a questo tipo di certificato
     LoadServizi();
-	// Aggiorno la combo dei materiali 
-	LoadMateriali();
+		// Aggiorno la combo dei materiali 
+		LoadMateriali();
   }
 	
   if(m_pSerieSet->m_TipoCertificato != m_pTCertificatoSet->m_Codice)
@@ -447,7 +447,7 @@ void CSerieDlg::OnSelchangeTipiCertificato()
 // questa e' una vera nefandezza !!!! s.c. 22-2-2010
   if ((m_ComboTipoCertificato.GetItemData(i) == 8) || (m_ComboTipoCertificato.GetItemData(i) == 9) ||
 				m_ComboTipoCertificato.GetItemData(i) == 12 || 
-				m_ComboTipoCertificato.GetItemData(i) == 16)
+				m_ComboTipoCertificato.GetItemData(i) == 18)
 	{
 	  m_strDataND = STR_DATAND_12390;
 	}
@@ -460,7 +460,7 @@ void CSerieDlg::OnSelchangeTipiCertificato()
 	if ((m_ComboTipoCertificato.GetItemData(i) == 11) ||
 			(m_ComboTipoCertificato.GetItemData(i) == 12) ||
 			(m_ComboTipoCertificato.GetItemData(i) == 13) ||
-			(m_ComboTipoCertificato.GetItemData(i) == 16) || 
+			(m_ComboTipoCertificato.GetItemData(i) == 18) || 
 			(m_ComboTipoCertificato.GetItemData(i) == 17))		
 	{
 		m_ctrlVerbalePrelievo.EnableWindow(TRUE);
@@ -479,6 +479,8 @@ void CSerieDlg::OnSelchangeTipiCertificato()
 	{
 		m_ctrlSiglaFornitore.EnableWindow(FALSE);
 	}
+
+	// campo OSSERVAZIONI
 	if (m_ComboTipoCertificato.GetItemData(i) == 11 ||
 	(m_ComboTipoCertificato.GetItemData(i) == 17))
 	{
@@ -549,7 +551,7 @@ void CSerieDlg::InitDialogData(void)
         {
           m_ListServizi.SetCheck(n);  
           m_arySelectedServices.Add(nServizio);
-					if(m_pTCertificatoSet->m_Codice == 16 && !(m_ListServizi.GetItemText(n, 0).CompareNoCase("CA02")))
+					if(m_pTCertificatoSet->m_Codice == 18 && !(m_ListServizi.GetItemText(n, 0).CompareNoCase("CA02")))
 					{
 						m_StaticSigla.SetWindowText("Sigla1");
 						m_StaticSigla2.ShowWindow(SW_SHOW);
@@ -659,7 +661,7 @@ void CSerieDlg::LoadLastSerie(byte CambiaTipiCertificato)
 			m_ListServizi.SetCheck(n);
 		if(m_ListServizi.GetCheck(n))
 		{
-			if(m_pTCertificatoSet->m_Codice == 16 && !(m_ListServizi.GetItemText(n, 0).CompareNoCase("CA02")))
+			if(m_pTCertificatoSet->m_Codice == 18 && !(m_ListServizi.GetItemText(n, 0).CompareNoCase("CA02")))
 			{
 				m_StaticSigla.SetWindowText("Sigla1");
 				m_StaticSigla2.ShowWindow(SW_SHOW);
@@ -877,17 +879,21 @@ void CSerieDlg::LoadTCertData(void)
   else
     m_ComboTipoCertificato.SetCurSel(-1);
 
+  m_StaticSigla.SetWindowText("Sigla");
+	m_StaticSigla2.ShowWindow(SW_HIDE);
+	m_EditSigla2.ShowWindow(SW_HIDE);
+
 	int codCert = m_ComboTipoCertificato.GetItemData(n);
 	if(m_pSerieSet->IsFieldNull(&m_pSerieSet->m_strDataND))
 	{
-		if(codCert == 8 || codCert == 9 || codCert == 12 || codCert == 16)
+		if(codCert == 8 || codCert == 9 || codCert == 12 || codCert == 18)
 		{	
 			m_strDataND = STR_DATAND_12390;
 		}
 	}
 
 	// Abilita/Disabilita i controlli per l'inserimento del Verbale di Prelievo e della Sigla del Fornitore
-	if (codCert == 11 || codCert == 12 || codCert == 13 || codCert == 16)
+	if (codCert == 11 || codCert == 12 || codCert == 13 || codCert == 17 || codCert == 18)
 	{
 		m_ctrlVerbalePrelievo.EnableWindow(TRUE);
 		if(!m_pSerieSet->IsFieldNull(&m_pSerieSet->m_VerbalePrelievo))
@@ -899,7 +905,7 @@ void CSerieDlg::LoadTCertData(void)
 	{
 		m_ctrlVerbalePrelievo.EnableWindow(FALSE);
 	}
-	if (codCert == 11 || codCert == 13)
+	if (codCert == 11 || codCert == 13 || codCert == 17)
 	{
 		m_ctrlSiglaFornitore.EnableWindow(TRUE);
 		if(!m_pSerieSet->IsFieldNull(&m_pSerieSet->m_SiglaFornitore))
@@ -912,7 +918,7 @@ void CSerieDlg::LoadTCertData(void)
 		m_ctrlSiglaFornitore.EnableWindow(FALSE);
 	}
 
-	if(codCert == 11)
+	if(codCert == 11 || codCert == 17)
 	{
 		m_ctrlOsservazioni.EnableWindow(TRUE);
 		if(!m_pSerieSet->IsFieldNull(&m_pSerieSet->m_Osservazioni))
@@ -1105,7 +1111,7 @@ void CSerieDlg::OnItemchangedListServizi(NMHDR* pNMHDR, LRESULT* pResult)
 		if(m_ListServizi.GetCheck(x))
 			{
 			CString serviceID = m_ListServizi.GetItemText(x, 0);
-			if(m_pTCertificatoSet->m_Codice == 16 && !serviceID.CompareNoCase("CA02"))
+			if(m_pTCertificatoSet->m_Codice == 18 && !serviceID.CompareNoCase("CA02"))
 			{
 				m_StaticSigla.SetWindowText("Sigla1");
 				m_StaticSigla2.ShowWindow(SW_SHOW);

@@ -373,11 +373,13 @@ void CVerbaliView::OnInitialUpdate()
   m_aryPosSerie.RemoveAll();
 	m_strTempEtichette = "";
   /*----- inizializzo la combo della spedizione -----*/
-	m_ComboConsegna.AddString("Ritiro");
+	m_ComboConsegna.AddString("Invio");
 	m_ComboConsegna.AddString("Sped. int. certificati");
 	m_ComboConsegna.AddString("Sped. int. fattura");
 	m_ComboConsegna.AddString("Sped. impresa");
 	m_ComboConsegna.AddString("Spedire a ...");
+	m_ComboConsegna.AddString("Ritiro");
+	m_ComboConsegna.SetCurSel(0);
   m_arySerieEliminate.RemoveAll();
 	m_nCodSperiment = 0;
 
@@ -4517,7 +4519,7 @@ void CVerbaliView::OnSelchangeComboConsegna()
 	switch(n)
 	{
 	  case 0:
-		  /*---- ritiro -----*/
+		  /*---- invio -----*/
       m_bSpedizione = FALSE;
 			m_EditDestinatario.EnableWindow(FALSE);
 		  UpdateData(FALSE);
@@ -4545,6 +4547,12 @@ void CVerbaliView::OnSelchangeComboConsegna()
 			m_EditDestinatario.EnableWindow(TRUE);
 			nCodAzienda = -1;
 		  break;
+	  case 5:
+		  /*---- ritiro -----*/
+      m_bSpedizione = FALSE;
+			m_EditDestinatario.EnableWindow(FALSE);
+		  UpdateData(FALSE);
+		  return;
 	}
 	if(nCodAzienda != -1)
 		FindDatiAziendaSpedizione(nCodAzienda);
