@@ -486,8 +486,10 @@ __declspec( dllexport ) int RiempiCampi(long numCertificato, CAllTables* pTabell
 		fieldValues->Add("Esito");
 
 		/* norme e note */
-		fieldNames->Add("norma_valore");
-		fieldValues->Add("Trazione e Piegamento UNI EN ISO 15630-1 / D.M. 17/01/2018");
+		fieldNames->Add("norma_valore1");
+		fieldNames->Add("norma_valore2");
+		fieldValues->Add("D.M. 17/01/2018");
+		fieldValues->Add(" / Trazione e Piegamento UNI EN ISO 15630-1");
 	}
 	else
 	{
@@ -507,8 +509,12 @@ __declspec( dllexport ) int RiempiCampi(long numCertificato, CAllTables* pTabell
 		fieldValues->Add("Esito");
 
 		/* norme e note */
-		fieldNames->Add("norma_valore");
-		fieldValues->Add("Trazione e Piegamento UNI EN ISO 15630-1 / D.M. 17/01/2018 - ADERENZA UNI EN ISO 15630-1 / D.M. 14/01/08");
+		fieldNames->Add("norma_valore_ad_1");
+		fieldNames->Add("norma_valore_ad_2");
+		fieldNames->Add("norma_valore_ad_3");
+		fieldValues->Add(" - ");
+		fieldValues->Add("D.M. 14/01/08");
+		fieldValues->Add("/ ADERENZA UNI EN ISO 15630-1");
 	}
 
 	return pagine;

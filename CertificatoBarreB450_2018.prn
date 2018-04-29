@@ -1,5 +1,6 @@
 [general]
-x zero=-20
+x zero=+20
+;x zero=-20
 y zero=-50
 
 ; numero massimo di righe per pagina nella lista delle consegne
@@ -50,8 +51,8 @@ tab lines=12
 380=+100,+0,40,50,Times New Roman,25,38,L,%
 385=+40,+0,30,50,Times New Roman,15,19,L,(3)
 
-;440=80,2010,150,40,Courier ,20,40,L,Norme
-;442=+150,+10,1600,30,Courier New,18,30,L,Trazione e Piegamento UNI EN ISO 15630-1 / D.M. 17/01/2018 - ADERENZA UNI EN ISO 15630-1 / D.M. 17/01/2018
+;440=80,2010,150,40,Arial,18,34,L,Norme
+;442=+150,+10,1600,30,Courier New,20,38,L,Trazione e Piegamento UNI EN ISO 15630-1 / D.M. 17/01/2018 - ADERENZA UNI EN ISO 15630-1 / D.M. 17/01/2018
 
 443=80,2055,30,50,Times New Roman,15,19,L,(1)
 444=+30,-5,2500,50,Courier New,18,30,L,calcolata sulla barra liscia equipesante
@@ -106,8 +107,12 @@ tab lines=12
 191=1800,1475,250,50,Times New Roman,20,38,L,esito_noaderenza
 192=1860,1475,250,50,Times New Roman,20,38,L,esito
  
-200=80,2010,150,40,Courier ,20,40,L,norma_etichetta
-202=+150,+10,1600,30,Courier New,18,30,L,norma_valore
+200=80,2010,150,40,Arial ,18,34,L,norma_etichetta
+205=+130,+0,220,38,Courier New,20,38,BL,norma_valore1
+210=+220,+0,750,38,Courier New,20,38,L,norma_valore2
+215=+750,+0,50,38,Courier New,20,38,L,norma_valore_ad_1
+220=+50,+0,220,38,Courier New,20,38,BL,norma_valore_ad_2
+225=+220,+0,1000,38,Courier New,20,38,L,norma_valore_ad_3
 
 240=1580,2235,180,44,Arial,22,36,L,dataProve
 250=80,+70,1000,44,Arial,22,36,L,richiestaPiegatura

@@ -4355,6 +4355,7 @@ BOOL CVerbaliView::ScanCampioni(CStringArray* pFieldNames, CStringArray* pFieldV
     str.Empty();
   pFieldValues->Add(str);
 
+	// sigla o sigla1 - sigla2 per cubi 2018
   pFieldNames->Add("sigla");
 	str = "";
   if(!m_pSerieSet->IsFieldNull(&m_pSerieSet->m_Sigla))
@@ -4368,8 +4369,26 @@ BOOL CVerbaliView::ScanCampioni(CStringArray* pFieldNames, CStringArray* pFieldV
 	}  
   pFieldValues->Add(str);
 
+	str = "";
+  if(!m_pSerieSet->IsFieldNull(&m_pSerieSet->m_Sigla2))
+	{
+		str = m_pSerieSet->m_Sigla2;
+		if(!str.IsEmpty())
+		{
+		  pFieldNames->Add("sigla_sep");
+		  pFieldNames->Add("sigla2");
+			if(m_nPrintMode == STAMPA_VERBALE_AD_AGHI)
+			{
+				str.Replace("°", "ø");
+  			str.Replace("²", "ı");
+			}
+		  pFieldValues->Add(" - ");
+		  pFieldValues->Add(str);
+		}
+	}  
+
 	// struttura e verbale di prelievo
-	if(m_pSerieSet->m_TipoCertificato == 16)
+	if(m_pSerieSet->m_TipoCertificato == 18)
 	{
 		// certificato cubi DM 2018
     pFieldNames->Add("struttura");

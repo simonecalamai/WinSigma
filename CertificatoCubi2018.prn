@@ -42,21 +42,22 @@ Nr.Pagina=1700,2100,Times New Roman,24,48,C
 
 ;
 260=90,1790,100,30,Arial,18,34,R,NORME
-265=+130,+0,1300,38,Courier New,20,38,L,Compressione e rettifica UNI EN 12390-3 / D.M. 17/01/2018
-
-270=90,1825,100,30,Arial,18,34,R,T.R.
+265=+130,+0,220,38,Courier New,20,38,BL,D.M. 17/01/2018
+267=+220,+0,1000,38,Courier New,20,38,L, / Compressione e rettifica UNI EN 12390-3
+ 
+270=90,1830,100,30,Arial,18,34,R,T.R.
 275=+130,+0,1300,30,Courier New,18,30,L,Tipo Rottura:  1=soddisfacente;  2=non soddisfacente
 
-280=90,1860,100,30,Arial,18,34,R,R.
+280=90,1865,100,30,Arial,18,34,R,R.
 285=+130,+0,1300,30,Courier New,18,30,L,Rettifica:  A=effettuata;  B=non effettuata: provino conforme UNI EN 12390-1
 
-300=220,1930,1800,30,Courier New,18,30,L,Attenzione: il numero minimo di campioni necessario per il controllo Tipo A previsto dalle norme tecniche vigenti è pari a 6 (3 prelievi)
+300=220,1945,1800,30,Courier New,18,30,L,Attenzione: il numero minimo di campioni necessario per il controllo Tipo A previsto dalle norme tecniche vigenti è pari a 6 (3 prelievi)
 
-330=90,+35,100,30,Arial,22,38,R,*
+330=90,+45,100,30,Arial,22,38,R,*
 340=+130,+0,1800,30,Courier New,18,30,L,"ai sensi §11.2.5.3 del D.M. 17.01.2018 le prove di compressione vanno integrate da quelle riferite al controllo della resistenza del 
-341=+0,+30,1800,30,Courier New,18,30,L,calcestruzzo in opera" (campioni provati oltre il 45° giorno della data di prelievo)
+341=+0,+30,1800,30,Courier New,18,30,L,calcestruzzo in opera" (campioni provati oltre il 45° giorno dalla data di prelievo)
 
-350=90,+35,100,30,Arial,22,38,R,**
+350=90,+45,100,30,Arial,22,38,R,**
 360=+130,+0,1800,30,Courier New,18,30,L,"ai sensi §11.2.4 del D.M. 17.01.2018 i risultati non sono impiegabili per controlli di accettazione di cui al §11.2.5 del D.M. 17.01.2018
 361=+0,+30,1800,30,Courier New,18,30,L,e pertanto dovranno applicarsi le procedure di cui al §11.2.5.3 ultimi tre capoversi dello stesso D.M. 17.01.2018" 
 362=+0,+30,1800,30,Courier New,18,30,L,(campioni per cui la differenza fra i valori di resistenza dei due provini superi il 20% del valore inferiore) 
@@ -94,8 +95,8 @@ Nr.Pagina=1700,2100,Times New Roman,24,48,C
 150=+350,+0,1300,40,Times New Roman,22,40,L,proprietario
 160=+0,+70,1300,40,Times New Roman,22,40,L,caratteristiche
 170=220,1895,950,50,Courier New,18,30,L,macchina 
-180=90,2150,300,64,Arial,15,32,L,osservazioniLabel
-190=+160,+0,1800,64,Arial,15,32,L,osservazioni
+180=90,2170,300,64,Arial,15,32,L,osservazioniLabel
+190=+170,+0,1800,64,Arial,15,32,L,osservazioni
 200=370,2350,350,44,Arial,22,36,L,domandaProve
 
 210=130,2520,700,100,Times New Roman,22,40,BC,sperimentatore
@@ -111,15 +112,15 @@ Nr.Pagina=1700,2100,Times New Roman,24,48,C
 10=+5,+0,155,58,Times New Roman,12,30,CVSE,sigla
 
 ; caso 1 provino per serie
-20=240,1415,440,58,Times New Roman,12,30,L,strutturaPrelievoLunga
-21=210,1415,440,58,Times New Roman,12,30,CV,strutturaPrelievoBreve
+20=240,1415,400,58,Times New Roman,12,30,L,strutturaPrelievoLunga
+21=210,1415,400,58,Times New Roman,12,30,CV,strutturaPrelievoBreve
 30=+400,+0,210,58,Times New Roman,12,30,CV,verbale_prelievo
 40=+190,+0,200,58,Times New Roman,18,36,CV,dataPrelievo
 50=+200,+0,200,58,Times New Roman,18,36,CV,dataProva
 
 ; caso 2 provini per serie
-120=240,1445,440,58,Times New Roman,12,30,L,strutturaPrelievoLunga02
-121=210,1445,440,58,Times New Roman,12,30,CV,strutturaPrelievoBreve02
+120=240,1445,400,58,Times New Roman,12,30,L,strutturaPrelievoLunga02
+121=210,1445,400,58,Times New Roman,12,30,CV,strutturaPrelievoBreve02
 130=+400,+0,210,58,Times New Roman,12,30,CV,verbale_prelievo02
 140=+190,+0,200,58,Times New Roman,18,36,CV,dataPrelievo02
 150=+200,+0,200,58,Times New Roman,18,36,CV,dataProva02
