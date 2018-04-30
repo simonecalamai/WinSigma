@@ -159,6 +159,18 @@ Package=<4>
 
 ###############################################################################
 
+Project: "TrazioneRetiDM2018"=.\TrazioneRetiDM2018\TrazioneRetiDM2018.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
 Project: "TrazioneTrefoli"=.\TrazioneTrefoli\TrazioneTrefoli.dsp - Package Owner=<4>
 
 Package=<5>
@@ -211,6 +223,9 @@ Package=<4>
     End Project Dependency
     Begin Project Dependency
     Project_Dep_Name TrazionePiegamentoBarreB450_2018
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name TrazioneRetiDM2018
     End Project Dependency
 }}}
 

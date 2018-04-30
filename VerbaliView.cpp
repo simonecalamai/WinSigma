@@ -3272,8 +3272,8 @@ BOOL CVerbaliView::ScanProviniMinuta(CStringArray* pFieldNames, CStringArray* pF
     pFieldNames->Add("materiale");
     pFieldValues->Add(m_pSerieSet->m_IDMateriale);
 
-    pFieldNames->Add("sigla");
-    pFieldValues->Add(m_pSerieSet->m_Sigla);
+//    pFieldNames->Add("sigla");
+//    pFieldValues->Add(m_pSerieSet->m_Sigla);
     if(!m_pSerieSet->m_StrutturaPrelievo.IsEmpty())
     {
       pFieldNames->Add("posizione");
@@ -3282,22 +3282,39 @@ BOOL CVerbaliView::ScanProviniMinuta(CStringArray* pFieldNames, CStringArray* pF
 		if(m_pSerieSet->m_NuovoCertificato)
 		  m_nPosCertificato++;
   }
+
+  if(nCodiceSerie != m_pSerieSet->m_Codice)
+  {
+    pFieldNames->Add("sigla");
+    pFieldValues->Add(m_pSerieSet->m_Sigla);
+	}
+	else
+	{
+    pFieldNames->Add("sigla");
+    pFieldValues->Add(m_pSerieSet->m_Sigla2);
+	}
+
   // Dati minuta cubetti
   pFieldNames->Add("prelievo");
+  pFieldNames->Add("scad45gg");
   pFieldNames->Add("matur_prova");
 	if(m_pSerieSet->IsFieldNull(&m_pSerieSet->m_DataPrelievo) || m_pSerieSet->m_DataPrelievo == 0)
 	{
-		pFieldValues->Add(m_pSerieSet->m_strDataND);
-    pFieldValues->Add("../../..");
+		pFieldValues->Add(m_pSerieSet->m_strDataND);  // data prelievo
+    pFieldValues->Add("../../..");								// scadenza 45 gg 
+    pFieldValues->Add("../../..");								// maturazione 
 	}
 	else
 	{
     TIME_ZONE_INFORMATION timeZone;
     CTimeSpan  tsMat(m_pTipiCertificatoSet->m_Maturazione, 0, 0, 0);
+    CTimeSpan  tsScad(DATA_SCADENZA_CUBETTI, 0, 0, 0);
     GetTimeZoneInformation(&timeZone);
     tsMat -= timeZone.Bias * 60;
-		pFieldValues->Add(m_pSerieSet->m_DataPrelievo.Format("%d/%m/%y"));
-    if(m_pSerieSet->m_DataPrelievo + tsMat < m_pVerbaliSet->m_DataAccettazione)
+		tsScad -= timeZone.Bias * 60;
+		pFieldValues->Add(m_pSerieSet->m_DataPrelievo.Format("%d/%m/%y"));							// data prelievo
+		pFieldValues->Add((m_pSerieSet->m_DataPrelievo + tsScad).Format("%d/%m/%y"));		// scadenza 45 gg
+    if(m_pSerieSet->m_DataPrelievo + tsMat < m_pVerbaliSet->m_DataAccettazione)			// maturazione
 		  pFieldValues->Add("../../..");
 		else
 		  pFieldValues->Add((m_pSerieSet->m_DataPrelievo + tsMat).Format("%d/%m/%y"));

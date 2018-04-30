@@ -270,6 +270,11 @@ enum
 #define STR_DEFAULT_ALIQUOTA_IVA	"22"  // dal 1 ottobre 2013
 
 
+// Costanti certificati
+// Cubetti
+#define DATA_SCADENZA_CUBETTI		45    // Cubetti DM2018 scadenza 45 giorni
+
+
 #define SET_START(pSet)   (pSet->IsBOF() ? \
 				                   pSet->IsEOF() ? 0 : pSet->MoveNext() : \
 							             pSet->MoveFirst())

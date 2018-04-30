@@ -1,0 +1,131 @@
+[general]
+x zero=+20
+y zero=-50
+
+; numero massimo di righe per pagina nella lista delle consegne
+tab lines=12
+
+; posizione e font del numero di pagina
+;Nr.Pagina=1700,2100,Times New Roman,24,48,C
+
+
+[strings]
+5=140,480,1700,70,Times New Roman,28,50,BC,PROVA DI TRAZIONE E DISTACCO SU RETI ELETTROSALDATE
+10=140,610,300,40,Times New Roman,22,38,BL,CERTIFICATO N°
+20=+430,+0,50,40,Times New Roman,22,38,BL,del
+30=1200,+0,200,40,Times New Roman,22,38,BL,Rif. V.A. N°
+40=+400,+0,50,40,Times New Roman,22,38,BL,del
+50=200,790,400,40,Times New Roman,22,40,L,Committente
+60=+0,+90,400,40,Times New Roman,22,40,L,Direttore dei lavori
+70=+0,+60,400,40,Times New Roman,22,40,L,Impresa esecutrice
+80=+0,+90,400,40,Times New Roman,22,40,L,Cantiere
+90=+0,+160,300,40,Times New Roman,22,40,L,Tipo e caratteristiche
+100=600,1350,800,50,Times New Roman,28,50,BC,RISULTATI DI PROVA
+
+;intestazione tabella 1a riga
+105=60,1430,40,50,Arial,16,32,C, 
+110=+75,+0,155,50,Arial,25,45,BL,Ø Nom.
+120=+155,+0,240,50,Arial,25,45,BC,Sez.nom.
+125=+240,+0,240,50,Arial,25,45,BC,Sez.eff.
+130=+240,+0,240,50,Arial,25,45,BC,Snervam.
+140=+240,+0,240,50,Arial,25,45,BC,Rottura
+150=+240,+0,200,50,Arial,22,38,BCU,Rm
+160=+200,+0,200,50,Arial,25,45,BC,Agt
+170=+200,+0,300,50,Arial,25,45,BC,Forza di taglio
+
+;intestazione tabella 2a riga
+180=60,1475,40,50,Arial,16,32,C, 
+190=+1190,+0,200,50,Arial,22,38,BC,ReH
+200=+400,+0,300,50,Arial,25,45,BC,della saldatura
+
+;intestazione tabella 3a riga
+210=60,1520,40,50,Arial,16,32,C, 
+220=+720,+0,240,50,Arial,16,32,C,(ReH) 
+230=+240,+0,240,50,Arial,16,32,C,(Rm)
+240=+640,+0,300,50,Arial,16,32,C,(Fs)
+
+;intestazione tabella 4a riga
+250=60,1565,40,50,Times New Roman,20,38,C,n. 
+260=+40,+0,200,50,Arial,20,38,C,mm
+270=+200,+0,240,50,Arial,20,38,C,mm²
+280=+240,+0,240,50,Arial,20,38,C,mm²
+281=+160,-10,30,30,Times New Roman,15,19,L,(1)
+290=+80,+10,240,50,Arial,20,38,C,N/mm²
+291=+170,-10,30,30,Times New Roman,15,19,L,(2)
+300=+70,+10,240,50,Arial,20,38,C,N/mm²
+301=+170,-10,30,30,Times New Roman,15,19,L,(2)
+310=+270,+10,200,50,Arial,20,38,C,%
+311=+120,-10,30,30,Times New Roman,15,19,L,(3)
+320=+80,+10,300,50,Arial,20,38,C,N
+
+
+430=80,2070,100,40,Arial,20,38,L,Norme
+440=+130,+0,220,30,Courier New,20,38,BL,D.M. 17/01/2018
+450=+220,+0,1000,30,Courier New,20,38,L, / UNI EN ISO 15630-2
+470=80,+45,2500,50,Courier New,18,30,L,(1) calcolata sulla barra liscia equipesante 
+480=+0,+35,1900,50,Courier New,18,30,L,(2) calcolata sulla sezione nominale
+490=+0,+35,1900,50,Courier New,18,30,L,(3) determinato con metodo manuale
+
+550=80,2390,270,44,Arial,22,36,L,Domanda di prove 
+560=1200,+0,380,44,*,Prove effettuate in data:
+
+580=230,2490,500,100,Times New Roman,22,40,C,Lo Sperimentatore
+600=1330,2490,400,100,Times New Roman,22,40,C,Il Direttore Responsabile del Laboratorio
+
+620=90,2700,520,50,Courier New,20,40,L,Il presente documento è costituito da n.
+630=+550,+0,100,50,Courier New,20,40,L,pagine 
+640=1680,+0,120,50,Courier New,20,40,L,pag. 1 /
+
+[fields]
+10=440,610,130,80,Times New Roman,22,38,BL,numeroCertificato
+20=+210,+0,200,80,Times New Roman,22,38,BL,dataCertificato
+30=1400,+0,220,80,Times New Roman,22,38,BL,numeroVerbale
+40=+285,+0,200,80,Times New Roman,22,38,BL,dataVerbale
+50=140,+40,1600,40,Times New Roman,22,38,BL,emendamento
+55=+0,+40,500,40,Times New Roman,22,38,L,duplicato
+60=200,730,330,40,Times New Roman,22,40,L,etichettaIncarico
+70=+350,+0,1300,40,Times New Roman,22,40,L,letteraIncarico
+80=+0,+60,1300,40,Times New Roman,22,40,L,richiedente
+90=+0,+35,1300,40,Times New Roman,22,40,L,indirizzoRichiedente
+100=+0,+55,1300,100,Times New Roman,22,40,L,direttoreLavori
+110=+0,+60,1300,40,Times New Roman,22,40,L,impresaEsecutrice
+120=+0,+35,1300,40,Times New Roman,22,40,L,indirizzoImpresaEsecutrice
+130=+0,+55,1300,120,Times New Roman,22,40,L,cantiere
+140=-350,+90,330,40,Times New Roman,22,40,L,etichettaProprietario
+150=+350,+0,1300,40,Times New Roman,22,40,L,proprietario
+160=+0,+70,1300,40,Times New Roman,22,40,L,caratteristiche
+170=80,2220,950,50,Courier New,18,30,L,macchina 
+180=80,+50,1000,44,Arial,22,36,L,richiestaPiegatura
+190=90,2290,300,64,Arial,15,32,L,osservazioniLabel
+195=+170,+0,1800,64,Arial,15,32,L,osservazioni
+200=370,2390,350,44,Arial,22,36,L,domandaProve
+205=1580,+0,180,44,Arial,22,36,L,dataProve
+
+220=130,2570,700,100,Times New Roman,22,40,BC,sperimentatore
+230=1280,+0,500,100,Times New Roman,22,40,BC,responsabile
+
+240=600,2700,20,50,Courier New,20,40,C,pagine
+250=1800,+0,50,50,Courier New,20,40,L,diPagine
+
+
+[tabfields]
+10=60,1610,40,70,Arial,16,32,CWSVE,numeroInterno
+20=+40,+0,200,70,Times New Roman,18,36,CSEV,fiNominale
+25=+200,+0,240,70,Times New Roman,18,36,CBSEV,sezioneNominale
+30=+240,+0,240,70,Times New Roman,18,36,CBSEV,sezioneEffettiva
+40=+240,+0,240,70,Times New Roman,18,36,CBSEV,snervamento
+50=+240,+0,240,70,Times New Roman,18,36,CBSEV,rottura
+60=+240,+0,200,70,Times New Roman,18,36,CBSEV,rmreh
+80=+200,+0,200,70,Times New Roman,16,32,CSEV,agt
+90=+200,+0,300,70,Times New Roman,16,32,CSEV,forzaSaldatura
+
+[grids]
+10=60,1415,1900,195,1,1
+;20=230,2660,500,0,1,1
+;30=1280,+0,500,0,1,1
+
+[bitmaps]
+10=110,750,80,450,RCM,didascalia_CT.bmp
+
+
+
