@@ -111,6 +111,18 @@ Package=<4>
 
 ###############################################################################
 
+Project: "TrazionePiegamentoBarreCTDM2018"=.\TrazionePiegamentoBarreCTDM2018\TrazionePiegamentoBarreCTDM2018.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
 Project: "TrazioneProfilati"=.\TrazioneProfilati\TrazioneProfilati.dsp - Package Owner=<4>
 
 Package=<5>
@@ -226,6 +238,9 @@ Package=<4>
     End Project Dependency
     Begin Project Dependency
     Project_Dep_Name TrazioneRetiDM2018
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name TrazionePiegamentoBarreCTDM2018
     End Project Dependency
 }}}
 

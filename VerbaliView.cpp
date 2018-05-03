@@ -2118,7 +2118,8 @@ void CVerbaliView::LoadSeries(int nVerbale)
           (pCatServSet->m_Certificato != pSerieProviniSet->m_TipoCertificato)  &&
           (pCatServSet->m_Certificato2 != pSerieProviniSet->m_TipoCertificato) &&
           (pCatServSet->m_Certificato3 != pSerieProviniSet->m_TipoCertificato) &&
-          (pCatServSet->m_Certificato4 != pSerieProviniSet->m_TipoCertificato)
+          (pCatServSet->m_Certificato4 != pSerieProviniSet->m_TipoCertificato) &&
+					(pCatServSet->m_Certificato5 != pSerieProviniSet->m_TipoCertificato)
           )
           continue;
         if(pCatServSet->m_Codice == pSerieProviniSet->m_Servizio1)
@@ -2988,7 +2989,7 @@ void CVerbaliView::OnChangeEditNomeAzFattura()
 void CVerbaliView::PrintMinuta()
 {
   CPrintInterpreter prnInterpreter;
-  CString strLayout, strNumCampioni;
+  CString strLayout, strNumCampioni, docname;
   int nCodiceCertificato;
   
   if(m_pVerbaliSet->IsBOF() || m_pVerbaliSet->IsEOF())
@@ -2996,6 +2997,11 @@ void CVerbaliView::PrintMinuta()
 	  MessageBeep(-1);
 		return;
 	}
+
+	// imposta il nome del file secondo le specifiche della gestione documentale (s.c. 14.09.2017)
+  docname.Format("minuta-%d-%d", m_pVerbaliSet->m_ProgressivoTotale, m_pVerbaliSet->m_DataAccettazione.GetYear());
+	prnInterpreter.SetDocName(docname);
+
   CStringArray strNames, strValues;
   if(!prnInterpreter.PrePrinting())
     return;
@@ -4273,7 +4279,7 @@ BOOL CVerbaliView::ScanFields(CStringArray* pFieldNames, CStringArray* pFieldVal
 		if(m_pVerbaliSet->m_NoteSpedizione.IsEmpty())
 			str = "RITIRO";
 		else
-			str.Format("RITIRA %s", m_pVerbaliSet->m_NoteSpedizione);
+			str.Format("%s", m_pVerbaliSet->m_NoteSpedizione);
 	}
   if(!m_pVerbaliSet->IsFieldNull(&m_pVerbaliSet->m_Urgenza) && m_pVerbaliSet->m_Urgenza)
   {

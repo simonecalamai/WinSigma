@@ -626,6 +626,9 @@ void CListiniView::OnListiniCopia()
             pServSet->m_Riferimenti       = m_pServiziSet->m_Riferimenti;
             pServSet->m_ProviniPerSerie   = m_pServiziSet->m_ProviniPerSerie;
             pServSet->m_Certificato2      = m_pServiziSet->m_Certificato2;
+            pServSet->m_Certificato3      = m_pServiziSet->m_Certificato3;
+            pServSet->m_Certificato4      = m_pServiziSet->m_Certificato4;
+            pServSet->m_Certificato5      = m_pServiziSet->m_Certificato5;
 						pServSet->Update();
 					}
 				}
@@ -1240,8 +1243,12 @@ void CListiniView::OnServiziNuovo()
       m_pServiziSet->m_Certificato2       = dlg.m_nCertificato2;
 			m_pServiziSet->m_Certificato3       = dlg.m_nCertificato3;
 			m_pServiziSet->m_Certificato4       = dlg.m_nCertificato4;
+			m_pServiziSet->m_Certificato5       = dlg.m_nCertificato5;
 			m_pServiziSet->m_Prove							= dlg.m_byProve;
       m_pServiziSet->m_Prove2             = dlg.m_byProve2;
+      m_pServiziSet->m_Prove3             = dlg.m_byProve3;
+      m_pServiziSet->m_Prove4             = dlg.m_byProve4;
+      m_pServiziSet->m_Prove5             = dlg.m_byProve5;
 			m_pServiziSet->m_Aggiuntivo					= dlg.m_nAggiuntivo;
       if(dlg.m_bConcessione)
 			  m_pServiziSet->m_Concessione			= SERVIZIO_CONCESSIONE;
@@ -1356,10 +1363,12 @@ void CListiniView::OnServiziModifica()
 	dlg.m_nCertificato2  = m_pServiziSet->m_Certificato2;
 	dlg.m_nCertificato3  = m_pServiziSet->m_Certificato3;
 	dlg.m_nCertificato4  = m_pServiziSet->m_Certificato4;
+	dlg.m_nCertificato5  = m_pServiziSet->m_Certificato5;
 	dlg.m_byProve        = m_pServiziSet->m_Prove;
 	dlg.m_byProve2       = m_pServiziSet->m_Prove2;
 	dlg.m_byProve3       = m_pServiziSet->m_Prove3;
 	dlg.m_byProve4       = m_pServiziSet->m_Prove4;
+	dlg.m_byProve5       = m_pServiziSet->m_Prove5;
 	dlg.m_nAggiuntivo    = m_pServiziSet->m_Aggiuntivo;
   switch(m_pServiziSet->m_Concessione)
   {
@@ -1399,10 +1408,12 @@ void CListiniView::OnServiziModifica()
 			m_pServiziSet->m_Certificato2= dlg.m_nCertificato2;
 			m_pServiziSet->m_Certificato3= dlg.m_nCertificato3;
 			m_pServiziSet->m_Certificato4= dlg.m_nCertificato4;
+			m_pServiziSet->m_Certificato5= dlg.m_nCertificato5;
 			m_pServiziSet->m_Prove       = dlg.m_byProve;
 			m_pServiziSet->m_Prove2      = dlg.m_byProve2;
 			m_pServiziSet->m_Prove3      = dlg.m_byProve3;
 			m_pServiziSet->m_Prove4      = dlg.m_byProve4;
+			m_pServiziSet->m_Prove5      = dlg.m_byProve5;
 			m_pServiziSet->m_Aggiuntivo  = dlg.m_nAggiuntivo;
       if(dlg.m_bConcessione)
 			  m_pServiziSet->m_Concessione = SERVIZIO_CONCESSIONE;

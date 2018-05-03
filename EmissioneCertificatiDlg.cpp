@@ -162,7 +162,8 @@ void CEmissioneCertificatiDlg::OnItemchangedListCertificati(NMHDR* pNMHDR, LRESU
 	{
 		int i = ((int)(pos)) - 1;
 		// Abilita disabilita il checkbox Aderenza a seconda del tipo di certificato
-		if ((m_paryTipiCertificato->GetAt(i) == 11) || (m_paryTipiCertificato->GetAt(i) == 13))
+		if ((m_paryTipiCertificato->GetAt(i) == 11) || (m_paryTipiCertificato->GetAt(i) == 13) || 
+				(m_paryTipiCertificato->GetAt(i) == 17) || (m_paryTipiCertificato->GetAt(i) == 20))
 		{
 			m_CtrlAderenza.SetCheck(m_paryAderenza[i]);
 			m_CtrlAderenza.EnableWindow(TRUE);

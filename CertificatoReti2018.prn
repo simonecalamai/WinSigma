@@ -1,5 +1,5 @@
 [general]
-x zero=+20
+x zero=+30
 y zero=-50
 
 ; numero massimo di righe per pagina nella lista delle consegne
@@ -91,9 +91,9 @@ tab lines=12
 110=+0,+60,1300,40,Times New Roman,22,40,L,impresaEsecutrice
 120=+0,+35,1300,40,Times New Roman,22,40,L,indirizzoImpresaEsecutrice
 130=+0,+55,1300,120,Times New Roman,22,40,L,cantiere
-140=-350,+90,330,40,Times New Roman,22,40,L,etichettaProprietario
+140=-350,+80,330,40,Times New Roman,22,40,L,etichettaProprietario
 150=+350,+0,1300,40,Times New Roman,22,40,L,proprietario
-160=+0,+70,1300,40,Times New Roman,22,40,L,caratteristiche
+160=+0,+80,1300,40,Times New Roman,22,40,L,caratteristiche
 170=80,2220,950,50,Courier New,18,30,L,macchina 
 180=80,+50,1000,44,Arial,22,36,L,richiestaPiegatura
 190=90,2290,300,64,Arial,15,32,L,osservazioniLabel

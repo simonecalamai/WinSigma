@@ -34,16 +34,18 @@ CServiziListinoSet::CServiziListinoSet(CDatabase* pdb)
 	m_Certificato2		= 0;
 	m_Certificato3		= 0;
 	m_Certificato4		= 0;
+	m_Certificato5		= 0;
 	m_PerSerie			= 0;
 	m_Prove				= 0;
 	m_Prove2			= 0;
 	m_Prove3			= 0;
 	m_Prove4			= 0;
+	m_Prove5			= 0;
 	m_Emissione			= 0;
 	m_Concessione		= 0;
 	m_ProviniPerSerie	= 0;
 	m_Commento			= _T("");
-	m_nFields = 24;
+	m_nFields = 26;
 	//}}AFX_FIELD_INIT
 	m_nDefaultType = snapshot;
 }
@@ -77,11 +79,13 @@ void CServiziListinoSet::DoFieldExchange(CFieldExchange* pFX)
 	RFX_Long(pFX, _T("[Certificato2]"), m_Certificato2);
 	RFX_Long(pFX, _T("[Certificato3]"), m_Certificato3);
 	RFX_Long(pFX, _T("[Certificato4]"), m_Certificato4);
+	RFX_Long(pFX, _T("[Certificato5]"), m_Certificato5);
 	RFX_Byte(pFX, _T("[PerSerie]"), m_PerSerie);
 	RFX_Int(pFX, _T("[Prove]"), m_Prove);
 	RFX_Int(pFX, _T("[Prove2]"), m_Prove2);
 	RFX_Int(pFX, _T("[Prove3]"), m_Prove3);
 	RFX_Int(pFX, _T("[Prove4]"), m_Prove4);
+	RFX_Int(pFX, _T("[Prove5]"), m_Prove5);
 	RFX_Byte(pFX, _T("[Emissione]"), m_Emissione);
 	RFX_Byte(pFX, _T("[Aggiuntivo]"), m_Aggiuntivo);
 	RFX_Byte(pFX, _T("[Concessione]"), m_Concessione);

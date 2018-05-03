@@ -47,7 +47,7 @@ void CArchivioCertificatiView::Carica_Combo()
   CCertificatiSet* pSet = new CCertificatiSet(&pApp->m_db);
 	//Serve per caricare la combo con gli anni in cui sono stati emessi dei Certificati
 	pSet->m_strFilter = "NumeroCertificato <> 0";
-	pSet->m_strSort = "DataEmissione";
+	pSet->m_strSort = "DataEmissione DESC";
 	pSet->Open();
   int n = m_cmbAnni.AddString(TUTTI);
   m_cmbAnni.SetItemData(n, 0);

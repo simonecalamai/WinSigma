@@ -285,7 +285,7 @@ void CArchivioFattureView::OnInitialUpdate()
 	//Recordset Testata Fattura
 	m_pFattureSet = new CFattureSet(&pApp->m_db);
   m_pFattureSet->m_strFilter = "Data is not null";
-	m_pFattureSet->m_strSort = "Data";
+	m_pFattureSet->m_strSort = "Data DESC";
 	m_pFattureSet->Open();
 	//RecordSet Verbali fatturati
   m_pVerbaliSet = new CVerbaliSet(&pApp->m_db);

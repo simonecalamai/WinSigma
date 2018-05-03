@@ -222,6 +222,7 @@ void CArchivioVerbaliView::OnInitialUpdate()
 	m_pSetVerbali = NULL;
 	m_pSetVerbali = new CVerbaliSet(&((CWinSigmaApp*)AfxGetApp())->m_db);
   m_pSetVerbali->m_strFilter.Format("ProgressivoParziale = 1");
+	m_pSetVerbali->m_strSort = "DataAccettazione DESC";
 	m_pSetVerbali->Open();
 
   int n = 0, anno = 0;

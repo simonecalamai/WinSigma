@@ -25,6 +25,7 @@ public:
 	long    m_TipoCertificato2;
 	long    m_TipoCertificato3;
 	long    m_TipoCertificato4;
+	long    m_TipoCertificato5;
 	double	m_Snervamento;
 	CString	m_ID;
 	BYTE	m_DiDefault;

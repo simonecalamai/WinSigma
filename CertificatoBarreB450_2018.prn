@@ -66,13 +66,13 @@ tab lines=12
 480=80,2145,1000,50,Courier New,18,30,L,Piegamento: eseguito a 90° e successivo raddrizzamento
 530=780,+0,800,50,Courier New,18,30,L,- POS = Assenza di cricche - NEG = Presenza di cricche 
 
-550=80,2235,270,44,Arial,22,36,L,Domanda di prove 
+550=80,2390,270,44,Arial,22,36,L,Domanda di prove 
 560=1200,+0,380,44,*,Prove effettuate in data:
 
-580=230,2460,500,100,Times New Roman,22,40,C,Lo Sperimentatore
-600=1330,2460,400,100,Times New Roman,22,40,C,Il Direttore Responsabile del Laboratorio
+580=230,2490,500,100,Times New Roman,22,40,C,Lo Sperimentatore
+600=1330,2490,400,100,Times New Roman,22,40,C,Il Direttore Responsabile del Laboratorio
 
-620=90,2700,520,50,Courier New,20,40,L,Il presente documento è costituito da n.
+620=90,2710,520,50,Courier New,20,40,L,Il presente documento è costituito da n.
 630=+550,+0,100,50,Courier New,20,40,L,pagine 
 640=1680,+0,120,50,Courier New,20,40,L,pag. 1 /
 
@@ -95,7 +95,7 @@ tab lines=12
 150=+350,+0,1300,40,Times New Roman,22,40,L,proprietario
 160=+0,+70,1300,40,Times New Roman,22,40,L,caratteristiche
 170=80,2185,950,50,Courier New,18,30,L,macchina 
-180=360,2235,1000,44,Arial,22,36,L,domandaProve
+175=80,+40,1000,44,Arial,22,36,L,richiestaPiegatura
 
 182=1470,1427,250,50,Arial,25,45,BL,aderenza
 183=1480,1475,250,50,Times New Roman,20,38,L,indice_aderenza
@@ -107,22 +107,22 @@ tab lines=12
 191=1800,1475,250,50,Times New Roman,20,38,L,esito_noaderenza
 192=1860,1475,250,50,Times New Roman,20,38,L,esito
  
-200=80,2010,150,40,Arial ,18,34,L,norma_etichetta
+200=80,2010,150,40,Arial,20,38,L,norma_etichetta
 205=+130,+0,220,38,Courier New,20,38,BL,norma_valore1
-210=+220,+0,750,38,Courier New,20,38,L,norma_valore2
-215=+750,+0,50,38,Courier New,20,38,L,norma_valore_ad_1
-220=+50,+0,220,38,Courier New,20,38,BL,norma_valore_ad_2
-225=+220,+0,1000,38,Courier New,20,38,L,norma_valore_ad_3
+210=+220,+0,500,38,Courier New,20,38,L,norma_valore2
+215=+500,+0,50,38,Courier New,20,38,L,norma_valore3
+220=+50,+0,220,38,Courier New,20,38,BL,norma_valore4
+225=+220,+0,600,38,Courier New,20,38,L,norma_valore5
 
-240=1580,2235,180,44,Arial,22,36,L,dataProve
-250=80,+70,1000,44,Arial,22,36,L,richiestaPiegatura
-260=80,+74,1000,64,Arial,15,32,L,osservazioniLabel
-265=+160,+0,1000,64,Arial,15,32,L,osservazioni
+240=80,2290,1000,64,Arial,15,32,L,osservazioniLabel
+245=+160,+0,1000,64,Arial,15,32,L,osservazioni
+250=360,2390,1000,44,Arial,22,36,L,domandaProve
+255=1580,+0,180,44,Arial,22,36,L,dataProve
 
-270=130,2540,700,100,Times New Roman,22,40,BC,sperimentatore
+270=130,2570,700,100,Times New Roman,22,40,BC,sperimentatore
 280=1280,+0,500,100,Times New Roman,22,40,BC,responsabile
 
-290=600,2700,20,50,Courier New,20,40,C,pagine
+290=600,2710,20,50,Courier New,20,40,C,pagine
 300=1800,+0,50,50,Courier New,20,40,L,diPagine
 
 [tabfields]

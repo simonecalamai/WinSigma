@@ -70,5 +70,8 @@
 *.plg
 *.exp
 *.def
+*.res
 html/**
 *.bsc
+/TrazionePiegamentoBarreCTDM2018.dll
+/TrazionePiegamentoBarreCTDM2018.lib

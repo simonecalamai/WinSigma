@@ -1,9 +1,9 @@
-// TrazionePiegamentoBarreB450_2018.cpp : Defines the initialization routines for the DLL.
+// TrazionePiegamentoBarreCTDM2018.cpp : Defines the initialization routines for the DLL.
 //
 
 #include "stdafx.h"
 #include "afx.h"
-#include "TrazionePiegamentoBarreB450_2018.h"
+#include "TrazionePiegamentoBarreCTDM2018.h"
 #include "MainDlg.h"
 
 int m_nVariante;
@@ -22,7 +22,7 @@ static char THIS_FILE[] = __FILE__;
 //		call into MFC must have the AFX_MANAGE_STATE macro
 //		added at the very beginning of the function.
 //
-//		For example:aderenza
+//		For example:
 //
 //		extern "C" BOOL PASCAL EXPORT ExportedFunction()
 //		{
@@ -42,28 +42,27 @@ static char THIS_FILE[] = __FILE__;
 //
 
 /////////////////////////////////////////////////////////////////////////////
-// TrazionePiegamentoBarreB450_2018App
-
-BEGIN_MESSAGE_MAP(CTrazionePiegamentoBarreB450_2018App, CWinApp)
-	//{{AFX_MSG_MAP(CTrazionePiegamentoBarreB450_2018App)
+// CTrazionePiegamentoBarreCTDM2018App
+BEGIN_MESSAGE_MAP(CTrazionePiegamentoBarreCTDM2018App, CWinApp)
+	//{{AFX_MSG_MAP(CTrazionePiegamentoBarreCTDM2018App)
 		// NOTE - the ClassWizard will add and remove mapping macros here.
 		//    DO NOT EDIT what you see in these blocks of generated code!
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
-// CTrazionePiegamentoBarreB450_2018App construction
+// CTrazionePiegamentoBarreCTDM2018App construction
 
-CTrazionePiegamentoBarreB450_2018App::CTrazionePiegamentoBarreB450_2018App()
+CTrazionePiegamentoBarreCTDM2018App::CTrazionePiegamentoBarreCTDM2018App()
 {
 	// TODO: add construction code here,
 	// Place all significant initialization in InitInstance
 }
 
 /////////////////////////////////////////////////////////////////////////////
-// The one and only CTrazionePiegamentoBarreB450_2018App object
+// The one and only CTrazionePiegamentoBarreCTDM2018App object
 
-CTrazionePiegamentoBarreB450_2018App theApp;
+CTrazionePiegamentoBarreCTDM2018App theApp;
 
 
 //////////////////////////////////////////////
@@ -287,25 +286,32 @@ __declspec( dllexport ) int RiempiCampi(long numCertificato, CAllTables* pTabell
 	str.Replace("&", "&&");
 	fieldValues->Add(str);
 
+	
 //------------------
-
 	if(!pCertVerbSet->IsFieldNull(&pCertVerbSet->m_Proprietario) )
-		{
+	{
 		fieldNames->Add("etichettaProprietario");
 		fieldValues->Add("Proprietario");
 		fieldNames->Add("proprietario");
     str = pCertVerbSet->m_Proprietario;
     str.Replace("&", "&&");    
 		fieldValues->Add(str);
-		}
+	}
 
-#if 0
 //---------------
 	fieldNames->Add("dataprelievo");
-	fieldValues->Add(pSerieProvSet->m_DataPrelievo.Format("%d/%m/%Y"));
 
-	fieldNames->Add("verbaleprelievo");
-	fieldValues->Add(pSerieProvSet->m_VerbalePrelievo);
+	if(pSerieProvSet->m_DataPrelievo.GetTime() == 0)
+		fieldValues->Add(pSerieProvSet->m_strDataND);
+	else
+		fieldValues->Add(pSerieProvSet->m_DataPrelievo.Format("%d/%m/%Y"));
+
+	if(!pSerieProvSet->IsFieldNull(&pSerieProvSet->m_VerbalePrelievo))
+	{
+		fieldNames->Add("verbaleprelievo");
+		str.Format("-      Verbale Prelievo n. %s", pSerieProvSet->m_VerbalePrelievo); 
+		fieldValues->Add(str);
+	}
 
 	int i		= 1;
 	int pos = -1;
@@ -313,34 +319,41 @@ __declspec( dllexport ) int RiempiCampi(long numCertificato, CAllTables* pTabell
 	pSerieProvSet->m_strFilter.Format("%s And Certificato = %d" ,queryJoin, numCertificato);
 	pSerieProvSet->Requery();
 	CString csSiglaFornitore = pSerieProvSet->m_SiglaFornitore;
-	str.Format("Campioni %s", csSiglaFornitore);
-	for(; !pSerieProvSet->IsEOF(); pSerieProvSet->MoveNext())
+	if(!csSiglaFornitore.IsEmpty())
 	{
-		if(pSerieProvSet->m_SiglaFornitore == csSiglaFornitore)
+		str.Format("Campioni %s", csSiglaFornitore);
+		for(SET_START(pSerieProvSet); !pSerieProvSet->IsEOF(); pSerieProvSet->MoveNext())
 		{
-			pos = str.Find(csSiglaFornitore);
-			CString s;
-			s.Format("%d - ",i);
-			str.Insert(pos, s); 
+			if(pSerieProvSet->m_SiglaFornitore == csSiglaFornitore)
+			{
+				pos = str.Find(csSiglaFornitore);
+				CString s;
+				s.Format("%d - ",i);
+				if(pos > 0)
+					str.Insert(pos, s);
+				else
+					str += s;
+			}
+			else
+			{
+				csSiglaFornitore = pSerieProvSet->m_SiglaFornitore;
+				CString app;
+				app.Format("\r\nCampioni %s", csSiglaFornitore);
+				str.Insert(str.GetLength(), app);
+				pos = str.Find(csSiglaFornitore);
+				CString s;
+				s.Format("%d - ",i);
+				if(pos > 0)
+					str.Insert(pos, s);
+				else
+					str += s;
+			}
+			i++;
 		}
-		else
-		{
-			csSiglaFornitore = pSerieProvSet->m_SiglaFornitore;
-			CString app;
-			app.Format("\r\nCampioni %s", csSiglaFornitore);
-			str.Insert(str.GetLength(), app);
-			pos = str.Find(csSiglaFornitore);
-			CString s;
-			s.Format("%d - ",i);
-			str.Insert(pos, s); 
-		}
-		i++;
+
+		fieldNames->Add("siglafornitore");
+		fieldValues->Add(str);
 	}
-
-	fieldNames->Add("siglafornitore");
-	fieldValues->Add(str);
-#endif
-
 	queryJoin = "SERIE.Codice = PROVINI.Serie";
 	pSerieProvSet->m_strFilter.Format("%s AND NuovoCertificato = 1 AND Certificato = %d", queryJoin, numCertificato);
 	pSerieProvSet->Requery();
@@ -357,7 +370,7 @@ __declspec( dllexport ) int RiempiCampi(long numCertificato, CAllTables* pTabell
 //---------------
 	fieldNames->Add("domandaProve");
 	if(pCertVerbSet->m_Sottoscritta)
-		str = "sottoscritta dal D.L.";
+		str = "sottoscritta dal Direttore Tecnico di Stabilimento";
 	else 
 		str = "non sottoscritta dal D.L.";
 	fieldValues->Add(str);
@@ -379,22 +392,22 @@ __declspec( dllexport ) int RiempiCampi(long numCertificato, CAllTables* pTabell
 	str.Replace("&", "&&");
 	fieldValues->Add(str);
 	
+	
 //---------------	
-
 	str = pSerieProvSet->m_Osservazioni;
 	str.TrimLeft();
 	str.TrimRight();
 	if(str.GetLength() > 1 )
 		{
 		fieldNames->Add("osservazioniLabel");
-		fieldValues->Add("Osservazioni:");
+		fieldValues->Add("Osservazioni");
 		fieldNames->Add("osservazioni");
 		str.Replace("&", "&&");
 		fieldValues->Add(str);
 		}
 
-//---------------	
 
+//---------------	
 	fieldNames->Add("responsabile");
 	str = "";
 	if(!pOperatSet->IsEOF())
@@ -404,7 +417,6 @@ __declspec( dllexport ) int RiempiCampi(long numCertificato, CAllTables* pTabell
 
 
 //--------------	
-
 	fieldNames->Add("sperimentatore");
 	fieldValues->Add(pSerieProvSet->m_Sperimentatore);
 
@@ -470,11 +482,11 @@ __declspec( dllexport ) int RiempiCampi(long numCertificato, CAllTables* pTabell
 
 //--------------
 
-	/* norme e note */
+	/* norme */
 	fieldNames->Add("norma_etichetta");
 	fieldValues->Add("Norme");
-
-  if (pCertVerbSet->m_Aderenza == 0)
+  
+	if (pCertVerbSet->m_Aderenza == 0)
 	{
 		fieldNames->Add("piegamento_noaderenza");
 		fieldValues->Add("Piegamento");
@@ -521,6 +533,32 @@ __declspec( dllexport ) int RiempiCampi(long numCertificato, CAllTables* pTabell
 		fieldValues->Add("/ ADERENZA UNI EN ISO 15630-1");
 	}
 
+	CString app = "";
+
+	queryJoin = "SERIE.Codice = PROVINI.Serie";
+	pSerieProvSet->m_strFilter.Format("%s AND Certificato = %d", queryJoin, numCertificato);
+	pSerieProvSet->m_strSort.Format("SERIE.Codice, PROVINI.Codice");
+	pSerieProvSet->Requery();
+	//SAFETY_OPEN(pSerieProvSet);
+	int cc = 1;
+	pSerieProvSet->MoveFirst();
+	for (; !pSerieProvSet->IsEOF(); pSerieProvSet->MoveNext())
+	{
+		if (pSerieProvSet->m_RotoliCT == TRUE)
+		{
+			CString s;
+			s.Format("%d - ", cc);
+			app.Insert(app.GetLength(), s);
+		}
+		cc++;
+	}
+	if(app != "")
+	{
+		str.Format("Campioni %s(rotoli) mantenuti per 60 minuti  a 100°C e lasciati raffreddare in aria", app);
+		fieldNames->Add("rotoli");
+		fieldValues->Add(str);
+	}
+
 	return pagine;
 }
 
@@ -533,10 +571,10 @@ __declspec( dllexport ) int RiempiCampi(long numCertificato, CAllTables* pTabell
 __declspec( dllexport ) BOOL DatiProvino(CAllTables* pTabelle, CStringArray* pFieldNames, 
 																				 CStringArray* pFieldValues, byte primoCampo, int numeroInterno, long CodiceCertificato)
 {
-	CSerieProviniSet* pSerieProviniSet = pTabelle->m_pSerieProviniSet;
-	CProviniSet* pProvSet = pTabelle->m_pProviniSet;
-	CTipiCertificatoSet*	pTCertSet		= pTabelle->m_pTipiCertificatoSet;
-	CCertificatiSet * pCertificatiSet = pTabelle->m_pCertificatiSet;
+	CSerieProviniSet*			pSerieProviniSet	= pTabelle->m_pSerieProviniSet;
+	CProviniSet*					pProvSet					= pTabelle->m_pProviniSet;
+	CTipiCertificatoSet*	pTCertSet					= pTabelle->m_pTipiCertificatoSet;
+	CCertificatiSet *			pCertificatiSet		= pTabelle->m_pCertificatiSet;
 
 	if( pSerieProviniSet->IsEOF() )
 	  return FALSE;
@@ -587,7 +625,6 @@ __declspec( dllexport ) BOOL DatiProvino(CAllTables* pTabelle, CStringArray* pFi
 //-----------------------------	
 			// Calcoli per la Snervamento effettiva
 			sezNominale = (fiNominale/2) * (fiNominale/2) * PI_GRECO;
-
 			// Si prendono solamente 3 cifre
 			CString str("");		
 			str.Format("%f", sezNominale);
@@ -605,11 +642,12 @@ __declspec( dllexport ) BOOL DatiProvino(CAllTables* pTabelle, CStringArray* pFi
 				str.Format("%2.1f", sezNominale);
 			}
 			else
+			{
 				str.Format("%3.0f", sezNominale);
+			}
 			sezNominale = atof(str);
 			pFieldNames->Add("sezioneNominale");
 			pFieldValues->Add(str);
-
 			pFieldNames->Add("sezioneEffettiva");
 			pFieldNames->Add("massa");
 			pFieldNames->Add("snervamento");
@@ -645,10 +683,12 @@ __declspec( dllexport ) BOOL DatiProvino(CAllTables* pTabelle, CStringArray* pFi
     				str.Format("%.2lf",sezEffettiva);
     			}
         }
+
 				snervamento				= pDati->snervamento/sezNominale * 1000;						
 				rotturaRelativa		= pDati->rottura/sezNominale * 1000;
 
 				allungamentoPerc = 0;
+
 				allungamentoPerc = pDati->allungamento + (rotturaRelativa / 2000);
 
 				fyfyk							= snervamento / pSerieProviniSet->m_Snervamento;
@@ -688,51 +728,32 @@ __declspec( dllexport ) BOOL DatiProvino(CAllTables* pTabelle, CStringArray* pFi
 				pCertificatiSet->Requery();
 			}
 
-			if(pCertificatiSet->m_Aderenza == 1) 
+			if((pCertificatiSet->m_Aderenza == 1)) // Nuovo Tipo di certificato B450 con aderenza
 			{
 				pFieldNames->Add("aderenza");
 				pFieldNames->Add("mandrino");
 				pFieldNames->Add("esito");
 
-				if(pSerieProviniSet->m_TipoProva < 2)
-				{
-					str = "n.r.";
-					pFieldValues->Add(str);
-					pFieldValues->Add(" ");
-					pFieldValues->Add(str);
-				}
-				else
-				{	
-					str.Format("%.3f",pDati->aderenza);
-					pFieldValues->Add(str);
-					str.Format("%d",pDati->mandrino);
-					pFieldValues->Add(str);
-					pDati->esito ? str="POS" : str="NEG";
-					pFieldValues->Add(str);
-				}
+				str.Format("%.3f",pDati->aderenza);
+				pFieldValues->Add(str);
+
+				str.Format("%d",pDati->mandrino);
+				pFieldValues->Add(str);
+				pDati->esito ? str="POS" : str="NEG";
+				pFieldValues->Add(str);
 			}
-			else if(pCertificatiSet->m_Aderenza == 0)
+			else if (pCertificatiSet->m_Aderenza == 0) // Nuovo Tipo di certificato B450 senza aderenza
 			{
 				pFieldNames->Add("mandrino_noaderenza");
 				pFieldNames->Add("esito_noaderenza");
-				if(pSerieProviniSet->m_TipoProva < 2)
-				{
-					str = "n.r.";
-					pFieldValues->Add(" ");
-					pFieldValues->Add(str);
-				}
-				else
-				{	
-					str.Format("%d",pDati->mandrino);
-					pFieldValues->Add(str);
-					pDati->esito ? str="POS" : str="NEG";
-					pFieldValues->Add(str);
-				}
+				str.Format("%d",pDati->mandrino);
+				pFieldValues->Add(str);
+				pDati->esito ? str="POS" : str="NEG";
+				pFieldValues->Add(str);
 			}
 		}
 		break;
-	};
-
+	}
   return TRUE;
 }
 

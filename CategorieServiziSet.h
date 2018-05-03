@@ -25,6 +25,7 @@ public:
   long	  m_Certificato2;
   long	  m_Certificato3;
   long	  m_Certificato4;
+  long	  m_Certificato5;
 	long	  m_Categoria;
 	CString	m_ID;
 	CString	m_Descrizione;
@@ -32,6 +33,9 @@ public:
 	int	  	m_Campioni;
 	int	  	m_Prove;
   int	  	m_Prove2;
+  int	  	m_Prove3;
+  int	  	m_Prove4;
+  int	  	m_Prove5;
 	BYTE  	m_PerSerie;
 	double	m_Prezzo;
 	double	m_Sconto;

@@ -23,15 +23,6 @@ public:
 // Dialog Data
 	//{{AFX_DATA(CServiziListinoDlg)
 	enum { IDD = IDD_DIALOG_SERVIZILISTINO };
-	CButton	m_CheckProvaA4;
-	CButton	m_CheckProvaB4;
-	CComboBox	m_ComboCertificato4;
-	CComboBox	m_ComboCertificato3;
-	CButton	m_CheckProvaB3;
-	CButton	m_CheckProvaA3;
-	CButton	m_CheckProvaA2;
-	CButton	m_CheckProvaB2;
-	CComboBox	m_ComboCertificato2;
 	CEdit	m_EdtCommento;
 	CButton	m_BtnGeologia;
 	CButton	m_EdtConcessione;
@@ -42,13 +33,33 @@ public:
 	CComboBox	m_ComboID;
 	CEdit	m_EditNProvini;
 	CComboBox	m_ComboCertificato;
-	CButton	m_CheckProvaB;
+	CComboBox	m_ComboCertificato2;
+	CComboBox	m_ComboCertificato3;
+	CComboBox	m_ComboCertificato4;
+	CComboBox	m_ComboCertificato5;
 	CButton	m_CheckProvaA;
+	CButton	m_CheckProvaB;
+	CButton	m_CheckProvaA2;
+	CButton	m_CheckProvaB2;
+	CButton	m_CheckProvaA3;
+	CButton	m_CheckProvaB3;
+	CButton	m_CheckProvaA4;
+	CButton	m_CheckProvaB4;
+	CButton	m_CheckProvaA5;
+	CButton	m_CheckProvaB5;
 	CString	m_strCategoria;
 	CString	m_strDescrizione;
 	CString	m_strNProvini;
 	BOOL	m_bProvaA;
 	BOOL	m_bProvaB;
+	BOOL	m_bProvaA2;
+	BOOL	m_bProvaB2;
+	BOOL	m_bProvaA3;
+	BOOL	m_bProvaB3;
+	BOOL	m_bProvaA4;
+	BOOL	m_bProvaB4;
+	BOOL	m_bProvaA5;
+	BOOL	m_bProvaB5;
 	CMSMask	m_MskEditPrezzo;
 	CString	m_strNome;
 	CString	m_strNorma;
@@ -60,12 +71,6 @@ public:
 	CString	m_strProviniPerSerie;
 	BOOL	m_bGeologia;
 	CString	m_strCommentoMateriale;
-	BOOL	m_bProvaA2;
-	BOOL	m_bProvaB2;
-	BOOL	m_bProvaA3;
-	BOOL	m_bProvaB3;
-	BOOL	m_bProvaA4;
-	BOOL	m_bProvaB4;
 	//}}AFX_DATA
 	CTipiCertificatoSet* m_pTCertificatiSet;
 	CStringArray m_aryStrId;
@@ -73,12 +78,14 @@ public:
   BYTE     m_byProve2;
 	BYTE     m_byProve3;
 	BYTE     m_byProve4;
+	BYTE     m_byProve5;
 	int      m_nEmissione;
 	int      m_nAggiuntivo;
 	int      m_nCertificato;
   int      m_nCertificato2;
 	int      m_nCertificato3;
 	int      m_nCertificato4;
+	int      m_nCertificato5;
 	int      m_nProvini;
   int      m_nProviniPerSerie;
 	double   m_fPrezzo;
@@ -99,15 +106,16 @@ protected:
 	//{{AFX_MSG(CServiziListinoDlg)
 	virtual BOOL OnInitDialog();
 	virtual void OnOK();
-	afx_msg void OnSelchangeComboCertificato();
 	afx_msg void OnSelchangeComboEmissione();
 	afx_msg void OnCheckPerserie();
 	afx_msg void OnCheckPerprovino();
 	afx_msg void OnCheckConcessione();
 	afx_msg void OnCheckGeologia();
+	afx_msg void OnSelchangeComboCertificato();
 	afx_msg void OnSelchangeComboCertificato2();
 	afx_msg void OnSelchangeComboCertificato3();
 	afx_msg void OnSelchangeComboCertificato4();
+	afx_msg void OnSelchangeComboCertificato5();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

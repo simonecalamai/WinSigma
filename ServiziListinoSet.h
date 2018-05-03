@@ -31,11 +31,13 @@ public:
 	long	m_Certificato2;
 	long	m_Certificato3;
 	long	m_Certificato4;
+	long	m_Certificato5;
 	BYTE	m_PerSerie;
 	int		m_Prove;
 	int		m_Prove2;
 	int		m_Prove3;
 	int		m_Prove4;
+	int		m_Prove5;
 	BYTE	m_Emissione;
 	BYTE  m_Aggiuntivo;
 	BYTE	m_Concessione;

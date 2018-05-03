@@ -27,10 +27,11 @@ CTipiMaterialeSet::CTipiMaterialeSet(CDatabase* pdb)
 	m_TipoCertificato2 = 0;
 	m_TipoCertificato3 = 0;
 	m_TipoCertificato4 = 0;
+	m_TipoCertificato5 = 0;
 	m_Snervamento = 0.0;
 	m_ID = _T("");
 	m_DiDefault = 0;
-	m_nFields = 10;
+	m_nFields = 11;
 	//}}AFX_FIELD_INIT
 	m_nDefaultType = snapshot;
 }
@@ -57,6 +58,7 @@ void CTipiMaterialeSet::DoFieldExchange(CFieldExchange* pFX)
 	RFX_Long(pFX, _T("[TipoCertificato2]"), m_TipoCertificato2);
 	RFX_Long(pFX, _T("[TipoCertificato3]"), m_TipoCertificato3);
 	RFX_Long(pFX, _T("[TipoCertificato4]"), m_TipoCertificato4);
+	RFX_Long(pFX, _T("[TipoCertificato5]"), m_TipoCertificato5);
 	RFX_Double(pFX, _T("[Snervamento]"), m_Snervamento);
 	RFX_Text(pFX, _T("[ID]"), m_ID);
 	RFX_Byte(pFX, _T("[DiDefault]"), m_DiDefault);

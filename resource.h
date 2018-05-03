@@ -523,9 +523,13 @@
 #define IDC_CHECK_PROVAA4               1564
 #define IDC_CHECK_PROVAB4               1565
 #define IDC_COMBO_TIPOCERTIFICATO4      1566
+#define IDC_STATIC_QUINTO               1566
 #define IDC_EDIT_OSSERVAZIONI           1567
+#define IDC_COMBO_CERTIFICATO5          1567
 #define IDC_DATETIMEPICKER_DA           1568
+#define IDC_CHECK_PROVAA5               1568
 #define IDC_DATETIMEPICKER_A            1569
+#define IDC_CHECK_PROVAB5               1569
 #define IDC_STATIC_DA                   1570
 #define IDC_STATIC_A                    1571
 #define IDC_BUTTON_DB_REMOTO            1573

@@ -8,7 +8,6 @@ tab lines=16
 ; posizione e font del numero di pagina
 ;Nr.Pagina=1700,2100,Times New Roman,24,48,C
 
-
 [strings]
 10=70,130,500,50,Courier New,40,50,BL,.DA. FERRI DA C.A.
 20=+650,130,500,50,Courier New,30,40,L, MINUTA DI PROVA

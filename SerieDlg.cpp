@@ -232,7 +232,10 @@ BOOL CSerieDlg::OnInitDialog()
 	  m_bListinoGenerale = TRUE;
 		m_BtnListinoGenerale.EnableWindow(FALSE);
   }
+
+	// carica i dati del dialogo
 	InitDialogData();
+
 	if(!m_bNuovaSerie && !m_pSerieSet->IsFieldNull(&m_pSerieSet->m_Certificato)
 	   && m_pSerieSet->m_Certificato)
 	{
@@ -761,8 +764,8 @@ void CSerieDlg::LoadServizi(void)
 	else
 	  nListinoGenerale = 0;
 	// Seleziono categorie e servizi associati al listino selezionato
-  m_pCatServSet->m_strFilter.Format("(Categoria = CATEGORIE.Codice) AND (Listino = %d OR Listino = %d) AND ((Certificato = %d) OR (Certificato2 = %d) OR (Certificato3 = %d) OR (Certificato4 = %d))",
-	                                  nListinoGenerale, m_nListinoParticolare, m_pTCertificatoSet->m_Codice, m_pTCertificatoSet->m_Codice, m_pTCertificatoSet->m_Codice, m_pTCertificatoSet->m_Codice);
+  m_pCatServSet->m_strFilter.Format("(Categoria = CATEGORIE.Codice) AND (Listino = %d OR Listino = %d) AND ((Certificato = %d) OR (Certificato2 = %d) OR (Certificato3 = %d) OR (Certificato4 = %d) OR (Certificato5 = %d))",
+	                                  nListinoGenerale, m_nListinoParticolare, m_pTCertificatoSet->m_Codice, m_pTCertificatoSet->m_Codice, m_pTCertificatoSet->m_Codice, m_pTCertificatoSet->m_Codice, m_pTCertificatoSet->m_Codice);
 	m_pCatServSet->Requery();
   m_bServiceLoaded = FALSE;
   // Cancello gli items della lista
@@ -893,7 +896,7 @@ void CSerieDlg::LoadTCertData(void)
 	}
 
 	// Abilita/Disabilita i controlli per l'inserimento del Verbale di Prelievo e della Sigla del Fornitore
-	if (codCert == 11 || codCert == 12 || codCert == 13 || codCert == 17 || codCert == 18)
+	if (codCert == 11 || codCert == 12 || codCert == 13 || codCert == 17 || codCert == 18 || codCert == 20)
 	{
 		m_ctrlVerbalePrelievo.EnableWindow(TRUE);
 		if(!m_pSerieSet->IsFieldNull(&m_pSerieSet->m_VerbalePrelievo))
@@ -905,7 +908,7 @@ void CSerieDlg::LoadTCertData(void)
 	{
 		m_ctrlVerbalePrelievo.EnableWindow(FALSE);
 	}
-	if (codCert == 11 || codCert == 13 || codCert == 17)
+	if (codCert == 11 || codCert == 13 || codCert == 17 || codCert == 20)
 	{
 		m_ctrlSiglaFornitore.EnableWindow(TRUE);
 		if(!m_pSerieSet->IsFieldNull(&m_pSerieSet->m_SiglaFornitore))
@@ -1144,7 +1147,7 @@ void CSerieDlg::LoadMateriali(void)
 {
   CString str;
 
-	m_pMaterialiSet->m_strFilter.Format("(TipoCertificato = %d) OR (TipoCertificato2 = %d) OR (TipoCertificato3 = %d) OR (TipoCertificato4 = %d)", m_pTCertificatoSet->m_Codice, m_pTCertificatoSet->m_Codice, m_pTCertificatoSet->m_Codice, m_pTCertificatoSet->m_Codice);
+	m_pMaterialiSet->m_strFilter.Format("(TipoCertificato = %d) OR (TipoCertificato2 = %d) OR (TipoCertificato3 = %d) OR (TipoCertificato4 = %d) OR (TipoCertificato5 = %d)", m_pTCertificatoSet->m_Codice, m_pTCertificatoSet->m_Codice, m_pTCertificatoSet->m_Codice, m_pTCertificatoSet->m_Codice, m_pTCertificatoSet->m_Codice);
 	m_pMaterialiSet->m_strSort = "Descrizione ASC";
 	m_pMaterialiSet->Requery();
 	m_pMaterialiSet->m_strSort = "TipoCertificato, ID ASC";

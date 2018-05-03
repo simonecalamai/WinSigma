@@ -43,16 +43,20 @@ CServiziListinoDlg::CServiziListinoDlg(CWnd* pParent /*=NULL*/)
 	m_bProvaB3 = FALSE;
 	m_bProvaA4 = FALSE;
 	m_bProvaB4 = FALSE;
+	m_bProvaA5 = FALSE;
+	m_bProvaB5 = FALSE;
 	//}}AFX_DATA_INIT
 	m_fPrezzo      = 0;
 	m_byProve      = 0;
 	m_byProve2     = 0;
 	m_byProve3     = 0;
 	m_byProve4     = 0;
+	m_byProve5     = 0;
 	m_nCertificato = 0;
 	m_nCertificato2= 0;
 	m_nCertificato3= 0;
 	m_nCertificato4= 0;
+	m_nCertificato5= 0;
 	m_nProvini     = 0;
 	m_nProviniPerSerie = 0;
 	m_nEmissione   = 0;
@@ -74,9 +78,10 @@ void CServiziListinoDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialog::DoDataExchange(pDX);
 	//{{AFX_DATA_MAP(CServiziListinoDlg)
-	DDX_Control(pDX, IDC_COMBO_CERTIFICATO4, m_ComboCertificato4);
-	DDX_Control(pDX, IDC_COMBO_CERTIFICATO3, m_ComboCertificato3);
 	DDX_Control(pDX, IDC_COMBO_CERTIFICATO2, m_ComboCertificato2);
+	DDX_Control(pDX, IDC_COMBO_CERTIFICATO3, m_ComboCertificato3);
+	DDX_Control(pDX, IDC_COMBO_CERTIFICATO4, m_ComboCertificato4);
+	DDX_Control(pDX, IDC_COMBO_CERTIFICATO5, m_ComboCertificato5);
 	DDX_Control(pDX, IDC_EDIT_COMMENTO, m_EdtCommento);
 	DDX_Control(pDX, IDC_CHECK_GEOLOGIA, m_BtnGeologia);
 	DDX_Control(pDX, IDC_CHECK_CONCESSIONE, m_EdtConcessione);
@@ -95,6 +100,8 @@ void CServiziListinoDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_CHECK_PROVAB3, m_CheckProvaB3);
 	DDX_Control(pDX, IDC_CHECK_PROVAA4, m_CheckProvaA4);
 	DDX_Control(pDX, IDC_CHECK_PROVAB4, m_CheckProvaB4);
+	DDX_Control(pDX, IDC_CHECK_PROVAA5, m_CheckProvaA5);
+	DDX_Control(pDX, IDC_CHECK_PROVAB5, m_CheckProvaB5);
 	DDX_Text(pDX, IDC_EDIT_CATEGORIA, m_strCategoria);
 	DDX_Text(pDX, IDC_EDIT_DESCRIZIONE, m_strDescrizione);
 	DDV_MaxChars(pDX, m_strDescrizione, 255);
@@ -121,21 +128,24 @@ void CServiziListinoDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Check(pDX, IDC_CHECK_PROVAB3, m_bProvaB3);
 	DDX_Check(pDX, IDC_CHECK_PROVAA4, m_bProvaA4);
 	DDX_Check(pDX, IDC_CHECK_PROVAB4, m_bProvaB4);
+	DDX_Check(pDX, IDC_CHECK_PROVAA5, m_bProvaA5);
+	DDX_Check(pDX, IDC_CHECK_PROVAB5, m_bProvaB5);
 	//}}AFX_DATA_MAP
 }
 
 
 BEGIN_MESSAGE_MAP(CServiziListinoDlg, CDialog)
 	//{{AFX_MSG_MAP(CServiziListinoDlg)
-	ON_CBN_SELCHANGE(IDC_COMBO_CERTIFICATO, OnSelchangeComboCertificato)
 	ON_CBN_SELCHANGE(IDC_COMBO_EMISSIONE, OnSelchangeComboEmissione)
 	ON_BN_CLICKED(IDC_CHECK_PERSERIE, OnCheckPerserie)
 	ON_BN_CLICKED(IDC_CHECK_PERPROVINO, OnCheckPerprovino)
 	ON_BN_CLICKED(IDC_CHECK_CONCESSIONE, OnCheckConcessione)
 	ON_BN_CLICKED(IDC_CHECK_GEOLOGIA, OnCheckGeologia)
+	ON_CBN_SELCHANGE(IDC_COMBO_CERTIFICATO, OnSelchangeComboCertificato)
 	ON_CBN_SELCHANGE(IDC_COMBO_CERTIFICATO2, OnSelchangeComboCertificato2)
 	ON_CBN_SELCHANGE(IDC_COMBO_CERTIFICATO3, OnSelchangeComboCertificato3)
 	ON_CBN_SELCHANGE(IDC_COMBO_CERTIFICATO4, OnSelchangeComboCertificato4)
+	ON_CBN_SELCHANGE(IDC_COMBO_CERTIFICATO5, OnSelchangeComboCertificato5)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -144,7 +154,7 @@ END_MESSAGE_MAP()
 
 BOOL CServiziListinoDlg::OnInitDialog() 
 {
-	int n,n2,n3,n4;
+	int n,n2,n3,n4,n5;
 	CString str, strMask;
 
 	CDialog::OnInitDialog();
@@ -190,6 +200,10 @@ BOOL CServiziListinoDlg::OnInitDialog()
 	m_ComboCertificato4.SetItemData(n4, 0);
 	m_ComboCertificato4.SetCurSel(n4);
 
+	n5 = m_ComboCertificato5.AddString("--- Nessuno ----");
+	m_ComboCertificato5.SetItemData(n5, 0);
+	m_ComboCertificato5.SetCurSel(n5);
+
 	for(;
 	    !m_pTCertificatiSet->IsBOF() && !m_pTCertificatiSet->IsEOF();
 		  m_pTCertificatiSet->MoveNext())
@@ -198,11 +212,13 @@ BOOL CServiziListinoDlg::OnInitDialog()
     n2= m_ComboCertificato2.AddString	(m_pTCertificatiSet->m_Nome);
 		n3= m_ComboCertificato3.AddString	(m_pTCertificatiSet->m_Nome);
 		n4= m_ComboCertificato4.AddString	(m_pTCertificatiSet->m_Nome);
+		n5= m_ComboCertificato5.AddString	(m_pTCertificatiSet->m_Nome);
 		
     m_ComboCertificato.SetItemData	(n,		m_pTCertificatiSet->m_Codice);
     m_ComboCertificato2.SetItemData	(n2,	m_pTCertificatiSet->m_Codice);
 		m_ComboCertificato3.SetItemData	(n3,	m_pTCertificatiSet->m_Codice);
 		m_ComboCertificato4.SetItemData	(n4,	m_pTCertificatiSet->m_Codice);
+		m_ComboCertificato5.SetItemData	(n5,	m_pTCertificatiSet->m_Codice);
 		
     if(m_nCertificato == m_pTCertificatiSet->m_Codice)
 		  m_ComboCertificato.SetCurSel(n);
@@ -215,6 +231,9 @@ BOOL CServiziListinoDlg::OnInitDialog()
 
 		if(m_nCertificato4 == m_pTCertificatiSet->m_Codice)
 		  m_ComboCertificato4.SetCurSel(n4);
+
+		if(m_nCertificato5 == m_pTCertificatiSet->m_Codice)
+		  m_ComboCertificato5.SetCurSel(n5);
 	}
 
 	if(m_nCertificato)
@@ -273,12 +292,27 @@ BOOL CServiziListinoDlg::OnInitDialog()
     m_CheckProvaB4.EnableWindow(FALSE);
 	}
 
+	if(m_nCertificato5)
+	{
+    OnSelchangeComboCertificato5();
+  	if(m_byProve5 & 0x01)
+      m_bProvaA5= TRUE;
+  	if(m_byProve5 & 0x02)
+      m_bProvaB5 = TRUE;
+	}
+	else
+	{
+  	m_CheckProvaA5.EnableWindow(FALSE);
+    m_CheckProvaB5.EnableWindow(FALSE);
+	}
+
 	n = m_ComboCertificato.GetCurSel();
 	if(m_ComboCertificato.GetItemData(n) == 0)
 	{
 		m_ComboCertificato2.EnableWindow(FALSE);
 		m_ComboCertificato3.EnableWindow(FALSE);
 		m_ComboCertificato4.EnableWindow(FALSE);
+		m_ComboCertificato5.EnableWindow(FALSE);
 	}
 	/*---- riempio la combo della modalità di gestione del servizio aggiuntivo ----*/
 	n = m_ComboAggiuntivo.AddString("Non aggiungibile");
@@ -497,9 +531,42 @@ void CServiziListinoDlg::OnSelchangeComboCertificato4()
 	}	
 }
 
+void CServiziListinoDlg::OnSelchangeComboCertificato5() 
+{
+	int n5 = m_ComboCertificato5.GetCurSel();
+
+	m_CheckProvaA5.SetWindowText("");
+	m_CheckProvaA5.SetCheck(0);
+  m_CheckProvaA5.EnableWindow(FALSE);
+	m_CheckProvaB5.SetWindowText("");
+	m_CheckProvaB5.SetCheck(0);
+  m_CheckProvaB5.EnableWindow(FALSE);
+
+	if(n5 = m_ComboCertificato5.GetItemData(n5))
+	{
+	  /*---- cerco il tipo selezionato ----*/
+		for(!m_pTCertificatiSet->IsBOF() ? m_pTCertificatiSet->MoveFirst(): 0;
+				!m_pTCertificatiSet->IsEOF();
+				m_pTCertificatiSet->MoveNext())
+			if(m_pTCertificatiSet->m_Codice == n5)
+			  break;
+		/*---- imposto i check delle prove ----*/
+		if(!m_pTCertificatiSet->m_ProvaA.IsEmpty())
+		{
+		  m_CheckProvaA5.SetWindowText(m_pTCertificatiSet->m_ProvaA);
+		  m_CheckProvaA5.EnableWindow();
+		}
+		if(!m_pTCertificatiSet->m_ProvaB.IsEmpty())
+		{
+		  m_CheckProvaB5.SetWindowText(m_pTCertificatiSet->m_ProvaB);
+          m_CheckProvaB5.EnableWindow();
+		}
+	}	
+}
+
 void CServiziListinoDlg::OnOK() 
 {
-  int n,n2,n3,n4;
+  int n,n2,n3,n4,n5;
  
   if(!ValidateData())
 	return;
@@ -511,10 +578,13 @@ void CServiziListinoDlg::OnOK()
   m_byProve  = 0;
   m_byProve2 = 0;
   m_byProve3 = 0;
+  m_byProve4 = 0;
+  m_byProve5 = 0;
   n  = m_ComboCertificato.GetCurSel();
   n2 = m_ComboCertificato2.GetCurSel();
   n3 = m_ComboCertificato3.GetCurSel();
 	n4 = m_ComboCertificato4.GetCurSel();
+	n5 = m_ComboCertificato5.GetCurSel();
   if(n >= 0)
 	{
 	  m_nCertificato = m_ComboCertificato.GetItemData(n);
@@ -546,6 +616,14 @@ void CServiziListinoDlg::OnOK()
 			m_byProve4 |= 0x01;
 		if(m_bProvaB4)
 			m_byProve4 |= 0x02;
+	}
+	if(n5 >= 0)
+	{
+	  m_nCertificato5 = m_ComboCertificato5.GetItemData(n5);
+		if(m_bProvaA5)
+			m_byProve5 |= 0x01;
+		if(m_bProvaB5)
+			m_byProve5 |= 0x02;
 	}
 	/*---- prezzo ----*/
   CString str = m_MskEditPrezzo.GetText();
@@ -680,6 +758,7 @@ BOOL CServiziListinoDlg::ValidateData()
 		return FALSE;
 	}
 
+	int n5 = m_ComboCertificato5.GetCurSel();
 	int n4 = m_ComboCertificato4.GetCurSel();
   int n3 = m_ComboCertificato3.GetCurSel();
   int n2 = m_ComboCertificato2.GetCurSel();
@@ -687,7 +766,8 @@ BOOL CServiziListinoDlg::ValidateData()
   if ((m_ComboCertificato.GetItemData(n) == 0)		&& 
 			(m_ComboCertificato2.GetItemData(n2) != 0)	&& 
 			(m_ComboCertificato3.GetItemData(n3) != 0)	&&
-			(m_ComboCertificato4.GetItemData(n4) != 0))
+			(m_ComboCertificato4.GetItemData(n4) != 0)  &&
+			(m_ComboCertificato5.GetItemData(n5) != 0))
   {
     AfxMessageBox("Non si può assegnare un secondo tipo di certificato se il primo non è stato assegnato!", MB_OK | MB_ICONEXCLAMATION);
     return FALSE;
