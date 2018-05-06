@@ -41,23 +41,23 @@ Nr.Pagina=1700,2100,Times New Roman,24,48,C
 250=+110,+0,190,40,Arial,22,38,C,N/mm²
 
 ;
-260=90,1790,100,30,Arial,18,34,R,NORME
+260=90,1790,100,30,Courier New,20,38,BR,NORME
 265=+130,+0,220,38,Courier New,20,38,BL,D.M. 17/01/2018
 267=+220,+0,1000,38,Courier New,20,38,L, / Compressione e rettifica UNI EN 12390-3
  
-270=90,1830,100,30,Arial,18,34,R,T.R.
+270=90,1830,100,30,Courier New,20,38,BR,T.R.
 275=+130,+0,1300,30,Courier New,18,30,L,Tipo Rottura:  1=soddisfacente;  2=non soddisfacente
 
-280=90,1865,100,30,Arial,18,34,R,R.
+280=90,1865,100,30,Courier New,20,38,BR,R.
 285=+130,+0,1300,30,Courier New,18,30,L,Rettifica:  A=effettuata;  B=non effettuata: provino conforme UNI EN 12390-1
 
 300=220,1945,1800,30,Courier New,18,30,L,Attenzione: il numero minimo di campioni necessario per il controllo Tipo A previsto dalle norme tecniche vigenti è pari a 6 (3 prelievi)
 
-330=90,+45,100,30,Arial,22,38,R,*
+330=90,+45,100,30,Courier New,22,38,R,*
 340=+130,+0,1800,30,Courier New,18,30,L,"ai sensi §11.2.5.3 del D.M. 17.01.2018 le prove di compressione vanno integrate da quelle riferite al controllo della resistenza del 
 341=+0,+30,1800,30,Courier New,18,30,L,calcestruzzo in opera" (campioni provati oltre il 45° giorno dalla data di prelievo)
 
-350=90,+45,100,30,Arial,22,38,R,**
+350=90,+45,100,30,Courier New,22,38,R,**
 360=+130,+0,1800,30,Courier New,18,30,L,"ai sensi §11.2.4 del D.M. 17.01.2018 i risultati non sono impiegabili per controlli di accettazione di cui al §11.2.5 del D.M. 17.01.2018
 361=+0,+30,1800,30,Courier New,18,30,L,e pertanto dovranno applicarsi le procedure di cui al §11.2.5.3 ultimi tre capoversi dello stesso D.M. 17.01.2018" 
 362=+0,+30,1800,30,Courier New,18,30,L,(campioni per cui la differenza fra i valori di resistenza dei due provini superi il 20% del valore inferiore) 

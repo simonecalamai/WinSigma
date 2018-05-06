@@ -39,6 +39,7 @@ CSerieDlg::CSerieDlg(CWnd* pParent /*=NULL*/)
 	m_dDimensione3 = 0.0;
 	m_strMateriale = _T("");
 	m_bNonDichiarata = FALSE;
+	m_bVerbalePrelievoNonDichiarato = TRUE;
 	m_strDataND = _T("");
 	m_DataScadenza = 0;
 	m_sSiglaFornitore = _T("");
@@ -88,6 +89,7 @@ void CSerieDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_DATETIMEPICKER_SCADENZA, m_DTCtrlScadenza);
 	DDX_Control(pDX, IDC_EDIT_DATA_ND, m_ctrDataND);
 	DDX_Control(pDX, IDC_CHECK_NON_DICHIARATA, m_BtnNonDichiarata);
+	DDX_Control(pDX, IDC_CHECK_VERBALE_PRELIEVO_NON_DICHIARATO, m_BtnVerbalePrelievoNonDichiarato);
 	DDX_Control(pDX, IDC_COMBO_MATERIALE, m_ComboMateriale);
 	DDX_Control(pDX, IDC_CHECK_LISTINO, m_BtnListinoGenerale);
 	DDX_Control(pDX, IDC_STATIC_STRUTTURA, m_StaticStruttura);
@@ -122,6 +124,7 @@ void CSerieDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Text(pDX, IDC_EDIT_DIM3, m_dDimensione3);
 	DDX_CBString(pDX, IDC_COMBO_MATERIALE, m_strMateriale);
 	DDX_Check(pDX, IDC_CHECK_NON_DICHIARATA, m_bNonDichiarata);
+	DDX_Check(pDX, IDC_CHECK_VERBALE_PRELIEVO_NON_DICHIARATO, m_bVerbalePrelievoNonDichiarato);
 	DDX_Text(pDX, IDC_EDIT_DATA_ND, m_strDataND);
 	DDV_MaxChars(pDX, m_strDataND, 10);
 	DDX_DateTimeCtrl(pDX, IDC_DATETIMEPICKER_SCADENZA, m_DataScadenza);
@@ -142,6 +145,7 @@ BEGIN_MESSAGE_MAP(CSerieDlg, CXDialog)
 	ON_BN_CLICKED(IDC_CHECK_LISTINO, OnCheckListino)
 	ON_NOTIFY(LVN_ITEMCHANGED, IDC_LIST_SERVIZI, OnItemchangedListServizi)
 	ON_BN_CLICKED(IDC_CHECK_NON_DICHIARATA, OnCheckNonDichiarata)
+	ON_BN_CLICKED(IDC_CHECK_VERBALE_PRELIEVO_NON_DICHIARATO, OnCheckVerbalePrelievoNonDichiarato)
 	ON_BN_CLICKED(IDC_BUTTON_NEXT, OnButtonNext)
 	ON_CBN_SELCHANGE(IDC_COMBO_MATERIALE, OnSelchangeComboMateriale)
 	ON_EN_KILLFOCUS(IDC_EDIT_STRUTTURA, OnKillfocusEditStruttura)
@@ -170,8 +174,12 @@ BOOL CSerieDlg::OnInitDialog()
 	m_EditSigla2.ShowWindow(SW_HIDE);;
 
 	// Inizializza i controlli
-	m_sVerbalePrelievo.Empty();
+//	m_sVerbalePrelievo.Empty();
+	m_sVerbalePrelievo.Format(STR_DATAND);
 	m_sSiglaFornitore.Empty();
+	m_ctrlVerbalePrelievo.SetWindowText(STR_DATAND);
+	m_ctrlVerbalePrelievo.EnableWindow(FALSE);
+	m_BtnVerbalePrelievoNonDichiarato.SetCheck(TRUE);
 
   // Lista dei servizi
   style = m_ListServizi.GetExtendedStyle();
@@ -466,11 +474,11 @@ void CSerieDlg::OnSelchangeTipiCertificato()
 			(m_ComboTipoCertificato.GetItemData(i) == 18) || 
 			(m_ComboTipoCertificato.GetItemData(i) == 17))		
 	{
-		m_ctrlVerbalePrelievo.EnableWindow(TRUE);
+//		m_ctrlVerbalePrelievo.EnableWindow(TRUE);
 	}
 	else
 	{
-		m_ctrlVerbalePrelievo.EnableWindow(FALSE);
+//		m_ctrlVerbalePrelievo.EnableWindow(FALSE);
 	}
 	if ((m_ComboTipoCertificato.GetItemData(i) == 11) ||
 			(m_ComboTipoCertificato.GetItemData(i) == 13) || 
@@ -895,6 +903,7 @@ void CSerieDlg::LoadTCertData(void)
 		}
 	}
 
+#if 0
 	// Abilita/Disabilita i controlli per l'inserimento del Verbale di Prelievo e della Sigla del Fornitore
 	if (codCert == 11 || codCert == 12 || codCert == 13 || codCert == 17 || codCert == 18 || codCert == 20)
 	{
@@ -908,6 +917,29 @@ void CSerieDlg::LoadTCertData(void)
 	{
 		m_ctrlVerbalePrelievo.EnableWindow(FALSE);
 	}
+#endif
+
+	if(m_pSerieSet->IsFieldNull(&m_pSerieSet->m_VerbalePrelievo))
+	{
+		m_ctrlVerbalePrelievo.EnableWindow(FALSE);
+		m_BtnVerbalePrelievoNonDichiarato.SetCheck(TRUE);
+	}
+	else
+	{
+		if(!m_pSerieSet->m_VerbalePrelievo.CompareNoCase(STR_DATAND))
+		{
+			m_ctrlVerbalePrelievo.EnableWindow(FALSE);
+			m_ctrlVerbalePrelievo.SetWindowText(STR_DATAND);
+			m_BtnVerbalePrelievoNonDichiarato.SetCheck(TRUE);
+		}
+		else
+		{
+			m_ctrlVerbalePrelievo.EnableWindow(TRUE);
+			m_ctrlVerbalePrelievo.SetWindowText(m_pSerieSet->m_VerbalePrelievo);
+			m_BtnVerbalePrelievoNonDichiarato.SetCheck(FALSE);
+		}
+	}
+
 	if (codCert == 11 || codCert == 13 || codCert == 17 || codCert == 20)
 	{
 		m_ctrlSiglaFornitore.EnableWindow(TRUE);
@@ -1214,6 +1246,25 @@ void CSerieDlg::OnCheckNonDichiarata()
       m_DataScadenza = m_DataPrelievo + tsMat;
     }
   }
+	UpdateData(FALSE);		
+}
+
+void CSerieDlg::OnCheckVerbalePrelievoNonDichiarato() 
+{
+	UpdateData();
+	byte dichiarato = !m_BtnVerbalePrelievoNonDichiarato.GetCheck();
+	m_ctrlVerbalePrelievo.EnableWindow(dichiarato);
+
+	if(!dichiarato)
+	{
+//		m_ctrlVerbalePrelievo.SetWindowText(STR_DATAND);
+		m_sVerbalePrelievo.Format(STR_DATAND);
+	}
+	else
+	{
+//		m_ctrlVerbalePrelievo.SetWindowText("");
+		m_sVerbalePrelievo.Format("");
+	}
 	UpdateData(FALSE);		
 }
 

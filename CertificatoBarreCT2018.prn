@@ -108,7 +108,7 @@ tab lines=12
 260=1800,1475,250,50,Times New Roman,20,38,L,esito_noaderenza
 270=1860,1475,250,50,Times New Roman,20,38,L,esito
 
-280=80,2010,150,40,Arial,20,38,L,norma_etichetta
+280=80,2010,150,40,Courier New,20,38,BL,norma_etichetta
 281=+130,+0,220,38,Courier New,20,38,BL,norma_valore1
 282=+220,+0,500,38,Courier New,20,38,L,norma_valore2
 283=+500,+0,50,38,Courier New,20,38,L,norma_valore3

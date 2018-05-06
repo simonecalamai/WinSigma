@@ -447,7 +447,10 @@ __declspec( dllexport ) BOOL DatiProvino(CAllTables* pTabelle, CStringArray* pFi
 			pFieldNames->Add("dataProva");
 			pFieldValues->Add(struttura);
 			pFieldValues->Add(pSerieProviniSet->m_VerbalePrelievo);
-			pFieldValues->Add(pSerieProviniSet->m_Sigla);
+			if(pSerieProviniSet->m_Sigla.IsEmpty())
+				pFieldValues->Add("=");
+			else
+				pFieldValues->Add(pSerieProviniSet->m_Sigla);
 			if(!pSerieProviniSet->IsFieldNull(&pSerieProviniSet->m_DataPrelievo) 
 					&& (pSerieProviniSet->m_DataPrelievo != 0))
 			{
@@ -514,7 +517,10 @@ __declspec( dllexport ) BOOL DatiProvino(CAllTables* pTabelle, CStringArray* pFi
 				pFieldNames->Add("dataProva02");
 				pFieldValues->Add(struttura);
 				pFieldValues->Add(pSerieProviniSet->m_VerbalePrelievo);
-				pFieldValues->Add(pSerieProviniSet->m_Sigla);
+				if(pSerieProviniSet->m_Sigla.IsEmpty())
+					pFieldValues->Add("=");
+				else
+					pFieldValues->Add(pSerieProviniSet->m_Sigla);
 				if(!pSerieProviniSet->IsFieldNull(&pSerieProviniSet->m_DataPrelievo) 
 						&& (pSerieProviniSet->m_DataPrelievo != 0))
 				{
@@ -565,7 +571,10 @@ __declspec( dllexport ) BOOL DatiProvino(CAllTables* pTabelle, CStringArray* pFi
 				pFieldNames->Add("dataProva02");
 
 				pFieldValues->Add("");
-				pFieldValues->Add(pSerieProviniSet->m_Sigla2);
+				if(pSerieProviniSet->m_Sigla2.IsEmpty())
+					pFieldValues->Add("=");
+				else
+					pFieldValues->Add(pSerieProviniSet->m_Sigla2);
 				pFieldValues->Add("");
 				pFieldValues->Add("");
 

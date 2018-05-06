@@ -59,7 +59,7 @@ tab lines=12
 320=+80,+10,300,50,Arial,20,38,C,N
 
 
-430=80,2070,100,40,Arial,20,38,L,Norme
+430=80,2070,100,40,Courier New,20,38,BL,Norme
 440=+130,+0,220,30,Courier New,20,38,BL,D.M. 17/01/2018
 450=+220,+0,1000,30,Courier New,20,38,L, / UNI EN ISO 15630-2
 470=80,+45,2500,50,Courier New,18,30,L,(1) calcolata sulla barra liscia equipesante 

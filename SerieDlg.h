@@ -30,6 +30,7 @@ public:
 	CDateTimeCtrl	m_DTCtrlScadenza;
 	CEdit	m_ctrDataND;
 	CButton	m_BtnNonDichiarata;
+	CButton	m_BtnVerbalePrelievoNonDichiarato;
 	CComboBox	m_ComboMateriale;
 	CButton	m_BtnListinoGenerale;
 	CStatic	m_StaticStruttura;
@@ -68,6 +69,7 @@ public:
 	CString	m_sVerbalePrelievo;
 	CString	m_csOsservazioni;
 	CString	m_strSigla2;
+	BOOL	m_bVerbalePrelievoNonDichiarato;
 	//}}AFX_DATA
 
   int m_nCodiceTipoCertificato;
@@ -121,6 +123,7 @@ protected:
 	afx_msg void OnCheckListino();
 	afx_msg void OnItemchangedListServizi(NMHDR* pNMHDR, LRESULT* pResult);
 	afx_msg void OnCheckNonDichiarata();
+	afx_msg void OnCheckVerbalePrelievoNonDichiarato();
 	afx_msg void OnButtonNext();
 	afx_msg void OnSelchangeComboMateriale();
 	afx_msg void OnKillfocusEditStruttura();
