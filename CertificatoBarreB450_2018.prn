@@ -109,10 +109,10 @@ tab lines=12
  
 200=80,2010,150,40,Courier New,20,38,BL,norma_etichetta
 205=+130,+0,220,38,Courier New,20,38,BL,norma_valore1
-210=+220,+0,500,38,Courier New,20,38,L,norma_valore2
-215=+500,+0,50,38,Courier New,20,38,L,norma_valore3
+210=+220,+0,640,38,Courier New,20,38,L,norma_valore2
+215=+640,+0,50,38,Courier New,20,38,L,norma_valore3
 220=+50,+0,220,38,Courier New,20,38,BL,norma_valore4
-225=+220,+0,600,38,Courier New,20,38,L,norma_valore5
+225=+220,+0,700,38,Courier New,20,38,L,norma_valore5
 
 240=80,2290,1000,64,Arial,15,32,L,osservazioniLabel
 245=+160,+0,1000,64,Arial,15,32,L,osservazioni

@@ -552,7 +552,7 @@ __declspec( dllexport ) BOOL DatiProvino(CAllTables* pTabelle, CStringArray* pFi
 						CString cts = ct.Format("%d/%m/%Y"); 
 						if(pSerieProviniSet->m_DataProva > (pSerieProviniSet->m_DataPrelievo + diff))
 						{
-							pFieldNames->Add("astDataProva45gg");
+							pFieldNames->Add("astDataProva45gg02");
 							pFieldValues->Add("*");
 						}
 					}

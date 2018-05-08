@@ -167,7 +167,6 @@ BOOL CSerieDlg::OnInitDialog()
   CWinSigmaApp* pApp = (CWinSigmaApp*)AfxGetApp();
 	CXDialog::OnInitDialog();
 	SetWindowText(m_strTitolo);
-
 	
 	// controlli sigla2 non visibili di default
 	m_StaticSigla2.ShowWindow(SW_HIDE);
@@ -589,8 +588,10 @@ void CSerieDlg::InitDialogData(void)
     }
   }
   else
-	// Se stiamo inserendo una nova serie...
+	// Se stiamo inserendo una nuova serie...
   {
+		m_ctrlVerbalePrelievo.EnableWindow(FALSE);
+		m_BtnVerbalePrelievoNonDichiarato.SetCheck(TRUE);
     m_StaticDim1.Empty();
     m_StaticDim2.Empty();
     m_StaticDim3.Empty();
@@ -894,6 +895,9 @@ void CSerieDlg::LoadTCertData(void)
 	m_StaticSigla2.ShowWindow(SW_HIDE);
 	m_EditSigla2.ShowWindow(SW_HIDE);
 
+	m_ctrlVerbalePrelievo.EnableWindow(FALSE);
+	m_BtnVerbalePrelievoNonDichiarato.SetCheck(TRUE);
+
 	int codCert = m_ComboTipoCertificato.GetItemData(n);
 	if(m_pSerieSet->IsFieldNull(&m_pSerieSet->m_strDataND))
 	{
@@ -919,24 +923,20 @@ void CSerieDlg::LoadTCertData(void)
 	}
 #endif
 
-	if(m_pSerieSet->IsFieldNull(&m_pSerieSet->m_VerbalePrelievo))
+	if(!m_pSerieSet->IsFieldNull(&m_pSerieSet->m_VerbalePrelievo))
 	{
-		m_ctrlVerbalePrelievo.EnableWindow(FALSE);
-		m_BtnVerbalePrelievoNonDichiarato.SetCheck(TRUE);
-	}
-	else
-	{
-		if(!m_pSerieSet->m_VerbalePrelievo.CompareNoCase(STR_DATAND))
+		if(!m_pSerieSet->m_VerbalePrelievo.CompareNoCase(STR_DATAND) ||
+		    m_pSerieSet->m_VerbalePrelievo.IsEmpty())
 		{
 			m_ctrlVerbalePrelievo.EnableWindow(FALSE);
 			m_ctrlVerbalePrelievo.SetWindowText(STR_DATAND);
-			m_BtnVerbalePrelievoNonDichiarato.SetCheck(TRUE);
+			m_BtnVerbalePrelievoNonDichiarato.SetCheck(BST_CHECKED);
 		}
 		else
 		{
 			m_ctrlVerbalePrelievo.EnableWindow(TRUE);
 			m_ctrlVerbalePrelievo.SetWindowText(m_pSerieSet->m_VerbalePrelievo);
-			m_BtnVerbalePrelievoNonDichiarato.SetCheck(FALSE);
+			m_BtnVerbalePrelievoNonDichiarato.SetCheck(BST_UNCHECKED);
 		}
 	}
 

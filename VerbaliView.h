@@ -105,6 +105,7 @@ public:
 	CString	m_strTipoPagamento;
 	BOOL	m_bRitiro;
 	CString	m_strCodFiscale;
+	CString m_strEMail;
 	//}}AFX_DATA
   
 // Attributes

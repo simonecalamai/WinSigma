@@ -117,6 +117,7 @@ Nr.Pagina=1700,2100,Times New Roman,24,48,C
 30=+400,+0,210,58,Times New Roman,12,30,CV,verbale_prelievo
 40=+190,+0,200,58,Times New Roman,18,36,CV,dataPrelievo
 50=+200,+0,200,58,Times New Roman,18,36,CV,dataProva
+60=+165,-8,30,58,Times New Roman,12,30,CV,astDataProva45gg
 
 ; caso 2 provini per serie
 120=240,1445,400,58,Times New Roman,12,30,L,strutturaPrelievoLunga02
@@ -124,7 +125,7 @@ Nr.Pagina=1700,2100,Times New Roman,24,48,C
 130=+400,+0,210,58,Times New Roman,12,30,CV,verbale_prelievo02
 140=+190,+0,200,58,Times New Roman,18,36,CV,dataPrelievo02
 150=+200,+0,200,58,Times New Roman,18,36,CV,dataProva02
-160=+165,-8,30,58,Times New Roman,12,30,CV,astDataProva45gg 
+160=+165,-8,30,58,Times New Roman,12,30,CV,astDataProva45gg02
 
 ; risultati
 200=1210,1415,70,58,Times New Roman,18,36,CSWV,lunghezza

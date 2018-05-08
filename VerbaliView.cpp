@@ -111,6 +111,7 @@ CVerbaliView::CVerbaliView()
 	m_strTipoPagamento = _T("");
 	m_bRitiro = FALSE;
 	m_strCodFiscale = _T("");
+	m_strEMail = _T("");
 	//}}AFX_DATA_INIT
   m_bSerieDataChanged = FALSE;
   m_nCertificati = 0;
@@ -227,6 +228,7 @@ void CVerbaliView::DoDataExchange(CDataExchange* pDX)
 	DDX_Text(pDX, IDC_EDIT_PAGAMENTO, m_strTipoPagamento);
 	DDX_Check(pDX, IDC_CHECK_RITIRO, m_bRitiro);
 	DDX_Text(pDX, IDC_EDIT_CODFISCALE, m_strCodFiscale);
+	DDX_Text(pDX, IDC_EDIT_EMAIL, m_strEMail);
 	//}}AFX_DATA_MAP
 }
 
@@ -522,6 +524,8 @@ void CVerbaliView::LoadCurRecord(BOOL bData)
   	m_nListinoGenerale     = m_pVerbaliSet->m_ListinoGenerale;
   	m_nListinoParticolare  = m_pVerbaliSet->m_ListinoParticolare;
     // Altri dati
+		GetDatiFatturazione();
+//    m_strEMail			         = m_pVerbaliSet->m_CodFiscale;
     m_bLetteraIncarico   = (BOOL)m_pVerbaliSet->m_LetteraIncarico;
     m_strLetteraIncarico = m_pVerbaliSet->m_NumLetteraIncarico;
     m_strDirettore       = m_pVerbaliSet->m_Direttore;
@@ -582,6 +586,7 @@ void CVerbaliView::LoadCurRecord(BOOL bData)
     m_strIndAzFattura.Empty	();
 	  m_strPartitaIva.Empty();
     m_strCodFiscale.Empty();
+    m_strEMail.Empty();
     m_strCodiceImpresa.Empty();
     m_strNomeImpresa.Empty();
     m_strIndImpresa.Empty();
@@ -2513,6 +2518,8 @@ void CVerbaliView::OnKillfocusEditCodAzFattura()
   CTrovaAziendaDlg dlg;
   UpdateData();
 
+//	m_strEMail.Empty();
+//	m_strNomeAzFattura.Empty();
   if(m_strCodiceAzFattura.IsEmpty())
 	{
 	  m_strNomeAzFattura.Empty();
@@ -2581,6 +2588,7 @@ void CVerbaliView::OnKillfocusEditNomeAzFattura()
   CTrovaAziendaDlg dlg;
 
   UpdateData();
+//	m_strEMail.Empty();
 	if(m_strNomeAzFattura.IsEmpty())
 	{
 	  m_strCodiceAzFattura.Empty();
@@ -4506,6 +4514,12 @@ void CVerbaliView::GetDatiFatturazione(void)
     m_strPartitaIva = pSet->m_P_IVA;
   if(!pSet->IsFieldNull(&pSet->m_CodiceFiscale))
     m_strCodFiscale = pSet->m_CodiceFiscale;
+
+  if(!pSet->IsFieldNull(&pSet->m_E_Mail))
+    m_strEMail = pSet->m_E_Mail;
+	else
+		m_strEMail.Empty();
+
   if(!pSet->IsFieldNull(&pSet->m_TipoPagamento) && pSet->m_TipoPagamento != 0)
   {
     SINCRONIZE(pPagamentoSet, pSet->m_TipoPagamento);

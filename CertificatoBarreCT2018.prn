@@ -110,8 +110,8 @@ tab lines=12
 
 280=80,2010,150,40,Courier New,20,38,BL,norma_etichetta
 281=+130,+0,220,38,Courier New,20,38,BL,norma_valore1
-282=+220,+0,500,38,Courier New,20,38,L,norma_valore2
-283=+500,+0,50,38,Courier New,20,38,L,norma_valore3
+282=+220,+0,640,38,Courier New,20,38,L,norma_valore2
+283=+640,+0,50,38,Courier New,20,38,L,norma_valore3
 284=+50,+0,220,38,Courier New,20,38,BL,norma_valore4
 285=+220,+0,600,38,Courier New,20,38,L,norma_valore5
 
