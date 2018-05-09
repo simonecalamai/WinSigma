@@ -16,11 +16,11 @@ tab lines=12
 30=1200,+0,200,40,Times New Roman,22,38,BL,Rif. V.A. N°
 40=+400,+0,50,40,Times New Roman,22,38,BL,del
 50=200,760,400,40,Times New Roman,22,40,L,Committente
-60=+0,+120,400,40,Times New Roman,22,40,L,Direttore dei lavori
-70=+0,+80,400,40,Times New Roman,22,40,L,Impresa esecutrice
-80=+0,+120,400,40,Times New Roman,22,40,L,Cantiere
-90=+0,+190,300,40,Times New Roman,22,40,L,Tipo e caratteristiche
-110=110,+90,1790,50,Times New Roman,28,50,BC,RISULTATI DI PROVA
+60=+0,+90,400,40,Times New Roman,22,40,L,Direttore dei lavori
+70=+0,+60,400,40,Times New Roman,22,40,L,Impresa esecutrice
+80=+0,+90,400,40,Times New Roman,22,40,L,Cantiere
+90=+0,+160,300,40,Times New Roman,22,40,L,Tipo e caratteristiche
+110=110,+190,1790,50,Times New Roman,28,50,BC,RISULTATI DI PROVA
 
 
 120=110,1430,640,40,Times New Roman,22,38,BC,Tipo e Struttura di prelievo
@@ -46,10 +46,10 @@ tab lines=12
 265=+160,-5,10,40,Times New Roman,12,24,L,2
 270=+60,+5,200,40,Times New Roman,22,38,C,%
 
-400=80,2070,150,40,Courier ,20,40,L,Norme
-440=+150,+10,1150,30,Courier New,18,30,L,UNI-EN ISO 6892-1
+400=80,2070,150,40,Courier New,20,38,BL,Norme
+440=+150,+0,1150,30,Courier New,20,38,L,UNI-EN ISO 6892-1
 
-450=80,2200,270,44,Arial,22,36,L,Domanda di prove 
+450=80,2340,270,44,Arial,22,36,L,Domanda di prove 
 460=1200,+0,380,44,Arial,22,36,L,Prove effettuate in data:
 
 470=230,2460,500,100,Times New Roman,22,40,C,Lo Sperimentatore
@@ -65,22 +65,22 @@ tab lines=12
 40=+285,+0,200,80,Times New Roman,22,38,BL,dataVerbale
 50=140,+40,1600,40,Times New Roman,22,38,BL,emendamento
 55=+0,+40,500,40,Times New Roman,22,38,L,duplicato
-60=200,680,330,40,Times New Roman,22,40,L,etichettaIncarico
+60=200,700,330,40,Times New Roman,22,40,L,etichettaIncarico
 70=+350,+0,1300,40,Times New Roman,22,40,L,letteraIncarico
-80=+0,+80,1300,40,Times New Roman,22,40,L,richiedente
-90=+0,+40,1300,40,Times New Roman,22,40,L,indirizzoRichiedente
-100=+0,+80,1300,100,Times New Roman,22,40,L,direttoreLavori
-110=+0,+80,1300,40,Times New Roman,22,40,L,impresaEsecutrice
-120=+0,+40,1300,40,Times New Roman,22,40,L,indirizzoImpresaEsecutrice
-130=+0,+80,1300,120,Times New Roman,22,40,L,cantiere
-140=-350,+120,330,40,Times New Roman,22,40,L,etichettaProprietario
+80=+0,+60,1300,40,Times New Roman,22,40,L,richiedente
+90=+0,+35,1300,40,Times New Roman,22,40,L,indirizzoRichiedente
+100=+0,+55,1300,100,Times New Roman,22,40,L,direttoreLavori
+110=+0,+60,1300,40,Times New Roman,22,40,L,impresaEsecutrice
+120=+0,+35,1300,40,Times New Roman,22,40,L,indirizzoImpresaEsecutrice
+130=+0,+55,1300,120,Times New Roman,22,40,L,cantiere
+140=-350,+90,330,40,Times New Roman,22,40,L,etichettaProprietario
 150=+350,+0,1300,40,Times New Roman,22,40,L,proprietario
 160=+0,+70,1300,40,Times New Roman,22,40,L,caratteristiche
 170=80,2125,950,50,Courier New,18,30,L,macchina 
-180=380,2200,1000,44,Arial,22,36,L,domandaProve 
-190=1580,+0,180,44,Arial,22,36,L,dataProve
-210=80,+74,1000,64,Arial,15,32,L,osservazioniLabel
-215=+150,+0,1000,64,Arial,15,32,L,osservazioni
+180=80,+110,1000,64,Arial,15,32,L,osservazioniLabel
+185=+150,+0,1000,64,Arial,15,32,L,osservazioni
+190=380,2340,1000,44,Arial,22,36,L,domandaProve 
+195=1580,+0,180,44,Arial,22,36,L,dataProve
 
 220=130,2540,700,100,Times New Roman,22,40,BC,sperimentatore
 230=1280,+0,500,100,Times New Roman,22,40,BC,responsabile

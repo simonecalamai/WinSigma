@@ -71,7 +71,6 @@ int										CVerbaliView::m_nSaltaEtichette;
 CStringArray					CVerbaliView::m_aryCampiEtichette;
 //BOOL                  CVerbaliView::m_bStampaCaratteri;
 int                  CVerbaliView::m_nPrintMode;
-
 /////////////////////////////////////////////////////////////////////////////
 // CVerbaliView
 
@@ -561,11 +560,18 @@ void CVerbaliView::LoadCurRecord(BOOL bData)
     if(!m_pVerbaliSet->IsFieldNull(&m_pVerbaliSet->m_Spedizione))
       m_bSpedizione = (BOOL)m_pVerbaliSet->m_Spedizione;
     else
-      m_bSpedizione = FALSE;
+      m_bSpedizione = false;
     if(m_bSpedizione)
+		{
 		  m_ComboConsegna.SetCurSel(4);
+		}
     else
-			m_ComboConsegna.SetCurSel(0);
+		{
+			if(m_bRitiro == TRUE)
+				m_ComboConsegna.SetCurSel(5);
+			else
+				m_ComboConsegna.SetCurSel(0);
+		}
     // Serie
     LoadSeries(m_pVerbaliSet->m_Codice);
   }
@@ -3309,9 +3315,11 @@ BOOL CVerbaliView::ScanProviniMinuta(CStringArray* pFieldNames, CStringArray* pF
 	}
 
   // Dati minuta cubetti
+  pFieldNames->Add("verbale_prelievo");
   pFieldNames->Add("prelievo");
   pFieldNames->Add("scad45gg");
   pFieldNames->Add("matur_prova");
+	pFieldValues->Add(m_pSerieSet->m_VerbalePrelievo);  // verbale prelievo
 	if(m_pSerieSet->IsFieldNull(&m_pSerieSet->m_DataPrelievo) || m_pSerieSet->m_DataPrelievo == 0)
 	{
 		pFieldValues->Add(m_pSerieSet->m_strDataND);  // data prelievo
@@ -3326,15 +3334,26 @@ BOOL CVerbaliView::ScanProviniMinuta(CStringArray* pFieldNames, CStringArray* pF
     GetTimeZoneInformation(&timeZone);
     tsMat -= timeZone.Bias * 60;
 		tsScad -= timeZone.Bias * 60;
+		CTime now = CTime::GetCurrentTime();
+		CTime scad45 = m_pSerieSet->m_DataPrelievo + tsScad;
+		CString csNow = now.Format("%d/%m/%y");
+		CString cs45 = scad45.Format("%d/%m/%y");
 		pFieldValues->Add(m_pSerieSet->m_DataPrelievo.Format("%d/%m/%y"));							// data prelievo
-		pFieldValues->Add((m_pSerieSet->m_DataPrelievo + tsScad).Format("%d/%m/%y"));		// scadenza 45 gg
+		if(scad45 > now)
+		{
+			pFieldValues->Add((m_pSerieSet->m_DataPrelievo + tsScad).Format("%d/%m/%y"));		// scadenza 45 gg
+		}
+		else
+		{
+	    pFieldValues->Add("");								// scadenza 45 gg 
+		}
     if(m_pSerieSet->m_DataPrelievo + tsMat < m_pVerbaliSet->m_DataAccettazione)			// maturazione
 		  pFieldValues->Add("../../..");
 		else
 		  pFieldValues->Add((m_pSerieSet->m_DataPrelievo + tsMat).Format("%d/%m/%y"));
   }
-	pFieldNames->Add("UB");
-  pFieldValues->Add("...");
+//	pFieldNames->Add("UB");
+//  pFieldValues->Add("...");
   pFieldNames->Add("nProvino");
   str.Format("%d", numProvino);
   pFieldValues->Add(str);
@@ -4285,7 +4304,7 @@ BOOL CVerbaliView::ScanFields(CStringArray* pFieldNames, CStringArray* pFieldVal
   else
 	{
 		if(m_pVerbaliSet->m_NoteSpedizione.IsEmpty())
-			str = "RITIRO";
+			str = "INVIO";
 		else
 			str.Format("%s", m_pVerbaliSet->m_NoteSpedizione);
 	}
@@ -4569,7 +4588,8 @@ void CVerbaliView::OnSelchangeComboConsegna()
 	int nCodAzienda = -1;
 
   UpdateData();
-  m_bSpedizione = TRUE;
+	m_bRitiro = false;
+  m_bSpedizione = true;
   m_strDestinatario.Empty();
 	m_strNote.Empty();
 	switch(n)
@@ -4605,7 +4625,9 @@ void CVerbaliView::OnSelchangeComboConsegna()
 		  break;
 	  case 5:
 		  /*---- ritiro -----*/
-      m_bSpedizione = FALSE;
+      m_bSpedizione = false;
+			m_bRitiro = true;
+			m_strNote = "RITIRO";
 			m_EditDestinatario.EnableWindow(FALSE);
 		  UpdateData(FALSE);
 		  return;
