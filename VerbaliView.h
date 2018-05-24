@@ -106,6 +106,7 @@ public:
 	BOOL	m_bRitiro;
 	CString	m_strCodFiscale;
 	CString m_strEMail;
+	CStatic	m_StaticAlarmNote;
 	//}}AFX_DATA
   
 // Attributes

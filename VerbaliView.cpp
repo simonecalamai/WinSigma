@@ -221,14 +221,15 @@ void CVerbaliView::DoDataExchange(CDataExchange* pDX)
 	DDX_Text(pDX, IDC_EDIT_RICHIEDENTE, m_strRichiedente);
 	DDX_Text(pDX, IDC_EDIT_ORA_CONSEGNA, m_strOraConsegna);
 	DDX_Text(pDX, IDC_EDIT_CANTIERE, m_strCantiere);
-	DDV_MaxChars(pDX, m_strCantiere, 150);
+	DDV_MaxChars(pDX, m_strCantiere, 125);
 	DDX_Text(pDX, IDC_EDIT_DESTINATARIO, m_strDestinatario);
 	DDX_Text(pDX, IDC_EDIT_PIVA, m_strPartitaIva);
 	DDX_Text(pDX, IDC_EDIT_PAGAMENTO, m_strTipoPagamento);
 	DDX_Check(pDX, IDC_CHECK_RITIRO, m_bRitiro);
 	DDX_Text(pDX, IDC_EDIT_CODFISCALE, m_strCodFiscale);
 	DDX_Text(pDX, IDC_EDIT_EMAIL, m_strEMail);
-	//}}AFX_DATA_MAP
+	DDX_Control(pDX, IDC_STATIC_ALARM_NOTE, m_StaticAlarmNote);
+//}}AFX_DATA_MAP
 }
 
 
@@ -399,6 +400,9 @@ void CVerbaliView::OnInitialUpdate()
 	n = m_ComboTipoProva.AddString("Geotecnica - NC");
 	m_ComboTipoProva.SetItemData(n, VERB_NC_GEOTECNICA);	
 
+	/* notifica note non visibile */
+	m_StaticAlarmNote.ShowWindow(SW_HIDE);
+
 	OnUpdate(NULL, 0, NULL);
 
   // Disabilito il pulsante "Emenda"
@@ -524,7 +528,6 @@ void CVerbaliView::LoadCurRecord(BOOL bData)
   	m_nListinoParticolare  = m_pVerbaliSet->m_ListinoParticolare;
     // Altri dati
 		GetDatiFatturazione();
-//    m_strEMail			         = m_pVerbaliSet->m_CodFiscale;
     m_bLetteraIncarico   = (BOOL)m_pVerbaliSet->m_LetteraIncarico;
     m_strLetteraIncarico = m_pVerbaliSet->m_NumLetteraIncarico;
     m_strDirettore       = m_pVerbaliSet->m_Direttore;
@@ -613,6 +616,7 @@ void CVerbaliView::LoadCurRecord(BOOL bData)
     m_bLetteraIncarico = FALSE;
    // m_bDomandaSottoscritta = FALSE;
     // Consegna
+		m_ComboConsegna.SetCurSel(0);
     m_bSpedizione = FALSE;
     m_strDestinatario.Empty();
     m_nNumSerie = 0;
@@ -624,6 +628,7 @@ void CVerbaliView::LoadCurRecord(BOOL bData)
     m_nCodiceAzCertificato = -1;
     m_nCodiceImpresa       = -1;
     m_bLungaScadenza = FALSE;
+		m_StaticAlarmNote.ShowWindow(SW_HIDE);
   }
 }
 
@@ -2524,7 +2529,6 @@ void CVerbaliView::OnKillfocusEditCodAzFattura()
   CTrovaAziendaDlg dlg;
   UpdateData();
 
-//	m_strEMail.Empty();
 //	m_strNomeAzFattura.Empty();
   if(m_strCodiceAzFattura.IsEmpty())
 	{
@@ -2594,7 +2598,6 @@ void CVerbaliView::OnKillfocusEditNomeAzFattura()
   CTrovaAziendaDlg dlg;
 
   UpdateData();
-//	m_strEMail.Empty();
 	if(m_strNomeAzFattura.IsEmpty())
 	{
 	  m_strCodiceAzFattura.Empty();
@@ -4534,10 +4537,17 @@ void CVerbaliView::GetDatiFatturazione(void)
   if(!pSet->IsFieldNull(&pSet->m_CodiceFiscale))
     m_strCodFiscale = pSet->m_CodiceFiscale;
 
+	// verifica presenza email in anagrafica
   if(!pSet->IsFieldNull(&pSet->m_E_Mail))
     m_strEMail = pSet->m_E_Mail;
 	else
 		m_strEMail.Empty();
+
+	// verifica presenza di note in anagrafica
+  if(!pSet->IsFieldNull(&pSet->m_Note))
+    m_StaticAlarmNote.ShowWindow(SW_SHOW);
+	else
+    m_StaticAlarmNote.ShowWindow(SW_HIDE);
 
   if(!pSet->IsFieldNull(&pSet->m_TipoPagamento) && pSet->m_TipoPagamento != 0)
   {

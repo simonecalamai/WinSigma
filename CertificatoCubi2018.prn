@@ -112,17 +112,17 @@ Nr.Pagina=1700,2100,Times New Roman,24,48,C
 10=+5,+0,155,58,Times New Roman,12,30,CVSE,sigla
 
 ; caso 1 provino per serie
-20=240,1415,400,58,Times New Roman,12,30,L,strutturaPrelievoLunga
-21=210,1415,400,58,Times New Roman,12,30,CV,strutturaPrelievoBreve
-30=+400,+0,210,58,Times New Roman,12,30,CV,verbale_prelievo
+20=235,1415,390,58,Times New Roman,12,30,C,strutturaPrelievoLunga
+21=235,1415,390,58,Times New Roman,12,30,CV,strutturaPrelievoBreve
+30=+380,+0,210,58,Times New Roman,12,30,CV,verbale_prelievo
 40=+190,+0,200,58,Times New Roman,18,36,CV,dataPrelievo
 50=+200,+0,200,58,Times New Roman,18,36,CV,dataProva
 60=+165,-8,30,58,Times New Roman,12,30,CV,astDataProva45gg
 
 ; caso 2 provini per serie
-120=240,1445,400,58,Times New Roman,12,30,L,strutturaPrelievoLunga02
-121=210,1445,400,58,Times New Roman,12,30,CV,strutturaPrelievoBreve02
-130=+400,+0,210,58,Times New Roman,12,30,CV,verbale_prelievo02
+120=235,1445,390,58,Times New Roman,12,30,C,strutturaPrelievoLunga02
+121=235,1445,390,58,Times New Roman,12,30,CV,strutturaPrelievoBreve02
+130=+380,+0,210,58,Times New Roman,12,30,CV,verbale_prelievo02
 140=+190,+0,200,58,Times New Roman,18,36,CV,dataPrelievo02
 150=+200,+0,200,58,Times New Roman,18,36,CV,dataProva02
 160=+165,-8,30,58,Times New Roman,12,30,CV,astDataProva45gg02

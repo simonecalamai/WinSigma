@@ -21,19 +21,19 @@ tab lines=10
 -130=1210,+80,230,40,Courier New,18,35,L,Cond. Pagam.:
 -140=0,+70,500,40,Courier New,18,35,L,Richiedente in nome e per conto :
 -150=0,+70,500,40,Courier New,18,35,L,Consegna certificati............:
--200=0,2120,2040,40,Courier New,20,35,L,Sui certificati verra' annotata l'eventuale assenza della sottoscrizione della domanda da parte del Direttore dei Lavori
--210=0,+40,2050,40,Courier New,20,35,L,(Prove su calcestruzzi ed acciai - Legge 1086)
--220=0,+40,2050,40,Courier New,20,35,L,Ogni certificato comprende un max. di 6 risultati di prova sia per cubetti che per tondini d'armatura
--230=0,+40,2050,40,Courier New,20,35,L,In mancanza di indicazioni i risultati di prova verranno esposti in ordine cronologico delle date di prelievo o casuale
--240=0,+40,2050,40,Courier New,20,35,L,La richiesta di urgenza comporta la maggiorazione del 50%. I certificati vengono consegnati previo saldo fattura
--250=0,+40,2050,40,Courier New,20,35,L,Per il ritiro diretto dei certificati e' obbligatoria la restituzione del presente verbale
--260=0,+40,2050,40,Courier New,20,35,L,La firma del presente verbale costituisce accettazione delle Norme e Tariffe del Laboratorio ed autorizzazione al trat_
--270=0,+40,2050,40,Courier New,20,35,L,tamento dei dati personali soggetti al D.Lgs 196/2003 ai soli fini contabili e fiscali.
--280=200,+70,600,40,Courier New,26,35,L,Operatore
+-200=0,2080,2040,40,Courier New,20,35,L,Sui certificati verra' annotata l'eventuale assenza della sottoscrizione della domanda da parte del Direttore dei Lavori
+-210=0,+35,2050,40,Courier New,20,35,L,(Prove su calcestruzzi ed acciai - Legge 1086)
+-220=0,+35,2050,40,Courier New,20,35,L,Ogni certificato comprende un max. di 6 risultati di prova sia per cubetti che per tondini d'armatura
+-230=0,+35,2050,40,Courier New,20,35,L,In mancanza di indicazioni i risultati di prova verranno esposti in ordine cronologico delle date di prelievo o casuale
+-240=0,+35,2050,40,Courier New,20,35,L,La richiesta di urgenza comporta la maggiorazione del 50%. I certificati vengono consegnati previo saldo fattura
+-250=0,+35,2050,40,Courier New,20,35,L,Per il ritiro diretto dei certificati e' obbligatoria la restituzione del presente verbale
+-260=0,+35,2050,40,Courier New,20,35,L,La firma del presente verbale costituisce accettazione delle Norme e Tariffe del Laboratorio ed autorizzazione al trat_
+-270=0,+35,2050,40,Courier New,20,35,L,tamento dei dati personali soggetti al D.Lgs 196/2003 ai soli fini contabili e fiscali.
+-275=80,+60,2100,40,Courier New,18,28,L,I certificati originali sono costituiti da files firmati digitalmente e la consegna avverra' mediante spedizione email pec.
+-280=200,+60,600,40,Courier New,26,35,L,Operatore
 -290=-150,+60,750,40, Courier New,26,35,L,_____________________________
 -300=+1200,-60,600,40,Courier New,26,35,L,Il Richiedente
 -310=-150,+60,750,40,Courier New,26,35,L,_____________________________
--320=80,2720,2100,50,Courier New,18,28,L,I certificati originali sono costituiti da files firmati digitalmente e la consegna avverra' mediante spedizione email pec.
 
 [fields]
 10=1450,350,250,40,Courier New,40,35,L,numeroVerbale
@@ -92,7 +92,7 @@ tab lines=10
 -320=520,+30,900,40,Courier New,26,35,L,richiedente
 -330=+0,+80,900,40,Courier New,26,35,L,consegna
 -340=0,+80,2000,40,Courier New,26,35,L,urgenza
--350=250,2510,1000,40,Courier New,26,35,L,operatore
+-350=250,2490,1000,40,Courier New,26,35,L,operatore
 
 [tabfields]
 10=80,1250,100,40,Courier New,14,35,L,numeroCampioni
