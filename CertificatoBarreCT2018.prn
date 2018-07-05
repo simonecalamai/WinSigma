@@ -95,8 +95,8 @@ tab lines=12
 ;140=+350,+0,1300,40,Times New Roman,22,40,L,proprietario
 150=+0,+90,1300,40,Times New Roman,22,40,L,caratteristiche
 
-160=+0,+90,200,40,Times New Roman,22,40,BL,dataprelievo
-170=+200,+0,1300,40,Times New Roman,22,40,BL,verbaleprelievo
+160=+0,+90,200,40,Times New Roman,22,40,L,dataprelievo
+170=+200,+0,1300,40,Times New Roman,22,40,L,verbaleprelievo
 
 200=1470,1427,250,50,Arial,25,45,BL,aderenza
 210=1480,1475,250,50,Times New Roman,20,38,L,indice_aderenza

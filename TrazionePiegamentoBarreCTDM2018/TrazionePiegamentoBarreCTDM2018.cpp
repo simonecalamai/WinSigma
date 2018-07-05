@@ -306,7 +306,7 @@ __declspec( dllexport ) int RiempiCampi(long numCertificato, CAllTables* pTabell
 	else
 		fieldValues->Add(pSerieProvSet->m_DataPrelievo.Format("%d/%m/%Y"));
 
-	if(!pSerieProvSet->IsFieldNull(&pSerieProvSet->m_VerbalePrelievo))
+	if(!pSerieProvSet->IsFieldNull(&pSerieProvSet->m_VerbalePrelievo) && pSerieProvSet->m_VerbalePrelievo.CompareNoCase("- n. d. -"))
 	{
 		fieldNames->Add("verbaleprelievo");
 		str.Format("-      Verbale Prelievo n. %s", pSerieProvSet->m_VerbalePrelievo); 
