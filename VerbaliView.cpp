@@ -3332,17 +3332,21 @@ BOOL CVerbaliView::ScanProviniMinuta(CStringArray* pFieldNames, CStringArray* pF
 	else
 	{
     TIME_ZONE_INFORMATION timeZone;
-    CTimeSpan  tsMat(m_pTipiCertificatoSet->m_Maturazione, 0, 0, 0);
+    CTimeSpan  tsMat(m_pTipiCertificatoSet->m_Maturazione, 0, 0, 0);			// 28 gg
+    CTimeSpan  tsMat29(m_pTipiCertificatoSet->m_Maturazione+1, 0, 0, 0);		// 29 gg
+    CTimeSpan  tsMat30(m_pTipiCertificatoSet->m_Maturazione+2, 0, 0, 0);		// 30 gg
     CTimeSpan  tsScad(DATA_SCADENZA_CUBETTI, 0, 0, 0);
     GetTimeZoneInformation(&timeZone);
     tsMat -= timeZone.Bias * 60;
 		tsScad -= timeZone.Bias * 60;
-		CTime now = CTime::GetCurrentTime();
+		CTime realnow = CTime::GetCurrentTime();
+		// normalizza la data corrente alle ore 00:00:00
+		CTime now(realnow.GetYear(), realnow.GetMonth(), realnow.GetDay(), 0, 0, 0);
 		CTime scad45 = m_pSerieSet->m_DataPrelievo + tsScad;
 		CString csNow = now.Format("%d/%m/%y");
 		CString cs45 = scad45.Format("%d/%m/%y");
 		pFieldValues->Add(m_pSerieSet->m_DataPrelievo.Format("%d/%m/%y"));							// data prelievo
-		if(scad45 > now)
+		if(scad45 >= now)
 		{
 			pFieldValues->Add((m_pSerieSet->m_DataPrelievo + tsScad).Format("%d/%m/%y"));		// scadenza 45 gg
 		}
@@ -3350,8 +3354,16 @@ BOOL CVerbaliView::ScanProviniMinuta(CStringArray* pFieldNames, CStringArray* pF
 		{
 	    pFieldValues->Add("");								// scadenza 45 gg 
 		}
-    if(m_pSerieSet->m_DataPrelievo + tsMat < m_pVerbaliSet->m_DataAccettazione)			// maturazione
+/*    if(m_pSerieSet->m_DataPrelievo + tsMat < m_pVerbaliSet->m_DataAccettazione)			// maturazione
 		  pFieldValues->Add("../../..");
+		else
+		  pFieldValues->Add((m_pSerieSet->m_DataPrelievo + tsMat).Format("%d/%m/%y"));*/
+    if(m_pVerbaliSet->m_DataAccettazione > m_pSerieSet->m_DataPrelievo + tsMat30)			// maturazione
+		  pFieldValues->Add("../../..");
+		else if(m_pVerbaliSet->m_DataAccettazione == (m_pSerieSet->m_DataPrelievo + tsMat30)) 
+		  pFieldValues->Add((m_pSerieSet->m_DataPrelievo + tsMat30).Format("%d/%m/%y"));
+		else if(m_pVerbaliSet->m_DataAccettazione == (m_pSerieSet->m_DataPrelievo + tsMat29)) 
+		  pFieldValues->Add((m_pSerieSet->m_DataPrelievo + tsMat29).Format("%d/%m/%y"));
 		else
 		  pFieldValues->Add((m_pSerieSet->m_DataPrelievo + tsMat).Format("%d/%m/%y"));
   }
