@@ -1,5 +1,7 @@
 #include "FreeImage.h"
 
+#define MAX_GRID_ROWS			32
+
 /********************************************************************
 * Classe     : CPrintItem
 * Descrizione: Classe base da cui deriveremo le varie classi per
@@ -201,6 +203,7 @@ class CGridItem : public CPrintItem
   /*----- metodi -----*/
   public:
     CGridItem(void);
+    CGridItem(CGridItem* pItem);
     BOOL Load(CString sec, CString key, CString layoutFName);
     CGdiObject* Print(CDC* pDC, CGdiObject* pPen);
 };
@@ -315,6 +318,7 @@ class CPrintInterpreter : public CObject
 
 		int m_nRowSeries;
 		int m_nGroup;
+		int m_aryRowAttrs[MAX_GRID_ROWS];
 
   /*----- metodi -----*/
   public:

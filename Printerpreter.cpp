@@ -89,6 +89,8 @@ CPrintInterpreter::CPrintInterpreter(void) : CObject()
 	m_DocName = "PRINTDOC";
 	m_nRowSeries = 0;
 	m_nGroup = 0;
+	for(int i = 0; i < MAX_GRID_ROWS; i++)
+		m_aryRowAttrs[i] = 0;
 }
 
 CPrintInterpreter::~CPrintInterpreter(void)
@@ -275,6 +277,8 @@ BOOL CPrintInterpreter::Print(
   {
 		m_nRowSeries = 0;
 		m_nGroup = 0;
+		for(int i = 0; i < MAX_GRID_ROWS; i++)
+			m_aryRowAttrs[i] = 0;
     // prepara il driver della stampante a ricevere dati 
 		m_dcPrint.StartPage();
 
@@ -798,11 +802,13 @@ BOOL CPrintInterpreter::PrintTabfields(CDC* pDC, int page)
 		{
 			if(names.GetAt(i).CompareNoCase("verbale_prelievo02") == 0)
 			{
+				m_aryRowAttrs[m_nRowSeries] = 1;
 				m_nRowSeries++;
 				m_nGroup = 1;
 			}
 			if(names.GetAt(i).CompareNoCase("verbale_prelievo") == 0)
 			{
+				m_aryRowAttrs[m_nRowSeries] = 0;
 				m_nRowSeries++;
 				m_nGroup = 0;
 			}
@@ -907,32 +913,58 @@ BOOL CPrintInterpreter::PrintTexts(CDC* pDC, int page)
 *********************************************************************/
 BOOL CPrintInterpreter::PrintGrids(CDC* pDC, int page)
 {
-  int   i;
+  int   i, j;
   BOOL  bAgain = FALSE;
+  CPrintItemArray aryGrids;
 
 	if(m_nRowSeries > 0)
 	{
 		// espansione delle griglie multiple per raggruppamento provini 
 		// se m_Rows = -1 (Cubi DM2018 s.c. aprile 2018)
-	  for(i = 0; i < m_GridItems.GetSize(); i++)
+		int size = m_GridItems.GetSize();
+	  for(i = 0; i < size; i++)
 		{
 			CGridItem * pItem = (CGridItem*)(m_GridItems.GetAt(i));
 			if(pItem->m_Rows == -1)
 			{
-				int firsty = pItem->m_LastY - pItem->m_H;
-				int h = m_nRowSeries * pItem->m_H;
-				pItem->m_H = h;
-				pItem->m_LastY = firsty + h;
-				pItem->m_Rows = (m_nGroup == 1) ? m_nRowSeries/2 : m_nRowSeries;
+//				int firsty = pItem->m_LastY - pItem->m_H;
+				int h = pItem->m_H;
+				for(j = 0; j < m_nRowSeries; j++)
+				{
+					CGridItem * pgr = new CGridItem(pItem);
+					pgr->m_Rows = 1;
+					pgr->m_Y = pItem->m_Y + j * h;
+					if(m_aryRowAttrs[j] == 0)
+					{
+						// provino singolo -> riga singola altezza
+						pgr->m_H = h;
+					}
+					else
+					{
+						// doppio provino -> raggruppamento su riga doppia altezza
+						pgr->m_H = 2 * h;
+						// salto il prossimo elemento che ho già raggruppato con quello corrente
+						j++;
+					}
+//					pgr->m_LastY = firsty + pgr->m_H;
+				//	firsty = pgr->m_LastY;
+					aryGrids.Add(pgr);
+				}
+			}
+			else
+			{
+				CGridItem * pgr = new CGridItem(pItem);
+				aryGrids.Add(pgr);
 			}
 		}
 	}
 
-  for(i = 0; i < m_GridItems.GetSize(); i++)
+  for(i = 0; i < aryGrids.GetSize(); i++)
   {
-    if(!m_GridItems[i].m_Page || m_GridItems[i].m_Page == page)
-      m_GridItems[i].Print(pDC, NULL);
-    if(m_GridItems[i].m_Page > page)
+		CGridItem * pItem = (CGridItem*)(aryGrids.GetAt(i));
+    if(!pItem->m_Page || pItem->m_Page == page)
+      pItem->Print(pDC, NULL);
+    if(pItem->m_Page > page)
       bAgain = TRUE;
   }
   return bAgain;
@@ -1776,6 +1808,21 @@ CGridItem::CGridItem(void) : CPrintItem()
 {
   m_Rows   = 0;
   m_Cols   = 0;
+}
+
+CGridItem::CGridItem(CGridItem * pItem) : CPrintItem()
+{
+  m_X      = pItem->m_X;
+  m_Y      = pItem->m_Y;
+  m_W      = pItem->m_W;
+  m_H      = pItem->m_H;
+  m_Page   = pItem->m_Page;
+	m_Color	 = pItem->m_Color;
+	m_Nomefile = pItem->m_Nomefile;
+	m_Cols = pItem->m_Cols;
+  m_Rows = pItem->m_Rows;
+  m_LastX = pItem->m_LastX;
+  m_LastY = pItem->m_LastY;
 }
 
 /********************************************************************
