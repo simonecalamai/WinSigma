@@ -88,7 +88,7 @@ CPrintInterpreter::CPrintInterpreter(void) : CObject()
 	m_HeaderFName = "";
 	m_DocName = "PRINTDOC";
 	m_nRowSeries = 0;
-	m_nGroup = 0;
+//	m_nGroup = 0;
 	for(int i = 0; i < MAX_GRID_ROWS; i++)
 		m_aryRowAttrs[i] = 0;
 }
@@ -276,7 +276,7 @@ BOOL CPrintInterpreter::Print(
 	for (; bAgain; m_nPage++)
   {
 		m_nRowSeries = 0;
-		m_nGroup = 0;
+//		m_nGroup = 0;
 		for(int i = 0; i < MAX_GRID_ROWS; i++)
 			m_aryRowAttrs[i] = 0;
     // prepara il driver della stampante a ricevere dati 
@@ -804,13 +804,13 @@ BOOL CPrintInterpreter::PrintTabfields(CDC* pDC, int page)
 			{
 				m_aryRowAttrs[m_nRowSeries] = 1;
 				m_nRowSeries++;
-				m_nGroup = 1;
+//				m_nGroup = 1;
 			}
 			if(names.GetAt(i).CompareNoCase("verbale_prelievo") == 0)
 			{
 				m_aryRowAttrs[m_nRowSeries] = 0;
 				m_nRowSeries++;
-				m_nGroup = 0;
+//				m_nGroup = 0;
 			}
 		}
     // Altezza dei tabfield
@@ -957,16 +957,27 @@ BOOL CPrintInterpreter::PrintGrids(CDC* pDC, int page)
 				aryGrids.Add(pgr);
 			}
 		}
+		for(i = 0; i < aryGrids.GetSize(); i++)
+		{
+			CGridItem * pItem = (CGridItem*)(aryGrids.GetAt(i));
+			if(!pItem->m_Page || pItem->m_Page == page)
+				pItem->Print(pDC, NULL);
+			if(pItem->m_Page > page)
+				bAgain = TRUE;
+		}
+	}
+	else
+	{
+		for(i = 0; i < m_GridItems.GetSize(); i++)
+		{
+			CGridItem * pItem = (CGridItem*)(m_GridItems.GetAt(i));
+			if(!pItem->m_Page || pItem->m_Page == page)
+				pItem->Print(pDC, NULL);
+			if(pItem->m_Page > page)
+				bAgain = TRUE;
+		}
 	}
 
-  for(i = 0; i < aryGrids.GetSize(); i++)
-  {
-		CGridItem * pItem = (CGridItem*)(aryGrids.GetAt(i));
-    if(!pItem->m_Page || pItem->m_Page == page)
-      pItem->Print(pDC, NULL);
-    if(pItem->m_Page > page)
-      bAgain = TRUE;
-  }
   return bAgain;
 }
 

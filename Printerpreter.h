@@ -317,7 +317,7 @@ class CPrintInterpreter : public CObject
     CPageItem m_PageItem;
 
 		int m_nRowSeries;
-		int m_nGroup;
+//		int m_nGroup;
 		int m_aryRowAttrs[MAX_GRID_ROWS];
 
   /*----- metodi -----*/
