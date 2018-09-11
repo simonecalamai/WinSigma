@@ -94,6 +94,7 @@
 #define IDR_MENU_VERBALI_WS2            258
 #define IDD_DIALOG_DB_REMOTO            259
 #define IDB_BITMAP_ELETT                263
+#define IDD_DIALOG_ESPORTA_XML          269
 #define IDC_EDIT_NOME                   1000
 #define IDC_EDIT_INDIRIZZO              1001
 #define IDC_EDIT_CAP                    1002
@@ -413,8 +414,10 @@
 #define IDC_EDIT_DA_FATTURA             1388
 #define IDC_LIST_EFFETTI                1389
 #define IDC_EDIT_DA_ELETT               1389
+#define IDC_EDIT_PROGRESSIVO            1389
 #define IDC_EDIT_SCONTO_FATTURA         1390
 #define IDC_EDIT_A_ELETT                1390
+#define IDC_EDIT_ANNO                   1390
 #define IDC_EDIT_IMPORTO_SCONTATO       1391
 #define IDC_EDIT_IMPORTOSCONTATO        1392
 #define IDC_CHECK_COMMENTOMATERIALE     1394
@@ -446,6 +449,7 @@
 #define IDC_STATIC_A_FATTURA            1445
 #define IDC_STATIC_CARTACEA             1446
 #define IDC_STATIC_ELETTRONICA          1447
+#define IDC_STATIC_PROGRESSIVO          1447
 #define IDC_CHK_VERBALI_APERTI          1448
 #define IDC_STATIC_DA_FATTURA2          1448
 #define IDC_STATIC_A_FATTURA2           1449
@@ -543,6 +547,8 @@
 #define IDC_STATIC_ELETT                1585
 #define IDC_CHECK_HEADER                1586
 #define IDC_STATIC_ALARM_NOTE           1587
+#define IDC_STATIC_ESPORTA_XML          1588
+#define IDC_STATIC_FATTURE              1589
 #define ID_AZIENDA_MODIFICA             32771
 #define ID_VERBALE_MODIFICA             32772
 #define ID_FATTURA_EMETTI               32773
@@ -657,15 +663,16 @@
 #define ID_ARCHIVIOFATTURE_STAMPA_SINGOLACOPIASENZAHEADER 33049
 #define ID_BUTTON_STAMPA_CERTIFICATI_SENZA_HEADER 33050
 #define ID_VERBALI_STAMPA_VERBALECONINTESTAZIONE 33051
+#define ID_FATTURA_ESPORTAXML           33052
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        269
-#define _APS_NEXT_COMMAND_VALUE         33052
-#define _APS_NEXT_CONTROL_VALUE         1588
+#define _APS_NEXT_RESOURCE_VALUE        270
+#define _APS_NEXT_COMMAND_VALUE         33053
+#define _APS_NEXT_CONTROL_VALUE         1590
 #define _APS_NEXT_SYMED_VALUE           196
 #endif
 #endif

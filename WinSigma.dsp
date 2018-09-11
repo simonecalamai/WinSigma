@@ -277,6 +277,14 @@ SOURCE=.\CertificatiVerbaliSet.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\Configurazione.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\ConfigurazioneSet.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\ConnessioneDlg.cpp
 # End Source File
 # Begin Source File
@@ -302,6 +310,10 @@ SOURCE=.\EmissioneCertificatiDlg.cpp
 # Begin Source File
 
 SOURCE=.\EsportaFattureDlg.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\EsportaXMLDlg.cpp
 # End Source File
 # Begin Source File
 
@@ -666,6 +678,14 @@ SOURCE=.\CertificatiVerbaliSet.h
 # End Source File
 # Begin Source File
 
+SOURCE=.\Configurazione.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\ConfigurazioneSet.h
+# End Source File
+# Begin Source File
+
 SOURCE=.\ConnessioneDlg.h
 # End Source File
 # Begin Source File
@@ -691,6 +711,10 @@ SOURCE=.\EmissioneCertificatiDlg.h
 # Begin Source File
 
 SOURCE=.\EsportaFattureDlg.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\EsportaXMLDlg.h
 # End Source File
 # Begin Source File
 

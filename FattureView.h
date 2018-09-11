@@ -133,6 +133,7 @@ protected:
 	//{{AFX_MSG(CFattureView)
 	afx_msg void OnEsportaFatture();
 	afx_msg void OnFatturaEmetti();
+	afx_msg void OnEsportaXML();
 	afx_msg void OnFatturaElettEmetti();
 	afx_msg void OnButtonAddServizio();
 	afx_msg void OnButtonDelServizio();

@@ -248,6 +248,7 @@ BEGIN
 
         END
         MENUITEM "Es&porta fatture",            ID_FATTURA_ESPORTAFATTURE
+        MENUITEM "Esporta &XML",                ID_FATTURA_ESPORTAXML
         MENUITEM SEPARATOR
         POPUP "&Stampa"
         BEGIN
@@ -2059,6 +2060,30 @@ BEGIN
     PUSHBUTTON      "Tutti",IDC_BUTTON_TUTTI,559,7,50,31
 END
 
+IDD_DIALOG_ESPORTA_XML DIALOG DISCARDABLE  0, 0, 264, 147
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Esporta fatture XML"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,199,118,50,14
+    PUSHBUTTON      "Annulla",IDCANCEL,141,118,50,14
+    LTEXT           "Anno",IDC_STATIC_ANNO,10,10,30,8
+    GROUPBOX        "",IDC_STATIC_ESPORTA_XML,7,25,243,70
+    LTEXT           "Cartella",IDC_STATIC_PATH,16,75,44,8
+    EDITTEXT        IDC_EDIT_PATH,67,74,154,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_DA_FATTURA,111,36,22,12,ES_AUTOHSCROLL | 
+                    ES_NUMBER
+    EDITTEXT        IDC_EDIT_A_FATTURA,194,36,22,12,ES_AUTOHSCROLL | 
+                    ES_NUMBER
+    LTEXT           "da numero",IDC_STATIC_DA_FATTURA,73,40,34,8
+    LTEXT           "a numero",IDC_STATIC_A_FATTURA,155,40,30,8
+    LTEXT           "Fatture",IDC_STATIC_FATTURE,16,40,44,8
+    LTEXT           "Progressivo",IDC_STATIC_PROGRESSIVO,16,57,44,8
+    EDITTEXT        IDC_EDIT_PROGRESSIVO,67,54,72,12,ES_AUTOHSCROLL | 
+                    ES_NUMBER
+    EDITTEXT        IDC_EDIT_ANNO,47,7,39,12,ES_AUTOHSCROLL | ES_NUMBER
+END
+
 
 #ifndef _MAC
 /////////////////////////////////////////////////////////////////////////////
@@ -2459,6 +2484,14 @@ BEGIN
         TOPMARGIN, 7
         BOTTOMMARGIN, 333
     END
+
+    IDD_DIALOG_ESPORTA_XML, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 257
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 140
+    END
 END
 #endif    // APSTUDIO_INVOKED
 
@@ -2677,6 +2710,7 @@ END
 STRINGTABLE DISCARDABLE 
 BEGIN
     ID_ESPORTA_FATTURE      "Esporta le fatture in un file testo per il programma di contabilità\nEsporta  fatture"
+    ID_FATTURA_ESPORTAFATTURE "Esportazione fatture"
 END
 
 STRINGTABLE DISCARDABLE 
@@ -2695,6 +2729,7 @@ BEGIN
     ID_FATTURA_ELETT_EMETTI "Emissione fattura elettronica"
     ID_BUTTON_STAMPA_CERTIFICATI 
                             "Procedura di stampa multipla dei certificati emessi\nStampa certificati"
+    ID_FATTURA_ESPORTAXML   "Esportazione fatture su file XML"
 END
 
 STRINGTABLE DISCARDABLE 
