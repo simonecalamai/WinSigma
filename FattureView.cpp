@@ -17,7 +17,6 @@
 #include "TrovaAziendaDlg.h"
 #include "ArchiviaFattureDlg.h"
 #include "EsportaFattureDlg.h"
-#include "EsportaXMLDlg.h"
 #include "FattureSerEroVerSet.h"
 #include "Printerpreter.h"
 
@@ -148,7 +147,6 @@ BEGIN_MESSAGE_MAP(CFattureView, CXFormView)
 	ON_COMMAND(ID_FATTURA_ELETT_EMETTI, OnFatturaElettEmetti)
 	ON_COMMAND(ID_ESPORTA_FATTURE, OnEsportaFatture)
   ON_COMMAND(ID_FATTURA_ESPORTAFATTURE, OnEsportaFatture)
-  ON_COMMAND(ID_FATTURA_ESPORTAXML, OnEsportaXML)
 	ON_BN_CLICKED(IDC_BUTTON_ADD_SERVIZIO, OnButtonAddServizio)
 	ON_BN_CLICKED(IDC_BUTTON_DEL_SERVIZIO, OnButtonDelServizio)
 	ON_BN_CLICKED(IDC_BUTTON_MODIFY_SERVIZIO, OnButtonModifyServizio)
@@ -1101,130 +1099,6 @@ void CFattureView::OnEsportaFatture()
 	delete StampaFatture;
 }
 
-void CFattureView::OnEsportaXML() 
-{
-	CWinSigmaApp * pApp = (CWinSigmaApp *) AfxGetApp();
-
-	CFattureSet					*	pFattureSet;
-	CAziendeSet					*	pAziendeSet;
-	CTipiPagamentoSet		*	pTipiPag;
-	CFattureSerEroVerSet* pFattSerEroVer;
-	CConfigurazione	config;
-
-	CString sql		("");
-	CString csApp	("");
-
-	//Totali
-	double ImpConcessione			= 0;
-	double ImpNonConcessione	= 0;
-	double ImpGeotecnica	   	= 0;
-	double ImpAltro				   	= 0;
-	double Imponibile					= 0;
-	double IVA						   	= 0;
-	double Spese							= 0;
-	double RitenutaAcc				= 0;
-
-	CString csProg = config.Read("ProgressivoXML");
-	// Richiama il dialogo per l'esportazione
-	CEsportaXMLDlg esporta;
-	esporta.m_intProgressivo = atoi(csProg);
-	if (esporta.DoModal() != IDOK)
-		return;
-
-	// Lettura variabili
-	CString strFilename("");
-	int nDa = esporta.m_intDaFattura;
-	int nA = esporta.m_intAFattura;
-	int nProgressivo = esporta.m_intProgressivo;
-
-	// Compone il nome del file di esportazione e lo apre
-	CString idPaese = config.Read("IdPaese");
-	CString idCodiceTrasmittente = config.Read("IdCodiceTrasmittente");
-	CString tipoFileXML = config.Read("TipologiaFileXML");
-	CString extXML = config.Read("EstensioneXML");
-	CString versione = config.Read("VersionePA");
-	// if privato:
-	// versione = config.Read("VersionePR");
-	strFilename.Format("%s\\%s%s_%s_%d.%s", esporta.m_csPath, idPaese, idCodiceTrasmittente, tipoFileXML, nProgressivo, extXML);
-	FILE* f = fopen((const char*)strFilename.GetBuffer(strFilename.GetLength()), "w");
-  if (f == NULL)
-  {
-		MessageBox("Errore nell'apertura del file di esportazione. Esportazione fallita!", "Errore", MB_OK);
-		return;
-	}
-	
-	// Legge l'header XML
-	CString csHdrTemplate = config.Read("XMLHeader");
-	CString csLine("");
-	csLine.Format(csHdrTemplate, versione);
-	csLine += "\n";
-	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
-
-	//////// FatturaElettronicaHeader: inizio
-	csLine.Format("<FatturaElettronicaHeader>\n"); 
-	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
-
-	// Sezione DatiTrasmissione - inizio
-	csLine.Format("<DatiTrasmissione>\n"); 
-	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
-
-	// IdTrasmittente - inizio
-	csLine.Format("<IdTrasmittente>\n"); 
-	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
-
-	csLine.Format("<IdPaese>%s</IdPaese>\n", idPaese); 
-	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
-
-	csLine.Format("<IdCodice>%s</IdCodice>\n", idCodiceTrasmittente); 
-	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
-
-	csLine.Format("</IdTrasmittente>\n"); 
-	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
-	// IdTrasmittente - fine
-
-	csLine.Format("<ProgressivoInvio>%d</ProgressivoInvio>\n", nProgressivo); 
-	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
-	csLine.Format("<FormatoTrasmissione>%s</FormatoTrasmissione>\n", versione); 
-	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
-
-	// Cedente/Prestatore - inizio
-	csLine.Format("<CedentePrestatore>\n"); 
-	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
-
-	csLine.Format("</CedentePrestatore>\n"); 
-	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
-	// Cedente/Prestatore - fine
-
-	// Cessionario/Committente - inizio
-	csLine.Format("<CessionarioCommittente>\n"); 
-	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
-
-	csLine.Format("</CessionarioCommittente>\n"); 
-	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
-	// Cessionario/Committente - fine
-
-	// chiudo sezione DatiTrasmissione
-	csLine.Format("</DatiTrasmissione>\n"); 
-	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
-	// Sezione DatiTrasmissione - fine
-	// chiudo FatturaElettronicaHeader
-	csLine.Format("</FatturaElettronicaHeader>\n"); 
-	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
-	//////// FatturaElettronicaHeader: fine 
-
-	//////// FatturaElettronicaBody: inizio 
-	csLine.Format("<FatturaElettronicaBody>\n"); 
-	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
-
-	// chiudo FatturaElettronicaBody
-	csLine.Format("</FatturaElettronicaBody>\n"); 
-	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
-	//////// FatturaElettronicaBody: fine 
-
-	// Esportazione conclusa: chiudo il file
-	fclose(f);
-
-}
 
 // Emissione di una fattura
 void CFattureView::OnFatturaEmetti() 

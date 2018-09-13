@@ -249,6 +249,8 @@ CAziendeView::CAziendeView()
 	m_strCitta = _T("");
 	m_strCodiceFiscale = _T("");
 	m_strEMail = _T("");
+	m_strCodiceDestinatario = _T("");
+	m_strPEC = _T("");
 	m_strFax = _T("");
 	m_strIndirizzo = _T("");
 	m_strPIVA = _T("");
@@ -322,6 +324,8 @@ void CAziendeView::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_EDIT_EMAIL, m_EditEMail);
 	DDX_Control(pDX, IDC_EDIT_CODFISC, m_EditCodiceFiscale);
 	DDX_Control(pDX, IDC_EDIT_CODE, m_EditCodiceAzienda);
+	DDX_Control(pDX, IDC_EDIT_PEC, m_EditPEC);
+	DDX_Control(pDX, IDC_EDIT_CODDEST, m_EditCodiceDestinatario);
 	DDX_Control(pDX, IDC_EDIT_CITTA, m_EditCitta);
 	DDX_Control(pDX, IDC_EDIT_CAP, m_EditCAP);
 	DDX_Control(pDX, IDC_CHECK_IMPORTANTE, m_BtnAziendaImportante);
@@ -335,6 +339,10 @@ void CAziendeView::DoDataExchange(CDataExchange* pDX)
 	DDV_MaxChars(pDX, m_strCodiceFiscale, 16);
 	DDX_Text(pDX, IDC_EDIT_EMAIL, m_strEMail);
 	DDV_MaxChars(pDX, m_strEMail, 200);
+	DDX_Text(pDX, IDC_EDIT_CODDEST, m_strCodiceDestinatario);
+	DDV_MaxChars(pDX, m_strCodiceDestinatario, 7);
+	DDX_Text(pDX, IDC_EDIT_PEC, m_strPEC);
+	DDV_MaxChars(pDX, m_strPEC, 200);
 	DDX_Text(pDX, IDC_EDIT_FAX, m_strFax);
 	DDV_MaxChars(pDX, m_strFax, 32);
 	DDX_Text(pDX, IDC_EDIT_INDIRIZZO, m_strIndirizzo);
@@ -503,6 +511,8 @@ void CAziendeView::LoadCurRecord(BOOL bData)
 		m_csCap_Spedizione				= m_pSet->m_CAP_Sped;
 		m_csCitta_Spedizione			= m_pSet->m_Citta_Sped;
 		m_csProvincia_Spedizione	= m_pSet->m_Provincia_Sped;
+    m_strCodiceDestinatario		= m_pSet->m_CodiceDestinatario;
+    m_strPEC									= m_pSet->m_PEC;
     // Dati pagamento
     m_strBanca					= m_pSet->m_Banca;
     m_strABI						= m_pSet->m_ABI;
@@ -603,6 +613,8 @@ void CAziendeView::Clear(int* i)
 	m_csCap_Spedizione.Empty();
 	m_csCitta_Spedizione.Empty();
 	m_csProvincia_Spedizione.Empty();
+	m_strCodiceDestinatario.Empty();
+	m_strPEC.Empty();
 	// Pagamenti
 	m_strBanca.Empty();
 	m_strABI.Empty();
@@ -634,6 +646,8 @@ BOOL CAziendeView::IsDataChanged()
      m_strPIVA						!= m_pSet->m_P_IVA				||
      m_bAziendaImportante			!= m_pSet->m_IsImportante		||
      m_bPrivato						!= m_pSet->m_Privato			||
+		 m_strCodiceDestinatario != m_pSet->m_CodiceDestinatario ||
+		 m_strPEC != m_pSet->m_PEC ||
 	 // Pagamento
      nTipoPagamento					!= m_pSet->m_TipoPagamento		||
      m_strBanca						!= m_pSet->m_Banca				||
@@ -805,6 +819,8 @@ BOOL CAziendeView::NewRecord()
     m_pSet->m_E_Mail			= m_strEMail;
     m_pSet->m_Fax				= m_strFax;
     m_pSet->m_CodiceFiscale		= m_strCodiceFiscale;
+    m_pSet->m_CodiceDestinatario		= m_strCodiceDestinatario;
+    m_pSet->m_PEC		= m_strPEC;
 
 		if(CheckPIVAExist(m_strPIVA) == TRUE)        
 		{
@@ -965,6 +981,8 @@ BOOL CAziendeView::SaveRecord()
         m_pSet->m_E_Mail					= m_strEMail;
         m_pSet->m_Fax							= m_strFax;
         m_pSet->m_CodiceFiscale		= m_strCodiceFiscale;
+        m_pSet->m_CodiceDestinatario		= m_strCodiceDestinatario;
+        m_pSet->m_PEC							= m_strPEC;
 
 				// controllo la P.IVA solo se e' stata modificata
 				if(m_strPIVA.CompareNoCase(m_pSet->m_P_IVA))
@@ -1227,6 +1245,8 @@ void CAziendeView::EnableControls(BOOL bEnable)
   m_EditFax.EnableWindow(bEnable);
   m_EditCodiceFiscale.EnableWindow(bEnable);
   m_EditPIVA.EnableWindow(bEnable);
+  m_EditCodiceDestinatario.EnableWindow(bEnable);
+  m_EditPEC.EnableWindow(bEnable);
   m_BtnAziendaImportante.EnableWindow(bEnable);  
   m_BtnListinoGenerale.EnableWindow(bEnable);
   m_BtnPrivato.EnableWindow(bEnable);
@@ -1448,6 +1468,8 @@ void CAziendeView::OnButtonArchivioAziende()
 		m_strCodiceAzienda				=	m_dati_aziende->m_ID;
 		m_strCodiceFiscale				= m_dati_aziende->m_CodiceFiscale;
 		m_strEMail								=	m_dati_aziende->m_E_Mail;
+		m_strCodiceDestinatario		= m_dati_aziende->m_CodiceDestinatario;
+		m_strPEC									=	m_dati_aziende->m_PEC;
 		m_strFax									= m_dati_aziende->m_Fax;	
 		m_strNoteAzienda					= m_dati_aziende->m_Note;
 		m_strPIVA									= m_dati_aziende->m_P_IVA;

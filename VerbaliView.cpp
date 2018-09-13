@@ -4541,6 +4541,8 @@ void CVerbaliView::GetDatiFatturazione(void)
     return;
   }
   // Prendo i dati che mi servono per la fatturazione    
+  m_strPartitaIva = "";
+  m_strCodFiscale = "";
   if(!pSet->IsFieldNull(&pSet->m_P_IVA))
     m_strPartitaIva = pSet->m_P_IVA;
   if(!pSet->IsFieldNull(&pSet->m_CodiceFiscale))

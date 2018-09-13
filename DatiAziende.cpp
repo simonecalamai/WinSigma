@@ -47,6 +47,8 @@ CDatiAziende::CDatiAziende()
 	m_Sconto = 0.0;
 	m_IsImportante = 0;
 	m_UsaTuttiListini = 0;
+	m_CodiceDestinatario = _T("");
+	m_PEC = _T("");
 }
 
 CDatiAziende::~CDatiAziende()

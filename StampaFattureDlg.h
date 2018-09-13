@@ -33,6 +33,7 @@ public:
 	CButton	m_BtnSpedizione;
 	CButton	m_BtnStampaFattura;
 	CButton	m_BtnEmettiFattura;
+	CButton	m_BtnFatturaXML;
 	BOOL	m_bSpedizione;
 	BOOL	m_bPA;
 	BOOL	m_bIVADifferita;
@@ -126,6 +127,7 @@ protected:
 	virtual BOOL OnInitDialog();
 	afx_msg void OnButtonPrintFattura();
 	afx_msg void OnButtonEmetti();
+	afx_msg void OnButtonFatturaXML();
 	afx_msg void OnCheckSpedizione();
 	afx_msg void OnChangeMaskedboxSpeseSpedizione();
 	afx_msg void OnChangeEditAliquota();

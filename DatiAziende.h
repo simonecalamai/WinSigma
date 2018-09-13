@@ -45,6 +45,8 @@ public:
 	CTime	m_DataUltimoRapporto;
 	BYTE	m_IsImportante;
 	BYTE	m_UsaTuttiListini;
+	CString	m_CodiceDestinatario;
+	CString	m_PEC;
 };
 
 #endif // !defined(AFX_DATIAZIENDE_H__316488C1_3170_11D8_B754_00C026108782__INCLUDED_)

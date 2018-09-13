@@ -4,6 +4,7 @@
 #include "stdafx.h"
 #include "winsigma.h"
 #include "winsigmadoc.h"
+#include "Configurazione.h"
 #include "Printerpreter.h"
 #include "StampaFattureDlg.h"
 #include "WinSigmaDoc.h"
@@ -109,6 +110,7 @@ void CStampaFattureDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_COMBO_TIPO_PAGAMENTO, m_ComboTipoPagamento);
 	DDX_Control(pDX, IDC_CHECK_SPEDIZIONE, m_BtnSpedizione);
 	DDX_Control(pDX, IDC_BUTTON_PRINT_FATTURA, m_BtnStampaFattura);
+	DDX_Control(pDX, IDC_BUTTON_FATTURA_XML, m_BtnFatturaXML);
 	DDX_Control(pDX, IDOK, m_BtnEmettiFattura);
 	DDX_Check(pDX, IDC_CHECK_SPEDIZIONE, m_bSpedizione);
 	DDX_Check(pDX, IDC_CHECK_PA, m_bPA);
@@ -151,6 +153,7 @@ BEGIN_MESSAGE_MAP(CStampaFattureDlg, CDialog)
 	ON_BN_CLICKED(IDC_CHECK_SPEDIZIONE, OnCheckSpedizione)
 	ON_EN_CHANGE(IDC_EDIT_ALIQUOTA, OnChangeEditAliquota)
 	ON_BN_CLICKED(IDC_CHECK_PERSERVIZIO, OnCheckPerservizio)
+	ON_BN_CLICKED(IDC_BUTTON_FATTURA_XML, OnButtonFatturaXML)
 	ON_CBN_SELCHANGE(IDC_COMBO_TIPO_PAGAMENTO, OnSelchangeComboTipoPagamento)
 	ON_EN_CHANGE(IDC_EDIT_SCONTO, OnChangeEditSconto)
 	ON_EN_CHANGE(IDC_EDIT_TOTALE, OnChangeEditTotale)
@@ -247,6 +250,7 @@ BOOL CStampaFattureDlg::OnInitDialog()
   if(m_lCodiceFatturaEmessa > 0)
   {
     m_BtnStampaFattura.EnableWindow();
+		m_BtnFatturaXML.EnableWindow();
     SINCRONIZE(m_pFattureEmesseSet, m_lCodiceFatturaEmessa);
     m_strNumero.Format("%d", m_pFattureEmesseSet->m_Numero);
     m_lMaxNumFattura = m_pFattureEmesseSet->m_Numero;
@@ -293,6 +297,7 @@ BOOL CStampaFattureDlg::OnInitDialog()
   {
     m_BtnEmettiFattura.EnableWindow(!m_bFatturaProForma);
     m_BtnStampaFattura.EnableWindow(m_bFatturaProForma);
+		m_BtnFatturaXML.EnableWindow(m_bFatturaProForma);
     FindMaxNumeroFattura();
     if(m_bFatturaProForma)
       m_strNumero = "0";
@@ -483,6 +488,7 @@ void CStampaFattureDlg::OnButtonEmetti()
   m_MskSpeseSpedizione.EnableWindow(FALSE);  
   // Abilito il pulsante di stampa e setto il flag di fattura emessa
   m_BtnStampaFattura.EnableWindow();
+	m_BtnFatturaXML.EnableWindow();
   m_bFatturaEmessa = TRUE;
 }
 
@@ -1849,4 +1855,111 @@ void CStampaFattureDlg::OnChangeEditTotale()
 void CStampaFattureDlg::SetHeader(BOOL bon)
 {
 	m_bHeader = bon;
+}
+
+void CStampaFattureDlg::OnButtonFatturaXML() 
+{
+	CWinSigmaApp * pApp = (CWinSigmaApp *) AfxGetApp();
+
+	CConfigurazione	config;
+
+	// Lettura variabili
+	CString csProg = config.Read("ProgressivoXML");
+	int nProgressivo = atoi(csProg);
+	CString csFolder = config.Read("XMLFolder");
+	CString csPath("");
+	CString csFilename("");
+
+	// Compone il nome del file di esportazione e lo apre
+	CString idPaese = config.Read("IdPaese");
+	CString idCodiceTrasmittente = config.Read("IdCodiceTrasmittente");
+	CString tipoFileXML = config.Read("TipologiaFileXML");
+	CString extXML = config.Read("EstensioneXML");
+	CString versione = config.Read("VersionePA");
+	// if privato:
+	// versione = config.Read("VersionePR");
+	csFilename.Format("%s%s_%s_%d.%s", idPaese, idCodiceTrasmittente, tipoFileXML, nProgressivo, extXML);
+	csPath.Format("%s\\%s", csFolder, csFilename);
+	FILE* f = fopen((const char*)csPath.GetBuffer(csPath.GetLength()), "w");
+  if (f == NULL)
+  {
+		MessageBox("Errore nell'apertura del file di esportazione. Esportazione fallita!", "Errore", MB_OK);
+		return;
+	}
+	
+	// Legge l'header XML
+	CString csHdrTemplate = config.Read("XMLHeader");
+	CString csLine("");
+	csLine.Format(csHdrTemplate, versione);
+	csLine += "\n";
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+
+	//////// FatturaElettronicaHeader: inizio
+	csLine.Format("<FatturaElettronicaHeader>\n"); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+
+	// Sezione DatiTrasmissione - inizio
+	csLine.Format("<DatiTrasmissione>\n"); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+
+	// IdTrasmittente - inizio
+	csLine.Format("<IdTrasmittente>\n"); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+
+	csLine.Format("<IdPaese>%s</IdPaese>\n", idPaese); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+
+	csLine.Format("<IdCodice>%s</IdCodice>\n", idCodiceTrasmittente); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+
+	csLine.Format("</IdTrasmittente>\n"); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+	// IdTrasmittente - fine
+
+	csLine.Format("<ProgressivoInvio>%d</ProgressivoInvio>\n", nProgressivo); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+	csLine.Format("<FormatoTrasmissione>%s</FormatoTrasmissione>\n", versione); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+
+	// Cedente/Prestatore - inizio
+	csLine.Format("<CedentePrestatore>\n"); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+
+	csLine.Format("</CedentePrestatore>\n"); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+	// Cedente/Prestatore - fine
+
+	// Cessionario/Committente - inizio
+	csLine.Format("<CessionarioCommittente>\n"); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+
+	csLine.Format("</CessionarioCommittente>\n"); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+	// Cessionario/Committente - fine
+
+	// chiudo sezione DatiTrasmissione
+	csLine.Format("</DatiTrasmissione>\n"); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+	// Sezione DatiTrasmissione - fine
+	// chiudo FatturaElettronicaHeader
+	csLine.Format("</FatturaElettronicaHeader>\n"); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+	//////// FatturaElettronicaHeader: fine 
+
+	//////// FatturaElettronicaBody: inizio 
+	csLine.Format("<FatturaElettronicaBody>\n"); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+
+	// chiudo FatturaElettronicaBody
+	csLine.Format("</FatturaElettronicaBody>\n"); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+	//////// FatturaElettronicaBody: fine 
+
+	// Esportazione conclusa: chiudo il file
+	fclose(f);
+
+	CString msg = "";
+	msg.Format("File %s generato in %s", csFilename, csFolder);
+	MessageBox(msg, "Esportazione XML", MB_OK);
+
 }

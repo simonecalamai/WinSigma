@@ -79,6 +79,8 @@ public:
 	CEdit	m_EditEMail;
 	CEdit	m_EditCodiceFiscale;
 	CEdit	m_EditCodiceAzienda;
+	CEdit	m_EditPEC;
+	CEdit	m_EditCodiceDestinatario;
 	CEdit	m_EditCitta;
 	CEdit	m_EditCAP;
 	CButton	m_BtnAziendaImportante;
@@ -86,7 +88,9 @@ public:
 	CString	m_strCAP;
 	CString	m_strCitta;
 	CString	m_strCodiceFiscale;
+	CString	m_strCodiceDestinatario;
 	CString	m_strEMail;
+	CString	m_strPEC;
 	CString	m_strFax;
 	CString	m_strIndirizzo;
 	CString	m_strPIVA;

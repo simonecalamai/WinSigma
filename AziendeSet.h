@@ -49,6 +49,8 @@ public:
 	CTime	m_DataUltimoRapporto;
 	BYTE	m_IsImportante;
 	BYTE	m_UsaTuttiListini;
+	CString m_CodiceDestinatario;
+	CString m_PEC;
 	//}}AFX_FIELD
 
 

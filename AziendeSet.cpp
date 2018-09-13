@@ -51,7 +51,9 @@ CAziendeSet::CAziendeSet(CDatabase* pdb)
 	m_UsaTuttiListini = 0;
 	m_DataInserimento = 0;
 	m_DataUltimoRapporto = 0;
-	m_nFields = 31;
+	m_CodiceDestinatario = _T("");
+	m_PEC = _T("");
+	m_nFields = 33;
 	//}}AFX_FIELD_INIT
 	m_nDefaultType = snapshot;
 }
@@ -105,6 +107,8 @@ void CAziendeSet::DoFieldExchange(CFieldExchange* pFX)
 	RFX_Date(pFX, _T("[DataUltimoRapporto]"), m_DataUltimoRapporto);
 	RFX_Byte(pFX, _T("[IsImportante]"), m_IsImportante);
 	RFX_Byte(pFX, _T("[UsaTuttiListini]"), m_UsaTuttiListini);
+	RFX_Text(pFX, _T("[CodiceDestinatario]"), m_CodiceDestinatario);
+	RFX_Text(pFX, _T("[PEC]"), m_PEC);
 	//}}AFX_FIELD_MAP
 }
 

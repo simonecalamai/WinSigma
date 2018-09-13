@@ -180,6 +180,8 @@
 #define IDC_EDIT_PIVA                   1102
 #define IDC_COMBO_TIPOPAGAMENTO         1103
 #define IDC_EDIT_SCONTO                 1104
+#define IDC_EDIT_CODDEST                1105
+#define IDC_EDIT_PEC                    1106
 #define IDC_LIST_VERBALI                1108
 #define IDC_EDIT_APERTI                 1109
 #define IDC_EDIT_DAFATTURARE            1110
@@ -294,6 +296,7 @@
 #define IDC_BUTTON_STAMPA               1258
 #define IDC_BUTTON_PRINT_FATTURA        1259
 #define IDC_BUTTON_SFOGLIA              1260
+#define IDC_BUTTON_FATTURA_XML          1260
 #define IDC_STATIC_MARCHIO              1261
 #define IDC_CHECK_DOMANDA_SOTTOSCRITTA  1262
 #define IDC_COMBO_TIPOCERTIFICATO       1263

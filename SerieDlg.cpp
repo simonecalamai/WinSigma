@@ -907,7 +907,7 @@ void CSerieDlg::LoadTCertData(void)
 		}
 	}
 
-#if 0
+#if 1
 	// Abilita/Disabilita i controlli per l'inserimento del Verbale di Prelievo e della Sigla del Fornitore
 	if (codCert == 11 || codCert == 12 || codCert == 13 || codCert == 17 || codCert == 18 || codCert == 20)
 	{
@@ -923,6 +923,7 @@ void CSerieDlg::LoadTCertData(void)
 	}
 #endif
 
+#if 1
 	if(!m_pSerieSet->IsFieldNull(&m_pSerieSet->m_VerbalePrelievo))
 	{
 		if(!m_pSerieSet->m_VerbalePrelievo.CompareNoCase(STR_DATAND) ||
@@ -930,15 +931,16 @@ void CSerieDlg::LoadTCertData(void)
 		{
 			m_ctrlVerbalePrelievo.EnableWindow(FALSE);
 			m_ctrlVerbalePrelievo.SetWindowText(STR_DATAND);
-			m_BtnVerbalePrelievoNonDichiarato.SetCheck(BST_CHECKED);
+			m_BtnVerbalePrelievoNonDichiarato.SetCheck(TRUE);
 		}
 		else
 		{
 			m_ctrlVerbalePrelievo.EnableWindow(TRUE);
 			m_ctrlVerbalePrelievo.SetWindowText(m_pSerieSet->m_VerbalePrelievo);
-			m_BtnVerbalePrelievoNonDichiarato.SetCheck(BST_UNCHECKED);
+			m_BtnVerbalePrelievoNonDichiarato.SetCheck(FALSE);
 		}
 	}
+#endif
 
 	if (codCert == 11 || codCert == 13 || codCert == 17 || codCert == 20)
 	{
