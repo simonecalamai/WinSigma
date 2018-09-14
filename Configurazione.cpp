@@ -43,3 +43,29 @@ CString CConfigurazione::Read(CString nome)
 
 	return valore;
 }
+
+int CConfigurazione::Write(CString nome, CString valore)
+{
+	int ret = -1;
+
+	m_strFilter.Format("Nome = '%s'", nome);
+	Open();  
+	if(!IsEOF())
+	{
+		try
+		{
+			Edit();
+			m_Valore = valore;
+			SetFieldDirty(&m_Valore);
+			Update();
+			ret = 0;
+		}
+		catch(CDBException* e)
+		{
+			AfxMessageBox(e->m_strError);
+		}  
+	}
+  Close();
+
+	return ret;
+}

@@ -55,6 +55,8 @@ public:
 	double	m_ScontoSevizio;
 	long m_VuoiUrgenza;
 	BYTE m_PA;
+	CString	m_CodiceDestinatario;
+	CString m_PEC;
 	//}}AFX_FIELD
 
 

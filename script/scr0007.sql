@@ -7,6 +7,12 @@ ALTER TABLE `aziende`
 	ADD COLUMN `PEC` VARCHAR(200) NULL DEFAULT NULL AFTER `CodiceDestinatario`;
 
 
+	-- tabella FATTURE: aggiunta campi CodiceDestinatario e PEC
+ALTER TABLE `fatture`
+	ADD COLUMN `CodiceDestinatario` VARCHAR(7) NULL DEFAULT NULL AFTER `fElett`,
+	ADD COLUMN `PEC` VARCHAR(200) NULL DEFAULT NULL AFTER `CodiceDestinatario`;
+
+
 -- creazione tabella CONFIGURAZIONE
 CREATE TABLE IF NOT EXISTS `configurazione` (
   `Nome` varchar(50) NOT NULL,

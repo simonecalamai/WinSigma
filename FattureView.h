@@ -36,6 +36,8 @@ public:
 	CComboBox	m_ComboTipoPagamento;
 	CEdit	m_EditRagioneSociale;
 	CEdit	m_EditCodiceCliente;
+	CEdit	m_EditCodiceDestinatario;
+	CEdit	m_EditPEC;
 	CListCtrl	m_ListVerbali;
 	CListCtrl	m_ListServizi;
 	CButton	m_BtnModifyServizio;
@@ -62,6 +64,8 @@ public:
 	CTime	m_DataEmissione;
 	CString	m_csRitAcconto;
 	CString	m_csTotRitAcconto;
+	CString	m_strCodiceDestinatario;
+	CString	m_strPEC;
 	//}}AFX_DATA
 
 // Attributes

@@ -53,6 +53,8 @@ public:
 	BYTE m_PA;
 	BYTE m_IVADifferita;
 	BYTE m_Elett;
+	CString	m_CodiceDestinatario;
+	CString	m_PEC;
 	//}}AFX_FIELD
 
 

@@ -25,7 +25,7 @@ CConfigurazioneSet::CConfigurazioneSet(CDatabase* pdb)
 	m_Descrizione = _T("");
 	m_nFields = 3;
 	//}}AFX_FIELD_INIT
-	m_nDefaultType = dynaset;
+	m_nDefaultType = snapshot;
 }
 
 

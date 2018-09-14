@@ -55,7 +55,9 @@ CFattureSerEroVerSet::CFattureSerEroVerSet(CDatabase* pdb)
 	m_ScontoSevizio = 0;
 	m_VuoiUrgenza = 0;
 	m_PA = 0;
-	m_nFields = 37;
+	m_CodiceDestinatario = _T("");
+	m_PEC = _T("");
+	m_nFields = 39;
 	//}}AFX_FIELD_INIT
 	m_nDefaultType = snapshot;
 }
@@ -112,6 +114,8 @@ void CFattureSerEroVerSet::DoFieldExchange(CFieldExchange* pFX)
 	RFX_Double(pFX, _T("[SERVIZI_EROGATI].[Sconto]"), m_ScontoSevizio);
 	RFX_Long(pFX, _T("[VERBALI].[VuoiUrgenza]"), m_VuoiUrgenza);
 	RFX_Byte(pFX, _T("[FATTURE].[fPA]"), m_PA);
+	RFX_Text(pFX, _T("[CodiceDestinatario]"), m_CodiceDestinatario);
+	RFX_Text(pFX, _T("[PEC]"), m_PEC);
 	//}}AFX_FIELD_MAP
 }
 

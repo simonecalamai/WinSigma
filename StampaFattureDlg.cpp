@@ -86,6 +86,8 @@ CStampaFattureDlg::CStampaFattureDlg(CWnd* pParent /*=NULL*/)
 	m_csRitAcconto = _T("");
 	m_csTotRitAcconto = _T("");
 	m_bHeader = TRUE;
+	m_strCodiceDestinatario = _T("");
+	m_strPEC = _T("");
 	//}}AFX_DATA_INIT
   m_strImporto.Empty();
   m_strIVA.Empty();
@@ -142,6 +144,8 @@ void CStampaFattureDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Text(pDX, IDC_EDIT_RIT_ACCONTO, m_csRitAcconto);
 	DDX_Text(pDX, IDC_EDIT_TOT_RIT_ACCONTO, m_csTotRitAcconto);
 	DDX_Check(pDX, IDC_CHECK_HEADER, m_bHeader);
+	DDX_Text(pDX, IDC_EDIT_CODDEST, m_strCodiceDestinatario);
+	DDX_Text(pDX, IDC_EDIT_PEC, m_strPEC);
 	//}}AFX_DATA_MAP
 }
 
@@ -423,6 +427,11 @@ void CStampaFattureDlg::OnButtonEmetti()
 			m_pFattureEmesseSet->m_Elett				= 1;
 		else
 			m_pFattureEmesseSet->m_Elett				= 0;
+	
+		if(!m_strCodiceDestinatario.IsEmpty())
+			m_pFattureEmesseSet->m_CodiceDestinatario = m_strCodiceDestinatario;
+		if(!m_strPEC.IsEmpty())
+			m_pFattureEmesseSet->m_PEC = m_strPEC;
 
     m_pFattureEmesseSet->Update();
     // Aggiorno
@@ -1859,13 +1868,28 @@ void CStampaFattureDlg::SetHeader(BOOL bon)
 
 void CStampaFattureDlg::OnButtonFatturaXML() 
 {
-	CWinSigmaApp * pApp = (CWinSigmaApp *) AfxGetApp();
+	CString msg = "";
 
-	CConfigurazione	config;
+	UpdateData(TRUE);
+	// Verifica Codice Destinatario
+	if(m_strCodiceDestinatario.IsEmpty())
+	{
+		// Codice Destinatario mancante
+		msg.Format("Inserire il Codice Destinatario in Anagrafica Aziende:\n");
+		msg += "PA: 6 caratteri, consultare i dati relativi alla fatturazione elettronica su IndicePA\n";
+		msg += "Privati: 7 caratteri (se la fattura deve essere inviata all'indirizzo PEC, inserire 0000000)";
+		MessageBox(msg, "Codice Destinatario mancante!", MB_OK);
+		return;
+	}
 
-	// Lettura variabili
+	CConfigurazione config;
+
+	// Lettura configurazione
+	// Numero progressivo
 	CString csProg = config.Read("ProgressivoXML");
-	int nProgressivo = atoi(csProg);
+	int nProgressivo = atoi(csProg) + 1;
+
+	// Cartella
 	CString csFolder = config.Read("XMLFolder");
 	CString csPath("");
 	CString csFilename("");
@@ -1875,10 +1899,7 @@ void CStampaFattureDlg::OnButtonFatturaXML()
 	CString idCodiceTrasmittente = config.Read("IdCodiceTrasmittente");
 	CString tipoFileXML = config.Read("TipologiaFileXML");
 	CString extXML = config.Read("EstensioneXML");
-	CString versione = config.Read("VersionePA");
-	// if privato:
-	// versione = config.Read("VersionePR");
-	csFilename.Format("%s%s_%s_%d.%s", idPaese, idCodiceTrasmittente, tipoFileXML, nProgressivo, extXML);
+	csFilename.Format("%s%s_%s_%05d.%s", idPaese, idCodiceTrasmittente, tipoFileXML, nProgressivo, extXML);
 	csPath.Format("%s\\%s", csFolder, csFilename);
 	FILE* f = fopen((const char*)csPath.GetBuffer(csPath.GetLength()), "w");
   if (f == NULL)
@@ -1886,7 +1907,33 @@ void CStampaFattureDlg::OnButtonFatturaXML()
 		MessageBox("Errore nell'apertura del file di esportazione. Esportazione fallita!", "Errore", MB_OK);
 		return;
 	}
-	
+
+	// Lettura variabili
+	// Formato Trasmissione	
+	CString versione("");
+	if (m_bPA == TRUE)
+		versione = config.Read("VersionePA");
+	else
+		versione = config.Read("VersionePR");
+
+	// Codice Destinatario
+	CString csCodDest("");
+	CString csPEC("");
+	if(m_bPA == TRUE)
+	{
+		// Pubblica Amministrazione
+		csCodDest = m_strCodiceDestinatario.Left(6);
+	}
+	else
+	{
+		// Privato
+		csCodDest = m_strCodiceDestinatario;
+		if(!m_strCodiceDestinatario.CompareNoCase("0000000"))   // usa la PEC
+		{
+			csPEC = m_strPEC;
+		}
+	}
+
 	// Legge l'header XML
 	CString csHdrTemplate = config.Read("XMLHeader");
 	CString csLine("");
@@ -1920,6 +1967,13 @@ void CStampaFattureDlg::OnButtonFatturaXML()
 	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
 	csLine.Format("<FormatoTrasmissione>%s</FormatoTrasmissione>\n", versione); 
 	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+	csLine.Format("<CodiceDestinatario>%s</CodiceDestinatario>\n", csCodDest); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+	if(m_bPA == FALSE && !csPEC.IsEmpty())
+	{
+		csLine.Format("<PECDestinatario>%s</PECDestinatario>\n", csPEC); 
+		fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+	}
 
 	// Cedente/Prestatore - inizio
 	csLine.Format("<CedentePrestatore>\n"); 
@@ -1958,8 +2012,28 @@ void CStampaFattureDlg::OnButtonFatturaXML()
 	// Esportazione conclusa: chiudo il file
 	fclose(f);
 
-	CString msg = "";
+	// Aggiorna il progressivo
+	csProg.Format("%05d", nProgressivo);
+	config.Write("ProgressivoXML", csProg);
+
+	// Messaggio di conferma
 	msg.Format("File %s generato in %s", csFilename, csFolder);
 	MessageBox(msg, "Esportazione XML", MB_OK);
+
+	// Uscita
+  if(m_pVerbaliInfatturazione)
+  {
+    if(m_pVerbaliInfatturazione->IsOpen())
+      m_pVerbaliInfatturazione->Close();
+    delete m_pVerbaliInfatturazione;
+  }
+  if(m_pServiziErogati)
+  {
+    if(m_pServiziErogati->IsOpen())
+      m_pServiziErogati->Close();
+    delete m_pServiziErogati;
+  }
+  
+	CDialog::OnOK();
 
 }

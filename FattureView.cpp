@@ -66,6 +66,8 @@ CFattureView::CFattureView()
 	m_DataEmissione = 0;
 	m_csRitAcconto = _T("");
 	m_csTotRitAcconto = _T("");
+	m_strCodiceDestinatario = _T("");
+	m_strPEC = _T("");
 	//}}AFX_DATA_INIT
   m_bEnableServiziCheck = FALSE;
   m_lListinoGenerale = m_lListinoParticolare = 0;
@@ -111,6 +113,8 @@ void CFattureView::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_BUTTON_MODIFY_SERVIZIO, m_BtnModifyServizio);
 	DDX_Control(pDX, IDC_BUTTON_DEL_SERVIZIO, m_BtnDeleteServizio);
 	DDX_Control(pDX, IDC_BUTTON_ADD_SERVIZIO, m_BtnAddServizio);
+	DDX_Control(pDX, IDC_EDIT_CODDEST, m_EditCodiceDestinatario);
+	DDX_Control(pDX, IDC_EDIT_PEC, m_EditPEC);
 	DDX_Text(pDX, IDC_EDIT_BANCA, m_strBanca);
 	DDV_MaxChars(pDX, m_strBanca, 64);
 	DDX_Text(pDX, IDC_EDIT_COD_CLIENTE, m_strCodiceCliente);
@@ -137,6 +141,10 @@ void CFattureView::DoDataExchange(CDataExchange* pDX)
 	DDX_DateTimeCtrl(pDX, IDC_DATETIMEPICKER_DATA_EMISSIONE, m_DataEmissione);
 	DDX_Text(pDX, IDC_EDIT_RIT_ACCONTO, m_csRitAcconto);
 	DDX_Text(pDX, IDC_EDIT_TOT_RIT_ACCONTO, m_csTotRitAcconto);
+	DDX_Text(pDX, IDC_EDIT_CODDEST, m_strCodiceDestinatario);
+	DDV_MaxChars(pDX, m_strCodiceDestinatario, 7);
+	DDX_Text(pDX, IDC_EDIT_PEC, m_strPEC);
+	DDV_MaxChars(pDX, m_strPEC, 200);
 	//}}AFX_DATA_MAP
 }
 
@@ -213,6 +221,8 @@ void CFattureView::LoadCurRecord(BOOL bData)
     m_strBanca.Empty();
     m_strTipoPagamento.Empty();
     m_strImporto.Empty();
+    m_strPEC.Empty();
+    m_strCodiceDestinatario.Empty();
     m_ListVerbali.DeleteAllItems();
     m_ListServizi.DeleteAllItems();
     m_DataEmissione = CTime::GetCurrentTime();
@@ -294,6 +304,8 @@ void CFattureView::LoadCurRecord(BOOL bData)
       }
       m_strP_IVA = pAziendeSet->m_P_IVA;
       m_strCodiceFiscale = pAziendeSet->m_CodiceFiscale;
+      m_strCodiceDestinatario = pAziendeSet->m_CodiceDestinatario;
+      m_strPEC = pAziendeSet->m_PEC;
       m_strBanca = pAziendeSet->m_Banca;
       m_strABI = pAziendeSet->m_ABI;
       m_strCAB = pAziendeSet->m_CAB;
@@ -328,6 +340,8 @@ void CFattureView::LoadCurRecord(BOOL bData)
       }
       m_strP_IVA = m_pFattureEmesseSet->m_P_IVA;
       m_strCodiceFiscale = m_pFattureEmesseSet->m_CodiceFiscale;
+      m_strCodiceDestinatario = m_pFattureEmesseSet->m_CodiceDestinatario;
+      m_strPEC = m_pFattureEmesseSet->m_PEC;
       if(m_pFattureEmesseSet->m_BancaAppoggio.IsEmpty())
       {
         m_strBanca = m_pFattureEmesseSet->m_Banca;
@@ -1208,6 +1222,12 @@ void CFattureView::EmettiSalvaFattura(BOOL bElett)
   if (!m_strCodiceFiscale.IsEmpty())
 		dlg.m_strCodFiscale = m_strCodiceFiscale;
 
+  if (!m_strCodiceDestinatario.IsEmpty())
+		dlg.m_strCodiceDestinatario = m_strCodiceDestinatario;
+
+  if (!m_strPEC.IsEmpty())
+		dlg.m_strPEC = m_strPEC;
+
   dlg.m_strRagioneSociale = m_strRagioneSociale;
   dlg.m_strCodice = m_strCodiceCliente;
   dlg.m_strIndirizzo = m_strIndirizzo;
@@ -1247,8 +1267,8 @@ void CFattureView::EmettiSalvaFattura(BOOL bElett)
     ((CWinSigmaDoc*)GetDocument())->m_nSelectedTreeFatture = TREEITEM_FATTUREEMESSE; 
     if(dlg.m_bFatturaEmessa)
       LoadCurRecord(TRUE);
-    else
-      LoadCurRecord(FALSE);
+//    else    // s.c. 14.9.2018 provo a commentare qui cosi non cancella la visualizzazione dei dati fattura... vediamo
+//      LoadCurRecord(FALSE);
     EnableServicesBtns(TRUE);
     EnableControls(FALSE);
     UpdateData(FALSE);
@@ -1412,6 +1432,8 @@ void CFattureView::EnableControls(BOOL bEnable)
   m_EditCodiceCliente.EnableWindow(bEnable);
   m_EditIndirizzo.EnableWindow(bEnable);
   m_EditCodFiscale.EnableWindow(bEnable);
+  m_EditCodiceDestinatario.EnableWindow(bEnable);
+  m_EditPEC.EnableWindow(bEnable);
   m_EditSconto.EnableWindow(bEnable);
   m_EditP_IVA.EnableWindow(bEnable);
   m_ComboTipoPagamento.EnableWindow(bEnable);
@@ -1721,6 +1743,8 @@ void CFattureView::PrintProforma(BOOL bheader)
   dlg.m_lCodiceAzienda = m_pVerbaliInFatturazione->m_CodiceAzFattura;
   dlg.m_strPIVA = m_strP_IVA;
   dlg.m_strCodFiscale =  m_strCodiceFiscale;
+  dlg.m_strCodiceDestinatario =  m_strCodiceDestinatario;
+  dlg.m_strPEC =  m_strPEC;
   dlg.m_strRagioneSociale = m_strRagioneSociale;
   dlg.m_strCodice = m_strCodiceCliente;
   dlg.m_strIndirizzo = m_strIndirizzo;
@@ -1801,6 +1825,12 @@ void CFattureView::OnTrovaAzienda()
     }
     m_strP_IVA = pAziendeSet->m_P_IVA;
     m_strCodiceFiscale = pAziendeSet->m_CodiceFiscale;
+    if(!pAziendeSet->IsFieldNull(&pAziendeSet->m_CodiceDestinatario))
+	    m_strCodiceDestinatario = pAziendeSet->m_CodiceDestinatario;
+		
+    if(!pAziendeSet->IsFieldNull(&pAziendeSet->m_PEC))
+		  m_strPEC = pAziendeSet->m_PEC;
+
     if(!pAziendeSet->IsFieldNull(&pAziendeSet->m_Sconto))
       m_dSconto = pAziendeSet->m_Sconto;
     else

@@ -59,6 +59,8 @@ public:
 	CString	m_strCodFiscale;
 	CString	m_csRitAcconto;
 	CString	m_csTotRitAcconto;
+	CString m_strCodiceDestinatario;
+	CString m_strPEC;
 	BOOL m_bHeader;
 	//}}AFX_DATA
 

@@ -15,6 +15,7 @@ class CConfigurazione : public CConfigurazioneSet
 {
 public:
 	CString Read(CString nome);
+	int Write(CString nome, CString valore);
 	CConfigurazione();
 	virtual ~CConfigurazione();
 

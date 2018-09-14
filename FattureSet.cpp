@@ -55,7 +55,9 @@ CFattureSet::CFattureSet(CDatabase* pdb)
 	m_PA = 0;
 	m_IVADifferita = 0;
 	m_Elett = 0;
-	m_nFields = 35;
+	m_CodiceDestinatario = _T("");
+	m_PEC = _T("");
+	m_nFields = 37;
 	//}}AFX_FIELD_INIT
 	m_nDefaultType = snapshot;
 }
@@ -113,6 +115,8 @@ void CFattureSet::DoFieldExchange(CFieldExchange* pFX)
 	RFX_Byte(pFX, _T("[fPA]"), m_PA);
 	RFX_Byte(pFX, _T("[fIVADiff]"), m_IVADifferita);
 	RFX_Byte(pFX, _T("[fElett]"), m_Elett);
+	RFX_Text(pFX, _T("[CodiceDestinatario]"), m_CodiceDestinatario);
+	RFX_Text(pFX, _T("[PEC]"), m_PEC);
 	//}}AFX_FIELD_MAP
 }
 
