@@ -123,6 +123,9 @@ protected:
   void InitTipiPagamento(void);
   BOOL CheckData(void);
   void SalvaFattura(void);
+	void XMLDatiTrasmissione(FILE* f, int progressivo, CString versione);
+	void XMLCedentePrestatore(FILE* f);
+	void XMLCessionarioCommittente(FILE* f);
 	// Generated message map functions
 	//{{AFX_MSG(CStampaFattureDlg)
 	virtual void OnCancel();

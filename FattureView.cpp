@@ -178,6 +178,7 @@ BEGIN_MESSAGE_MAP(CFattureView, CXFormView)
 	ON_COMMAND(ID_INSERTVERBALE, OnInsertVerbale)
 	ON_COMMAND(ID_FATTURA_ARCHIVIA_SINGOLAFATTURA, OnFatturaArchiviaSingolafattura)
 	ON_COMMAND(ID_FATTURA_ARCHIVIA_GRUPPOFATTURE, OnFatturaArchiviaGruppofatture)
+	ON_COMMAND(ID_FATTURA_XML, OnFatturaXML)
 	ON_NOTIFY(DTN_DATETIMECHANGE, IDC_DATETIMEPICKER_DATA_EMISSIONE, OnDatetimechangeDatetimepickerDataEmissione)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
@@ -1177,6 +1178,39 @@ void CFattureView::OnVisualizzaFattura()
   EmettiSalvaFattura(m_pFattureEmesseSet->m_Elett);
 	
 	pApp->SetFatturaInUso(m_pFattureEmesseSet, TRUE);
+
+}
+
+// Emissione/Esportazione XML di una fattura
+void CFattureView::OnFatturaXML() 
+{
+	CWinSigmaApp* pApp = (CWinSigmaApp*)AfxGetApp();
+	// Fattura da emettere
+  if(m_lCodiceFattura <= 0 || m_pFattureEmesseSet->IsBOF() || m_pFattureEmesseSet->IsEOF())
+  {
+		CString msg,strDatiOccupante;
+		// Blocco della certificazione
+		if( !pApp->DisabilitaFatturazione(&strDatiOccupante) )
+		{
+			msg = STR_BLOCCO_FATTURAZIONE(strDatiOccupante);
+			msg = msg + STR_ISTRUZIONI_RIMOZIONE;
+			AfxMessageBox(msg);
+			return;
+		}
+		EmettiSalvaFattura(TRUE);
+
+		pApp->DisabilitaFatturazione(&strDatiOccupante, FALSE);
+  }
+	// Fattura emessa
+  else if(m_lCodiceFattura > 0 || m_pVerbaliInFatturazione->IsBOF() || m_pVerbaliInFatturazione->IsEOF())
+  {
+		if( !pApp->SetFatturaInUso(m_pFattureEmesseSet))
+			return;
+		EmettiSalvaFattura(m_pFattureEmesseSet->m_Elett);
+		
+		pApp->SetFatturaInUso(m_pFattureEmesseSet, TRUE);
+  }
+
 
 }
 

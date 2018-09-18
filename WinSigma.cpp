@@ -10,6 +10,7 @@
 #include "WinSigmaDoc.h"
 #include "MainFrm.h"
 #include "AziendeView.h"
+#include "Configurazione.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -259,6 +260,33 @@ BOOL CWinSigmaApp::InitInstance()
 #endif
 	((CMainFrame*)m_pMainWnd)->RepopulateTrees();
 	((CMainFrame*)m_pMainWnd)->SetWindowText(str);
+
+	// Lettura dati azienda
+	CConfigurazione config;
+	m_csIdPaese = config.Read("IdPaese");
+	m_csDenominazione = config.Read("Denominazione");
+	m_csPartitaIVA = config.Read("PartitaIVA");
+	m_csRegimeFiscale = config.Read("RegimeFiscale");
+	m_csIndirizzo = config.Read("Indirizzo");
+	m_csNumeroCivico = config.Read("NumeroCivico");
+	m_csCAP = config.Read("CAP");
+	m_csComune = config.Read("Comune");
+	m_csProvincia = config.Read("Provincia");
+	m_csNazione = config.Read("Nazione");
+
+		// Iscrizione REA
+	m_csUfficioREA = config.Read("UfficioREA");
+	m_csNumeroREA = config.Read("NumeroREA");
+	m_csCapitaleSociale = config.Read("CapitaleSociale");
+	m_csSocioUnico = config.Read("SocioUnico");
+	m_csStatoLiquidazione = config.Read("StatoLiquidazione");
+
+	// Dati trasmissione fattura XML
+	m_csIdCodiceTrasmittente = config.Read("IdCodiceTrasmittente");
+	m_csTipologiaFileXML = config.Read("TipologiaFileXML");
+	m_csEstensioneXML = config.Read("EstensioneXML");
+	m_csXMLFolder = config.Read("XMLFolder");
+	m_csXMLHeader = config.Read("XMLHeader");
 
 	// The one and only window has been initialized, so show and update it.
 	m_pMainWnd->ShowWindow(SW_SHOWMAXIMIZED);

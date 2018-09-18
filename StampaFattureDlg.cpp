@@ -1869,6 +1869,7 @@ void CStampaFattureDlg::SetHeader(BOOL bon)
 void CStampaFattureDlg::OnButtonFatturaXML() 
 {
 	CString msg = "";
+  CWinSigmaApp* pApp = (CWinSigmaApp*)AfxGetApp();
 
 	UpdateData(TRUE);
 	// Verifica Codice Destinatario
@@ -1890,15 +1891,15 @@ void CStampaFattureDlg::OnButtonFatturaXML()
 	int nProgressivo = atoi(csProg) + 1;
 
 	// Cartella
-	CString csFolder = config.Read("XMLFolder");
+	CString csFolder = pApp->m_csXMLFolder;
 	CString csPath("");
 	CString csFilename("");
 
 	// Compone il nome del file di esportazione e lo apre
-	CString idPaese = config.Read("IdPaese");
-	CString idCodiceTrasmittente = config.Read("IdCodiceTrasmittente");
-	CString tipoFileXML = config.Read("TipologiaFileXML");
-	CString extXML = config.Read("EstensioneXML");
+	CString idPaese = pApp->m_csIdPaese;
+	CString idCodiceTrasmittente = pApp->m_csIdCodiceTrasmittente;
+	CString tipoFileXML = pApp->m_csTipologiaFileXML;
+	CString extXML = pApp->m_csEstensioneXML;
 	csFilename.Format("%s%s_%s_%05d.%s", idPaese, idCodiceTrasmittente, tipoFileXML, nProgressivo, extXML);
 	csPath.Format("%s\\%s", csFolder, csFilename);
 	FILE* f = fopen((const char*)csPath.GetBuffer(csPath.GetLength()), "w");
@@ -1916,26 +1917,8 @@ void CStampaFattureDlg::OnButtonFatturaXML()
 	else
 		versione = config.Read("VersionePR");
 
-	// Codice Destinatario
-	CString csCodDest("");
-	CString csPEC("");
-	if(m_bPA == TRUE)
-	{
-		// Pubblica Amministrazione
-		csCodDest = m_strCodiceDestinatario.Left(6);
-	}
-	else
-	{
-		// Privato
-		csCodDest = m_strCodiceDestinatario;
-		if(!m_strCodiceDestinatario.CompareNoCase("0000000"))   // usa la PEC
-		{
-			csPEC = m_strPEC;
-		}
-	}
-
 	// Legge l'header XML
-	CString csHdrTemplate = config.Read("XMLHeader");
+	CString csHdrTemplate = pApp->m_csXMLHeader;
 	CString csLine("");
 	csLine.Format(csHdrTemplate, versione);
 	csLine += "\n";
@@ -1945,56 +1928,15 @@ void CStampaFattureDlg::OnButtonFatturaXML()
 	csLine.Format("<FatturaElettronicaHeader>\n"); 
 	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
 
-	// Sezione DatiTrasmissione - inizio
-	csLine.Format("<DatiTrasmissione>\n"); 
-	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+	// Sezione DatiTrasmissione
+	XMLDatiTrasmissione(f, nProgressivo, versione); 
 
-	// IdTrasmittente - inizio
-	csLine.Format("<IdTrasmittente>\n"); 
-	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+	// Sezione Cedente/Prestatore (Laboratorio Sigma srl)
+	XMLCedentePrestatore(f);
 
-	csLine.Format("<IdPaese>%s</IdPaese>\n", idPaese); 
-	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+	// Sezione Cessionario/Committente  (cliente intestatario della fattura)
+	XMLCessionarioCommittente(f);
 
-	csLine.Format("<IdCodice>%s</IdCodice>\n", idCodiceTrasmittente); 
-	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
-
-	csLine.Format("</IdTrasmittente>\n"); 
-	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
-	// IdTrasmittente - fine
-
-	csLine.Format("<ProgressivoInvio>%d</ProgressivoInvio>\n", nProgressivo); 
-	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
-	csLine.Format("<FormatoTrasmissione>%s</FormatoTrasmissione>\n", versione); 
-	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
-	csLine.Format("<CodiceDestinatario>%s</CodiceDestinatario>\n", csCodDest); 
-	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
-	if(m_bPA == FALSE && !csPEC.IsEmpty())
-	{
-		csLine.Format("<PECDestinatario>%s</PECDestinatario>\n", csPEC); 
-		fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
-	}
-
-	// Cedente/Prestatore - inizio
-	csLine.Format("<CedentePrestatore>\n"); 
-	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
-
-	csLine.Format("</CedentePrestatore>\n"); 
-	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
-	// Cedente/Prestatore - fine
-
-	// Cessionario/Committente - inizio
-	csLine.Format("<CessionarioCommittente>\n"); 
-	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
-
-	csLine.Format("</CessionarioCommittente>\n"); 
-	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
-	// Cessionario/Committente - fine
-
-	// chiudo sezione DatiTrasmissione
-	csLine.Format("</DatiTrasmissione>\n"); 
-	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
-	// Sezione DatiTrasmissione - fine
 	// chiudo FatturaElettronicaHeader
 	csLine.Format("</FatturaElettronicaHeader>\n"); 
 	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
@@ -2036,4 +1978,169 @@ void CStampaFattureDlg::OnButtonFatturaXML()
   
 	CDialog::OnOK();
 
+}
+
+// Esportazione XML; sezione DatiTrasmissione
+void CStampaFattureDlg::XMLDatiTrasmissione(FILE* f, int progressivo, CString versione) 
+{
+	CString csLine("");
+  CWinSigmaApp* pApp = (CWinSigmaApp*)AfxGetApp();
+
+	// Codice Destinatario
+	CString csCodDest("");
+	CString csPEC("");
+	if(m_bPA == TRUE)
+	{
+		// Pubblica Amministrazione
+		csCodDest = m_strCodiceDestinatario.Left(6);
+	}
+	else
+	{
+		// Privato
+		csCodDest = m_strCodiceDestinatario;
+		if(!m_strCodiceDestinatario.CompareNoCase("0000000"))   // usa la PEC
+		{
+			csPEC = m_strPEC;
+		}
+	}
+
+	csLine.Format("<DatiTrasmissione>\n"); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+
+	// IdTrasmittente - inizio
+	csLine.Format("<IdTrasmittente>\n"); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+
+	csLine.Format("<IdPaese>%s</IdPaese>\n", pApp->m_csIdPaese); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+
+	csLine.Format("<IdCodice>%s</IdCodice>\n", pApp->m_csIdCodiceTrasmittente); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+
+	csLine.Format("</IdTrasmittente>\n"); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+	// IdTrasmittente - fine
+
+	csLine.Format("<ProgressivoInvio>%05d</ProgressivoInvio>\n", progressivo); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+	csLine.Format("<FormatoTrasmissione>%s</FormatoTrasmissione>\n", versione); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+	csLine.Format("<CodiceDestinatario>%s</CodiceDestinatario>\n", csCodDest); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+	if(m_bPA == FALSE && !csPEC.IsEmpty())
+	{
+		csLine.Format("<PECDestinatario>%s</PECDestinatario>\n", csPEC); 
+		fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+	}
+
+	// chiudo sezione DatiTrasmissione
+	csLine.Format("</DatiTrasmissione>\n"); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+}
+
+// Esportazione XML; sezione CedentePrestatore
+void CStampaFattureDlg::XMLCedentePrestatore(FILE* f) 
+{
+	CString csLine("");
+  CWinSigmaApp* pApp = (CWinSigmaApp*)AfxGetApp();
+
+	//////////////// Cedente/Prestatore - inizio //////////////////////////////
+	csLine.Format("<CedentePrestatore>\n"); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+	
+	// Dati Anagrafici
+	csLine.Format("<DatiAnagrafici>\n"); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+
+	// IdFiscaleIVA
+	csLine.Format("<IdFiscaleIVA>\n"); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+	// -- IdPaese
+	csLine.Format("<IdPaese>%s</IdPaese>\n", pApp->m_csIdPaese); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+	// -- IdCodice
+	csLine.Format("<IdCodice>%s</IdCodice>\n", pApp->m_csPartitaIVA); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+	csLine.Format("</IdFiscaleIVA>\n"); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+
+	// Anagrafica
+	csLine.Format("<Anagrafica>\n"); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+	// -- Denominazione
+	csLine.Format("<Denominazione>%s</Denominazione>\n", pApp->m_csDenominazione); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+	csLine.Format("</Anagrafica>\n"); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+
+	// -- Regime Fiscale
+	csLine.Format("<RegimeFiscale>%s</RegimeFiscale>\n", pApp->m_csRegimeFiscale); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+
+	csLine.Format("</DatiAnagrafici>\n"); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+
+	// Sede
+	csLine.Format("<Sede>\n"); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+	// -- Indirizzo
+	csLine.Format("<Indirizzo>%s</Indirizzo>\n", pApp->m_csIndirizzo); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+	// -- NumeroCivico
+	csLine.Format("<NumeroCivico>%s</NumeroCivico>\n", pApp->m_csNumeroCivico); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+	// -- CAP
+	csLine.Format("<CAP>%s</CAP>\n", pApp->m_csCAP); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+	// -- Comune
+	csLine.Format("<Comune>%s</Comune>\n", pApp->m_csComune); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+	// -- Provincia
+	csLine.Format("<Provincia>%s</Provincia>\n", pApp->m_csProvincia); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+	// -- Nazione
+	csLine.Format("<Nazione>%s</Nazione>\n", pApp->m_csNazione); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+	csLine.Format("</Sede>\n"); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+
+	// Iscrizione REA
+	csLine.Format("<IscrizioneREA>\n"); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+	// -- Ufficio
+	csLine.Format("<UfficioREA>%s</UfficioREA>\n", pApp->m_csUfficioREA); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+	// -- Numero REA
+	csLine.Format("<NumeroREA>%s</NumeroREA>\n", pApp->m_csNumeroREA); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+	// -- Capitale Sociale
+	csLine.Format("<CapitaleSociale>%s</CapitaleSociale>\n", pApp->m_csCapitaleSociale); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+	// -- Socio Unico
+	csLine.Format("<SocioUnico>%s</SocioUnico>\n", pApp->m_csSocioUnico); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+	// -- Stato Liquidazione
+	csLine.Format("<StatoLiquidazione>%s</StatoLiquidazione>\n", pApp->m_csStatoLiquidazione); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+
+	csLine.Format("</IscrizioneREA>\n"); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+	
+	csLine.Format("</CedentePrestatore>\n"); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+	////////////// Cedente/Prestatore - fine ////////////////////////////////
+}
+
+// Esportazione XML; sezione CessionarioCommittente
+void CStampaFattureDlg::XMLCessionarioCommittente(FILE* f) 
+{
+	CString csLine("");
+
+	////////////// Cessionario/Committente - inizio /////////////////////////
+	csLine.Format("<CessionarioCommittente>\n"); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+
+	csLine.Format("</CessionarioCommittente>\n"); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+	// Cessionario/Committente - fine
 }

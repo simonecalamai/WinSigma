@@ -365,6 +365,33 @@ class CWinSigmaApp : public CWinApp
 		CString m_headerPrn;
 		CString m_headerFatturePrn;
 		CString m_headerVerbaliPrn;
+
+		// Dati Azienda
+		CString m_csIdPaese;
+		CString m_csDenominazione;
+		CString m_csPartitaIVA;
+		CString	m_csRegimeFiscale;
+		CString m_csIndirizzo;
+		CString m_csNumeroCivico;
+		CString m_csCAP;
+		CString m_csComune;
+		CString m_csProvincia;
+		CString m_csNazione;
+		
+		// Iscrizione REA
+		CString m_csUfficioREA;
+		CString m_csNumeroREA;
+		CString m_csCapitaleSociale;
+		CString m_csSocioUnico;
+		CString m_csStatoLiquidazione;
+
+		// Dati trasmissione fattura XML
+		CString m_csIdCodiceTrasmittente;
+		CString m_csTipologiaFileXML;
+		CString m_csEstensioneXML;
+		CString m_csXMLFolder;
+		CString m_csXMLHeader;
+
   /*---- metodi -----*/
   public:
 		~CWinSigmaApp();

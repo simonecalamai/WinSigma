@@ -260,6 +260,7 @@ BEGIN
             MENUITEM "S&blocca fattura",            ID_SBLOCCAFATTURA
             MENUITEM "S&blocca fatturazione",       ID_SBLOCCAFATTURAZIONE
         END
+        MENUITEM "&XML...",                     ID_FATTURA_XML
     END
     POPUP "&?"
     BEGIN
@@ -2743,6 +2744,7 @@ BEGIN
     ID_BUTTON_STAMPA_CERTIFICATI 
                             "Procedura di stampa multipla dei certificati emessi\nStampa certificati"
     ID_FATTURA_ESPORTAXML   "Esportazione fatture su file XML"
+    ID_FATTURA_XML          "Esporta la fattura in XML"
 END
 
 STRINGTABLE DISCARDABLE 
