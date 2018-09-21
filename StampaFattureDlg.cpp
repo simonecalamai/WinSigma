@@ -18,6 +18,7 @@ static char THIS_FILE[] = __FILE__;
 #define MAX_CHAR_DESCRIZIONE 85
 #define N_COPIE_FATTURA 2
 #define VERIFY_DATA_MSG "Verificare la correttezza della data."
+#define SAVED_INVOICE_MSG "Fattura salvata correttamente."
 
 /////////////////////////////////////////////////////////////////////////////
 // CStampaFattureDlg dialog
@@ -88,6 +89,14 @@ CStampaFattureDlg::CStampaFattureDlg(CWnd* pParent /*=NULL*/)
 	m_bHeader = TRUE;
 	m_strCodiceDestinatario = _T("");
 	m_strPEC = _T("");
+	m_strCUP = _T("");
+	m_strCIG = _T("");
+	m_strOrdineAcquisto = _T("");
+	m_DataOrdineAcquisto = 0;
+	m_strContratto = _T("");
+	m_DataContratto = 0;
+	m_strNumeroDDT = _T("");
+	m_DataDDT = 0;
 	//}}AFX_DATA_INIT
   m_strImporto.Empty();
   m_strIVA.Empty();
@@ -95,6 +104,7 @@ CStampaFattureDlg::CStampaFattureDlg(CWnd* pParent /*=NULL*/)
   m_csRitAcconto.Empty();
   m_csTotRitAcconto.Empty();
   m_bFatturaProForma = FALSE;
+	m_csSum.Empty();
 
   m_nRitAcconto = 0;
   m_nTotRitAcconto = 0;
@@ -114,6 +124,12 @@ void CStampaFattureDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_BUTTON_PRINT_FATTURA, m_BtnStampaFattura);
 	DDX_Control(pDX, IDC_BUTTON_FATTURA_XML, m_BtnFatturaXML);
 	DDX_Control(pDX, IDOK, m_BtnEmettiFattura);
+	DDX_Control(pDX, IDC_EDIT_ORDINE, m_edtOrdineAcquisto);
+	DDX_Control(pDX, IDC_DATETIMEPICKER_DATA_ORDINE, m_DTCtrlDataOrdineAcquisto);
+	DDX_Control(pDX, IDC_EDIT_CONTRATTO, m_edtContratto);
+	DDX_Control(pDX, IDC_DATETIMEPICKER_DATA_CONTRATTO, m_DTCtrlDataContratto);
+	DDX_Control(pDX, IDC_EDIT_NUMERODDT, m_edtNumeroDDT);
+	DDX_Control(pDX, IDC_DATETIMEPICKER_DATA_DDT, m_DTCtrlDataDDT);
 	DDX_Check(pDX, IDC_CHECK_SPEDIZIONE, m_bSpedizione);
 	DDX_Check(pDX, IDC_CHECK_PA, m_bPA);
 	DDX_Check(pDX, IDC_CHECK_IVADIFF, m_bIVADifferita);
@@ -145,7 +161,22 @@ void CStampaFattureDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Text(pDX, IDC_EDIT_TOT_RIT_ACCONTO, m_csTotRitAcconto);
 	DDX_Check(pDX, IDC_CHECK_HEADER, m_bHeader);
 	DDX_Text(pDX, IDC_EDIT_CODDEST, m_strCodiceDestinatario);
+	DDV_MaxChars(pDX, m_strCodiceDestinatario, 7);
 	DDX_Text(pDX, IDC_EDIT_PEC, m_strPEC);
+	DDV_MaxChars(pDX, m_strPEC, 200);
+	DDX_Text(pDX, IDC_EDIT_CUP, m_strCUP);
+	DDV_MaxChars(pDX, m_strCUP, 20);
+	DDX_Text(pDX, IDC_EDIT_CIG, m_strCIG);
+	DDV_MaxChars(pDX, m_strCIG, 20);
+	DDX_Text(pDX, IDC_EDIT_ORDINE, m_strOrdineAcquisto);
+	DDV_MaxChars(pDX, m_strOrdineAcquisto, 20);
+	DDX_DateTimeCtrl(pDX, IDC_DATETIMEPICKER_DATA_ORDINE, m_DataOrdineAcquisto);
+	DDX_Text(pDX, IDC_EDIT_CONTRATTO, m_strContratto);
+	DDV_MaxChars(pDX, m_strContratto, 20);
+	DDX_DateTimeCtrl(pDX, IDC_DATETIMEPICKER_DATA_CONTRATTO, m_DataContratto);
+	DDX_Text(pDX, IDC_EDIT_NUMERODDT, m_strNumeroDDT);
+	DDV_MaxChars(pDX, m_strNumeroDDT, 20);
+	DDX_DateTimeCtrl(pDX, IDC_DATETIMEPICKER_DATA_DDT, m_DataDDT);
 	//}}AFX_DATA_MAP
 }
 
@@ -162,6 +193,9 @@ BEGIN_MESSAGE_MAP(CStampaFattureDlg, CDialog)
 	ON_EN_CHANGE(IDC_EDIT_SCONTO, OnChangeEditSconto)
 	ON_EN_CHANGE(IDC_EDIT_TOTALE, OnChangeEditTotale)
 	ON_EN_CHANGE(IDC_EDIT_RIT_ACCONTO, OnChangeEditRitAcconto)
+	ON_EN_KILLFOCUS(IDC_EDIT_ORDINE, OnKillfocusEditOrdineAcquisto)
+	ON_EN_KILLFOCUS(IDC_EDIT_CONTRATTO, OnKillfocusEditContratto)
+	ON_EN_KILLFOCUS(IDC_EDIT_NUMERODDT, OnKillfocusEditNumeroDDT)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -213,6 +247,10 @@ BOOL CStampaFattureDlg::OnInitDialog()
 		((CStatic*)GetDlgItem(IDC_STATIC_ELETT))->ShowWindow(SW_SHOW);
 	else
 		((CStatic*)GetDlgItem(IDC_STATIC_ELETT))->ShowWindow(SW_HIDE);
+	
+	m_DTCtrlDataOrdineAcquisto.EnableWindow(FALSE);
+	m_DTCtrlDataContratto.EnableWindow(FALSE);
+	m_DTCtrlDataDDT.EnableWindow(FALSE);
   // Inizializzo il recordset prendendo solo le fatture dell'anno impostato nella data di emissione
   m_pFattureEmesseSet = m_pDoc->m_pFattureEmesseSet;
   CTime dateFrom(m_DataFattura.GetYear(), 1, 1, 0, 0, 0);
@@ -333,6 +371,9 @@ BOOL CStampaFattureDlg::OnInitDialog()
   CalcolaTotale();
 
   UpdateData(FALSE);
+
+	// memorizza lo stato dei parametri soggetti a variazione
+	ChangeChecker();
 	return FALSE;  
 }
 
@@ -354,6 +395,7 @@ void CStampaFattureDlg::OnButtonEmetti()
   if(m_lCodiceFatturaEmessa > 0)
   {
     SalvaFattura();
+    AfxMessageBox(SAVED_INVOICE_MSG);
     return;
   }
   // Ho emesso una nuova fattura
@@ -428,10 +470,45 @@ void CStampaFattureDlg::OnButtonEmetti()
 		else
 			m_pFattureEmesseSet->m_Elett				= 0;
 	
+		// Dati per esportazione XML
 		if(!m_strCodiceDestinatario.IsEmpty())
 			m_pFattureEmesseSet->m_CodiceDestinatario = m_strCodiceDestinatario;
 		if(!m_strPEC.IsEmpty())
 			m_pFattureEmesseSet->m_PEC = m_strPEC;
+
+		// Codice Unico Progetto (CUP)
+		if(!m_strCUP.IsEmpty())
+			m_pFattureEmesseSet->m_CUP = m_strCUP;
+		// Codice Identificativo Gara (CIG)
+		if(!m_strCIG.IsEmpty())
+			m_pFattureEmesseSet->m_CIG = m_strCIG;
+		// Ordine Acquisto
+		if(!m_strOrdineAcquisto.IsEmpty())
+		{
+			m_pFattureEmesseSet->m_OrdineAcquisto = m_strOrdineAcquisto;
+			if(m_DataOrdineAcquisto > 0)  // controllo se il campo data è valorizzato
+			{
+		    m_pFattureEmesseSet->m_DataOrdineAcquisto = m_DataOrdineAcquisto;
+			}
+  	}
+		// Contratto
+		if(!m_strContratto.IsEmpty())
+		{
+			m_pFattureEmesseSet->m_Contratto = m_strContratto;
+			if(m_DataContratto > 0)  // controllo se il campo data è valorizzato
+			{
+		    m_pFattureEmesseSet->m_DataContratto = m_DataContratto;
+			}
+  	}
+		// DDT
+		if(!m_strNumeroDDT.IsEmpty())
+		{
+			m_pFattureEmesseSet->m_NumeroDDT = m_strNumeroDDT;
+			if(m_DataDDT > 0)  // controllo se il campo data è valorizzato
+			{
+		    m_pFattureEmesseSet->m_DataDDT = m_DataDDT;
+			}
+  	}
 
     m_pFattureEmesseSet->Update();
     // Aggiorno
@@ -549,6 +626,40 @@ void CStampaFattureDlg::SalvaFattura(void)
 		m_pFattureEmesseSet->m_IVADifferita	= 1;
 	else
 		m_pFattureEmesseSet->m_IVADifferita	= 0;
+
+	// Codice Unico Progetto (CUP)
+	if(!m_strCUP.IsEmpty())
+		m_pFattureEmesseSet->m_CUP = m_strCUP;
+	// Codice Identificativo Gara (CIG)
+	if(!m_strCIG.IsEmpty())
+		m_pFattureEmesseSet->m_CIG = m_strCIG;
+	// Ordine Acquisto
+	if(!m_strOrdineAcquisto.IsEmpty())
+	{
+		m_pFattureEmesseSet->m_OrdineAcquisto = m_strOrdineAcquisto;
+		if(m_DataOrdineAcquisto > 0)  // controllo se il campo data è valorizzato
+		{
+	    m_pFattureEmesseSet->m_DataOrdineAcquisto = m_DataOrdineAcquisto;
+		}
+  }
+	// Contratto
+	if(!m_strContratto.IsEmpty())
+	{
+		m_pFattureEmesseSet->m_Contratto = m_strContratto;
+		if(m_DataContratto > 0)  // controllo se il campo data è valorizzato
+		{
+	    m_pFattureEmesseSet->m_DataContratto = m_DataContratto;
+		}
+  }
+	// DDT
+	if(!m_strNumeroDDT.IsEmpty())
+	{
+		m_pFattureEmesseSet->m_NumeroDDT = m_strNumeroDDT;
+		if(m_DataDDT > 0)  // controllo se il campo data è valorizzato
+		{
+	    m_pFattureEmesseSet->m_DataDDT = m_DataDDT;
+		}
+  }
 
   m_pFattureEmesseSet->Update();
   pApp->UnlockTables();
@@ -1872,6 +1983,8 @@ void CStampaFattureDlg::OnButtonFatturaXML()
   CWinSigmaApp* pApp = (CWinSigmaApp*)AfxGetApp();
 
 	UpdateData(TRUE);
+	if(ChangeChecker())
+	  SalvaFattura();
 	// Verifica Codice Destinatario
 	if(m_strCodiceDestinatario.IsEmpty())
 	{
@@ -1920,6 +2033,7 @@ void CStampaFattureDlg::OnButtonFatturaXML()
 	// Legge l'header XML
 	CString csHdrTemplate = pApp->m_csXMLHeader;
 	CString csLine("");
+	// FatturaElettronica: apertura
 	csLine.Format(csHdrTemplate, versione);
 	csLine += "\n";
 	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
@@ -1929,13 +2043,16 @@ void CStampaFattureDlg::OnButtonFatturaXML()
 	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
 
 	// Sezione DatiTrasmissione
-	XMLDatiTrasmissione(f, nProgressivo, versione); 
+	XMLHeaderDatiTrasmissione(f, nProgressivo, versione); 
 
 	// Sezione Cedente/Prestatore (Laboratorio Sigma srl)
-	XMLCedentePrestatore(f);
+	XMLHeaderCedentePrestatore(f);
 
 	// Sezione Cessionario/Committente  (cliente intestatario della fattura)
-	XMLCessionarioCommittente(f);
+	XMLHeaderCessionarioCommittente(f);
+
+	// Sezione Terzo Intermediario o Soggetto Emittente
+	XMLHeaderTerzoIntermediarioSoggettoEmittente(f);
 
 	// chiudo FatturaElettronicaHeader
 	csLine.Format("</FatturaElettronicaHeader>\n"); 
@@ -1946,10 +2063,23 @@ void CStampaFattureDlg::OnButtonFatturaXML()
 	csLine.Format("<FatturaElettronicaBody>\n"); 
 	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
 
+	// Sezione Dati Generali
+	XMLBodyDatiGenerali(f);
+
+	// Sezione Dati Beni Servizi
+	XMLBodyDatiBeniServizi(f);
+
+	// Sezione Dati Pagamento
+	XMLBodyDatiPagamento(f);
+
 	// chiudo FatturaElettronicaBody
 	csLine.Format("</FatturaElettronicaBody>\n"); 
 	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
 	//////// FatturaElettronicaBody: fine 
+
+	// FatturaElettronica: chiusura
+	csLine.Format("</p:FatturaElettronica>\n"); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
 
 	// Esportazione conclusa: chiudo il file
 	fclose(f);
@@ -1980,8 +2110,8 @@ void CStampaFattureDlg::OnButtonFatturaXML()
 
 }
 
-// Esportazione XML; sezione DatiTrasmissione
-void CStampaFattureDlg::XMLDatiTrasmissione(FILE* f, int progressivo, CString versione) 
+// Esportazione XML; Header sezione DatiTrasmissione
+void CStampaFattureDlg::XMLHeaderDatiTrasmissione(FILE* f, int progressivo, CString versione) 
 {
 	CString csLine("");
   CWinSigmaApp* pApp = (CWinSigmaApp*)AfxGetApp();
@@ -2038,8 +2168,8 @@ void CStampaFattureDlg::XMLDatiTrasmissione(FILE* f, int progressivo, CString ve
 	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
 }
 
-// Esportazione XML; sezione CedentePrestatore
-void CStampaFattureDlg::XMLCedentePrestatore(FILE* f) 
+// Esportazione XML; Header sezione CedentePrestatore
+void CStampaFattureDlg::XMLHeaderCedentePrestatore(FILE* f) 
 {
 	CString csLine("");
   CWinSigmaApp* pApp = (CWinSigmaApp*)AfxGetApp();
@@ -2131,16 +2261,362 @@ void CStampaFattureDlg::XMLCedentePrestatore(FILE* f)
 	////////////// Cedente/Prestatore - fine ////////////////////////////////
 }
 
-// Esportazione XML; sezione CessionarioCommittente
-void CStampaFattureDlg::XMLCessionarioCommittente(FILE* f) 
+// Esportazione XML; Header sezione CessionarioCommittente
+void CStampaFattureDlg::XMLHeaderCessionarioCommittente(FILE* f) 
 {
+	BOOL persGiuridica = TRUE;
 	CString csLine("");
+  CWinSigmaApp* pApp = (CWinSigmaApp*)AfxGetApp();
 
 	////////////// Cessionario/Committente - inizio /////////////////////////
 	csLine.Format("<CessionarioCommittente>\n"); 
 	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
 
+	// Dati Anagrafici
+	csLine.Format("<DatiAnagrafici>\n"); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+
+	// IdFiscaleIVA
+	csLine.Format("<IdFiscaleIVA>\n"); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+	// -- IdPaese
+	csLine.Format("<IdPaese>%s</IdPaese>\n", pApp->m_csIdPaese); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+	// -- IdCodice
+	if(!m_strPIVA.IsEmpty())
+	{
+		// Partita IVA -> persona giuridica
+		csLine.Format("<IdCodice>%s</IdCodice>\n", m_strPIVA); 
+	}
+	else
+	{
+		// Codice Fiscale -> persona fisica
+		persGiuridica = FALSE;
+		csLine.Format("<IdCodice>%s</IdCodice>\n", m_strCodFiscale); 
+	}
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+	csLine.Format("</IdFiscaleIVA>\n"); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+
+	// Anagrafica
+	csLine.Format("<Anagrafica>\n"); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+	// -- Denominazione
+	if(persGiuridica == TRUE)
+	{
+		// persona giuridica -> Denominazione
+		csLine.Format("<Denominazione>%s</Denominazione>\n", m_strRagioneSociale); 
+		fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+	}
+	else
+	{
+		// persona fisica -> Nome e Cognome (per ora metto la Ragione Sociale nel tag <Cognome> s.c. 18.9.2018)
+		csLine.Format("<Cognome>%s</Cognome>\n", m_strRagioneSociale); 
+		fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+		csLine.Format("<Nome>%s</Nome>\n", ""); 
+		fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+	}
+	csLine.Format("</Anagrafica>\n"); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+
+	csLine.Format("</DatiAnagrafici>\n"); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+
+	// Sede
+	csLine.Format("<Sede>\n"); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+	// -- Indirizzo
+	csLine.Format("<Indirizzo>%s</Indirizzo>\n", m_pAziendeSet->m_Indirizzo); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+	// -- NumeroCivico
+	csLine.Format("<NumeroCivico>%s</NumeroCivico>\n", ""); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+	// -- CAP
+	csLine.Format("<CAP>%s</CAP>\n", m_pAziendeSet->m_CAP); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+	// -- Comune
+	csLine.Format("<Comune>%s</Comune>\n", m_pAziendeSet->m_Citta); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+	// -- Provincia
+	csLine.Format("<Provincia>%s</Provincia>\n", m_pAziendeSet->m_Provincia); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+	// -- Nazione
+	csLine.Format("<Nazione>%s</Nazione>\n", pApp->m_csNazione); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+	csLine.Format("</Sede>\n"); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+
+
+
 	csLine.Format("</CessionarioCommittente>\n"); 
 	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
 	// Cessionario/Committente - fine
+}
+
+// Esportazione XML; Header sezione TerzoIntermediario/SoggettoEmittente
+void CStampaFattureDlg::XMLHeaderTerzoIntermediarioSoggettoEmittente(FILE* f) 
+{
+	CString csLine("");
+  CWinSigmaApp* pApp = (CWinSigmaApp*)AfxGetApp();
+
+	csLine.Format("<TerzoIntermediarioOSoggettoEmittente>\n"); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+
+	// Dati Anagrafici
+	csLine.Format("<DatiAnagrafici>\n"); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+
+	// IdFiscaleIVA
+	csLine.Format("<IdFiscaleIVA>\n"); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+	// -- IdPaese
+	csLine.Format("<IdPaese>%s</IdPaese>\n", pApp->m_csIdPaese); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+	// -- IdCodice
+	csLine.Format("<IdCodice>%s</IdCodice>\n", pApp->m_csIdCodiceEmittente); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+	csLine.Format("</IdFiscaleIVA>\n"); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+
+	// -- Codice Fiscale
+	csLine.Format("<CodiceFiscale>%s</CodiceFiscale>\n", pApp->m_csIdCodiceEmittente); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+
+	// Anagrafica
+	csLine.Format("<Anagrafica>\n"); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+	// -- Denominazione
+	csLine.Format("<Denominazione>%s</Denominazione>\n", pApp->m_csDenominazioneEmittente); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+	csLine.Format("</Anagrafica>\n"); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+
+	// tag DatiAnagrafici: chiusura
+	csLine.Format("</DatiAnagrafici>\n"); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+
+	// chiudo sezione TerzoIntermediario/SoggettoEmittente
+	csLine.Format("</TerzoIntermediarioOSoggettoEmittente>\n"); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+
+	// SoggettoEmittente
+	csLine.Format("<SoggettoEmittente>%s</SoggettoEmittente>\n", pApp->m_csSoggettoEmittente); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+
+}
+
+
+// Esportazione XML; Body sezione Dati Generali
+void CStampaFattureDlg::XMLBodyDatiGenerali(FILE* f) 
+{
+	CString csLine("");
+  CWinSigmaApp* pApp = (CWinSigmaApp*)AfxGetApp();
+
+	csLine.Format("<DatiGenerali>\n"); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+
+	// Sezione DatiGeneraliDocumento
+	csLine.Format("<DatiGeneraliDocumento>\n"); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+
+	// Tipo Documento
+	if(m_pFattureEmesseSet->m_TipoDocumento	== FATTURA)
+	{
+		csLine.Format("<TipoDocumento>%s</TipoDocumento>\n", pApp->m_csTipoDocFattura); 
+	}
+	else if(m_pFattureEmesseSet->m_TipoDocumento == NOTA_CREDITO)
+	{
+		csLine.Format("<TipoDocumento>%s</TipoDocumento>\n", pApp->m_csTipoDocNotaCredito); 
+	}
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+
+	// Divisa
+	csLine.Format("<Divisa>%s</Divisa>\n", pApp->m_csDivisa); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+
+	// Data
+	csLine.Format("<Data>%s</Data>\n", m_pFattureEmesseSet->m_Data.Format("%Y-%m-%d")); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+
+	// Numero
+	csLine.Format("<Numero>%d</Numero>\n", m_pFattureEmesseSet->m_Numero); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+
+	csLine.Format("</DatiGeneraliDocumento>\n"); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+
+	if(!m_strOrdineAcquisto.IsEmpty())
+	{
+		// Sezione DatiOrdineAcquisto
+		csLine.Format("<DatiOrdineAcquisto>\n"); 
+		fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+
+		// IdDocumento 
+		csLine.Format("<IdDocumento>%s</IdDocumento>\n", m_strOrdineAcquisto); 
+		fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+
+		// Data
+		if(m_DataOrdineAcquisto > 0)
+		{
+			csLine.Format("<Data>%s</Data>\n", m_DataOrdineAcquisto.Format("%Y-%m-%d")); 
+			fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+		}
+
+		// CUP
+		if(!m_strCUP.IsEmpty())
+		{
+			csLine.Format("<CUP>%s</CUP>\n", m_strCUP); 
+			fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+		}
+
+		// CIG
+		if(!m_strCIG.IsEmpty())
+		{
+			csLine.Format("<CIG>%s</CIG>\n", m_strCIG); 
+			fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+		}
+
+		csLine.Format("</DatiOrdineAcquisto>\n"); 
+		fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+	}
+	
+	if(!m_strContratto.IsEmpty())
+	{
+		// Sezione DatiContratto
+		csLine.Format("<DatiContratto>\n"); 
+		fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+
+		// IdDocumento 
+		csLine.Format("<IdDocumento>%s</IdDocumento>\n", m_strContratto); 
+		fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+
+		// Data
+		if(m_DataContratto > 0)
+		{
+			csLine.Format("<Data>%s</Data>\n", m_DataContratto.Format("%Y-%m-%d")); 
+			fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+		}
+
+		// CUP
+		if(!m_strCUP.IsEmpty())
+		{
+			csLine.Format("<CUP>%s</CUP>\n", m_strCUP); 
+			fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+		}
+
+		// CIG
+		if(!m_strCIG.IsEmpty())
+		{
+			csLine.Format("<CIG>%s</CIG>\n", m_strCIG); 
+			fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+		}
+
+		csLine.Format("</DatiContratto>\n"); 
+		fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+	}
+
+	if(!m_strNumeroDDT.IsEmpty())
+	{
+		// Sezione DatiDDT
+		csLine.Format("<DatiDDT>\n"); 
+		fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+
+		// NumeroDDT 
+		csLine.Format("<NumeroDDT>%s</NumeroDDT>\n", m_strNumeroDDT); 
+		fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+
+		// Data DDT
+		if(m_DataDDT > 0)
+		{
+			csLine.Format("<Data>%s</Data>\n", m_DataDDT.Format("%Y-%m-%d")); 
+			fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+		}
+
+		csLine.Format("</DatiDDT>\n"); 
+		fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+	}
+
+	csLine.Format("</DatiGenerali>\n"); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+}
+
+// Esportazione XML; Body sezione Dati Beni Servizi
+void CStampaFattureDlg::XMLBodyDatiBeniServizi(FILE* f) 
+{
+}
+
+// Esportazione XML; Body sezione Dati Pagamento
+void CStampaFattureDlg::XMLBodyDatiPagamento(FILE* f) 
+{
+}
+
+void CStampaFattureDlg::OnKillfocusEditOrdineAcquisto() 
+{
+	UpdateData(TRUE);
+	if(!m_strOrdineAcquisto.IsEmpty())
+	{
+		if(m_DataOrdineAcquisto == 0)
+		{
+		  m_DataOrdineAcquisto = CTime::GetCurrentTime();
+			m_DTCtrlDataOrdineAcquisto.SetTime(&m_DataOrdineAcquisto);
+		}
+		m_DTCtrlDataOrdineAcquisto.EnableWindow(TRUE);	
+	}
+	else
+	{
+		m_DTCtrlDataOrdineAcquisto.EnableWindow(FALSE);	
+	}
+}
+
+void CStampaFattureDlg::OnKillfocusEditContratto() 
+{
+	UpdateData(TRUE);
+	if(!m_strContratto.IsEmpty())
+	{
+		if(m_DataContratto == 0)
+		{
+		  m_DataContratto = CTime::GetCurrentTime();
+			m_DTCtrlDataContratto.SetTime(&m_DataContratto);
+		}
+		m_DTCtrlDataContratto.EnableWindow(TRUE);
+	}
+	else
+	{
+		m_DTCtrlDataContratto.EnableWindow(FALSE);	
+	}
+}
+
+void CStampaFattureDlg::OnKillfocusEditNumeroDDT() 
+{
+	UpdateData(TRUE);
+	if(!m_strNumeroDDT.IsEmpty())
+	{
+		if(m_DataDDT == 0)
+		{
+		  m_DataDDT = CTime::GetCurrentTime();
+			m_DTCtrlDataDDT.SetTime(&m_DataDDT);
+		}
+		m_DTCtrlDataDDT.EnableWindow(TRUE);
+	}
+	else
+	{
+		m_DTCtrlDataDDT.EnableWindow(FALSE);	
+	}
+}
+
+BOOL CStampaFattureDlg::ChangeChecker() 
+{
+	CString cs("");
+	cs += m_strCUP;
+	cs += m_strCIG;
+	cs += m_strOrdineAcquisto;
+	cs += m_DataOrdineAcquisto.Format("%Y%m%d");
+	cs += m_strContratto;
+	cs += m_DataContratto.Format("%Y%m%d");
+	cs += m_strNumeroDDT;
+	cs += m_DataDDT.Format("%Y%m%d");
+	if(!m_csSum.Compare(cs))
+		return FALSE;
+	m_csSum = cs;
+	return TRUE;
 }

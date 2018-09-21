@@ -33,7 +33,7 @@
 /TrazioneTrefoli/Release/TrazioneTrefoli.dll
 /html/MakeIDH/MakeIDH.exe
 /TrazionePiegamentoBarreB450_2018/debug/*
-/Debug/WinSigma.exe
+/Debug/*
 /Release/WinSigma.exe
 /WinSigma___Win32_W2Debug/WinSigma2.exe
 /WinSigma___Win32_LIDebug/WinSigmaLI.exe
@@ -41,7 +41,6 @@
 *.hm3
 *.idb
 /SAVEWinSigma.ini
-/Debug/WinSigma.ini
 /WinSigma2.ini
 /WinSigma___Win32_W2Debug/WinSigma2.ini
 /WinSigma___Win32_W2Release/WinSigma2.ini

@@ -68,6 +68,14 @@ CFattureView::CFattureView()
 	m_csTotRitAcconto = _T("");
 	m_strCodiceDestinatario = _T("");
 	m_strPEC = _T("");
+	m_strCUP = _T("");
+	m_strCIG = _T("");
+	m_strOrdineAcquisto = _T("");
+	m_DataOrdineAcquisto = 0;
+	m_strContratto = _T("");
+	m_DataContratto = 0;
+	m_strNumeroDDT = _T("");
+	m_DataDDT = 0;
 	//}}AFX_DATA_INIT
   m_bEnableServiziCheck = FALSE;
   m_lListinoGenerale = m_lListinoParticolare = 0;
@@ -224,6 +232,14 @@ void CFattureView::LoadCurRecord(BOOL bData)
     m_strImporto.Empty();
     m_strPEC.Empty();
     m_strCodiceDestinatario.Empty();
+		m_strCIG.Empty();
+		m_strCUP.Empty();
+		m_strOrdineAcquisto.Empty();
+		m_DataOrdineAcquisto = 0;
+		m_strContratto.Empty();
+		m_DataContratto = 0;
+		m_strNumeroDDT.Empty();
+		m_DataDDT = 0;
     m_ListVerbali.DeleteAllItems();
     m_ListServizi.DeleteAllItems();
     m_DataEmissione = CTime::GetCurrentTime();
@@ -343,6 +359,35 @@ void CFattureView::LoadCurRecord(BOOL bData)
       m_strCodiceFiscale = m_pFattureEmesseSet->m_CodiceFiscale;
       m_strCodiceDestinatario = m_pFattureEmesseSet->m_CodiceDestinatario;
       m_strPEC = m_pFattureEmesseSet->m_PEC;
+      if(!m_pFattureEmesseSet->IsFieldNull(&m_pFattureEmesseSet->m_CUP))
+				m_strCUP = m_pFattureEmesseSet->m_CUP;
+      if(!m_pFattureEmesseSet->IsFieldNull(&m_pFattureEmesseSet->m_CIG))
+				m_strCIG = m_pFattureEmesseSet->m_CIG;
+      if(!m_pFattureEmesseSet->IsFieldNull(&m_pFattureEmesseSet->m_OrdineAcquisto))
+			{
+				m_strOrdineAcquisto = m_pFattureEmesseSet->m_OrdineAcquisto;
+	      if(!m_pFattureEmesseSet->IsFieldNull(&m_pFattureEmesseSet->m_DataOrdineAcquisto))
+				{
+					m_DataOrdineAcquisto = m_pFattureEmesseSet->m_DataOrdineAcquisto;
+				}
+			}
+      if(!m_pFattureEmesseSet->IsFieldNull(&m_pFattureEmesseSet->m_Contratto))
+			{
+				m_strContratto = m_pFattureEmesseSet->m_Contratto;
+	      if(!m_pFattureEmesseSet->IsFieldNull(&m_pFattureEmesseSet->m_DataContratto))
+				{
+					m_DataContratto = m_pFattureEmesseSet->m_DataContratto;
+				}
+			}
+      if(!m_pFattureEmesseSet->IsFieldNull(&m_pFattureEmesseSet->m_NumeroDDT))
+			{
+				m_strNumeroDDT = m_pFattureEmesseSet->m_NumeroDDT;
+	      if(!m_pFattureEmesseSet->IsFieldNull(&m_pFattureEmesseSet->m_DataDDT))
+				{
+					m_DataDDT = m_pFattureEmesseSet->m_DataDDT;
+				}
+			}
+
       if(m_pFattureEmesseSet->m_BancaAppoggio.IsEmpty())
       {
         m_strBanca = m_pFattureEmesseSet->m_Banca;
@@ -1262,6 +1307,33 @@ void CFattureView::EmettiSalvaFattura(BOOL bElett)
   if (!m_strPEC.IsEmpty())
 		dlg.m_strPEC = m_strPEC;
 
+  if (!m_strCUP.IsEmpty())
+		dlg.m_strCUP = m_strCUP;
+
+  if (!m_strCIG.IsEmpty())
+		dlg.m_strCIG = m_strCIG;
+
+  if (!m_strOrdineAcquisto.IsEmpty())
+	{
+		dlg.m_strOrdineAcquisto = m_strOrdineAcquisto;
+		if(m_DataOrdineAcquisto > 0)
+			dlg.m_DataOrdineAcquisto = m_DataOrdineAcquisto;
+	}
+
+  if (!m_strContratto.IsEmpty())
+	{
+		dlg.m_strContratto = m_strContratto;
+		if(m_DataContratto > 0)
+			dlg.m_DataContratto = m_DataContratto;
+	}
+
+  if (!m_strNumeroDDT.IsEmpty())
+	{
+		dlg.m_strNumeroDDT = m_strNumeroDDT;
+		if(m_DataDDT > 0)
+			dlg.m_DataDDT = m_DataDDT;
+	}
+
   dlg.m_strRagioneSociale = m_strRagioneSociale;
   dlg.m_strCodice = m_strCodiceCliente;
   dlg.m_strIndirizzo = m_strIndirizzo;
@@ -1303,6 +1375,17 @@ void CFattureView::EmettiSalvaFattura(BOOL bElett)
       LoadCurRecord(TRUE);
 //    else    // s.c. 14.9.2018 provo a commentare qui cosi non cancella la visualizzazione dei dati fattura... vediamo
 //      LoadCurRecord(FALSE);
+
+		// ricarica le eventuali variazioni 
+		m_strCUP = dlg.m_strCUP;
+		m_strCIG = dlg.m_strCIG;
+		m_strOrdineAcquisto = dlg.m_strOrdineAcquisto;
+		m_DataOrdineAcquisto = dlg.m_DataOrdineAcquisto;
+  	m_strContratto = dlg.m_strContratto;
+		m_DataContratto = dlg.m_DataContratto;
+		m_strNumeroDDT = dlg.m_strNumeroDDT;
+		m_DataDDT = dlg.m_DataDDT;
+
     EnableServicesBtns(TRUE);
     EnableControls(FALSE);
     UpdateData(FALSE);
@@ -1779,6 +1862,32 @@ void CFattureView::PrintProforma(BOOL bheader)
   dlg.m_strCodFiscale =  m_strCodiceFiscale;
   dlg.m_strCodiceDestinatario =  m_strCodiceDestinatario;
   dlg.m_strPEC =  m_strPEC;
+  if (!m_strCUP.IsEmpty())
+		dlg.m_strCUP = m_strCUP;
+
+  if (!m_strCIG.IsEmpty())
+		dlg.m_strCIG = m_strCIG;
+
+  if (!m_strOrdineAcquisto.IsEmpty())
+	{
+		dlg.m_strOrdineAcquisto = m_strOrdineAcquisto;
+		if(m_DataOrdineAcquisto > 0)
+			dlg.m_DataOrdineAcquisto = m_DataOrdineAcquisto;
+	}
+
+  if (!m_strContratto.IsEmpty())
+	{
+		dlg.m_strContratto = m_strContratto;
+		if(m_DataContratto > 0)
+			dlg.m_DataContratto = m_DataContratto;
+	}
+
+  if (!m_strNumeroDDT.IsEmpty())
+	{
+		dlg.m_strNumeroDDT = m_strNumeroDDT;
+		if(m_DataDDT > 0)
+			dlg.m_DataDDT = m_DataDDT;
+	}
   dlg.m_strRagioneSociale = m_strRagioneSociale;
   dlg.m_strCodice = m_strCodiceCliente;
   dlg.m_strIndirizzo = m_strIndirizzo;

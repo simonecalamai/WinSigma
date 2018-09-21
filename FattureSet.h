@@ -55,6 +55,14 @@ public:
 	BYTE m_Elett;
 	CString	m_CodiceDestinatario;
 	CString	m_PEC;
+	CString m_CUP;
+	CString m_CIG;
+	CString m_OrdineAcquisto;
+	CTime		m_DataOrdineAcquisto;
+	CString m_Contratto;
+	CTime		m_DataContratto;
+	CString m_NumeroDDT;
+	CTime		m_DataDDT;
 	//}}AFX_FIELD
 
 

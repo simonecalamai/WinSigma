@@ -66,6 +66,14 @@ public:
 	CString	m_csTotRitAcconto;
 	CString	m_strCodiceDestinatario;
 	CString	m_strPEC;
+	CString m_strCIG;
+	CString m_strCUP;
+	CString m_strOrdineAcquisto;
+	CTime	m_DataOrdineAcquisto;
+	CString m_strContratto;
+	CTime	m_DataContratto;
+	CString m_strNumeroDDT;
+	CTime	m_DataDDT;
 	//}}AFX_DATA
 
 // Attributes

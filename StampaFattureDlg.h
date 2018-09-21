@@ -34,6 +34,12 @@ public:
 	CButton	m_BtnStampaFattura;
 	CButton	m_BtnEmettiFattura;
 	CButton	m_BtnFatturaXML;
+	CEdit	m_edtOrdineAcquisto;
+	CDateTimeCtrl	m_DTCtrlDataOrdineAcquisto;
+	CEdit	m_edtContratto;
+	CDateTimeCtrl	m_DTCtrlDataContratto;
+	CEdit	m_edtNumeroDDT;
+	CDateTimeCtrl	m_DTCtrlDataDDT;
 	BOOL	m_bSpedizione;
 	BOOL	m_bPA;
 	BOOL	m_bIVADifferita;
@@ -61,6 +67,14 @@ public:
 	CString	m_csTotRitAcconto;
 	CString m_strCodiceDestinatario;
 	CString m_strPEC;
+	CString m_strCIG;
+	CString m_strCUP;
+	CString m_strOrdineAcquisto;
+	CTime	m_DataOrdineAcquisto;
+	CString m_strContratto;
+	CTime	m_DataContratto;
+	CString m_strNumeroDDT;
+	CTime	m_DataDDT;
 	BOOL m_bHeader;
 	//}}AFX_DATA
 
@@ -123,9 +137,15 @@ protected:
   void InitTipiPagamento(void);
   BOOL CheckData(void);
   void SalvaFattura(void);
-	void XMLDatiTrasmissione(FILE* f, int progressivo, CString versione);
-	void XMLCedentePrestatore(FILE* f);
-	void XMLCessionarioCommittente(FILE* f);
+	void XMLHeaderDatiTrasmissione(FILE* f, int progressivo, CString versione);
+	void XMLHeaderCedentePrestatore(FILE* f);
+	void XMLHeaderCessionarioCommittente(FILE* f);
+	void XMLHeaderTerzoIntermediarioSoggettoEmittente(FILE* f);
+	void XMLBodyDatiGenerali(FILE* f);
+	void XMLBodyDatiBeniServizi(FILE* f);
+	void XMLBodyDatiPagamento(FILE* f);
+	CString m_csSum;
+	BOOL ChangeChecker();
 	// Generated message map functions
 	//{{AFX_MSG(CStampaFattureDlg)
 	virtual void OnCancel();
@@ -141,6 +161,9 @@ protected:
 	afx_msg void OnChangeEditSconto();
 	afx_msg void OnChangeEditTotale();
 	afx_msg void OnChangeEditRitAcconto();
+	afx_msg void OnKillfocusEditOrdineAcquisto();
+	afx_msg void OnKillfocusEditContratto();
+	afx_msg void OnKillfocusEditNumeroDDT();
 	DECLARE_EVENTSINK_MAP()
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()

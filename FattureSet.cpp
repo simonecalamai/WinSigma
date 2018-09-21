@@ -57,7 +57,15 @@ CFattureSet::CFattureSet(CDatabase* pdb)
 	m_Elett = 0;
 	m_CodiceDestinatario = _T("");
 	m_PEC = _T("");
-	m_nFields = 37;
+	m_CUP = _T("");
+	m_CIG = _T("");
+	m_OrdineAcquisto = _T("");
+	m_DataOrdineAcquisto = 0;
+	m_Contratto = _T("");
+	m_DataContratto = 0;
+	m_NumeroDDT = _T("");
+	m_DataDDT = 0;
+	m_nFields = 45;
 	//}}AFX_FIELD_INIT
 	m_nDefaultType = snapshot;
 }
@@ -117,6 +125,14 @@ void CFattureSet::DoFieldExchange(CFieldExchange* pFX)
 	RFX_Byte(pFX, _T("[fElett]"), m_Elett);
 	RFX_Text(pFX, _T("[CodiceDestinatario]"), m_CodiceDestinatario);
 	RFX_Text(pFX, _T("[PEC]"), m_PEC);
+	RFX_Text(pFX, _T("[CUP]"), m_CUP);
+	RFX_Text(pFX, _T("[CIG]"), m_CIG);
+	RFX_Text(pFX, _T("[OrdineAcquisto]"), m_OrdineAcquisto);
+	RFX_Date(pFX, _T("[DataOrdineAcquisto]"), m_DataOrdineAcquisto);
+	RFX_Text(pFX, _T("[Contratto]"), m_Contratto);
+	RFX_Date(pFX, _T("[DataContratto]"), m_DataContratto);
+	RFX_Text(pFX, _T("[NumeroDDT]"), m_NumeroDDT);
+	RFX_Date(pFX, _T("[DataDDT]"), m_DataDDT);
 	//}}AFX_FIELD_MAP
 }
 

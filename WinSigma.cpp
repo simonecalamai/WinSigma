@@ -283,10 +283,16 @@ BOOL CWinSigmaApp::InitInstance()
 
 	// Dati trasmissione fattura XML
 	m_csIdCodiceTrasmittente = config.Read("IdCodiceTrasmittente");
+	m_csIdCodiceEmittente = config.Read("IdCodiceEmittente");
+	m_csDenominazioneEmittente = config.Read("DenominazioneEmittente");
+	m_csSoggettoEmittente = config.Read("SoggettoEmittente");
 	m_csTipologiaFileXML = config.Read("TipologiaFileXML");
 	m_csEstensioneXML = config.Read("EstensioneXML");
 	m_csXMLFolder = config.Read("XMLFolder");
 	m_csXMLHeader = config.Read("XMLHeader");
+	m_csDivisa = config.Read("Divisa");
+	m_csTipoDocFattura = config.Read("TipoDocFattura");
+	m_csTipoDocNotaCredito = config.Read("TipoDocNotaCredito");
 
 	// The one and only window has been initialized, so show and update it.
 	m_pMainWnd->ShowWindow(SW_SHOWMAXIMIZED);

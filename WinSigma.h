@@ -387,10 +387,16 @@ class CWinSigmaApp : public CWinApp
 
 		// Dati trasmissione fattura XML
 		CString m_csIdCodiceTrasmittente;
+		CString m_csIdCodiceEmittente;
+		CString m_csDenominazioneEmittente;
+		CString m_csSoggettoEmittente;
 		CString m_csTipologiaFileXML;
 		CString m_csEstensioneXML;
 		CString m_csXMLFolder;
 		CString m_csXMLHeader;
+		CString m_csDivisa;
+		CString m_csTipoDocFattura;
+		CString m_csTipoDocNotaCredito;
 
   /*---- metodi -----*/
   public:

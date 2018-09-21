@@ -110,10 +110,15 @@
 #define IDC_EDIT_ABI                    1012
 #define IDC_EDIT_CAB                    1013
 #define IDC_EDIT_DSN_NAME               1014
+#define IDC_EDIT_CUP                    1014
 #define IDC_EDIT_UTENTE                 1015
+#define IDC_EDIT_CIG                    1015
 #define IDC_EDIT_PASSWORD               1016
+#define IDC_EDIT_ORDINE                 1016
 #define IDC_EDIT_NOTE                   1017
+#define IDC_EDIT_CONTRATTO              1017
 #define IDC_EDIT_PROVINCIA              1018
+#define IDC_EDIT_NUMERODDT              1018
 #define IDC_EDIT_RAGIONE_SOCIALE        1019
 #define IDC_EDIT_COGNOME                1020
 #define IDC_CHECK_AZIENDA_IMPORTANTE    1021
@@ -271,7 +276,10 @@
 #define IDC_EDIT_NUM_FATTURA            1219
 #define IDC_DATETIMEPICKER_DATA_FATTURA 1220
 #define IDC_EDIT_TIPO_DOCUMENTO         1221
+#define IDC_DATETIMEPICKER_DATA_ORDINE  1221
 #define IDC_EDIT_DATI_CLIENTE           1222
+#define IDC_DATETIMEPICKER_DATA_CONTRATTO 1222
+#define IDC_DATETIMEPICKER_DATA_DDT     1223
 #define IDC_EDIT_COD_CLIENTE            1224
 #define IDC_BUTTON_ADD_SERVIZIO         1238
 #define IDC_BUTTON_DEL_SERVIZIO         1239
