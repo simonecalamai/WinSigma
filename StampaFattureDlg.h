@@ -118,6 +118,7 @@ public:
   static CString m_strTipoDocumento;
   static CString m_strCoordinateBancarie;
 	BOOL m_bElett;
+	double m_dImponibileXML;
   int m_nTipoDocumento;
 	void SetHeader(BOOL bon);
 	void PrnFromFattToFatt(int DaNumFatt = 0, int ANumFatt = 0, CString Anno = "", CWinSigmaDoc* m_pDoc = NULL);
@@ -146,6 +147,8 @@ protected:
 	void XMLBodyDatiPagamento(FILE* f);
 	CString m_csSum;
 	BOOL ChangeChecker();
+	int FilterANSI(CString& cs);
+	CString GetPaymentMode();
 	// Generated message map functions
 	//{{AFX_MSG(CStampaFattureDlg)
 	virtual void OnCancel();

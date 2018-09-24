@@ -108,6 +108,7 @@ CStampaFattureDlg::CStampaFattureDlg(CWnd* pParent /*=NULL*/)
 
   m_nRitAcconto = 0;
   m_nTotRitAcconto = 0;
+	m_dImponibileXML = 0.0f;
 }
 
 
@@ -2543,11 +2544,240 @@ void CStampaFattureDlg::XMLBodyDatiGenerali(FILE* f)
 // Esportazione XML; Body sezione Dati Beni Servizi
 void CStampaFattureDlg::XMLBodyDatiBeniServizi(FILE* f) 
 {
+	CString csLine("");
+	CWinSigmaApp* pApp = (CWinSigmaApp*)AfxGetApp();
+  CString str, strFilter;
+
+	UpdateData(TRUE);
+
+	csLine.Format("<DatiBeniServizi>\n"); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+
+  // Recordset delle fatture e dei verbali - servizi erogati
+  if(!m_bFatturaProForma)
+  {
+    SINCRONIZE(m_pFattureEmesseSet, m_lCodiceFatturaEmessa);
+    m_pVerbaliInfatturazione->m_strFilter.Format("Fattura = %d", m_lCodiceFatturaEmessa);
+    m_pServiziErogati->m_strFilter.Format("Fattura = %d", m_lCodiceFatturaEmessa);
+    m_lCodiceAzienda = m_pFattureEmesseSet->m_Intestatario;
+  }
+  else
+  {
+    m_pVerbaliInfatturazione->m_strFilter.Format("Fattura = 0 AND IntestatarioFattura = %d AND InFatturazione = 1", m_lCodiceAzienda);
+    m_pVerbaliInfatturazione->Requery();
+    long codice = 0;
+    for(SET_START(m_pVerbaliInfatturazione); !m_pVerbaliInfatturazione->IsEOF(); m_pVerbaliInfatturazione->MoveNext())
+    {
+      if(codice != m_pVerbaliInfatturazione->m_Codice)
+      {
+        str.Format("Verbale = %d OR ", m_pVerbaliInfatturazione->m_Codice);
+        strFilter += str;
+        codice = m_pVerbaliInfatturazione->m_Codice;
+      }
+    }
+    strFilter.TrimRight(" OR ");
+    str.Format("Fattura = 0 AND (%s)", strFilter);
+    m_pServiziErogati->m_strFilter = str;
+  }
+
+  m_pVerbaliInfatturazione->m_strSort = "Codice";
+  m_pServiziErogati->m_strSort = "Verbale,ID_Listino,Codice";
+  m_pVerbaliInfatturazione->Requery();
+  m_pServiziErogati->Requery();
+
+	// Dettaglio Linee
+	double imponibile = 0.0f;
+	int numLinea = 0;
+  for(SET_START(m_pServiziErogati); !m_pServiziErogati->IsEOF(); m_pServiziErogati->MoveNext())
+  {
+		numLinea++;
+		csLine.Format("<DettaglioLinee>\n"); 
+		fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+		
+		// NumeroLinea
+		csLine.Format("<NumeroLinea>%d</NumeroLinea>\n", numLinea); 
+		fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+
+		// Descrizione
+		if(!m_pServiziErogati->IsFieldNull(&m_pServiziErogati->m_Descrizione))
+		{
+			str.Format(m_pServiziErogati->m_Descrizione);
+			str.MakeUpper();
+			FilterANSI(str);
+			str.TrimRight();
+			csLine.Format("<Descrizione>%s</Descrizione>\n", str); 
+			fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+		}
+
+		// Quantità
+		if(!m_pServiziErogati->IsFieldNull(&m_pServiziErogati->m_Quantita))
+		{
+			csLine.Format("<Quantita>%.2f</Quantita>\n", m_pServiziErogati->m_Quantita); 
+			fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+			csLine.Format("<UnitaMisura>%s</UnitaMisura>\n", "SERVIZIO"); 
+			fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+		}
+
+		// PrezzoUnitario
+		if(!m_pServiziErogati->IsFieldNull(&m_pServiziErogati->m_Prezzo))
+		{
+			csLine.Format("<PrezzoUnitario>%.2f</PrezzoUnitario>\n", m_pServiziErogati->m_Prezzo); 
+			fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+		}
+
+		// Sconto
+    if(!m_pServiziErogati->IsFieldNull(&m_pServiziErogati->m_Sconto) && m_pServiziErogati->m_Sconto)
+		{
+			csLine.Format("<ScontoMaggiorazione>\n"); 
+			fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+			
+			csLine.Format("<Tipo>%s</Tipo>\n", "SC"); 
+			fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+
+			csLine.Format("<Percentuale>%.2f</Percentuale>\n", m_pServiziErogati->m_Sconto); 
+			fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+
+			csLine.Format("</ScontoMaggiorazione>\n"); 
+			fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+		}
+
+		// Prezzo Totale
+		if(!m_pServiziErogati->IsFieldNull(&m_pServiziErogati->m_Quantita) && 
+				!m_pServiziErogati->IsFieldNull(&m_pServiziErogati->m_Prezzo))
+		{
+			double prezzo = m_pServiziErogati->m_Quantita * m_pServiziErogati->m_Prezzo;
+	    if(!m_pServiziErogati->IsFieldNull(&m_pServiziErogati->m_Sconto) && m_pServiziErogati->m_Sconto)
+			{
+				// applico l'eventuale sconto
+				prezzo *= ((100.0f - m_pServiziErogati->m_Sconto) / 100.0f);
+			}
+			imponibile += prezzo;
+			csLine.Format("<PrezzoTotale>%.2f</PrezzoTotale>\n", prezzo); 
+			fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+
+		}		
+
+		// AliquotaIVA
+		csLine.Format("<AliquotaIVA>%.2f</AliquotaIVA>\n", m_pFattureEmesseSet->m_Aliquota); 
+		fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+
+
+		csLine.Format("</DettaglioLinee>\n"); 
+		fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+  }
+
+	csLine.Format("<DatiRiepilogo>\n"); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+
+	// AliquotaIVA
+	csLine.Format("<AliquotaIVA>%.2f</AliquotaIVA>\n", m_pFattureEmesseSet->m_Aliquota); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+
+	// ImponibileImporto
+	m_dImponibileXML = imponibile;
+	csLine.Format("<ImponibileImporto>%.2f</ImponibileImporto>\n", m_dImponibileXML); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+
+	// Imposta
+	double imposta = m_pFattureEmesseSet->m_Imponibile * m_pFattureEmesseSet->m_Aliquota / 100.0f;
+	csLine.Format("<Imposta>%.2f</Imposta>\n", imposta); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+
+	// EsigibilitaIVA: 0=I(immediata) 1=D(differita) 2=S(split)
+	CString esigIVA("");
+	switch(m_pFattureEmesseSet->m_IVADifferita)
+	{
+		case 0:     // immediata
+		default:
+			esigIVA = "I";
+			break;
+		case 1:			// differita
+			esigIVA = "D";
+			break;
+		case 2:			// split
+			esigIVA = "S";
+			break;
+	}
+	csLine.Format("<EsigibilitaIVA>%s</EsigibilitaIVA>\n", esigIVA); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+
+	csLine.Format("</DatiRiepilogo>\n"); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+
+	csLine.Format("</DatiBeniServizi>\n"); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+
 }
 
 // Esportazione XML; Body sezione Dati Pagamento
 void CStampaFattureDlg::XMLBodyDatiPagamento(FILE* f) 
 {
+	CString csLine("");
+	CWinSigmaApp* pApp = (CWinSigmaApp*)AfxGetApp();
+
+	csLine.Format("<DatiPagamento>\n"); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+
+	// Condizioni Pagamento (TP01=rate, TP02=unica soluzione TP03=anticipo)
+	csLine.Format("<CondizioniPagamento>%s</CondizioniPagamento>\n", "TP02"); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+
+	// Dettaglio Pagamento
+	csLine.Format("<DettaglioPagamento>\n"); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+
+	// Modalità Pagamento
+	CString payMode = GetPaymentMode();
+	csLine.Format("<ModalitaPagamento>%s</ModalitaPagamento>\n", payMode); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+
+	// ABI
+	if(!m_strABI.IsEmpty())
+	{
+		csLine.Format("<ABI>%s</ABI>\n", m_strABI); 
+		fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+	}
+
+	// CAB
+	if(!m_strCAB.IsEmpty())
+	{
+		csLine.Format("<CAB>%s</CAB>\n", m_strCAB); 
+		fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+	}
+
+	// Importo Pagamento
+	csLine.Format("<ImportoPagamento>%.2f</ImportoPagamento>\n", m_dImponibileXML); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+
+	csLine.Format("</DettaglioPagamento>\n"); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+	
+	csLine.Format("</DatiPagamento>\n"); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+
+}
+
+CString CStampaFattureDlg::GetPaymentMode() 
+{
+	CString payMode("");
+	int n = -1;
+	UpdateData(TRUE);
+  CTipiPagamentoSet* pTipiPagamentoSet = m_pDoc->m_pTipiPagamentoSet;
+  if((n = m_ComboTipoPagamento.GetCurSel()) != -1)
+  {
+    // Se ho selezionato un nuovo tipo di pagamento, aggiorno il record
+    if(m_ComboTipoPagamento.GetItemData(n) != 0)
+      m_lTipoPagamento= m_ComboTipoPagamento.GetItemData(n);
+  }
+  else
+  {
+    if(!m_pAziendeSet->IsFieldNull(&m_pAziendeSet->m_TipoPagamento) && m_pAziendeSet->m_TipoPagamento != 0)
+      m_lTipoPagamento = m_pAziendeSet->m_TipoPagamento;
+  }
+  SINCRONIZE(pTipiPagamentoSet, m_lTipoPagamento);
+
+	payMode = pTipiPagamentoSet->m_CodiceXML;
+	return payMode;
 }
 
 void CStampaFattureDlg::OnKillfocusEditOrdineAcquisto() 
@@ -2619,4 +2849,23 @@ BOOL CStampaFattureDlg::ChangeChecker()
 		return FALSE;
 	m_csSum = cs;
 	return TRUE;
+}
+
+int CStampaFattureDlg::FilterANSI(CString& cs)
+{
+	CString csNew("");
+
+	for(int i = 0; i < cs.GetLength(); i++)
+	{
+		BYTE c = cs.GetAt(i);
+		if(c < 128)
+		{
+			csNew += CString(c); 
+		}
+	}
+
+	int n = csNew.GetLength(); 
+	if(i > n)
+		cs = csNew;
+	return (i - n); 
 }

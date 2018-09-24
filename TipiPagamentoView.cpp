@@ -35,6 +35,7 @@ CTipiPagamentoView::CTipiPagamentoView()
 	m_iCodiceGest = 0;
 	m_bBonifico = FALSE;
 	m_bRIBA = FALSE;
+	m_strCodiceXML = _T("");
 	//}}AFX_DATA_INIT
 }
 
@@ -58,6 +59,7 @@ void CTipiPagamentoView::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_EDIT_NOME, m_EditNome);
 	DDX_Control(pDX, IDC_EDIT_DESCRIZIONE, m_EditDescrizione);
 	DDX_Control(pDX, IDC_EDIT_CODICE, m_EditCodice);
+	DDX_Control(pDX, IDC_EDIT_CODICE_XML, m_EditCodiceXML);
 	DDX_Text(pDX, IDC_EDIT_DESCRIZIONE, m_strDescrizione);
 	DDV_MaxChars(pDX, m_strDescrizione, 250);
 	DDX_Text(pDX, IDC_EDIT_NOME, m_strNome);
@@ -79,6 +81,8 @@ void CTipiPagamentoView::DoDataExchange(CDataExchange* pDX)
 	DDV_MinMaxInt(pDX, m_iCodiceGest, 0, 1000);
 	DDX_Check(pDX, IDC_CHECK_BONIFICO, m_bBonifico);
 	DDX_Check(pDX, IDC_CHECK_RIBA, m_bRIBA);
+	DDX_Text(pDX, IDC_EDIT_CODICE_XML, m_strCodiceXML);
+	DDV_MaxChars(pDX, m_strCodiceXML, 4);
 	//}}AFX_DATA_MAP
 }
 
@@ -126,6 +130,7 @@ void CTipiPagamentoView::LoadCurRecord(BOOL bData)
     m_strABI = m_pSet->m_ABI;
     m_strCIN = m_pSet->m_CIN;
     m_strContoCorrente = m_pSet->m_NumeroConto;
+		m_strCodiceXML = m_pSet->m_CodiceXML;
 		// determinazione RiBa/Bonifico e allineamento
 		int nAllineamento = m_pSet->m_Allineamento;
 		if(nAllineamento >= eScadRIBAFineMese)
@@ -170,6 +175,7 @@ void CTipiPagamentoView::LoadCurRecord(BOOL bData)
 		m_nNumero_Rate = 1;
 		m_bBonifico = FALSE;
 		m_bRIBA = FALSE;
+		m_strCodiceXML.Empty();
   }
 }
 
@@ -193,7 +199,8 @@ BOOL CTipiPagamentoView::IsDataChanged()
      m_strABI             != m_pSet->m_ABI              ||
      m_strCIN             != m_pSet->m_CIN              ||
 		 m_iCodiceGest        != m_pSet->m_VecchioCod       ||
-     m_strCAB             != m_pSet->m_CAB)
+     m_strCAB             != m_pSet->m_CAB							||
+		 m_strCodiceXML				!= m_pSet->m_CodiceXML)
 	{
 		return TRUE;
 	}
@@ -256,6 +263,7 @@ BOOL CTipiPagamentoView::NewRecord()
 	m_pSet->m_Allineamento		= nAllineamento;
   m_pSet->m_GiorniPrimaScad	= m_nPrima_Scadenza;
 	m_pSet->m_NumRate					= m_nNumero_Rate;
+	m_pSet->m_CodiceXML				= m_strCodiceXML;
   TRY
   {
 	  m_pSet->Update();
@@ -297,6 +305,7 @@ BOOL CTipiPagamentoView::SaveRecord()
 			m_pSet->m_Allineamento		= nAllineamento;
 			m_pSet->m_GiorniPrimaScad = m_nPrima_Scadenza;
 			m_pSet->m_NumRate					= m_nNumero_Rate;
+      m_pSet->m_CodiceXML       = m_strCodiceXML;
 	    m_pSet->Update();
 	    pApp->ReloadTree(TREELABEL_PAGAMENTI, m_pSet->m_Codice);
 		  break;
@@ -342,6 +351,7 @@ void CTipiPagamentoView::EnableControls(BOOL bEditMode)
   m_EditCIN.EnableWindow(bEditMode);
   m_EditCC.EnableWindow(bEditMode);
 	m_EditCodiceGest.EnableWindow(bEditMode);
+  m_EditCodiceXML.EnableWindow(bEditMode);
 	m_ComboAllineamento.EnableWindow(bEditMode);
 	m_Prima_Scadenza.EnableWindow(bEditMode);
 	m_Numero_Rate.EnableWindow(bEditMode);

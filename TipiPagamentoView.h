@@ -49,6 +49,8 @@ public:
 	int		m_iCodiceGest;
 	BOOL	m_bBonifico;
 	BOOL	m_bRIBA;
+	CEdit	m_EditCodiceXML;
+	CString	m_strCodiceXML;
 	//}}AFX_DATA
 
 // Attributes

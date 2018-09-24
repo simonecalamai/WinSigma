@@ -30,6 +30,7 @@ public:
 	CString	m_CAB;
 	CString	m_CIN;
 	CString	m_NumeroConto;
+	CString	m_CodiceXML;
 	//}}AFX_FIELD
 
 

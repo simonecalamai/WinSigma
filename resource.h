@@ -515,6 +515,8 @@
 #define IDC_EDIT_CODICE_GEST            1530
 #define IDC_STATIC_CODICE_GEST          1531
 #define IDC_STATIC_RICERCA_CLIENTE      1532
+#define IDC_STATIC_CODICE_XML           1532
+#define IDC_EDIT_CODICE_XML             1533
 #define IDC_BUTTON_TROVA_CLIENTE        1534
 #define IDC_STATIC_RICERCA              1535
 #define IDC_STATIC_PATH                 1536

@@ -32,7 +32,8 @@ CTipiPagamentoSet::CTipiPagamentoSet(CDatabase* pdb)
 	m_CAB = _T("");
 	m_CIN = _T("");
 	m_NumeroConto = _T("");
-	m_nFields = 12;
+	m_CodiceXML = _T("");
+	m_nFields = 13;
 	//}}AFX_FIELD_INIT
 	m_nDefaultType = snapshot;
 }
@@ -64,6 +65,7 @@ void CTipiPagamentoSet::DoFieldExchange(CFieldExchange* pFX)
 	RFX_Text(pFX, _T("[CAB]"), m_CAB);
 	RFX_Text(pFX, _T("[CIN]"), m_CIN);
 	RFX_Text(pFX, _T("[NumeroConto]"), m_NumeroConto);
+	RFX_Text(pFX, _T("[CodiceXML]"), m_CodiceXML);
 	//}}AFX_FIELD_MAP
 }
 
