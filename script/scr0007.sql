@@ -2,15 +2,15 @@
 -- VERSIONE 4.7.0
 --------------------------------------------------
 -- tabella AZIENDE: aggiunta campi CodiceDestinatario e PEC
-ALTER TABLE `aziende`
+ALTER TABLE `AZIENDE`
 	ADD COLUMN `CodiceDestinatario` VARCHAR(7) NULL DEFAULT NULL AFTER `UsaTuttiListini`,
 	ADD COLUMN `PEC` VARCHAR(200) NULL DEFAULT NULL AFTER `CodiceDestinatario`;
 
 
 	-- tabella FATTURE: aggiunta campi
-ALTER TABLE `fatture`
-	ADD COLUMN `CodiceDestinatario` VARCHAR(7) NULL DEFAULT NULL AFTER `fElett`,
-	ADD COLUMN `PEC` VARCHAR(200) NULL DEFAULT NULL AFTER `CodiceDestinatario`;
+ALTER TABLE `FATTURE`
+--	ADD COLUMN `CodiceDestinatario` VARCHAR(7) NULL DEFAULT NULL AFTER `fElett`,
+	ADD COLUMN `PEC` VARCHAR(200) NULL DEFAULT NULL AFTER `CodiceDestinatario`,
 	ADD COLUMN `CUP` VARCHAR(20) NULL DEFAULT NULL AFTER `PEC`,
 	ADD COLUMN `CIG` VARCHAR(20) NULL DEFAULT NULL AFTER `CUP`,
 	ADD COLUMN `OrdineAcquisto` VARCHAR(20) NULL DEFAULT NULL AFTER `CIG`,
@@ -22,11 +22,11 @@ ALTER TABLE `fatture`
 
 
 -- tabella TIPI_PAGAMENTO: aggiunta campo codifica XML
-ALTER TABLE `tipi_pagamento`
+ALTER TABLE `TIPI_PAGAMENTO`
 	ADD COLUMN `CodiceXML` VARCHAR(4) NULL DEFAULT NULL AFTER `NumeroConto`;
 	
 -- creazione tabella CONFIGURAZIONE
-CREATE TABLE IF NOT EXISTS `configurazione` (
+CREATE TABLE IF NOT EXISTS `CONFIGURAZIONE` (
   `Nome` varchar(50) NOT NULL,
   `Valore` varchar(500) NOT NULL,
   `Descrizione` varchar(200) DEFAULT NULL,
@@ -36,10 +36,10 @@ CREATE TABLE IF NOT EXISTS `configurazione` (
 
 -- Dump dei dati della tabella winsigma.configurazione: ~31 rows (circa)
 /*!40000 ALTER TABLE `configurazione` DISABLE KEYS */;
-INSERT INTO `configurazione` (`Nome`, `Valore`, `Descrizione`) VALUES
+INSERT INTO `CONFIGURAZIONE` (`Nome`, `Valore`, `Descrizione`) VALUES
 	('AliquotaIVA', '22', 'Aliquota IVA corrente in percentuale'),
 	('CAP', '50013', NULL),
-	('CapitaleSociale', '1000.00', NULL),
+	('CapitaleSociale', '0.00', NULL),
 	('CodiceFiscaleEmittente', '04530950486', 'Codice Fiscale soggetto emittente (InfoSvil Srl)'),
 	('Comune', 'CAMPI BISENZIO', NULL),
 	('Denominazione', 'LABORATORIO SIGMA SRL', 'Denominazione azienda (cedente/prestatore)'),
@@ -54,7 +54,7 @@ INSERT INTO `configurazione` (`Nome`, `Valore`, `Descrizione`) VALUES
 	('NumeroCivico', '8', NULL),
 	('NumeroREA', '240940', NULL),
 	('PartitaIVA', '00667530489', 'Partita IVA (cedente/prestatore)'),
-	('ProgressivoXML', '00031', 'Progressivo dell\'ultima esportazione XML effettuata'),
+	('ProgressivoXML', '00001', 'Progressivo dell\'ultima esportazione XML effettuata'),
 	('Provincia', 'FI', NULL),
 	('RegimeFiscale', 'RF01', 'Regime fiscale (cedente/prestatore)'),
 	('SocioUnico', 'SM', NULL),
@@ -70,7 +70,8 @@ INSERT INTO `configurazione` (`Nome`, `Valore`, `Descrizione`) VALUES
 	('XMLHeader', '<?xml version="1.0" encoding="UTF-8"?>\n<p:FatturaElettronica versione="%s" xmlns:ds="http://www.w3.org/2000/09/xmldsig#"\nxmlns:p="http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2"\nxmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"\nxsi:schemaLocation="http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2 fatturaordinaria_v1.2.xsd">', 'Header file XML per trasmissione fatture');
 
 	
-	CREATE TABLE IF NOT EXISTS `tipi_pagamento` (
+DROP TABLE IF EXISTS `TIPI_PAGAMENTO`;
+	CREATE TABLE IF NOT EXISTS `TIPI_PAGAMENTO` (
   `Codice` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `VecchioCod` smallint(6) DEFAULT NULL,
   `Nome` varchar(32) DEFAULT NULL,
@@ -88,8 +89,7 @@ INSERT INTO `configurazione` (`Nome`, `Valore`, `Descrizione`) VALUES
 ) ENGINE=MyISAM AUTO_INCREMENT=71 DEFAULT CHARSET=latin1;
 
 -- Tabella TIPI_PAGAMENTO: 69 rows
-DROP TABLE IF EXISTS `tipi_pagamento`;
-INSERT INTO `tipi_pagamento` (`Codice`, `VecchioCod`, `Nome`, `Descrizione`, `Allineamento`, `NumRate`, `GiorniPrimaScad`, `Banca`, `ABI`, `CAB`, `CIN`, `NumeroConto`, `CodiceXML`) VALUES
+INSERT INTO `TIPI_PAGAMENTO` (`Codice`, `VecchioCod`, `Nome`, `Descrizione`, `Allineamento`, `NumRate`, `GiorniPrimaScad`, `Banca`, `ABI`, `CAB`, `CIN`, `NumeroConto`, `CodiceXML`) VALUES
 	(1, 10, 'R.B. 30 GG FM + 5 GG', 'R.B. 30 GG FM + 5 GG', 205, 1, 30, NULL, NULL, NULL, NULL, NULL, 'MP12'),
 	(2, 20, 'R.B. 60 GG FM + 5 GG', 'R.B. 60 GG FM + 5 GG', 205, 1, 60, NULL, NULL, NULL, NULL, NULL, 'MP12'),
 	(3, 11, 'R.B. 30 GG F.M.', 'R.B. 30 GG FINE MESE', 200, 1, 30, NULL, NULL, NULL, NULL, NULL, 'MP12'),

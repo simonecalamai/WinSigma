@@ -32,8 +32,17 @@ CString CConfigurazione::Read(CString nome)
 	CString valore = "";
 
 	m_strFilter.Format("Nome = '%s'", nome);
-  Open(CRecordset::snapshot, NULL, CRecordset::readOnly | CRecordset::noDirtyFieldCheck);
-	
+	try
+	{
+		Open(CRecordset::snapshot, NULL, CRecordset::readOnly | CRecordset::noDirtyFieldCheck);
+	}
+	catch(CDBException* e)
+	{
+		CString str = e->m_strError;
+		AfxMessageBox(str);
+		return "";
+	}
+ 	
 	if(!IsEOF())
 	{
 		valore = m_Valore;

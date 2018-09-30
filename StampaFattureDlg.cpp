@@ -64,7 +64,6 @@ CStampaFattureDlg::CStampaFattureDlg(CWnd* pParent /*=NULL*/)
 	//{{AFX_DATA_INIT(CStampaFattureDlg)
 	m_bSpedizione = FALSE;
 	m_bPA = FALSE;
-	m_bIVADifferita = FALSE;
 	m_strBanca = _T("");
 	m_strCAB = _T("");
 	m_strCodice = _T("");
@@ -86,17 +85,18 @@ CStampaFattureDlg::CStampaFattureDlg(CWnd* pParent /*=NULL*/)
 	m_strCodFiscale = _T("");
 	m_csRitAcconto = _T("");
 	m_csTotRitAcconto = _T("");
-	m_bHeader = TRUE;
 	m_strCodiceDestinatario = _T("");
 	m_strPEC = _T("");
-	m_strCUP = _T("");
 	m_strCIG = _T("");
+	m_strCUP = _T("");
 	m_strOrdineAcquisto = _T("");
 	m_DataOrdineAcquisto = 0;
 	m_strContratto = _T("");
 	m_DataContratto = 0;
 	m_strNumeroDDT = _T("");
 	m_DataDDT = 0;
+	m_bHeader = TRUE;
+	m_nEsigIVA = -1;
 	//}}AFX_DATA_INIT
   m_strImporto.Empty();
   m_strIVA.Empty();
@@ -123,8 +123,8 @@ void CStampaFattureDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_COMBO_TIPO_PAGAMENTO, m_ComboTipoPagamento);
 	DDX_Control(pDX, IDC_CHECK_SPEDIZIONE, m_BtnSpedizione);
 	DDX_Control(pDX, IDC_BUTTON_PRINT_FATTURA, m_BtnStampaFattura);
-	DDX_Control(pDX, IDC_BUTTON_FATTURA_XML, m_BtnFatturaXML);
 	DDX_Control(pDX, IDOK, m_BtnEmettiFattura);
+	DDX_Control(pDX, IDC_BUTTON_FATTURA_XML, m_BtnFatturaXML);
 	DDX_Control(pDX, IDC_EDIT_ORDINE, m_edtOrdineAcquisto);
 	DDX_Control(pDX, IDC_DATETIMEPICKER_DATA_ORDINE, m_DTCtrlDataOrdineAcquisto);
 	DDX_Control(pDX, IDC_EDIT_CONTRATTO, m_edtContratto);
@@ -133,7 +133,6 @@ void CStampaFattureDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_DATETIMEPICKER_DATA_DDT, m_DTCtrlDataDDT);
 	DDX_Check(pDX, IDC_CHECK_SPEDIZIONE, m_bSpedizione);
 	DDX_Check(pDX, IDC_CHECK_PA, m_bPA);
-	DDX_Check(pDX, IDC_CHECK_IVADIFF, m_bIVADifferita);
 	DDX_Text(pDX, IDC_EDIT_BANCA, m_strBanca);
 	DDV_MaxChars(pDX, m_strBanca, 64);
 	DDX_Text(pDX, IDC_EDIT_CAB, m_strCAB);
@@ -160,15 +159,14 @@ void CStampaFattureDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Text(pDX, IDC_EDIT_CODFISCALE, m_strCodFiscale);
 	DDX_Text(pDX, IDC_EDIT_RIT_ACCONTO, m_csRitAcconto);
 	DDX_Text(pDX, IDC_EDIT_TOT_RIT_ACCONTO, m_csTotRitAcconto);
-	DDX_Check(pDX, IDC_CHECK_HEADER, m_bHeader);
 	DDX_Text(pDX, IDC_EDIT_CODDEST, m_strCodiceDestinatario);
 	DDV_MaxChars(pDX, m_strCodiceDestinatario, 7);
 	DDX_Text(pDX, IDC_EDIT_PEC, m_strPEC);
 	DDV_MaxChars(pDX, m_strPEC, 200);
-	DDX_Text(pDX, IDC_EDIT_CUP, m_strCUP);
-	DDV_MaxChars(pDX, m_strCUP, 20);
 	DDX_Text(pDX, IDC_EDIT_CIG, m_strCIG);
 	DDV_MaxChars(pDX, m_strCIG, 20);
+	DDX_Text(pDX, IDC_EDIT_CUP, m_strCUP);
+	DDV_MaxChars(pDX, m_strCUP, 20);
 	DDX_Text(pDX, IDC_EDIT_ORDINE, m_strOrdineAcquisto);
 	DDV_MaxChars(pDX, m_strOrdineAcquisto, 20);
 	DDX_DateTimeCtrl(pDX, IDC_DATETIMEPICKER_DATA_ORDINE, m_DataOrdineAcquisto);
@@ -178,6 +176,8 @@ void CStampaFattureDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Text(pDX, IDC_EDIT_NUMERODDT, m_strNumeroDDT);
 	DDV_MaxChars(pDX, m_strNumeroDDT, 20);
 	DDX_DateTimeCtrl(pDX, IDC_DATETIMEPICKER_DATA_DDT, m_DataDDT);
+	DDX_Check(pDX, IDC_CHECK_HEADER, m_bHeader);
+	DDX_Radio(pDX, IDC_RADIO_IVA_IMM, m_nEsigIVA);
 	//}}AFX_DATA_MAP
 }
 
@@ -308,11 +308,9 @@ BOOL CStampaFattureDlg::OnInitDialog()
 			m_bPA = TRUE;
 		else
 			m_bPA = FALSE;
-		// fattura con IVA Differita
-		if(m_pFattureEmesseSet->m_IVADifferita > 0)
-			m_bIVADifferita = TRUE;
-		else
-			m_bIVADifferita = FALSE;
+
+		// Esigibilità IVA
+		m_nEsigIVA = m_pFattureEmesseSet->m_IVADifferita;
 
     if(!m_pFattureEmesseSet->IsFieldNull(&m_pFattureEmesseSet->m_Spese) && m_pFattureEmesseSet->m_Spese != 0)
     {
@@ -461,10 +459,10 @@ void CStampaFattureDlg::OnButtonEmetti()
 			m_pFattureEmesseSet->m_PA				= 1;
 		else
 			m_pFattureEmesseSet->m_PA				= 0;
-		if(m_bIVADifferita == TRUE)
-			m_pFattureEmesseSet->m_IVADifferita	= 1;
-		else
-			m_pFattureEmesseSet->m_IVADifferita	= 0;
+
+		// Esigibilità IVA
+		m_pFattureEmesseSet->m_IVADifferita = m_nEsigIVA;
+
     // fattura elettronica
 		if(m_bElett == TRUE)
 			m_pFattureEmesseSet->m_Elett				= 1;
@@ -623,10 +621,8 @@ void CStampaFattureDlg::SalvaFattura(void)
 		m_pFattureEmesseSet->m_PA				= 1;
 	else
 		m_pFattureEmesseSet->m_PA				= 0;
-	if(m_bIVADifferita == TRUE)
-		m_pFattureEmesseSet->m_IVADifferita	= 1;
-	else
-		m_pFattureEmesseSet->m_IVADifferita	= 0;
+
+	m_pFattureEmesseSet->m_IVADifferita = m_nEsigIVA;
 
 	// Codice Unico Progetto (CUP)
 	if(!m_strCUP.IsEmpty())
@@ -2601,7 +2597,7 @@ void CStampaFattureDlg::XMLBodyDatiBeniServizi(FILE* f)
 		// Descrizione
 		if(!m_pServiziErogati->IsFieldNull(&m_pServiziErogati->m_Descrizione))
 		{
-			str.Format(m_pServiziErogati->m_Descrizione);
+			str = m_pServiziErogati->m_Descrizione;
 			str.MakeUpper();
 			FilterANSI(str);
 			str.TrimRight();
@@ -2837,6 +2833,7 @@ void CStampaFattureDlg::OnKillfocusEditNumeroDDT()
 BOOL CStampaFattureDlg::ChangeChecker() 
 {
 	CString cs("");
+	CString cs1("");
 	cs += m_strCUP;
 	cs += m_strCIG;
 	cs += m_strOrdineAcquisto;
@@ -2845,6 +2842,8 @@ BOOL CStampaFattureDlg::ChangeChecker()
 	cs += m_DataContratto.Format("%Y%m%d");
 	cs += m_strNumeroDDT;
 	cs += m_DataDDT.Format("%Y%m%d");
+	cs1.Format("%d", m_nEsigIVA);
+	cs += cs1;
 	if(!m_csSum.Compare(cs))
 		return FALSE;
 	m_csSum = cs;

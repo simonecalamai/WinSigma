@@ -42,7 +42,6 @@ public:
 	CDateTimeCtrl	m_DTCtrlDataDDT;
 	BOOL	m_bSpedizione;
 	BOOL	m_bPA;
-	BOOL	m_bIVADifferita;
 	CString	m_strBanca;
 	CString	m_strCAB;
 	CString	m_strCodice;
@@ -76,6 +75,7 @@ public:
 	CString m_strNumeroDDT;
 	CTime	m_DataDDT;
 	BOOL m_bHeader;
+	int		m_nEsigIVA;
 	//}}AFX_DATA
 
   CWinSigmaDoc* m_pDoc;

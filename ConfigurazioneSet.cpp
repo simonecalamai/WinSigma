@@ -36,7 +36,7 @@ CString CConfigurazioneSet::GetDefaultConnect()
 
 CString CConfigurazioneSet::GetDefaultSQL()
 {
-	return _T("[configurazione]");
+	return _T("[CONFIGURAZIONE]");
 }
 
 void CConfigurazioneSet::DoFieldExchange(CFieldExchange* pFX)

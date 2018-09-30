@@ -562,6 +562,9 @@
 #define IDC_STATIC_ALARM_NOTE           1587
 #define IDC_STATIC_ESPORTA_XML          1588
 #define IDC_STATIC_FATTURE              1589
+#define IDC_RADIO_IVA_IMM               1590
+#define IDC_RADIO_IVA_DIFF              1591
+#define IDC_RADIO_IVA_SPLIT             1592
 #define ID_AZIENDA_MODIFICA             32771
 #define ID_VERBALE_MODIFICA             32772
 #define ID_FATTURA_EMETTI               32773
@@ -686,7 +689,7 @@
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        270
 #define _APS_NEXT_COMMAND_VALUE         33054
-#define _APS_NEXT_CONTROL_VALUE         1590
+#define _APS_NEXT_CONTROL_VALUE         1591
 #define _APS_NEXT_SYMED_VALUE           196
 #endif
 #endif

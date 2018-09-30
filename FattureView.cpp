@@ -39,6 +39,8 @@ static char THIS_FILE[] = __FILE__;
 #define VERIFICA_ERR_DATA  -1
 #define VERIFICA_ERR_DOC   -2
 
+#define CREATE_INVOICE_FIRST_MSG "Prima emettere la fattura"
+
 IMPLEMENT_DYNCREATE(CFattureView, CFormView)
 
 CFattureView::CFattureView()
@@ -1233,6 +1235,9 @@ void CFattureView::OnFatturaXML()
 	// Fattura da emettere
   if(m_lCodiceFattura <= 0 || m_pFattureEmesseSet->IsBOF() || m_pFattureEmesseSet->IsEOF())
   {
+    AfxMessageBox(CREATE_INVOICE_FIRST_MSG);
+    return;
+/*
 		CString msg,strDatiOccupante;
 		// Blocco della certificazione
 		if( !pApp->DisabilitaFatturazione(&strDatiOccupante) )
@@ -1245,6 +1250,7 @@ void CFattureView::OnFatturaXML()
 		EmettiSalvaFattura(TRUE);
 
 		pApp->DisabilitaFatturazione(&strDatiOccupante, FALSE);
+*/
   }
 	// Fattura emessa
   else if(m_lCodiceFattura > 0 || m_pVerbaliInFatturazione->IsBOF() || m_pVerbaliInFatturazione->IsEOF())
