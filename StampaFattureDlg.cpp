@@ -97,6 +97,7 @@ CStampaFattureDlg::CStampaFattureDlg(CWnd* pParent /*=NULL*/)
 	m_DataDDT = 0;
 	m_bHeader = TRUE;
 	m_nEsigIVA = -1;
+	m_strCodiceXML = _T("");
 	//}}AFX_DATA_INIT
   m_strImporto.Empty();
   m_strIVA.Empty();
@@ -176,6 +177,7 @@ void CStampaFattureDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Text(pDX, IDC_EDIT_NUMERODDT, m_strNumeroDDT);
 	DDV_MaxChars(pDX, m_strNumeroDDT, 20);
 	DDX_DateTimeCtrl(pDX, IDC_DATETIMEPICKER_DATA_DDT, m_DataDDT);
+	DDX_Text(pDX, IDC_EDIT_CODICE_XML, m_strCodiceXML);
 	DDX_Check(pDX, IDC_CHECK_HEADER, m_bHeader);
 	DDX_Radio(pDX, IDC_RADIO_IVA_IMM, m_nEsigIVA);
 	//}}AFX_DATA_MAP
@@ -555,6 +557,7 @@ void CStampaFattureDlg::OnButtonEmetti()
     m_pVerbaliInfatturazione->Update();
   }
   pSerieSet->Close();
+	delete pSerieSet; // MANUT
   // Scrivo il codice nella fattura nel recordset dei servizi erogati
   for(n = 0; n < m_aryCodiciServizi.GetSize(); n++)
   {
@@ -657,6 +660,10 @@ void CStampaFattureDlg::SalvaFattura(void)
 	    m_pFattureEmesseSet->m_DataDDT = m_DataDDT;
 		}
   }
+
+	// Codice XML
+	if(!m_strCodiceXML.IsEmpty())
+		m_pFattureEmesseSet->m_CodiceXML = atoi(m_strCodiceXML);
 
   m_pFattureEmesseSet->Update();
   pApp->UnlockTables();
@@ -1881,6 +1888,7 @@ void CStampaFattureDlg::OnSelchangeComboTipoPagamento()
       m_strCAB   = m_pAziendeSet->m_CAB;      
     }
     pTipiPagamento->Close();
+		delete pTipiPagamento; // MANUT
   }
   UpdateData(FALSE);
 }
@@ -1980,8 +1988,6 @@ void CStampaFattureDlg::OnButtonFatturaXML()
   CWinSigmaApp* pApp = (CWinSigmaApp*)AfxGetApp();
 
 	UpdateData(TRUE);
-	if(ChangeChecker())
-	  SalvaFattura();
 	// Verifica Codice Destinatario
 	if(m_strCodiceDestinatario.IsEmpty())
 	{
@@ -1990,15 +1996,34 @@ void CStampaFattureDlg::OnButtonFatturaXML()
 		msg += "PA: 6 caratteri, consultare i dati relativi alla fatturazione elettronica su IndicePA\n";
 		msg += "Privati: 7 caratteri (se la fattura deve essere inviata all'indirizzo PEC, inserire 0000000)";
 		MessageBox(msg, "Codice Destinatario mancante!", MB_OK);
+		if(ChangeChecker())
+		{
+			// salvo eventuali modifiche alla fattura
+		  SalvaFattura();
+		}
 		return;
 	}
 
+	// Lettura configurazione
 	CConfigurazione config;
 
-	// Lettura configurazione
-	// Numero progressivo
-	CString csProg = config.Read("ProgressivoXML");
-	int nProgressivo = atoi(csProg) + 1;
+	// Progressivo XML
+	CString csProg = "";
+	int nProgressivo = 0;
+	if(m_strCodiceXML.IsEmpty())
+	{
+		csProg = config.Read("ProgressivoXML");
+		nProgressivo = atoi(csProg) + 1;
+		m_strCodiceXML.Format("%05d", nProgressivo);
+		UpdateData(FALSE);
+	}
+	else
+	{
+		nProgressivo = atoi(m_strCodiceXML);
+	}
+
+	if(ChangeChecker())
+	  SalvaFattura();
 
 	// Cartella
 	CString csFolder = pApp->m_csXMLFolder;
@@ -2081,9 +2106,12 @@ void CStampaFattureDlg::OnButtonFatturaXML()
 	// Esportazione conclusa: chiudo il file
 	fclose(f);
 
-	// Aggiorna il progressivo
-	csProg.Format("%05d", nProgressivo);
-	config.Write("ProgressivoXML", csProg);
+	if(!csProg.IsEmpty())
+	{
+		// Aggiorna il progressivo
+		csProg.Format("%05d", nProgressivo);
+		config.Write("ProgressivoXML", csProg);
+	}
 
 	// Messaggio di conferma
 	msg.Format("File %s generato in %s", csFilename, csFolder);
@@ -2727,6 +2755,10 @@ void CStampaFattureDlg::XMLBodyDatiPagamento(FILE* f)
 	csLine.Format("<ModalitaPagamento>%s</ModalitaPagamento>\n", payMode); 
 	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
 
+	// Data Scadenza Pagamento
+	csLine.Format("<DataScadenzaPagamento>%s</DataScadenzaPagamento>\n", m_pFattureEmesseSet->m_Scadenza.Format("%Y-%m-%d")); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+
 	// ABI
 	if(!m_strABI.IsEmpty())
 	{
@@ -2834,6 +2866,7 @@ BOOL CStampaFattureDlg::ChangeChecker()
 {
 	CString cs("");
 	CString cs1("");
+	cs += m_strTipoPagamento;
 	cs += m_strCUP;
 	cs += m_strCIG;
 	cs += m_strOrdineAcquisto;
@@ -2844,6 +2877,10 @@ BOOL CStampaFattureDlg::ChangeChecker()
 	cs += m_DataDDT.Format("%Y%m%d");
 	cs1.Format("%d", m_nEsigIVA);
 	cs += cs1;
+	if(!m_strCodiceXML.IsEmpty())
+	{
+		cs += m_strCodiceXML;
+	}
 	if(!m_csSum.Compare(cs))
 		return FALSE;
 	m_csSum = cs;

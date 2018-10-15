@@ -78,6 +78,7 @@ CFattureView::CFattureView()
 	m_DataContratto = 0;
 	m_strNumeroDDT = _T("");
 	m_DataDDT = 0;
+	m_strCodiceXML = _T("");
 	//}}AFX_DATA_INIT
   m_bEnableServiziCheck = FALSE;
   m_lListinoGenerale = m_lListinoParticolare = 0;
@@ -118,6 +119,7 @@ void CFattureView::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_COMBO_TIPO_PAGAMENTO, m_ComboTipoPagamento);
 	DDX_Control(pDX, IDC_EDIT_RAGIONE_SOCIALE, m_EditRagioneSociale);
 	DDX_Control(pDX, IDC_EDIT_COD_CLIENTE, m_EditCodiceCliente);
+	DDX_Control(pDX, IDC_EDIT_CODICE_XML, m_EditCodiceXML);
 	DDX_Control(pDX, IDC_LIST_VERBALI, m_ListVerbali);
 	DDX_Control(pDX, IDC_LIST_SERVIZI, m_ListServizi);
 	DDX_Control(pDX, IDC_BUTTON_MODIFY_SERVIZIO, m_BtnModifyServizio);
@@ -155,6 +157,7 @@ void CFattureView::DoDataExchange(CDataExchange* pDX)
 	DDV_MaxChars(pDX, m_strCodiceDestinatario, 7);
 	DDX_Text(pDX, IDC_EDIT_PEC, m_strPEC);
 	DDV_MaxChars(pDX, m_strPEC, 200);
+	DDX_Text(pDX, IDC_EDIT_CODICE_XML, m_strCodiceXML);
 	//}}AFX_DATA_MAP
 }
 
@@ -242,6 +245,7 @@ void CFattureView::LoadCurRecord(BOOL bData)
 		m_DataContratto = 0;
 		m_strNumeroDDT.Empty();
 		m_DataDDT = 0;
+    m_strCodiceXML.Empty();
     m_ListVerbali.DeleteAllItems();
     m_ListServizi.DeleteAllItems();
     m_DataEmissione = CTime::GetCurrentTime();
@@ -388,6 +392,10 @@ void CFattureView::LoadCurRecord(BOOL bData)
 				{
 					m_DataDDT = m_pFattureEmesseSet->m_DataDDT;
 				}
+			}
+      if(!m_pFattureEmesseSet->IsFieldNull(&m_pFattureEmesseSet->m_CodiceXML))
+			{
+				m_strCodiceXML.Format("%05d", m_pFattureEmesseSet->m_CodiceXML);
 			}
 
       if(m_pFattureEmesseSet->m_BancaAppoggio.IsEmpty())
@@ -1340,6 +1348,9 @@ void CFattureView::EmettiSalvaFattura(BOOL bElett)
 			dlg.m_DataDDT = m_DataDDT;
 	}
 
+  if (!m_strCodiceXML.IsEmpty())
+		dlg.m_strCodiceXML = m_strCodiceXML;
+
   dlg.m_strRagioneSociale = m_strRagioneSociale;
   dlg.m_strCodice = m_strCodiceCliente;
   dlg.m_strIndirizzo = m_strIndirizzo;
@@ -1391,6 +1402,7 @@ void CFattureView::EmettiSalvaFattura(BOOL bElett)
 		m_DataContratto = dlg.m_DataContratto;
 		m_strNumeroDDT = dlg.m_strNumeroDDT;
 		m_DataDDT = dlg.m_DataDDT;
+		m_strCodiceXML = dlg.m_strCodiceXML;
 
     EnableServicesBtns(TRUE);
     EnableControls(FALSE);
@@ -1894,6 +1906,10 @@ void CFattureView::PrintProforma(BOOL bheader)
 		if(m_DataDDT > 0)
 			dlg.m_DataDDT = m_DataDDT;
 	}
+
+  if (!m_strCodiceXML.IsEmpty())
+		dlg.m_strCodiceXML = m_strCodiceXML;
+
   dlg.m_strRagioneSociale = m_strRagioneSociale;
   dlg.m_strCodice = m_strCodiceCliente;
   dlg.m_strIndirizzo = m_strIndirizzo;

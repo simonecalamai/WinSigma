@@ -74,6 +74,7 @@ public:
 	CTime	m_DataContratto;
 	CString m_strNumeroDDT;
 	CTime	m_DataDDT;
+	CString m_strCodiceXML;
 	BOOL m_bHeader;
 	int		m_nEsigIVA;
 	//}}AFX_DATA

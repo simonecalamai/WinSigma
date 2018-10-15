@@ -65,7 +65,8 @@ CFattureSet::CFattureSet(CDatabase* pdb)
 	m_DataContratto = 0;
 	m_NumeroDDT = _T("");
 	m_DataDDT = 0;
-	m_nFields = 45;
+	m_CodiceXML = 0;
+	m_nFields = 46;
 	//}}AFX_FIELD_INIT
 	m_nDefaultType = snapshot;
 }
@@ -133,6 +134,7 @@ void CFattureSet::DoFieldExchange(CFieldExchange* pFX)
 	RFX_Date(pFX, _T("[DataContratto]"), m_DataContratto);
 	RFX_Text(pFX, _T("[NumeroDDT]"), m_NumeroDDT);
 	RFX_Date(pFX, _T("[DataDDT]"), m_DataDDT);
+	RFX_Long(pFX, _T("[CodiceXML]"), m_CodiceXML);
 	//}}AFX_FIELD_MAP
 }
 

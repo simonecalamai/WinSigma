@@ -38,6 +38,7 @@ public:
 	CEdit	m_EditCodiceCliente;
 	CEdit	m_EditCodiceDestinatario;
 	CEdit	m_EditPEC;
+	CEdit	m_EditCodiceXML;
 	CListCtrl	m_ListVerbali;
 	CListCtrl	m_ListServizi;
 	CButton	m_BtnModifyServizio;
@@ -74,6 +75,7 @@ public:
 	CTime	m_DataContratto;
 	CString m_strNumeroDDT;
 	CTime	m_DataDDT;
+	CString	m_strCodiceXML;
 	//}}AFX_DATA
 
 // Attributes

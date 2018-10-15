@@ -63,6 +63,7 @@ public:
 	CTime		m_DataContratto;
 	CString m_NumeroDDT;
 	CTime		m_DataDDT;
+	long m_CodiceXML;
 	//}}AFX_FIELD
 
 
