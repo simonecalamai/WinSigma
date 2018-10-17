@@ -15,6 +15,8 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
+#define DEBUG_XML	0
+
 #define MAX_CHAR_DESCRIZIONE 85
 #define N_COPIE_FATTURA 2
 #define VERIFY_DATA_MSG "Verificare la correttezza della data."
@@ -110,6 +112,8 @@ CStampaFattureDlg::CStampaFattureDlg(CWnd* pParent /*=NULL*/)
   m_nRitAcconto = 0;
   m_nTotRitAcconto = 0;
 	m_dImponibileXML = 0.0f;
+	m_dImpostaXML = 0.0f;
+	m_dImportoPagamentoXML = 0.0f;
 }
 
 
@@ -2239,10 +2243,7 @@ void CStampaFattureDlg::XMLHeaderCedentePrestatore(FILE* f)
 	csLine.Format("<Sede>\n"); 
 	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
 	// -- Indirizzo
-	csLine.Format("<Indirizzo>%s</Indirizzo>\n", pApp->m_csIndirizzo); 
-	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
-	// -- NumeroCivico
-	csLine.Format("<NumeroCivico>%s</NumeroCivico>\n", pApp->m_csNumeroCivico); 
+	csLine.Format("<Indirizzo>%s %s</Indirizzo>\n", pApp->m_csIndirizzo, pApp->m_csNumeroCivico); 
 	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
 	// -- CAP
 	csLine.Format("<CAP>%s</CAP>\n", pApp->m_csCAP); 
@@ -2263,7 +2264,7 @@ void CStampaFattureDlg::XMLHeaderCedentePrestatore(FILE* f)
 	csLine.Format("<IscrizioneREA>\n"); 
 	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
 	// -- Ufficio
-	csLine.Format("<UfficioREA>%s</UfficioREA>\n", pApp->m_csUfficioREA); 
+	csLine.Format("<Ufficio>%s</Ufficio>\n", pApp->m_csUfficioREA); 
 	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
 	// -- Numero REA
 	csLine.Format("<NumeroREA>%s</NumeroREA>\n", pApp->m_csNumeroREA); 
@@ -2352,9 +2353,6 @@ void CStampaFattureDlg::XMLHeaderCessionarioCommittente(FILE* f)
 	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
 	// -- Indirizzo
 	csLine.Format("<Indirizzo>%s</Indirizzo>\n", m_pAziendeSet->m_Indirizzo); 
-	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
-	// -- NumeroCivico
-	csLine.Format("<NumeroCivico>%s</NumeroCivico>\n", ""); 
 	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
 	// -- CAP
 	csLine.Format("<CAP>%s</CAP>\n", m_pAziendeSet->m_CAP); 
@@ -2633,23 +2631,30 @@ void CStampaFattureDlg::XMLBodyDatiBeniServizi(FILE* f)
 			fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
 		}
 
-		// Quantità
-		if(!m_pServiziErogati->IsFieldNull(&m_pServiziErogati->m_Quantita))
-		{
-			csLine.Format("<Quantita>%.2f</Quantita>\n", m_pServiziErogati->m_Quantita); 
-			fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
-			csLine.Format("<UnitaMisura>%s</UnitaMisura>\n", "SERVIZIO"); 
-			fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
-		}
-
 		// PrezzoUnitario
 		if(!m_pServiziErogati->IsFieldNull(&m_pServiziErogati->m_Prezzo))
 		{
+
+			if(m_pServiziErogati->m_Prezzo != 0)
+			{
+				// Quantità e Unità di Misura indicate solo se l'importo (prezzo) è definito 
+				// altrimenti (es. riga di commento) non si indicano e il prezzo è 0.00
+				if(!m_pServiziErogati->IsFieldNull(&m_pServiziErogati->m_Quantita))
+				{
+					// Quantità
+					csLine.Format("<Quantita>%.2f</Quantita>\n", m_pServiziErogati->m_Quantita); 
+					fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+					// Unità di Misura
+					csLine.Format("<UnitaMisura>%s</UnitaMisura>\n", "SERVIZIO"); 
+					fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+				}
+			}
+
 			csLine.Format("<PrezzoUnitario>%.2f</PrezzoUnitario>\n", m_pServiziErogati->m_Prezzo); 
 			fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
 		}
 
-		// Sconto
+		// Sconto sulla singola linea
     if(!m_pServiziErogati->IsFieldNull(&m_pServiziErogati->m_Sconto) && m_pServiziErogati->m_Sconto)
 		{
 			csLine.Format("<ScontoMaggiorazione>\n"); 
@@ -2678,7 +2683,6 @@ void CStampaFattureDlg::XMLBodyDatiBeniServizi(FILE* f)
 			imponibile += prezzo;
 			csLine.Format("<PrezzoTotale>%.2f</PrezzoTotale>\n", prezzo); 
 			fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
-
 		}		
 
 		// AliquotaIVA
@@ -2689,6 +2693,51 @@ void CStampaFattureDlg::XMLBodyDatiBeniServizi(FILE* f)
 		csLine.Format("</DettaglioLinee>\n"); 
 		fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
   }
+
+	// Sconto totale: visualizzato come linea ulteriore nella fattura
+	if(!m_pFattureEmesseSet->IsFieldNull(&m_pFattureEmesseSet->m_Sconto) && m_pFattureEmesseSet->m_Sconto != 0)
+	{
+		csLine.Format("<DettaglioLinee>\n"); 
+		fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+		
+		// NumeroLinea
+		csLine.Format("<NumeroLinea>%d</NumeroLinea>\n", ++numLinea); 
+		fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+
+		// TipoCessionePrestazione
+		csLine.Format("<TipoCessionePrestazione>%s</TipoCessionePrestazione>\n", "SC"); 
+		fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+
+		// Descrizione
+		csLine.Format("<Descrizione>SCONTO %.2f</Descrizione>\n", m_pFattureEmesseSet->m_Sconto); 
+		fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+
+		// Quantità 
+		csLine.Format("<Quantita>1.00</Quantita>\n"); 
+		fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+
+		// Prezzo Unitario (importo dello sconto)
+		double sconto = -(imponibile * m_pFattureEmesseSet->m_Sconto / 100.0f);
+		csLine.Format("<PrezzoUnitario>%.2f</PrezzoUnitario>\n", sconto); 
+		fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+#if DEBUG_XML
+		csLine.Format("<DEBUGPrezzoUnitario>%f</DEBUGPrezzoUnitario>\n", sconto); 
+		fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+#endif
+		// Prezzo Totale (importo dello sconto)
+		csLine.Format("<PrezzoTotale>%.2f</PrezzoTotale>\n", sconto); 
+		fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+
+		// applico lo sconto all'imponibile
+		imponibile += sconto;
+
+		// AliquotaIVA
+		csLine.Format("<AliquotaIVA>%.2f</AliquotaIVA>\n", m_pFattureEmesseSet->m_Aliquota); 
+		fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+
+		csLine.Format("</DettaglioLinee>\n"); 
+		fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+	}
 
 	csLine.Format("<DatiRiepilogo>\n"); 
 	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
@@ -2701,12 +2750,20 @@ void CStampaFattureDlg::XMLBodyDatiBeniServizi(FILE* f)
 	m_dImponibileXML = imponibile;
 	csLine.Format("<ImponibileImporto>%.2f</ImponibileImporto>\n", m_dImponibileXML); 
 	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
-
-	// Imposta
-	double imposta = m_pFattureEmesseSet->m_Imponibile * m_pFattureEmesseSet->m_Aliquota / 100.0f;
-	csLine.Format("<Imposta>%.2f</Imposta>\n", imposta); 
+#if DEBUG_XML
+	csLine.Format("<DEBUGImponibileImporto>%f</DEBUGImponibileImporto>\n", m_dImponibileXML); 
 	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
-
+#endif
+	// Imposta
+	m_dImpostaXML = m_dImponibileXML * m_pFattureEmesseSet->m_Aliquota / 100.0f;
+	m_dImportoPagamentoXML = m_dImponibileXML + m_dImpostaXML;
+	double imposta_fattura = m_pFattureEmesseSet->m_Imponibile * m_pFattureEmesseSet->m_Aliquota / 100.0f;
+	csLine.Format("<Imposta>%.2f</Imposta>\n", m_dImpostaXML); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+#if DEBUG_XML
+	csLine.Format("<DEBUGImposta>%f</DEBUGImposta>\n", m_dImpostaXML); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+#endif
 	// EsigibilitaIVA: 0=I(immediata) 1=D(differita) 2=S(split)
 	CString esigIVA("");
 	switch(m_pFattureEmesseSet->m_IVADifferita)
@@ -2774,9 +2831,14 @@ void CStampaFattureDlg::XMLBodyDatiPagamento(FILE* f)
 	}
 
 	// Importo Pagamento
-	csLine.Format("<ImportoPagamento>%.2f</ImportoPagamento>\n", m_dImponibileXML); 
+	csLine.Format("<ImportoPagamento>%.2f</ImportoPagamento>\n", m_dImportoPagamentoXML); 
 	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
-
+#if DEBUG_XML
+	csLine.Format("<DEBUGImportoPagamento>%f</DEBUGImportoPagamento>\n", m_dImportoPagamentoXML); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+	csLine.Format("<DEBUGImportoPagamentoFattura>%.2f</DEBUGImportoPagamentoFattura>\n", m_pFattureEmesseSet->m_Imponibile); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+#endif
 	csLine.Format("</DettaglioPagamento>\n"); 
 	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
 	

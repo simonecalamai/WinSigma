@@ -2379,7 +2379,7 @@ void CFattureView::OnSbloccaFattura()
 void CFattureView::OnSbloccaFatturazione() 
 {
 	CString str,msg = "ATTENZIONE; le operazioni di emissione fattura possono creare inconsistenza dei dati se eseguite contemporaneamente da più utenti!";
-	msg +="\n\nACCERTARSI CHE NON CI SIANO ATRI OPERATORI CHE EMETTONO FATTURE!";
+	msg +="\n\nACCERTARSI CHE NON CI SIANO ALTRI OPERATORI CHE EMETTONO FATTURE!";
 	msg +="\n\nProcedere con lo sblocco della fatturazione?";
 	if( !(IDYES == AfxMessageBox(msg, MB_YESNO)) )
 		return;
