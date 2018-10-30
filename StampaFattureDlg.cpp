@@ -98,7 +98,7 @@ CStampaFattureDlg::CStampaFattureDlg(CWnd* pParent /*=NULL*/)
 	m_strNumeroDDT = _T("");
 	m_DataDDT = 0;
 	m_bHeader = TRUE;
-	m_nEsigIVA = -1;
+	m_nEsigIVA = 0;
 	m_strCodiceXML = _T("");
 	//}}AFX_DATA_INIT
   m_strImporto.Empty();
@@ -173,13 +173,13 @@ void CStampaFattureDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Text(pDX, IDC_EDIT_CUP, m_strCUP);
 	DDV_MaxChars(pDX, m_strCUP, 20);
 	DDX_Text(pDX, IDC_EDIT_ORDINE, m_strOrdineAcquisto);
-	DDV_MaxChars(pDX, m_strOrdineAcquisto, 20);
+	DDV_MaxChars(pDX, m_strOrdineAcquisto, 200);
 	DDX_DateTimeCtrl(pDX, IDC_DATETIMEPICKER_DATA_ORDINE, m_DataOrdineAcquisto);
 	DDX_Text(pDX, IDC_EDIT_CONTRATTO, m_strContratto);
-	DDV_MaxChars(pDX, m_strContratto, 20);
+	DDV_MaxChars(pDX, m_strContratto, 200);
 	DDX_DateTimeCtrl(pDX, IDC_DATETIMEPICKER_DATA_CONTRATTO, m_DataContratto);
 	DDX_Text(pDX, IDC_EDIT_NUMERODDT, m_strNumeroDDT);
-	DDV_MaxChars(pDX, m_strNumeroDDT, 20);
+	DDV_MaxChars(pDX, m_strNumeroDDT, 200);
 	DDX_DateTimeCtrl(pDX, IDC_DATETIMEPICKER_DATA_DDT, m_DataDDT);
 	DDX_Text(pDX, IDC_EDIT_CODICE_XML, m_strCodiceXML);
 	DDX_Check(pDX, IDC_CHECK_HEADER, m_bHeader);
@@ -2488,14 +2488,14 @@ void CStampaFattureDlg::XMLBodyDatiGenerali(FILE* f)
 		// CUP
 		if(!m_strCUP.IsEmpty())
 		{
-			csLine.Format("<CUP>%s</CUP>\n", m_strCUP); 
+			csLine.Format("<CodiceCUP>%s</CodiceCUP>\n", m_strCUP); 
 			fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
 		}
 
 		// CIG
 		if(!m_strCIG.IsEmpty())
 		{
-			csLine.Format("<CIG>%s</CIG>\n", m_strCIG); 
+			csLine.Format("<CodiceCIG>%s</CodiceCIG>\n", m_strCIG); 
 			fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
 		}
 
@@ -2523,14 +2523,14 @@ void CStampaFattureDlg::XMLBodyDatiGenerali(FILE* f)
 		// CUP
 		if(!m_strCUP.IsEmpty())
 		{
-			csLine.Format("<CUP>%s</CUP>\n", m_strCUP); 
+			csLine.Format("<CodiceCUP>%s</CodiceCUP>\n", m_strCUP); 
 			fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
 		}
 
 		// CIG
 		if(!m_strCIG.IsEmpty())
 		{
-			csLine.Format("<CIG>%s</CIG>\n", m_strCIG); 
+			csLine.Format("<CodiceCIG>%s</CodiceCIG>\n", m_strCIG); 
 			fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
 		}
 
@@ -2610,8 +2610,52 @@ void CStampaFattureDlg::XMLBodyDatiBeniServizi(FILE* f)
 	// Dettaglio Linee
 	double imponibile = 0.0f;
 	int numLinea = 0;
+	int codVerbale = 0;
   for(SET_START(m_pServiziErogati); !m_pServiziErogati->IsEOF(); m_pServiziErogati->MoveNext())
   {
+		if(m_pServiziErogati->m_Verbale != codVerbale)
+		{
+			// determina progressivo (parziale e totale) del verbale e il cantiere
+			codVerbale = m_pServiziErogati->m_Verbale;
+			SINCRONIZE(m_pVerbaliInfatturazione, m_pServiziErogati->m_Verbale);
+			if(m_pVerbaliInfatturazione->m_ProgressivoTotale != 0)
+			{
+				// riga descrittiva con verbale + cantiere
+				numLinea++;
+				csLine.Format("<DettaglioLinee>\n"); 
+				fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+
+				// NumeroLinea
+				csLine.Format("<NumeroLinea>%d</NumeroLinea>\n", numLinea); 
+				fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+
+				// Descrizione: verbale + cantiere
+				str.Format("VA %d/%d del %s - Cant.: %s", 
+					m_pVerbaliInfatturazione->m_ProgressivoParziale, 
+					m_pVerbaliInfatturazione->m_ProgressivoTotale,
+					m_pVerbaliInfatturazione->m_DataAccettazione.Format("%d/%m/%Y"),
+					m_pVerbaliInfatturazione->m_Cantiere);
+
+				csLine.Format("<Descrizione>%s</Descrizione>\n", str); 
+				fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+
+				// Prezzo Unitario				
+				csLine.Format("<PrezzoUnitario>0.00</PrezzoUnitario>\n"); 
+				fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+
+				// Prezzo Totale				
+				csLine.Format("<PrezzoTotale>0.00</PrezzoTotale>\n"); 
+				fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+
+				// AliquotaIVA
+				csLine.Format("<AliquotaIVA>%.2f</AliquotaIVA>\n", m_pFattureEmesseSet->m_Aliquota); 
+				fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+
+				csLine.Format("</DettaglioLinee>\n"); 
+				fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+			}
+		}
+
 		numLinea++;
 		csLine.Format("<DettaglioLinee>\n"); 
 		fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);

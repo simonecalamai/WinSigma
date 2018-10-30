@@ -1133,7 +1133,11 @@ void CFattureView::OnEsportaFatture()
 			}
 
 			// Flag IVA DIfferita (sc 31.03.2015)
-			csApp.Format("%d;", pFattureSet->m_IVADifferita);
+			// modifica (sc 30.10.2018) il flag è posto a 1 sia per Differita (1) che Split (2)
+			if(pFattureSet->m_IVADifferita == 1 || pFattureSet->m_IVADifferita == 2)
+				csApp.Format("1;");
+			else
+				csApp.Format("0;");
 			fwrite(csApp.GetBuffer(csApp.GetLength()), csApp.GetLength(),1,f);
 
 			// Flag Fattura Elettronica (sc 17.10.2015)
