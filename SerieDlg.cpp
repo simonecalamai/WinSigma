@@ -858,6 +858,8 @@ void CSerieDlg::LoadSeriesData(void)
 	if (!m_pSerieSet->IsFieldNull(&m_pSerieSet->m_VerbalePrelievo))
 	{
 		m_sVerbalePrelievo = m_pSerieSet->m_VerbalePrelievo;
+		if(m_sVerbalePrelievo.IsEmpty())
+			m_sVerbalePrelievo =STR_DATAND;
 	}
 
 	if (!m_pSerieSet->IsFieldNull(&m_pSerieSet->m_SiglaFornitore))
@@ -915,6 +917,8 @@ void CSerieDlg::LoadTCertData(void)
 		if(!m_pSerieSet->IsFieldNull(&m_pSerieSet->m_VerbalePrelievo))
 		{
 			m_sVerbalePrelievo = m_pSerieSet->m_VerbalePrelievo;
+			if(m_sVerbalePrelievo.IsEmpty())
+				m_sVerbalePrelievo =STR_DATAND;
 		}
 	}
 	else
@@ -1261,11 +1265,6 @@ void CSerieDlg::OnCheckVerbalePrelievoNonDichiarato()
 	{
 //		m_ctrlVerbalePrelievo.SetWindowText(STR_DATAND);
 		m_sVerbalePrelievo.Format(STR_DATAND);
-	}
-	else
-	{
-//		m_ctrlVerbalePrelievo.SetWindowText("");
-		m_sVerbalePrelievo.Format("");
 	}
 	UpdateData(FALSE);		
 }

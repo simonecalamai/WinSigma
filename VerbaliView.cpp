@@ -3331,23 +3331,48 @@ BOOL CVerbaliView::ScanProviniMinuta(CStringArray* pFieldNames, CStringArray* pF
 	}
 	else
 	{
-    TIME_ZONE_INFORMATION timeZone;
-    CTimeSpan  tsMat(m_pTipiCertificatoSet->m_Maturazione, 0, 0, 0);			// 28 gg
+//    TIME_ZONE_INFORMATION timeZone;
+		CTimeSpan ts1 = CTimeSpan(1, 1, 0, 0);    // elemento per correzione passaggio ora solare s.c. 9.11.2018
+    CTimeSpan  tsMat28(m_pTipiCertificatoSet->m_Maturazione, 0, 0, 0);			// 28 gg
     CTimeSpan  tsMat29(m_pTipiCertificatoSet->m_Maturazione+1, 0, 0, 0);		// 29 gg
     CTimeSpan  tsMat30(m_pTipiCertificatoSet->m_Maturazione+2, 0, 0, 0);		// 30 gg
     CTimeSpan  tsScad(DATA_SCADENZA_CUBETTI, 0, 0, 0);
-    GetTimeZoneInformation(&timeZone);
-    tsMat -= timeZone.Bias * 60;
-		tsScad -= timeZone.Bias * 60;
+//    GetTimeZoneInformation(&timeZone);
+//    tsMat -= timeZone.Bias * 60;
+//		tsScad -= timeZone.Bias * 60;
+		CTime ctMat28 = m_pSerieSet->m_DataPrelievo + tsMat28;
+		CTime ctMat29 = m_pSerieSet->m_DataPrelievo + tsMat29;
+		CTime ctMat30 = m_pSerieSet->m_DataPrelievo + tsMat30;
+		CTime ctMat28n = CTime(ctMat28.GetYear(), ctMat28.GetMonth(), ctMat28.GetDay(), 0, 0, 0);
+		CTime ctMat29n = CTime(ctMat29.GetYear(), ctMat29.GetMonth(), ctMat29.GetDay(), 0, 0, 0);
+		CTime ctMat30n = CTime(ctMat30.GetYear(), ctMat30.GetMonth(), ctMat30.GetDay(), 0, 0, 0);
+		if(ctMat28n - m_pSerieSet->m_DataPrelievo < tsMat28)
+		{
+			// correzione ora solare
+			ctMat28n += ts1;
+			ctMat28 = CTime(ctMat28n.GetYear(), ctMat28n.GetMonth(), ctMat28n.GetDay(), 0, 0, 0);
+		}
+		if(ctMat29n - m_pSerieSet->m_DataPrelievo < tsMat29)
+		{
+			// correzione ora solare
+			ctMat29n += ts1;
+			ctMat29 = CTime(ctMat29n.GetYear(), ctMat29n.GetMonth(), ctMat29n.GetDay(), 0, 0, 0);
+		}
+		if(ctMat30n - m_pSerieSet->m_DataPrelievo < tsMat30)
+		{
+			// correzione ora solare
+			ctMat30n += ts1;
+			ctMat30 = CTime(ctMat30n.GetYear(), ctMat30n.GetMonth(), ctMat30n.GetDay(), 0, 0, 0);
+		}
 		CTime realnow = CTime::GetCurrentTime();
 		// normalizza la data corrente alle ore 00:00:00
 		CTime now(realnow.GetYear(), realnow.GetMonth(), realnow.GetDay(), 0, 0, 0);
 		CTime scad45 = m_pSerieSet->m_DataPrelievo + tsScad;
+		CTime accett(m_pVerbaliSet->m_DataAccettazione.GetYear(), m_pVerbaliSet->m_DataAccettazione.GetMonth(), m_pVerbaliSet->m_DataAccettazione.GetDay(), 0, 0, 0);
 		CString csNow = now.Format("%d/%m/%y");
 		CString cs45 = scad45.Format("%d/%m/%y");
 		pFieldValues->Add(m_pSerieSet->m_DataPrelievo.Format("%d/%m/%y"));							// data prelievo
-//		if(scad45 >= now)
-		if(scad45 >= m_pVerbaliSet->m_DataAccettazione)
+		if(scad45 >= accett)
 		{
 			pFieldValues->Add((m_pSerieSet->m_DataPrelievo + tsScad).Format("%d/%m/%y"));		// scadenza 45 gg
 		}
@@ -3355,14 +3380,25 @@ BOOL CVerbaliView::ScanProviniMinuta(CStringArray* pFieldNames, CStringArray* pF
 		{
 	    pFieldValues->Add("");								// scadenza 45 gg 
 		}
-    if(m_pVerbaliSet->m_DataAccettazione > m_pSerieSet->m_DataPrelievo + tsMat30)			// maturazione
+
+		CString csDataAccett = accett.Format("%d/%m/%y");
+		CString csDataPrel = m_pSerieSet->m_DataPrelievo.Format("%d/%m/%y");
+		CString csData28 = (ctMat28n).Format("%d/%m/%y");
+		CString csData29 = (ctMat29n).Format("%d/%m/%y");
+		CString csData30 = (ctMat30n).Format("%d/%m/%y");
+
+		if(accett == ctMat28 || accett == ctMat29 || accett == ctMat30)
+		{
+			pFieldValues->Add(csDataAccett);
+		}
+		else if(accett < ctMat28)
+		{
+		  pFieldValues->Add(ctMat28.Format("%d/%m/%y"));
+		}
+		else  // accett > m_pSerieSet->m_DataPrelievo + tsMat30
+		{
 		  pFieldValues->Add("../../..");
-		else if(m_pVerbaliSet->m_DataAccettazione == (m_pSerieSet->m_DataPrelievo + tsMat30)) 
-		  pFieldValues->Add((m_pSerieSet->m_DataPrelievo + tsMat30).Format("%d/%m/%y"));
-		else if(m_pVerbaliSet->m_DataAccettazione == (m_pSerieSet->m_DataPrelievo + tsMat29)) 
-		  pFieldValues->Add((m_pSerieSet->m_DataPrelievo + tsMat29).Format("%d/%m/%y"));
-		else
-		  pFieldValues->Add((m_pSerieSet->m_DataPrelievo + tsMat).Format("%d/%m/%y"));
+		}
   }
 //	pFieldNames->Add("UB");
 //  pFieldValues->Add("...");

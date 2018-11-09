@@ -255,9 +255,9 @@ BOOL CStampaFattureDlg::OnInitDialog()
 	else
 		((CStatic*)GetDlgItem(IDC_STATIC_ELETT))->ShowWindow(SW_HIDE);
 	
-	m_DTCtrlDataOrdineAcquisto.EnableWindow(FALSE);
-	m_DTCtrlDataContratto.EnableWindow(FALSE);
-	m_DTCtrlDataDDT.EnableWindow(FALSE);
+	//m_DTCtrlDataOrdineAcquisto.EnableWindow(FALSE);
+	//m_DTCtrlDataContratto.EnableWindow(FALSE);
+	//m_DTCtrlDataDDT.EnableWindow(FALSE);
   // Inizializzo il recordset prendendo solo le fatture dell'anno impostato nella data di emissione
   m_pFattureEmesseSet = m_pDoc->m_pFattureEmesseSet;
   CTime dateFrom(m_DataFattura.GetYear(), 1, 1, 0, 0, 0);
@@ -2924,12 +2924,12 @@ void CStampaFattureDlg::OnKillfocusEditOrdineAcquisto()
 		  m_DataOrdineAcquisto = CTime::GetCurrentTime();
 			m_DTCtrlDataOrdineAcquisto.SetTime(&m_DataOrdineAcquisto);
 		}
-		m_DTCtrlDataOrdineAcquisto.EnableWindow(TRUE);	
+//		m_DTCtrlDataOrdineAcquisto.EnableWindow(TRUE);	
 	}
-	else
-	{
-		m_DTCtrlDataOrdineAcquisto.EnableWindow(FALSE);	
-	}
+//	else
+//	{
+//		m_DTCtrlDataOrdineAcquisto.EnableWindow(FALSE);	
+//	}
 }
 
 void CStampaFattureDlg::OnKillfocusEditContratto() 
@@ -2942,12 +2942,12 @@ void CStampaFattureDlg::OnKillfocusEditContratto()
 		  m_DataContratto = CTime::GetCurrentTime();
 			m_DTCtrlDataContratto.SetTime(&m_DataContratto);
 		}
-		m_DTCtrlDataContratto.EnableWindow(TRUE);
+//		m_DTCtrlDataContratto.EnableWindow(TRUE);
 	}
-	else
-	{
-		m_DTCtrlDataContratto.EnableWindow(FALSE);	
-	}
+//	else
+//	{
+//		m_DTCtrlDataContratto.EnableWindow(FALSE);	
+//	}
 }
 
 void CStampaFattureDlg::OnKillfocusEditNumeroDDT() 
@@ -2960,12 +2960,12 @@ void CStampaFattureDlg::OnKillfocusEditNumeroDDT()
 		  m_DataDDT = CTime::GetCurrentTime();
 			m_DTCtrlDataDDT.SetTime(&m_DataDDT);
 		}
-		m_DTCtrlDataDDT.EnableWindow(TRUE);
+//		m_DTCtrlDataDDT.EnableWindow(TRUE);
 	}
-	else
-	{
-		m_DTCtrlDataDDT.EnableWindow(FALSE);	
-	}
+//	else
+//	{
+//		m_DTCtrlDataDDT.EnableWindow(FALSE);	
+//	}
 }
 
 BOOL CStampaFattureDlg::ChangeChecker() 
