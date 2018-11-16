@@ -3331,18 +3331,22 @@ BOOL CVerbaliView::ScanProviniMinuta(CStringArray* pFieldNames, CStringArray* pF
 	}
 	else
 	{
-//    TIME_ZONE_INFORMATION timeZone;
-		CTimeSpan ts1 = CTimeSpan(1, 1, 0, 0);    // elemento per correzione passaggio ora solare s.c. 9.11.2018
+    TIME_ZONE_INFORMATION timeZone;
+//		CTimeSpan ts1 = CTimeSpan(1, 1, 0, 0);    // elemento per correzione passaggio ora solare s.c. 9.11.2018
     CTimeSpan  tsMat28(m_pTipiCertificatoSet->m_Maturazione, 0, 0, 0);			// 28 gg
     CTimeSpan  tsMat29(m_pTipiCertificatoSet->m_Maturazione+1, 0, 0, 0);		// 29 gg
     CTimeSpan  tsMat30(m_pTipiCertificatoSet->m_Maturazione+2, 0, 0, 0);		// 30 gg
     CTimeSpan  tsScad(DATA_SCADENZA_CUBETTI, 0, 0, 0);
-//    GetTimeZoneInformation(&timeZone);
-//    tsMat -= timeZone.Bias * 60;
-//		tsScad -= timeZone.Bias * 60;
+    GetTimeZoneInformation(&timeZone);
+		tsMat28 -= timeZone.Bias * 60; 
+		tsMat29 -= timeZone.Bias * 60; 
+		tsMat30 -= timeZone.Bias * 60; 
+		tsScad -= timeZone.Bias * 60;
 		CTime ctMat28 = m_pSerieSet->m_DataPrelievo + tsMat28;
 		CTime ctMat29 = m_pSerieSet->m_DataPrelievo + tsMat29;
 		CTime ctMat30 = m_pSerieSet->m_DataPrelievo + tsMat30;
+		CTime scad45 = m_pSerieSet->m_DataPrelievo + tsScad;
+#if 0 // più pratico usare la correzione con la timezone s.c. 16.11.2018
 		CTime ctMat28n = CTime(ctMat28.GetYear(), ctMat28.GetMonth(), ctMat28.GetDay(), 0, 0, 0);
 		CTime ctMat29n = CTime(ctMat29.GetYear(), ctMat29.GetMonth(), ctMat29.GetDay(), 0, 0, 0);
 		CTime ctMat30n = CTime(ctMat30.GetYear(), ctMat30.GetMonth(), ctMat30.GetDay(), 0, 0, 0);
@@ -3364,10 +3368,10 @@ BOOL CVerbaliView::ScanProviniMinuta(CStringArray* pFieldNames, CStringArray* pF
 			ctMat30n += ts1;
 			ctMat30 = CTime(ctMat30n.GetYear(), ctMat30n.GetMonth(), ctMat30n.GetDay(), 0, 0, 0);
 		}
+#endif
 		CTime realnow = CTime::GetCurrentTime();
 		// normalizza la data corrente alle ore 00:00:00
 		CTime now(realnow.GetYear(), realnow.GetMonth(), realnow.GetDay(), 0, 0, 0);
-		CTime scad45 = m_pSerieSet->m_DataPrelievo + tsScad;
 		CTime accett(m_pVerbaliSet->m_DataAccettazione.GetYear(), m_pVerbaliSet->m_DataAccettazione.GetMonth(), m_pVerbaliSet->m_DataAccettazione.GetDay(), 0, 0, 0);
 		CString csNow = now.Format("%d/%m/%y");
 		CString cs45 = scad45.Format("%d/%m/%y");
@@ -3383,9 +3387,9 @@ BOOL CVerbaliView::ScanProviniMinuta(CStringArray* pFieldNames, CStringArray* pF
 
 		CString csDataAccett = accett.Format("%d/%m/%y");
 		CString csDataPrel = m_pSerieSet->m_DataPrelievo.Format("%d/%m/%y");
-		CString csData28 = (ctMat28n).Format("%d/%m/%y");
-		CString csData29 = (ctMat29n).Format("%d/%m/%y");
-		CString csData30 = (ctMat30n).Format("%d/%m/%y");
+		CString csData28 = (ctMat28).Format("%d/%m/%y");
+		CString csData29 = (ctMat29).Format("%d/%m/%y");
+		CString csData30 = (ctMat30).Format("%d/%m/%y");
 
 		if(accett == ctMat28 || accett == ctMat29 || accett == ctMat30)
 		{

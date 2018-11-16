@@ -415,6 +415,9 @@ __declspec( dllexport ) BOOL DatiProvino(CAllTables* pTabelle, CStringArray* pFi
 	if( pSerieProviniSet->IsEOF() )
 	  return FALSE;
 
+  TIME_ZONE_INFORMATION timeZone;
+  GetTimeZoneInformation(&timeZone);
+
 	dati* pDati;
 	pDati = (dati*)pSerieProviniSet->m_Risultati.GetData();
 
@@ -486,6 +489,7 @@ __declspec( dllexport ) BOOL DatiProvino(CAllTables* pTabelle, CStringArray* pFi
 					CString prel = pSerieProviniSet->m_DataPrelievo.Format("%d/%m/%Y"); 
 					CString prov = pSerieProviniSet->m_DataProva.Format("%d/%m/%Y"); 
 					CTimeSpan diff = CTimeSpan(45, 0, 0, 0);
+  				diff -= timeZone.Bias * 60;
 					CTime ct = pSerieProviniSet->m_DataPrelievo + diff;
 					CString cts = ct.Format("%d/%m/%Y"); 
 					if(pSerieProviniSet->m_DataProva > (pSerieProviniSet->m_DataPrelievo + diff))
@@ -548,6 +552,7 @@ __declspec( dllexport ) BOOL DatiProvino(CAllTables* pTabelle, CStringArray* pFi
 						CString prel = pSerieProviniSet->m_DataPrelievo.Format("%d/%m/%Y"); 
 						CString prov = pSerieProviniSet->m_DataProva.Format("%d/%m/%Y"); 
 						CTimeSpan diff = CTimeSpan(45, 0, 0, 0);
+						diff -= timeZone.Bias * 60;
 						CTime ct = pSerieProviniSet->m_DataPrelievo + diff;
 						CString cts = ct.Format("%d/%m/%Y"); 
 						if(pSerieProviniSet->m_DataProva > (pSerieProviniSet->m_DataPrelievo + diff))
