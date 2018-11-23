@@ -79,6 +79,7 @@ CFattureView::CFattureView()
 	m_strNumeroDDT = _T("");
 	m_DataDDT = 0;
 	m_strCodiceXML = _T("");
+	m_strIBAN = _T("");
 	//}}AFX_DATA_INIT
   m_bEnableServiziCheck = FALSE;
   m_lListinoGenerale = m_lListinoParticolare = 0;
@@ -158,6 +159,9 @@ void CFattureView::DoDataExchange(CDataExchange* pDX)
 	DDX_Text(pDX, IDC_EDIT_PEC, m_strPEC);
 	DDV_MaxChars(pDX, m_strPEC, 200);
 	DDX_Text(pDX, IDC_EDIT_CODICE_XML, m_strCodiceXML);
+	DDX_Control(pDX, IDC_EDIT_IBAN, m_EditIBAN);
+	DDX_Text(pDX, IDC_EDIT_IBAN, m_strIBAN);
+	DDV_MaxChars(pDX, m_strIBAN, 27);
 	//}}AFX_DATA_MAP
 }
 
@@ -332,6 +336,7 @@ void CFattureView::LoadCurRecord(BOOL bData)
       m_strBanca = pAziendeSet->m_Banca;
       m_strABI = pAziendeSet->m_ABI;
       m_strCAB = pAziendeSet->m_CAB;
+      m_strIBAN = pAziendeSet->m_IBAN;
       // Tipo di pagamento
       if(!pAziendeSet->IsFieldNull(&pAziendeSet->m_TipoPagamento) &&
           pAziendeSet->m_TipoPagamento > 0)
@@ -401,12 +406,14 @@ void CFattureView::LoadCurRecord(BOOL bData)
       if(m_pFattureEmesseSet->m_BancaAppoggio.IsEmpty())
       {
         m_strBanca = m_pFattureEmesseSet->m_Banca;
+        m_strIBAN = m_pFattureEmesseSet->m_IBAN;
         m_strABI = m_pFattureEmesseSet->m_ABI;
         m_strCAB = m_pFattureEmesseSet->m_CAB;
       }
       else
       {
         m_strBanca = m_pFattureEmesseSet->m_BancaAppoggio;
+        m_strIBAN = m_pFattureEmesseSet->m_IBANAppoggio;
         m_strABI = m_pFattureEmesseSet->m_ABIAppoggio;
         m_strCAB = m_pFattureEmesseSet->m_CABAppoggio;
       }
@@ -1362,6 +1369,7 @@ void CFattureView::EmettiSalvaFattura(BOOL bElett)
   dlg.m_lTipoPagamento = m_lTipoPagamento;
   dlg.m_strBanca = m_strBanca;
   dlg.m_strBanca.Replace("\r\n", " ");
+  dlg.m_strIBAN = m_strIBAN;
   dlg.m_strABI = m_strABI;
   dlg.m_strCAB = m_strCAB;
   dlg.m_strImponibile = m_strImporto;
@@ -1579,6 +1587,7 @@ void CFattureView::EnableControls(BOOL bEnable)
   m_EditBanca.EnableWindow(bEnable);
   m_EditCAB.EnableWindow(bEnable);
   m_EditABI.EnableWindow(bEnable);
+  m_EditIBAN.EnableWindow(bEnable);
 }
 
 // Abilita/Disabilita i pulsanti per aggiungere, modificare o eliminare un servizio
@@ -1921,6 +1930,7 @@ void CFattureView::PrintProforma(BOOL bheader)
   dlg.m_lTipoPagamento = m_lTipoPagamento;
   dlg.m_strBanca = m_strBanca;
   dlg.m_strBanca.Replace("\r\n", " ");
+  dlg.m_strIBAN = m_strIBAN;
   dlg.m_strABI = m_strABI;
   dlg.m_strCAB = m_strCAB;
   dlg.m_strImponibile = m_strImporto;
@@ -1966,12 +1976,14 @@ void CFattureView::OnTrovaAzienda()
       if(!pTipiPagamento->IsFieldNull(&pTipiPagamento->m_Allineamento) && pTipiPagamento->m_Allineamento)
       {
         m_strBanca = pAziendeSet->m_Banca;
+        m_strIBAN   = pAziendeSet->m_IBAN;
         m_strABI   = pAziendeSet->m_ABI;
         m_strCAB   = pAziendeSet->m_CAB;
       }
       else
       {
         m_strBanca = pTipiPagamento->m_Banca;
+        m_strIBAN   = pTipiPagamento->m_IBAN;
         m_strABI   = pTipiPagamento->m_ABI;
         m_strCAB   = pTipiPagamento->m_CAB;
       }
@@ -1979,6 +1991,7 @@ void CFattureView::OnTrovaAzienda()
     else
     {
       m_strBanca.Empty();
+      m_strIBAN.Empty();
       m_strABI.Empty();
       m_strCAB.Empty();
       m_strTipoPagamento = "Contrassegno";
@@ -2022,17 +2035,20 @@ void CFattureView::OnTrovaAzienda()
     if(!pAziendeSet->IsFieldNull(&pAziendeSet->m_Sconto))
       m_pFattureEmesseSet->m_Sconto = pAziendeSet->m_Sconto;
     m_pFattureEmesseSet->m_Banca = pAziendeSet->m_Banca;
+    m_pFattureEmesseSet->m_IBAN = pAziendeSet->m_IBAN;
     m_pFattureEmesseSet->m_ABI = pAziendeSet->m_ABI;
     m_pFattureEmesseSet->m_CAB = pAziendeSet->m_CAB;
     if(!pTipiPagamento->m_Banca.IsEmpty())
     {
       m_pFattureEmesseSet->m_BancaAppoggio = pTipiPagamento->m_Banca;
+      m_pFattureEmesseSet->m_IBANAppoggio = pTipiPagamento->m_IBAN;
       m_pFattureEmesseSet->m_ABIAppoggio = pTipiPagamento->m_ABI;
       m_pFattureEmesseSet->m_CABAppoggio = pTipiPagamento->m_CAB;
     }
     else
     {
       m_pFattureEmesseSet->m_BancaAppoggio.Empty();
+      m_pFattureEmesseSet->m_IBANAppoggio.Empty();
       m_pFattureEmesseSet->m_ABIAppoggio.Empty();
       m_pFattureEmesseSet->m_CABAppoggio.Empty();
     }

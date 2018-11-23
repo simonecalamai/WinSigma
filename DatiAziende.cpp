@@ -49,6 +49,7 @@ CDatiAziende::CDatiAziende()
 	m_UsaTuttiListini = 0;
 	m_CodiceDestinatario = _T("");
 	m_PEC = _T("");
+	m_IBAN = _T("");
 }
 
 CDatiAziende::~CDatiAziende()

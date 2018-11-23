@@ -273,6 +273,7 @@ CAziendeView::CAziendeView()
 	m_csIndirizzo_Spedizione = _T("");
 	m_csCitta_Spedizione = _T("");
 	m_csProvincia_Spedizione = _T("");
+	m_strIBAN = _T("");
 	//}}AFX_DATA_INIT
 
 	m_dati_aziende = new CDatiAziende;
@@ -381,6 +382,9 @@ void CAziendeView::DoDataExchange(CDataExchange* pDX)
 	DDV_MaxChars(pDX, m_csCitta_Spedizione, 32);
 	DDX_Text(pDX, IDC_EDIT_PROVINCIA_SPEDIZIONE, m_csProvincia_Spedizione);
 	DDV_MaxChars(pDX, m_csProvincia_Spedizione, 4);
+	DDX_Control(pDX, IDC_EDIT_IBAN, m_EditIBAN);
+	DDX_Text(pDX, IDC_EDIT_IBAN, m_strIBAN);
+	DDV_MaxChars(pDX, m_strIBAN, 27);
 	//}}AFX_DATA_MAP
 }
 
@@ -515,6 +519,7 @@ void CAziendeView::LoadCurRecord(BOOL bData)
     m_strPEC									= m_pSet->m_PEC;
     // Dati pagamento
     m_strBanca					= m_pSet->m_Banca;
+    m_strIBAN						= m_pSet->m_IBAN;
     m_strABI						= m_pSet->m_ABI;
     m_strCAB						= m_pSet->m_CAB;
     m_dSconto						= m_pSet->m_Sconto;
@@ -617,6 +622,7 @@ void CAziendeView::Clear(int* i)
 	m_strPEC.Empty();
 	// Pagamenti
 	m_strBanca.Empty();
+	m_strIBAN.Empty();
 	m_strABI.Empty();
 	m_strCAB.Empty();
 	m_dSconto = 0.0;
@@ -651,6 +657,7 @@ BOOL CAziendeView::IsDataChanged()
 	 // Pagamento
      nTipoPagamento					!= m_pSet->m_TipoPagamento		||
      m_strBanca						!= m_pSet->m_Banca				||
+     m_strIBAN						!= m_pSet->m_IBAN				||
      m_strABI						!= m_pSet->m_ABI				||
      m_strCAB						!= m_pSet->m_CAB				||
      m_dSconto						!= m_pSet->m_Sconto				||
@@ -716,6 +723,15 @@ BOOL CAziendeView::ValidateData()
   {
     AfxMessageBox("La partita IVA non è corretta.");
     return FALSE;
+  }
+  if(!m_strIBAN.IsEmpty())
+  {
+		// verifico lunghezza = 27 caratteri e inizi con 'IT'
+		if(m_strIBAN.Find("IT") != 0 || m_strIBAN.GetLength() != 27)
+		{
+			AfxMessageBox("Verificare il campo IBAN");
+	    return FALSE;
+		}
   }
   if(!m_strABI.IsEmpty() && m_strABI.FindOneOf(STR_VERIFY_LETTERE) >= 0)
   {
@@ -845,6 +861,7 @@ BOOL CAziendeView::NewRecord()
       m_pSet->m_TipoPagamento		= m_ComboTipoPagamento.GetItemData(n);
     else
       m_pSet->m_TipoPagamento = pApp->GetProfileInt(CONFIGURAZIONE, TIPO_PAGAMENTO_DEFAULT, 1);
+    m_pSet->m_IBAN				= m_strIBAN;
     m_pSet->m_ABI				= m_strABI;
     m_pSet->m_CAB				= m_strCAB;
     m_pSet->m_Banca				= m_strBanca;
@@ -1014,6 +1031,7 @@ BOOL CAziendeView::SaveRecord()
           m_pSet->m_TipoPagamento		= m_ComboTipoPagamento.GetItemData(n);
         else
           m_pSet->m_TipoPagamento = pApp->GetProfileInt(CONFIGURAZIONE, TIPO_PAGAMENTO_DEFAULT, 1);
+        m_pSet->m_IBAN						= m_strIBAN;
         m_pSet->m_ABI							= m_strABI;
         m_pSet->m_CAB							= m_strCAB;
         m_pSet->m_Banca						= m_strBanca;
@@ -1286,6 +1304,7 @@ void CAziendeView::EnableControls(BOOL bEnable)
   m_EditSconto.EnableWindow(bEnable);
   m_EditCAB.EnableWindow(bEnable);
   m_EditABI.EnableWindow(bEnable);
+  m_EditIBAN.EnableWindow(bEnable);
   m_ComboTipoPagamento.EnableWindow(bEnable);
   // Note
   m_EditNote.EnableWindow(bEnable);
@@ -1461,6 +1480,7 @@ void CAziendeView::OnButtonArchivioAziende()
 		m_csCitta_Spedizione			= m_dati_aziende->m_Citta_Sped;
 		m_strProvincia						= m_dati_aziende->m_Provincia;
 		m_csProvincia_Spedizione	= m_dati_aziende->m_Provincia_Sped;
+		m_strIBAN									= m_dati_aziende->m_IBAN;
 		m_strABI									= m_dati_aziende->m_ABI;
 		m_strCAB									= m_dati_aziende->m_CAB;
 		m_strBanca								= m_dati_aziende->m_Banca;

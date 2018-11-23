@@ -51,6 +51,8 @@ public:
 	BOOL	m_bRIBA;
 	CEdit	m_EditCodiceXML;
 	CString	m_strCodiceXML;
+	CEdit	m_EditIBAN;
+	CString	m_strIBAN;
 	//}}AFX_DATA
 
 // Attributes

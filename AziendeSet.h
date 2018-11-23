@@ -51,6 +51,7 @@ public:
 	BYTE	m_UsaTuttiListini;
 	CString m_CodiceDestinatario;
 	CString m_PEC;
+	CString m_IBAN;
 	//}}AFX_FIELD
 
 

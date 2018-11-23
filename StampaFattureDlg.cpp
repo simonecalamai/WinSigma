@@ -100,6 +100,7 @@ CStampaFattureDlg::CStampaFattureDlg(CWnd* pParent /*=NULL*/)
 	m_bHeader = TRUE;
 	m_nEsigIVA = 0;
 	m_strCodiceXML = _T("");
+	m_strIBAN = _T("");
 	//}}AFX_DATA_INIT
   m_strImporto.Empty();
   m_strIVA.Empty();
@@ -184,6 +185,8 @@ void CStampaFattureDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Text(pDX, IDC_EDIT_CODICE_XML, m_strCodiceXML);
 	DDX_Check(pDX, IDC_CHECK_HEADER, m_bHeader);
 	DDX_Radio(pDX, IDC_RADIO_IVA_IMM, m_nEsigIVA);
+	DDX_Text(pDX, IDC_EDIT_IBANN, m_strIBAN);
+	DDV_MaxChars(pDX, m_strIBAN, 27);
 	//}}AFX_DATA_MAP
 }
 
@@ -440,6 +443,7 @@ void CStampaFattureDlg::OnButtonEmetti()
     m_pFattureEmesseSet->m_TipoPagamento = m_lTipoPagamento;
     m_pFattureEmesseSet->m_Pagamento     = m_strTipoPagamento;
     m_pFattureEmesseSet->m_BancaAppoggio = pTipiPagamentoSet->m_Banca;
+    m_pFattureEmesseSet->m_IBANAppoggio   = pTipiPagamentoSet->m_IBAN;
     m_pFattureEmesseSet->m_ABIAppoggio   = pTipiPagamentoSet->m_ABI;
     m_pFattureEmesseSet->m_CABAppoggio   = pTipiPagamentoSet->m_CAB;
     m_pFattureEmesseSet->m_CINAppoggio   = pTipiPagamentoSet->m_CIN;
@@ -459,6 +463,7 @@ void CStampaFattureDlg::OnButtonEmetti()
     m_pFattureEmesseSet->m_Note = m_pAziendeSet->m_Note;
     m_pFattureEmesseSet->m_Sconto = m_dSconto;
     m_pFattureEmesseSet->m_Banca = m_strBanca;
+    m_pFattureEmesseSet->m_IBAN = m_strIBAN;
     m_pFattureEmesseSet->m_ABI = m_strABI;
     m_pFattureEmesseSet->m_CAB = m_strCAB;
 		if(m_bPA == TRUE)
@@ -606,6 +611,7 @@ void CStampaFattureDlg::SalvaFattura(void)
       m_pFattureEmesseSet->m_Scadenza = pApp->GetScadenza(m_DataFattura, pTipiPagamentoSet->m_GiorniPrimaScad, pTipiPagamentoSet->m_Allineamento);
       m_pFattureEmesseSet->m_Pagamento = pTipiPagamentoSet->m_Nome;
       m_pFattureEmesseSet->m_BancaAppoggio = pTipiPagamentoSet->m_Banca;
+      m_pFattureEmesseSet->m_IBANAppoggio  = pTipiPagamentoSet->m_IBAN;
       m_pFattureEmesseSet->m_ABIAppoggio   = pTipiPagamentoSet->m_ABI;
       m_pFattureEmesseSet->m_CABAppoggio   = pTipiPagamentoSet->m_CAB;
       m_pFattureEmesseSet->m_CINAppoggio   = pTipiPagamentoSet->m_CIN;
@@ -620,6 +626,7 @@ void CStampaFattureDlg::SalvaFattura(void)
   m_pFattureEmesseSet->m_Archiviata = FALSE;
   m_pFattureEmesseSet->m_Sconto     = m_dSconto;
   m_pFattureEmesseSet->m_Banca      = m_strBanca;
+  m_pFattureEmesseSet->m_IBAN        = m_strIBAN;
   m_pFattureEmesseSet->m_ABI        = m_strABI;
   m_pFattureEmesseSet->m_CAB        = m_strCAB;
   m_pFattureEmesseSet->m_Imponibile = (double)m_nTotaleFattura / 100;
@@ -1074,16 +1081,24 @@ void CStampaFattureDlg::OnButtonPrintFattura()
       m_bRiba = FALSE;
       if(!pPagamentiSet->m_Banca.IsEmpty())
         m_strCoordinateBancarie.Format(" BANCA %s", pPagamentiSet->m_Banca);
-      if(!pPagamentiSet->m_ABI.IsEmpty())
-      {
-        str.Format(" - ABI %s CAB %s", pPagamentiSet->m_ABI, pPagamentiSet->m_CAB);
+			if(!pPagamentiSet->m_IBAN.IsEmpty())
+			{
+        str.Format(" - IBAN: %s", pPagamentiSet->m_IBAN);
         m_strCoordinateBancarie += str;
-      }
-      if(!pPagamentiSet->m_CIN.IsEmpty())
-      {
-        str.Format(" - CIN %s C/C %s", pPagamentiSet->m_CIN, pPagamentiSet->m_NumeroConto);
-        m_strCoordinateBancarie += str;
-      }
+			}
+			else
+			{
+				if(!pPagamentiSet->m_ABI.IsEmpty())
+				{
+					str.Format(" - ABI %s CAB %s", pPagamentiSet->m_ABI, pPagamentiSet->m_CAB);
+					m_strCoordinateBancarie += str;
+				}
+				if(!pPagamentiSet->m_CIN.IsEmpty())
+				{
+					str.Format(" - CIN %s C/C %s", pPagamentiSet->m_CIN, pPagamentiSet->m_NumeroConto);
+					m_strCoordinateBancarie += str;
+				}
+			}
     }
   }
   else
@@ -1226,10 +1241,17 @@ BOOL CStampaFattureDlg::ScanDatiFattura(CStringArray* pFieldNames, CStringArray*
       str = m_strTipoPagamento + m_strCoordinateBancarie;
     else
     {
-      if(m_pAziendeSet->m_ABI.IsEmpty() || m_pAziendeSet->m_CAB.IsEmpty())
-        str.Format("%s - BANCA %s", m_strTipoPagamento, m_pAziendeSet->m_Banca);
-      else
-        str.Format("%s - BANCA %s - ABI %s CAB %s", m_strTipoPagamento, m_pAziendeSet->m_Banca, m_pAziendeSet->m_ABI, m_pAziendeSet->m_CAB);
+			if(!m_pAziendeSet->m_IBAN.IsEmpty())
+			{
+				str.Format("%s - BANCA %s - IBAN: %s", m_strTipoPagamento, m_pAziendeSet->m_Banca, m_pAziendeSet->m_IBAN);
+			}
+			else
+			{
+				if(m_pAziendeSet->m_ABI.IsEmpty() || m_pAziendeSet->m_CAB.IsEmpty())
+					str.Format("%s - BANCA %s", m_strTipoPagamento, m_pAziendeSet->m_Banca);
+				else
+					str.Format("%s - BANCA %s - ABI %s CAB %s", m_strTipoPagamento, m_pAziendeSet->m_Banca, m_pAziendeSet->m_ABI, m_pAziendeSet->m_CAB);
+			}
     }
     pFieldValues->Add(str);
     // Numero e data fattura
@@ -1283,23 +1305,37 @@ BOOL CStampaFattureDlg::ScanDatiFattura(CStringArray* pFieldNames, CStringArray*
       str = m_strTipoPagamento;
       if(!m_pFattureEmesseSet->m_BancaAppoggio.IsEmpty())
       {
-        if(m_pFattureEmesseSet->m_ABIAppoggio.IsEmpty() || m_pFattureEmesseSet->m_CABAppoggio.IsEmpty())
-          str.Format("%s - Banca d'appoggio %s", m_strTipoPagamento, m_pFattureEmesseSet->m_BancaAppoggio);
-        else
-        {
-          CString str2;
-          if(!m_pFattureEmesseSet->m_CINAppoggio.IsEmpty())
-            str2.Format("- CIN %s C/C %s", m_pFattureEmesseSet->m_CINAppoggio, m_pFattureEmesseSet->m_ContoAppoggio);
-          str.Format("%s - Banca d'appoggio %s - ABI %s CAB %s %s", m_strTipoPagamento, m_pFattureEmesseSet->m_BancaAppoggio, m_pFattureEmesseSet->m_ABIAppoggio, m_pFattureEmesseSet->m_CABAppoggio, str2);
-        }
+				if(!m_pFattureEmesseSet->m_IBANAppoggio.IsEmpty())
+				{
+					str.Format("%s - Banca d'appoggio %s - IBAN: %s", m_strTipoPagamento, m_pFattureEmesseSet->m_BancaAppoggio, m_pFattureEmesseSet->m_IBANAppoggio);
+				}
+				else
+				{
+					if(m_pFattureEmesseSet->m_ABIAppoggio.IsEmpty() || m_pFattureEmesseSet->m_CABAppoggio.IsEmpty())
+						str.Format("%s - Banca d'appoggio %s", m_strTipoPagamento, m_pFattureEmesseSet->m_BancaAppoggio);
+					else
+					{
+						CString str2;
+						if(!m_pFattureEmesseSet->m_CINAppoggio.IsEmpty())
+							str2.Format("- CIN %s C/C %s", m_pFattureEmesseSet->m_CINAppoggio, m_pFattureEmesseSet->m_ContoAppoggio);
+						str.Format("%s - Banca d'appoggio %s - ABI %s CAB %s %s", m_strTipoPagamento, m_pFattureEmesseSet->m_BancaAppoggio, m_pFattureEmesseSet->m_ABIAppoggio, m_pFattureEmesseSet->m_CABAppoggio, str2);
+					}
+				}
       }
     }
     else
     {
-      if(m_pFattureEmesseSet->m_ABI.IsEmpty() || m_pFattureEmesseSet->m_CAB.IsEmpty())
-        str.Format("%s - BANCA %s", m_strTipoPagamento, m_pFattureEmesseSet->m_Banca);
-      else
-        str.Format("%s - BANCA %s - ABI %s CAB %s", m_strTipoPagamento, m_pFattureEmesseSet->m_Banca, m_pFattureEmesseSet->m_ABI, m_pFattureEmesseSet->m_CAB);
+			if(!m_pFattureEmesseSet->m_IBAN.IsEmpty())
+			{
+				str.Format("%s - BANCA %s - IBAN: %s", m_strTipoPagamento, m_pFattureEmesseSet->m_Banca, m_pFattureEmesseSet->m_IBAN);
+			}
+			else
+			{
+				if(m_pFattureEmesseSet->m_ABI.IsEmpty() || m_pFattureEmesseSet->m_CAB.IsEmpty())
+					str.Format("%s - BANCA %s", m_strTipoPagamento, m_pFattureEmesseSet->m_Banca);
+				else
+					str.Format("%s - BANCA %s - ABI %s CAB %s", m_strTipoPagamento, m_pFattureEmesseSet->m_Banca, m_pFattureEmesseSet->m_ABI, m_pFattureEmesseSet->m_CAB);
+			}
     }
     pFieldValues->Add(str);
     // Numero e data fattura  
@@ -1840,12 +1876,14 @@ void CStampaFattureDlg::InitTipiPagamento(void)
     {
       SINCRONIZE(pTipiPagamentoSet, m_lTipoPagamento);
       m_strBanca = pTipiPagamentoSet->m_Banca;
+      m_strIBAN   = pTipiPagamentoSet->m_IBAN;
       m_strABI   = pTipiPagamentoSet->m_ABI;
       m_strCAB   = pTipiPagamentoSet->m_CAB;
       // Se è un pagamento di tipo riba metto le coordinate bancarie del cliente
       if(!pTipiPagamentoSet->IsFieldNull(&pTipiPagamentoSet->m_Allineamento) && pTipiPagamentoSet->m_Allineamento)
       {
         m_strBanca = m_pAziendeSet->m_Banca;
+        m_strIBAN   = m_pAziendeSet->m_IBAN;
         m_strABI   = m_pAziendeSet->m_ABI;
         m_strCAB   = m_pAziendeSet->m_CAB;
       }
@@ -1882,12 +1920,14 @@ void CStampaFattureDlg::OnSelchangeComboTipoPagamento()
     pTipiPagamento->Open();
     // Se è un pagamento di tipo bonifico o rimessa diretta metto le coordinate bancarie Sigma
     m_strBanca = pTipiPagamento->m_Banca;
+    m_strIBAN   = pTipiPagamento->m_IBAN;
     m_strABI   = pTipiPagamento->m_ABI;
     m_strCAB   = pTipiPagamento->m_CAB;
     // Se è un pagamento di tipo riba, metto le coordinate bancarie del cliente
     if(!pTipiPagamento->IsFieldNull(&pTipiPagamento->m_Allineamento) && pTipiPagamento->m_Allineamento)
     {
       m_strBanca = m_pAziendeSet->m_Banca;
+      m_strIBAN   = m_pAziendeSet->m_IBAN;
       m_strABI   = m_pAziendeSet->m_ABI;
       m_strCAB   = m_pAziendeSet->m_CAB;      
     }
@@ -2860,18 +2900,26 @@ void CStampaFattureDlg::XMLBodyDatiPagamento(FILE* f)
 	csLine.Format("<DataScadenzaPagamento>%s</DataScadenzaPagamento>\n", m_pFattureEmesseSet->m_Scadenza.Format("%Y-%m-%d")); 
 	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
 
-	// ABI
-	if(!m_strABI.IsEmpty())
+	// IBAN
+	if(!m_strIBAN.IsEmpty())
 	{
-		csLine.Format("<ABI>%s</ABI>\n", m_strABI); 
+		csLine.Format("<IBAN>%s</IBAN>\n", m_strIBAN); 
 		fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
 	}
-
-	// CAB
-	if(!m_strCAB.IsEmpty())
+	else  // IBAN non indicato
 	{
-		csLine.Format("<CAB>%s</CAB>\n", m_strCAB); 
-		fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+		// ABI
+		if(!m_strABI.IsEmpty())
+		{
+			csLine.Format("<ABI>%s</ABI>\n", m_strABI); 
+			fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+		}
+		// CAB
+		if(!m_strCAB.IsEmpty())
+		{
+			csLine.Format("<CAB>%s</CAB>\n", m_strCAB); 
+			fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+		}
 	}
 
 	// Importo Pagamento

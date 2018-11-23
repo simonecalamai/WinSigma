@@ -64,6 +64,8 @@ public:
 	CString m_NumeroDDT;
 	CTime		m_DataDDT;
 	long m_CodiceXML;
+	CString m_IBAN;
+	CString m_IBANAppoggio;
 	//}}AFX_FIELD
 
 

@@ -76,6 +76,8 @@ public:
 	CString m_strNumeroDDT;
 	CTime	m_DataDDT;
 	CString	m_strCodiceXML;
+	CEdit	m_EditIBAN;
+	CString	m_strIBAN;
 	//}}AFX_DATA
 
 // Attributes

@@ -274,10 +274,17 @@ BOOL CPrintPreviewFatture::ScanDatiFattura(CStringArray* pFieldNames, CStringArr
       str = m_strTipoPagamento;
     else
     {
-      if(m_pAziendeSet->m_ABI.IsEmpty() || m_pAziendeSet->m_CAB.IsEmpty())
-        str.Format("%s - BANCA %s", m_strTipoPagamento, m_pAziendeSet->m_Banca);
-      else
-        str.Format("%s - BANCA %s - ABI %s CAB %s", m_strTipoPagamento, m_pAziendeSet->m_Banca, m_pAziendeSet->m_ABI, m_pAziendeSet->m_CAB);
+			if(!m_pAziendeSet->m_IBAN.IsEmpty())
+			{
+        str.Format("%s - BANCA %s - IBAN: %s", m_strTipoPagamento, m_pAziendeSet->m_Banca, m_pAziendeSet->m_IBAN);
+			}
+			else
+			{
+				if(m_pAziendeSet->m_ABI.IsEmpty() || m_pAziendeSet->m_CAB.IsEmpty())
+					str.Format("%s - BANCA %s", m_strTipoPagamento, m_pAziendeSet->m_Banca);
+				else
+					str.Format("%s - BANCA %s - ABI %s CAB %s", m_strTipoPagamento, m_pAziendeSet->m_Banca, m_pAziendeSet->m_ABI, m_pAziendeSet->m_CAB);
+			}
     }
     pFieldValues->Add(str);
     // Numero e data fattura
@@ -328,18 +335,32 @@ BOOL CPrintPreviewFatture::ScanDatiFattura(CStringArray* pFieldNames, CStringArr
       str = m_strTipoPagamento;
       if(!m_pFattureEmesseSet->m_BancaAppoggio.IsEmpty())
       {
-        if(m_pFattureEmesseSet->m_ABIAppoggio.IsEmpty() || m_pFattureEmesseSet->m_CABAppoggio.IsEmpty())
-          str.Format("%s - Banca d'appoggio %s", m_strTipoPagamento, m_pFattureEmesseSet->m_BancaAppoggio);
-        else
-          str.Format("%s - Banca d'appoggio %s - ABI %s CAB %s", m_strTipoPagamento, m_pFattureEmesseSet->m_BancaAppoggio, m_pFattureEmesseSet->m_ABIAppoggio, m_pFattureEmesseSet->m_CABAppoggio);
+				if(!m_pFattureEmesseSet->m_IBANAppoggio.IsEmpty())
+				{
+					str.Format("%s - BANCA %s - IBAN: %s", m_strTipoPagamento, m_pFattureEmesseSet->m_BancaAppoggio, m_pFattureEmesseSet->m_IBANAppoggio);
+				}
+				else
+				{
+					if(m_pFattureEmesseSet->m_ABIAppoggio.IsEmpty() || m_pFattureEmesseSet->m_CABAppoggio.IsEmpty())
+						str.Format("%s - Banca d'appoggio %s", m_strTipoPagamento, m_pFattureEmesseSet->m_BancaAppoggio);
+					else
+						str.Format("%s - Banca d'appoggio %s - ABI %s CAB %s", m_strTipoPagamento, m_pFattureEmesseSet->m_BancaAppoggio, m_pFattureEmesseSet->m_ABIAppoggio, m_pFattureEmesseSet->m_CABAppoggio);
+				}
       }
     }
     else
     {
-      if(m_pFattureEmesseSet->m_ABI.IsEmpty() || m_pFattureEmesseSet->m_CAB.IsEmpty())
-        str.Format("%s - BANCA %s", m_strTipoPagamento, m_pFattureEmesseSet->m_Banca);
-      else
-        str.Format("%s - BANCA %s - ABI %s CAB %s", m_strTipoPagamento, m_pFattureEmesseSet->m_Banca, m_pFattureEmesseSet->m_ABI, m_pFattureEmesseSet->m_CAB);
+				if(!m_pFattureEmesseSet->m_IBAN.IsEmpty())
+				{
+					str.Format("%s - BANCA %s - IBAN: %s", m_strTipoPagamento, m_pFattureEmesseSet->m_Banca, m_pFattureEmesseSet->m_IBAN);
+				}
+				else
+				{
+					if(m_pFattureEmesseSet->m_ABI.IsEmpty() || m_pFattureEmesseSet->m_CAB.IsEmpty())
+						str.Format("%s - BANCA %s", m_strTipoPagamento, m_pFattureEmesseSet->m_Banca);
+					else
+						str.Format("%s - BANCA %s - ABI %s CAB %s", m_strTipoPagamento, m_pFattureEmesseSet->m_Banca, m_pFattureEmesseSet->m_ABI, m_pFattureEmesseSet->m_CAB);
+				}
     }
     pFieldValues->Add(str);
     // Numero e data fattura  

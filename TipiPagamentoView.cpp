@@ -36,6 +36,7 @@ CTipiPagamentoView::CTipiPagamentoView()
 	m_bBonifico = FALSE;
 	m_bRIBA = FALSE;
 	m_strCodiceXML = _T("");
+	m_strIBAN = _T("");
 	//}}AFX_DATA_INIT
 }
 
@@ -83,6 +84,9 @@ void CTipiPagamentoView::DoDataExchange(CDataExchange* pDX)
 	DDX_Check(pDX, IDC_CHECK_RIBA, m_bRIBA);
 	DDX_Text(pDX, IDC_EDIT_CODICE_XML, m_strCodiceXML);
 	DDV_MaxChars(pDX, m_strCodiceXML, 4);
+	DDX_Control(pDX, IDC_EDIT_IBAN, m_EditIBAN);
+	DDX_Text(pDX, IDC_EDIT_IBAN, m_strIBAN);
+	DDV_MaxChars(pDX, m_strIBAN, 27);
 	//}}AFX_DATA_MAP
 }
 
@@ -126,6 +130,7 @@ void CTipiPagamentoView::LoadCurRecord(BOOL bData)
 			m_iCodiceGest = m_pSet->m_VecchioCod;
 
     m_strBanca = m_pSet->m_Banca;
+    m_strIBAN = m_pSet->m_IBAN;
     m_strCAB = m_pSet->m_CAB;
     m_strABI = m_pSet->m_ABI;
     m_strCIN = m_pSet->m_CIN;
@@ -166,6 +171,7 @@ void CTipiPagamentoView::LoadCurRecord(BOOL bData)
 		m_strNome.Empty();
 		m_strDescrizione.Empty();
     m_strBanca.Empty();
+    m_strIBAN.Empty();
     m_strABI.Empty();
     m_strCAB.Empty();
     m_strCIN.Empty();
@@ -196,6 +202,7 @@ BOOL CTipiPagamentoView::IsDataChanged()
      m_nNumero_Rate		    != m_pSet->m_NumRate          ||
 		 m_nPrima_Scadenza  	!= m_pSet->m_GiorniPrimaScad  ||
      m_strBanca           != m_pSet->m_Banca            ||
+     m_strIBAN            != m_pSet->m_IBAN             ||
      m_strABI             != m_pSet->m_ABI              ||
      m_strCIN             != m_pSet->m_CIN              ||
 		 m_iCodiceGest        != m_pSet->m_VecchioCod       ||
@@ -256,6 +263,7 @@ BOOL CTipiPagamentoView::NewRecord()
 	m_pSet->m_Descrizione			= m_strDescrizione;
 	m_pSet->m_VecchioCod			= m_iCodiceGest;
   m_pSet->m_Banca           = m_strBanca;
+  m_pSet->m_IBAN            = m_strIBAN;
   m_pSet->m_ABI             = m_strABI;
   m_pSet->m_CAB             = m_strCAB;
   m_pSet->m_CIN             = m_strCIN;
@@ -296,6 +304,7 @@ BOOL CTipiPagamentoView::SaveRecord()
 			m_pSet->m_Descrizione			= m_strDescrizione;
 			m_pSet->m_VecchioCod			= m_iCodiceGest;
       m_pSet->m_Banca						= m_strBanca;
+      m_pSet->m_IBAN						= m_strIBAN;
       m_pSet->m_ABI							= m_strABI;
       m_pSet->m_CAB							= m_strCAB;
       m_pSet->m_CIN             = m_strCIN;
@@ -346,6 +355,7 @@ void CTipiPagamentoView::EnableControls(BOOL bEditMode)
 	m_EditNome.EnableWindow(bEditMode);
 	m_EditDescrizione.EnableWindow(bEditMode);
   m_EditBanca.EnableWindow(bEditMode);
+  m_EditIBAN.EnableWindow(bEditMode);
   m_EditABI.EnableWindow(bEditMode);
   m_EditCAB.EnableWindow(bEditMode);
   m_EditCIN.EnableWindow(bEditMode);

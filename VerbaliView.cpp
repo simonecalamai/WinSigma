@@ -3095,15 +3095,15 @@ void CVerbaliView::SetFieldsMinuta(CStringArray* pFieldNames, CStringArray* pFie
     {
       pFieldNames->Add("urgenza");
 		  if(m_pVerbaliSet->m_Spedizione)
-        str.Format("URGENTE: %s - %s (spedire)", m_pVerbaliSet->m_DataConsegna.Format("%d/%m/%Y"), m_pVerbaliSet->m_OraConsegna);
+        str.Format("URGENTE: %s - %s", m_pVerbaliSet->m_DataConsegna.Format("%d/%m/%Y"), m_pVerbaliSet->m_OraConsegna);
       else
-        str.Format("URGENTE: %s - %s (ritiro)", m_pVerbaliSet->m_DataConsegna.Format("%d/%m/%Y"), m_pVerbaliSet->m_OraConsegna);
+        str.Format("URGENTE: %s - %s", m_pVerbaliSet->m_DataConsegna.Format("%d/%m/%Y"), m_pVerbaliSet->m_OraConsegna);
 		  pFieldValues->Add(str);
     }
     else
     {
       pFieldNames->Add("urgenza");
-      str.Format("RITIRO: %s", m_pVerbaliSet->m_DataConsegna.Format("%d/%m/%Y"));
+      str.Format("%s", m_pVerbaliSet->m_DataConsegna.Format("%d/%m/%Y"));
 		  pFieldValues->Add(str);
     }
   }

@@ -31,6 +31,7 @@ public:
 	CString	m_CIN;
 	CString	m_NumeroConto;
 	CString	m_CodiceXML;
+	CString	m_IBAN;
 	//}}AFX_FIELD
 
 

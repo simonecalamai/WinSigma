@@ -53,7 +53,8 @@ CAziendeSet::CAziendeSet(CDatabase* pdb)
 	m_DataUltimoRapporto = 0;
 	m_CodiceDestinatario = _T("");
 	m_PEC = _T("");
-	m_nFields = 33;
+	m_IBAN = _T("");
+	m_nFields = 34;
 	//}}AFX_FIELD_INIT
 	m_nDefaultType = snapshot;
 }
@@ -109,6 +110,7 @@ void CAziendeSet::DoFieldExchange(CFieldExchange* pFX)
 	RFX_Byte(pFX, _T("[UsaTuttiListini]"), m_UsaTuttiListini);
 	RFX_Text(pFX, _T("[CodiceDestinatario]"), m_CodiceDestinatario);
 	RFX_Text(pFX, _T("[PEC]"), m_PEC);
+	RFX_Text(pFX, _T("[IBAN]"), m_IBAN);
 	//}}AFX_FIELD_MAP
 }
 

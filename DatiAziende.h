@@ -47,6 +47,7 @@ public:
 	BYTE	m_UsaTuttiListini;
 	CString	m_CodiceDestinatario;
 	CString	m_PEC;
+	CString	m_IBAN;
 };
 
 #endif // !defined(AFX_DATIAZIENDE_H__316488C1_3170_11D8_B754_00C026108782__INCLUDED_)

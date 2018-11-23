@@ -114,6 +114,8 @@ public:
 	CString	m_csIndirizzo_Spedizione;
 	CString	m_csCitta_Spedizione;
 	CString	m_csProvincia_Spedizione;
+	CEdit		m_EditIBAN;
+	CString	m_strIBAN;
 	//}}AFX_DATA
 
 protected:

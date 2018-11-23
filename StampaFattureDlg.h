@@ -77,6 +77,7 @@ public:
 	CString m_strCodiceXML;
 	BOOL m_bHeader;
 	int		m_nEsigIVA;
+	CString	m_strIBAN;
 	//}}AFX_DATA
 
   CWinSigmaDoc* m_pDoc;

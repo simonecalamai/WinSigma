@@ -111,6 +111,7 @@
 #define IDC_EDIT_CAB                    1013
 #define IDC_EDIT_DSN_NAME               1014
 #define IDC_EDIT_CUP                    1014
+#define IDC_EDIT_IBAN                   1014
 #define IDC_EDIT_UTENTE                 1015
 #define IDC_EDIT_CIG                    1015
 #define IDC_EDIT_PASSWORD               1016
@@ -121,6 +122,7 @@
 #define IDC_EDIT_NUMERODDT              1018
 #define IDC_EDIT_RAGIONE_SOCIALE        1019
 #define IDC_EDIT_COGNOME                1020
+#define IDC_EDIT_IBANN                  1020
 #define IDC_CHECK_AZIENDA_IMPORTANTE    1021
 #define IDC_CHECK_SOPSESO               1022
 #define IDC_CHECK_RIBA                  1023

@@ -57,6 +57,8 @@ public:
 	BYTE m_PA;
 	CString	m_CodiceDestinatario;
 	CString m_PEC;
+	CString m_IBAN;
+	CString m_IBANAppoggio;
 	//}}AFX_FIELD
 
 
