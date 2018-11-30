@@ -144,7 +144,7 @@ protected:
   void SalvaFattura(void);
 	void XMLHeaderDatiTrasmissione(FILE* f, int progressivo, CString versione);
 	void XMLHeaderCedentePrestatore(FILE* f);
-	void XMLHeaderCessionarioCommittente(FILE* f);
+	BOOL XMLHeaderCessionarioCommittente(FILE* f);
 	void XMLHeaderTerzoIntermediarioSoggettoEmittente(FILE* f);
 	void XMLBodyDatiGenerali(FILE* f);
 	void XMLBodyDatiBeniServizi(FILE* f);

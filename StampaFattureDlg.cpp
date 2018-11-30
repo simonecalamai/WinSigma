@@ -2115,7 +2115,11 @@ void CStampaFattureDlg::OnButtonFatturaXML()
 	XMLHeaderCedentePrestatore(f);
 
 	// Sezione Cessionario/Committente  (cliente intestatario della fattura)
-	XMLHeaderCessionarioCommittente(f);
+	if(XMLHeaderCessionarioCommittente(f) == FALSE)
+	{
+		fclose(f);
+		return;
+	}
 
 	// Sezione Terzo Intermediario o Soggetto Emittente
 	XMLHeaderTerzoIntermediarioSoggettoEmittente(f);
@@ -2328,10 +2332,11 @@ void CStampaFattureDlg::XMLHeaderCedentePrestatore(FILE* f)
 }
 
 // Esportazione XML; Header sezione CessionarioCommittente
-void CStampaFattureDlg::XMLHeaderCessionarioCommittente(FILE* f) 
+BOOL CStampaFattureDlg::XMLHeaderCessionarioCommittente(FILE* f) 
 {
 	BOOL persGiuridica = TRUE;
 	CString csLine("");
+	CString msg = "";
   CWinSigmaApp* pApp = (CWinSigmaApp*)AfxGetApp();
 
 	////////////// Cessionario/Committente - inizio /////////////////////////
@@ -2342,27 +2347,63 @@ void CStampaFattureDlg::XMLHeaderCessionarioCommittente(FILE* f)
 	csLine.Format("<DatiAnagrafici>\n"); 
 	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
 
-	// IdFiscaleIVA
-	csLine.Format("<IdFiscaleIVA>\n"); 
-	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
-	// -- IdPaese
-	csLine.Format("<IdPaese>%s</IdPaese>\n", pApp->m_csIdPaese); 
-	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
-	// -- IdCodice
+	// PartitaIVA
 	if(!m_strPIVA.IsEmpty())
 	{
+		// IdFiscaleIVA
+		csLine.Format("<IdFiscaleIVA>\n"); 
+		fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+
+		// -- IdPaese
+		csLine.Format("<IdPaese>%s</IdPaese>\n", pApp->m_csIdPaese); 
+		fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
 		// Partita IVA -> persona giuridica
 		csLine.Format("<IdCodice>%s</IdCodice>\n", m_strPIVA); 
+		fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+
+		csLine.Format("</IdFiscaleIVA>\n"); 
+		fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
 	}
-	else
+	else if(!m_strCodFiscale.IsEmpty())
 	{
-		// Codice Fiscale -> persona fisica
-		persGiuridica = FALSE;
-		csLine.Format("<IdCodice>%s</IdCodice>\n", m_strCodFiscale); 
+		// verifica se è persona fisica (alfanumerico) o persona giuridica (numerico)
+		if(m_strCodFiscale.GetLength() == 16 && m_strCodFiscale.Left(6).FindOneOf("0123456789") == -1)
+		{
+			// Codice Fiscale -> persona fisica
+			persGiuridica = FALSE;
+			csLine.Format("<CodiceFiscale>%s</CodiceFiscale>\n", m_strCodFiscale); 
+			fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+		} 	
+		else if(m_strCodFiscale.FindOneOf("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ") == -1)
+		{
+			csLine.Format("<CodiceFiscale>%s</CodiceFiscale>\n", m_strCodFiscale); 
+			fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+		}
+		else
+		{
+			// Codice Fiscale errato
+			msg.Format("Codice Fiscale non corretto");
+			MessageBox(msg, "Errore!", MB_OK);
+			if(ChangeChecker())
+			{
+				// salvo eventuali modifiche alla fattura
+				SalvaFattura();
+			}
+			return false;
+		}
 	}
-	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
-	csLine.Format("</IdFiscaleIVA>\n"); 
-	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+	else  // 
+	{
+		// Partita IVA e Codice Fiscale mancanti
+		msg.Format("Inserire la Partita IVA o il Codice Fiscale in Anagrafica Aziende.");
+		MessageBox(msg, "Errore!", MB_OK);
+		if(ChangeChecker())
+		{
+			// salvo eventuali modifiche alla fattura
+		  SalvaFattura();
+		}
+		return false;
+	}
 
 	// Anagrafica
 	csLine.Format("<Anagrafica>\n"); 
@@ -2414,6 +2455,7 @@ void CStampaFattureDlg::XMLHeaderCessionarioCommittente(FILE* f)
 	csLine.Format("</CessionarioCommittente>\n"); 
 	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
 	// Cessionario/Committente - fine
+	return TRUE;
 }
 
 // Esportazione XML; Header sezione TerzoIntermediario/SoggettoEmittente
