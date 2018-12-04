@@ -14,7 +14,7 @@ y zero=-60
 ;footer
 510=20,2855,2100,36,Times,18,28,BC,Via P.Gobetti 8 - 50013 Capalle CAMPI BISENZIO - FIRENZE - Tel. 055/8985519 - Fax 055/8985520,0x602000
 520=20,+36,2100,36,Times,18,28,BC,www.laboratoriosigma.it - e-mail: info@laboratoriosigma.it - pec: sigma-srl@legalmail.it,0x602000
-530=20,+36,2100,36,Times,14,24,C,C.I.A.A. Firenze N. 240940 - Reg. Soc. Trib. di Firenze N. 21921 - C/C Postale N. 19025501 - Cod. Fisc./Part. I.V.A. 00667530489,0x602000
+530=20,+36,2100,36,Times,14,24,C,C.I.A.A. Firenze N. 240940 - Reg. Soc. Trib. di Firenze N. 21921 - IBAN: IT51A0306921529100000002345 - Cod. Fisc./Part. I.V.A. 00667530489,0x602000
 
 [grids]
 10=80,400,1970,0,1,1,0xD59B5B
