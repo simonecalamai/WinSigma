@@ -347,7 +347,8 @@ void CFattureView::LoadCurRecord(BOOL bData)
         m_dSconto = pAziendeSet->m_Sconto;
       else
         m_dSconto = 0.;
-      m_strAliquota = STR_DEFAULT_ALIQUOTA_IVA;
+//      m_strAliquota = STR_DEFAULT_ALIQUOTA_IVA;
+      m_strAliquota = pApp->m_csAliquotaIVA;
       m_DataEmissione = CTime::GetCurrentTime();
     }
     else
@@ -1939,7 +1940,8 @@ void CFattureView::PrintProforma(BOOL bheader)
   dlg.m_dSconto = m_dSconto;
   dlg.m_strImponibileScontato = m_strImportoScontato;
   dlg.m_nImponibileScontato = m_nImponibileScontato;
-  dlg.m_strAliquota = STR_DEFAULT_ALIQUOTA_IVA;
+//  dlg.m_strAliquota = STR_DEFAULT_ALIQUOTA_IVA;
+  dlg.m_strAliquota = pApp->m_csAliquotaIVA;
   dlg.m_DataFattura = m_DataEmissione;
   dlg.m_bFatturaProForma = TRUE;
   for(n = 0; n < m_aryCodServiziSelezionati.GetSize(); n++)

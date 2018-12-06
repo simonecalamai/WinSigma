@@ -51,7 +51,7 @@
 //
 //#define WINSIGMA2
 
-#define STR_VERSION							"4.7.5" 
+#define STR_VERSION							"4.7.6" 
 #define STR_BUILDTIME   __TIMESTAMP__  
 #define AZIENDE_BUFFER  1024
 #define FATTURE_BUFFER  1024
@@ -267,7 +267,7 @@ enum
 #define COMPRENSIVO							2
 
 //#define STR_DEFAULT_ALIQUOTA_IVA	"21"  // da settembre 2011  
-#define STR_DEFAULT_ALIQUOTA_IVA	"22"  // dal 1 ottobre 2013
+//#define STR_DEFAULT_ALIQUOTA_IVA	"22"  // dal 1 ottobre 2013
 
 
 // Costanti certificati
@@ -365,6 +365,9 @@ class CWinSigmaApp : public CWinApp
 		CString m_headerPrn;
 		CString m_headerFatturePrn;
 		CString m_headerVerbaliPrn;
+
+		// Aliquota IVA
+		CString m_csAliquotaIVA;
 
 		// Dati Azienda
 		CString m_csIdPaese;

@@ -261,8 +261,14 @@ BOOL CWinSigmaApp::InitInstance()
 	((CMainFrame*)m_pMainWnd)->RepopulateTrees();
 	((CMainFrame*)m_pMainWnd)->SetWindowText(str);
 
-	// Lettura dati azienda
+
+	// Lettura configurazione
 	CConfigurazione config;
+
+	// Aliquota IVA
+	m_csAliquotaIVA = config.Read("AliquotaIVA");
+
+	// Dati azienda
 	m_csIdPaese = config.Read("IdPaese");
 	m_csDenominazione = config.Read("Denominazione");
 	m_csPartitaIVA = config.Read("PartitaIVA");

@@ -2409,19 +2409,51 @@ BOOL CStampaFattureDlg::XMLHeaderCessionarioCommittente(FILE* f)
 	csLine.Format("<Anagrafica>\n"); 
 	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
 	// -- Denominazione
+	CString csRagSociale = m_strRagioneSociale;
+	csRagSociale.TrimLeft(' ');
+	csRagSociale.TrimRight(' ');
 	if(persGiuridica == TRUE)
 	{
 		// persona giuridica -> Denominazione
-		csLine.Format("<Denominazione>%s</Denominazione>\n", m_strRagioneSociale); 
+		csLine.Format("<Denominazione>%s</Denominazione>\n", csRagSociale); 
 		fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
 	}
 	else
 	{
 		// persona fisica -> Nome e Cognome (per ora metto la Ragione Sociale nel tag <Cognome> s.c. 18.9.2018)
-		csLine.Format("<Cognome>%s</Cognome>\n", m_strRagioneSociale); 
-		fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
-		csLine.Format("<Nome>%s</Nome>\n", ""); 
-		fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+		int pos = csRagSociale.Find(' ');
+		CString csCognome = "";
+		CString csNome = "";
+		if(pos == -1)
+		{
+			// nessuno spazio tra cognome e nome: metto la stessa stringa in tutti e due
+			csLine.Format("<Cognome>%s</Cognome>\n", csRagSociale); 
+			fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+			csLine.Format("<Nome>%s</Nome>\n", csRagSociale); 
+			fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+		}
+		else
+		{
+			csCognome = csRagSociale.Left(pos);
+			csNome = csRagSociale.Mid(pos+1);
+			csNome.TrimLeft(' ');
+			csNome.TrimRight(' ');
+			csLine.Format("<Cognome>%s</Cognome>\n", csCognome); 
+			fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+			csLine.Format("<Nome>%s</Nome>\n", csNome); 
+			fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+/* per gestire i cognomi composti (De, Di, Da, Del...) s.c. 6.12.2018 da fare!!!
+			if(csCognome.GetLength() == 2 && (!csCognome.CompareNoCase("de") || !csCognome.CompareNoCase("di") || !csCognome.CompareNoCase("da"))
+			{
+			}
+			else if (csCognome.GetLength() == 3 && !csCognome.CompareNoCase("del") || !csCognome.CompareNoCase("dal"))
+			{
+			}
+			else
+			{
+			}
+*/ 
+		}
 	}
 	csLine.Format("</Anagrafica>\n"); 
 	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);

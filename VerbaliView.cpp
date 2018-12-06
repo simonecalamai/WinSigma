@@ -6420,17 +6420,18 @@ void CVerbaliView::OnPrnFatturaProforma()
     AfxMessageBox("Il verbale è già stato fatturato o messo in fatturazione.", MB_OK);
     return;
   }
+  CWinSigmaApp* pApp = (CWinSigmaApp*)AfxGetApp();
 
   CDatiFatturaProforma dlg;
   if(m_pVerbaliSet->m_Spedizione)
     dlg.m_bSpedizione = TRUE;
   else
     dlg.m_bSpedizione = FALSE;
-  dlg.m_strAliquota = STR_DEFAULT_ALIQUOTA_IVA;
+//  dlg.m_strAliquota = STR_DEFAULT_ALIQUOTA_IVA;
+  dlg.m_strAliquota = pApp->m_csAliquotaIVA;
   dlg.m_nNumCopie = 1;
   if(dlg.DoModal() == IDCANCEL)
     return;
-  CWinSigmaApp* pApp = (CWinSigmaApp*)AfxGetApp();
   double dAliquota = 0, dSpese = 0, dSconto = 0;
   dlg.m_strAliquota.Replace(",", ".");
   dAliquota = atof(dlg.m_strAliquota);
