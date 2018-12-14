@@ -2975,23 +2975,23 @@ void CStampaFattureDlg::XMLBodyDatiPagamento(FILE* f)
 	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
 
 	// IBAN
-	if(!m_strIBAN.IsEmpty())
+	if(!m_pFattureEmesseSet->IsFieldNull(&m_pFattureEmesseSet->m_IBANAppoggio))
 	{
-		csLine.Format("<IBAN>%s</IBAN>\n", m_strIBAN); 
+		csLine.Format("<IBAN>%s</IBAN>\n", m_pFattureEmesseSet->m_IBANAppoggio); 
 		fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
 	}
 	else  // IBAN non indicato
 	{
 		// ABI
-		if(!m_strABI.IsEmpty())
+		if(!m_pFattureEmesseSet->IsFieldNull(&m_pFattureEmesseSet->m_ABIAppoggio))
 		{
-			csLine.Format("<ABI>%s</ABI>\n", m_strABI); 
+			csLine.Format("<ABI>%s</ABI>\n", m_pFattureEmesseSet->m_ABIAppoggio); 
 			fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
 		}
 		// CAB
-		if(!m_strCAB.IsEmpty())
+		if(!m_pFattureEmesseSet->IsFieldNull(&m_pFattureEmesseSet->m_CABAppoggio))
 		{
-			csLine.Format("<CAB>%s</CAB>\n", m_strCAB); 
+			csLine.Format("<CAB>%s</CAB>\n", m_pFattureEmesseSet->m_CABAppoggio); 
 			fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
 		}
 	}
