@@ -2974,6 +2974,16 @@ void CStampaFattureDlg::XMLBodyDatiPagamento(FILE* f)
 	csLine.Format("<DataScadenzaPagamento>%s</DataScadenzaPagamento>\n", m_pFattureEmesseSet->m_Scadenza.Format("%Y-%m-%d")); 
 	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
 
+	// Importo Pagamento
+	csLine.Format("<ImportoPagamento>%.2f</ImportoPagamento>\n", m_dImportoPagamentoXML); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+#if DEBUG_XML
+	csLine.Format("<DEBUGImportoPagamento>%f</DEBUGImportoPagamento>\n", m_dImportoPagamentoXML); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+	csLine.Format("<DEBUGImportoPagamentoFattura>%.2f</DEBUGImportoPagamentoFattura>\n", m_pFattureEmesseSet->m_Imponibile); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+#endif
+
 	// IBAN
 	if(!m_pFattureEmesseSet->IsFieldNull(&m_pFattureEmesseSet->m_IBANAppoggio))
 	{
@@ -2996,15 +3006,6 @@ void CStampaFattureDlg::XMLBodyDatiPagamento(FILE* f)
 		}
 	}
 
-	// Importo Pagamento
-	csLine.Format("<ImportoPagamento>%.2f</ImportoPagamento>\n", m_dImportoPagamentoXML); 
-	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
-#if DEBUG_XML
-	csLine.Format("<DEBUGImportoPagamento>%f</DEBUGImportoPagamento>\n", m_dImportoPagamentoXML); 
-	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
-	csLine.Format("<DEBUGImportoPagamentoFattura>%.2f</DEBUGImportoPagamentoFattura>\n", m_pFattureEmesseSet->m_Imponibile); 
-	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
-#endif
 	csLine.Format("</DettaglioPagamento>\n"); 
 	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
 	
