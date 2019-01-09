@@ -2579,6 +2579,10 @@ void CStampaFattureDlg::XMLBodyDatiGenerali(FILE* f)
 	csLine.Format("<Numero>%d</Numero>\n", m_pFattureEmesseSet->m_Numero); 
 	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
 
+	// Importo Totale Documento (non obbligatorio, richiesto 9.1.2019)
+	csLine.Format("<ImportoTotaleDocumento>%.2f</ImportoTotaleDocumento>\n", m_pFattureEmesseSet->m_Imponibile); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+
 	csLine.Format("</DatiGeneraliDocumento>\n"); 
 	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
 
