@@ -880,7 +880,11 @@ void CPrintPreviewFatture::SincronizeData(void)
 								(m_pVerbaliInfatturazione->m_TipoVerbale == VERB_NC_INERTI)						||
 								(m_pVerbaliInfatturazione->m_TipoVerbale == VERB_NC_MONITORAGGI)			||
 								(m_pVerbaliInfatturazione->m_TipoVerbale == VERB_NC_VARIE)						||
-								(m_pVerbaliInfatturazione->m_TipoVerbale == VERB_NC_GEOTECNICA))
+								(m_pVerbaliInfatturazione->m_TipoVerbale == VERB_NC_GEOTECNICA)				||
+								(m_pVerbaliInfatturazione->m_TipoVerbale == VERB_NC_LINEE_VITA)				||
+								(m_pVerbaliInfatturazione->m_TipoVerbale == VERB_NC_INDAGINI_MURATURE)				||
+								(m_pVerbaliInfatturazione->m_TipoVerbale == VERB_NC_INDAGINI_CLS)				||
+								(m_pVerbaliInfatturazione->m_TipoVerbale == VERB_NC_MAT_METALLICI))
 								&& (m_strProgressiviVerbali.GetAt(m_strProgressiviVerbali.GetLength() - 1) != 'C'))
         m_strProgressiviVerbali += "NC";
 

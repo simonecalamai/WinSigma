@@ -40,6 +40,10 @@ class CUltimoMeseTree : public CXRecsetTree
 				case VERB_NC_MONITORAGGI:
 				case VERB_NC_VARIE:
 				case VERB_NC_GEOTECNICA :
+				case VERB_NC_LINEE_VITA:
+				case VERB_NC_INDAGINI_MURATURE:
+				case VERB_NC_INDAGINI_CLS:
+				case VERB_NC_MAT_METALLICI:
 					m_nIcon = 2;
           break;
         case VERB_GEOLOGIA:
@@ -70,6 +74,10 @@ class CUltimoMeseTree : public CXRecsetTree
 				case VERB_NC_MONITORAGGI:
 				case VERB_NC_VARIE:
 				case VERB_NC_GEOTECNICA :
+				case VERB_NC_LINEE_VITA:
+				case VERB_NC_INDAGINI_MURATURE:
+				case VERB_NC_INDAGINI_CLS:
+				case VERB_NC_MAT_METALLICI:
 					m_nIcon = 2;
           break;
         case VERB_GEOLOGIA:
@@ -109,6 +117,10 @@ class CPrecedentiTree : public CXRecsetTree
 			case VERB_NC_MONITORAGGI:
 			case VERB_NC_VARIE:
 			case VERB_NC_GEOTECNICA :
+			case VERB_NC_LINEE_VITA:
+			case VERB_NC_INDAGINI_MURATURE:
+			case VERB_NC_INDAGINI_CLS:
+			case VERB_NC_MAT_METALLICI:
 				m_nIcon = 2;
         break;
       case VERB_GEOLOGIA:
@@ -172,6 +184,10 @@ class CFattProformaTree : public CXRecsetTree
 			case VERB_NC_MONITORAGGI:
 			case VERB_NC_VARIE:
 			case VERB_NC_GEOTECNICA :
+			case VERB_NC_LINEE_VITA:
+			case VERB_NC_INDAGINI_MURATURE:
+			case VERB_NC_INDAGINI_CLS:
+			case VERB_NC_MAT_METALLICI:
 				m_nIcon = 2;
         break;
       case VERB_GEOLOGIA:

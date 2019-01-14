@@ -51,7 +51,7 @@
 //
 //#define WINSIGMA2
 
-#define STR_VERSION							"4.7.9" 
+#define STR_VERSION							"4.7.10" 
 #define STR_BUILDTIME   __TIMESTAMP__  
 #define AZIENDE_BUFFER  1024
 #define FATTURE_BUFFER  1024
@@ -180,6 +180,12 @@ enum
 #define VERB_NC_MONITORAGGI				9
 #define VERB_NC_VARIE							10
 #define VERB_NC_GEOTECNICA				11
+// aggiunti 14.01.2019 s.c.
+#define VERB_NC_LINEE_VITA				12
+#define VERB_NC_INDAGINI_MURATURE	13
+#define VERB_NC_INDAGINI_CLS			14
+#define VERB_NC_MAT_METALLICI			15
+
 
 // Verbali in fatturazione
 #define VERB_INFATT      1

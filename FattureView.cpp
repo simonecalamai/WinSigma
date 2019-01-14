@@ -483,6 +483,10 @@ void CFattureView::LoadCurRecord(BOOL bData)
 				case VERB_NC_MONITORAGGI:
 				case VERB_NC_VARIE:
 				case VERB_NC_GEOTECNICA: 
+				case VERB_NC_LINEE_VITA:
+				case VERB_NC_INDAGINI_MURATURE:
+				case VERB_NC_INDAGINI_CLS:
+				case VERB_NC_MAT_METALLICI:
           strTipo = "Prove non in concessione";
           break;
         case VERB_IN_CONCESSIONE:
@@ -941,13 +945,17 @@ void CFattureView::OnEsportaFatture()
 					{
 						if (TipoVer == VERB_IN_CONCESSIONE)
 								ImpConcessione		+= Totale + (Totale/2);
-						else if ((TipoVer == VERB_NON_IN_CONCESSIONE) ||
-										(TipoVer == VERB_NC_PROVE_DI_CARICO)	||
-										(TipoVer == VERB_NC_CONGL_BITUMINOSI) ||
-										(TipoVer == VERB_NC_INERTI)						||
-										(TipoVer == VERB_NC_MONITORAGGI)			||
-										(TipoVer == VERB_NC_VARIE)						||
-										(TipoVer == VERB_NC_GEOTECNICA))
+						else if ((TipoVer == VERB_NON_IN_CONCESSIONE)		||
+										(TipoVer == VERB_NC_PROVE_DI_CARICO)		||
+										(TipoVer == VERB_NC_CONGL_BITUMINOSI)		||
+										(TipoVer == VERB_NC_INERTI)							||
+										(TipoVer == VERB_NC_MONITORAGGI)				||
+										(TipoVer == VERB_NC_VARIE)							||
+										(TipoVer == VERB_NC_GEOTECNICA)					||
+										(TipoVer == VERB_NC_LINEE_VITA)					||
+										(TipoVer == VERB_NC_INDAGINI_MURATURE)	||
+										(TipoVer == VERB_NC_INDAGINI_CLS)				||
+										(TipoVer == VERB_NC_MAT_METALLICI))
 								ImpNonConcessione += Totale + (Totale/2);
 						else if (TipoVer == VERB_GEOLOGIA)
 								ImpGeotecnica += Totale + (Totale/2);
@@ -964,7 +972,11 @@ void CFattureView::OnEsportaFatture()
 										(TipoVer == VERB_NC_INERTI)						||
 										(TipoVer == VERB_NC_MONITORAGGI)			||
 										(TipoVer == VERB_NC_VARIE)						||
-										(TipoVer == VERB_NC_GEOTECNICA))
+										(TipoVer == VERB_NC_GEOTECNICA)					||
+										(TipoVer == VERB_NC_LINEE_VITA)					||
+										(TipoVer == VERB_NC_INDAGINI_MURATURE)	||
+										(TipoVer == VERB_NC_INDAGINI_CLS)				||
+										(TipoVer == VERB_NC_MAT_METALLICI))
 								ImpNonConcessione += Totale;
 						else if (TipoVer == VERB_GEOLOGIA)
 								ImpGeotecnica += Totale;
@@ -995,7 +1007,11 @@ void CFattureView::OnEsportaFatture()
 										(TipoVer == VERB_NC_INERTI)						||
 										(TipoVer == VERB_NC_MONITORAGGI)			||
 										(TipoVer == VERB_NC_VARIE)						||
-										(TipoVer == VERB_NC_GEOTECNICA))
+										(TipoVer == VERB_NC_GEOTECNICA)					||
+										(TipoVer == VERB_NC_LINEE_VITA)					||
+										(TipoVer == VERB_NC_INDAGINI_MURATURE)	||
+										(TipoVer == VERB_NC_INDAGINI_CLS)				||
+										(TipoVer == VERB_NC_MAT_METALLICI))
 						ImpNonConcessione += Totale + (Totale/2);
 				else if (TipoVer == VERB_GEOLOGIA)
 						ImpGeotecnica += Totale + (Totale/2);
@@ -1012,7 +1028,11 @@ void CFattureView::OnEsportaFatture()
 										(TipoVer == VERB_NC_INERTI)						||
 										(TipoVer == VERB_NC_MONITORAGGI)			||
 										(TipoVer == VERB_NC_VARIE)						||
-										(TipoVer == VERB_NC_GEOTECNICA))
+										(TipoVer == VERB_NC_GEOTECNICA)					||
+										(TipoVer == VERB_NC_LINEE_VITA)					||
+										(TipoVer == VERB_NC_INDAGINI_MURATURE)	||
+										(TipoVer == VERB_NC_INDAGINI_CLS)				||
+										(TipoVer == VERB_NC_MAT_METALLICI))
 						ImpNonConcessione += Totale;
 				else if (TipoVer == VERB_GEOLOGIA)
 						ImpGeotecnica += Totale;
@@ -2481,14 +2501,18 @@ void CFattureView::EliminaDocInFatturazione(void)
     m_pServiziErogati->Requery();
     for(SET_START(m_pServiziErogati); !m_pServiziErogati->IsEOF(); m_pServiziErogati->MoveNext())
       m_pServiziErogati->Delete();
-    if( m_pVerbaliInFatturazione->m_TipoVerbale == VERB_NON_IN_CONCESSIONE	|| 
-				m_pVerbaliInFatturazione->m_TipoVerbale == VERB_NC_PROVE_DI_CARICO	||
-				m_pVerbaliInFatturazione->m_TipoVerbale == VERB_NC_CONGL_BITUMINOSI	||
-				m_pVerbaliInFatturazione->m_TipoVerbale == VERB_NC_INERTI						||
-				m_pVerbaliInFatturazione->m_TipoVerbale == VERB_NC_MONITORAGGI			||
-				m_pVerbaliInFatturazione->m_TipoVerbale == VERB_NC_VARIE						||
-				m_pVerbaliInFatturazione->m_TipoVerbale == VERB_NC_GEOTECNICA				||
-				m_pVerbaliInFatturazione->m_TipoVerbale == VERB_IN_CONCESSIONE			|| 
+    if( m_pVerbaliInFatturazione->m_TipoVerbale == VERB_NON_IN_CONCESSIONE		|| 
+				m_pVerbaliInFatturazione->m_TipoVerbale == VERB_NC_PROVE_DI_CARICO		||
+				m_pVerbaliInFatturazione->m_TipoVerbale == VERB_NC_CONGL_BITUMINOSI		||
+				m_pVerbaliInFatturazione->m_TipoVerbale == VERB_NC_INERTI							||
+				m_pVerbaliInFatturazione->m_TipoVerbale == VERB_NC_MONITORAGGI				||
+				m_pVerbaliInFatturazione->m_TipoVerbale == VERB_NC_VARIE							||
+				m_pVerbaliInFatturazione->m_TipoVerbale == VERB_NC_GEOTECNICA					||
+				m_pVerbaliInFatturazione->m_TipoVerbale == VERB_NC_LINEE_VITA					||
+				m_pVerbaliInFatturazione->m_TipoVerbale == VERB_NC_INDAGINI_MURATURE	||
+				m_pVerbaliInFatturazione->m_TipoVerbale == VERB_NC_INDAGINI_CLS				||
+				m_pVerbaliInFatturazione->m_TipoVerbale == VERB_NC_MAT_METALLICI			||
+				m_pVerbaliInFatturazione->m_TipoVerbale == VERB_IN_CONCESSIONE				|| 
 				m_pVerbaliInFatturazione->m_TipoVerbale == VERB_GEOLOGIA)
 		{
       m_pVerbaliInFatturazione->Edit();

@@ -64,6 +64,10 @@ void CTotFatturatoView::OnButtonCalcola()
 	double TotMonitoraggi		  = 0;
 	double TotVarie						= 0;
 	double TotGeotNC					= 0;
+	double TotLineeVita				= 0;
+	double TotIndMurature			= 0;
+	double TotIndCLS					= 0;
+	double TotMatMetallici		= 0;
 
 	double	AppFC		= 0;
 	double	AppFNC 	= 0;
@@ -134,7 +138,11 @@ void CTotFatturatoView::OnButtonCalcola()
 							(pFattVerSerErog->m_TipoVerbale == VERB_NC_INERTI)						||
 							(pFattVerSerErog->m_TipoVerbale == VERB_NC_MONITORAGGI)				||
 							(pFattVerSerErog->m_TipoVerbale == VERB_NC_VARIE)							||
-							(pFattVerSerErog->m_TipoVerbale == VERB_NC_GEOTECNICA)
+							(pFattVerSerErog->m_TipoVerbale == VERB_NC_GEOTECNICA)				||
+							(pFattVerSerErog->m_TipoVerbale == VERB_NC_LINEE_VITA)				||
+							(pFattVerSerErog->m_TipoVerbale == VERB_NC_INDAGINI_MURATURE)	||
+							(pFattVerSerErog->m_TipoVerbale == VERB_NC_INDAGINI_CLS)			||
+							(pFattVerSerErog->m_TipoVerbale == VERB_NC_MAT_METALLICI)
 							)
 			{
 				double Val = (pFattVerSerErog->m_Prezzo * pFattVerSerErog->m_Quantita) -
@@ -239,6 +247,14 @@ void CTotFatturatoView::OnButtonCalcola()
 					TotVarie += AppFNC;
 				else if(pFattVerSerErog->m_TipoVerbale == VERB_NC_GEOTECNICA)
 					TotGeotNC += AppFNC;
+				else if(pFattVerSerErog->m_TipoVerbale == VERB_NC_LINEE_VITA)
+					TotLineeVita += AppFNC;
+				else if(pFattVerSerErog->m_TipoVerbale == VERB_NC_INDAGINI_MURATURE)
+					TotIndMurature += AppFNC;
+				else if(pFattVerSerErog->m_TipoVerbale == VERB_NC_INDAGINI_CLS)
+					TotIndCLS += AppFNC;
+				else if(pFattVerSerErog->m_TipoVerbale == VERB_NC_MAT_METALLICI)
+					TotMatMetallici += AppFNC;
 			}
 	}
 
@@ -286,7 +302,25 @@ void CTotFatturatoView::OnButtonCalcola()
 	n = m_listTotFatturato.InsertItem(n, "");
 	app.Format("MO = %.2f", TotMonitoraggi);
   m_listTotFatturato.SetItemText(n, 2, app);
-	
+
+	// add s.c. 14.01.2019
+	n = m_listTotFatturato.InsertItem(n, "");
+	app.Format("LV = %.2f", TotLineeVita);
+  m_listTotFatturato.SetItemText(n, 2, app);
+
+	n = m_listTotFatturato.InsertItem(n, "");
+	app.Format("IM = %.2f", TotIndMurature);
+  m_listTotFatturato.SetItemText(n, 2, app);
+
+	n = m_listTotFatturato.InsertItem(n, "");
+	app.Format("IC = %.2f", TotIndCLS);
+  m_listTotFatturato.SetItemText(n, 2, app);
+
+	n = m_listTotFatturato.InsertItem(n, "");
+	app.Format("MM = %.2f", TotMatMetallici);
+  m_listTotFatturato.SetItemText(n, 2, app);
+	// fine add s.c. 14.01.2019
+
 	n = m_listTotFatturato.InsertItem(n, "");
 	app.Format("V  = %.2f", TotVarie);
   m_listTotFatturato.SetItemText(n, 2, app);
@@ -351,6 +385,7 @@ void CTotFatturatoView::OnInitialUpdate()
 		maxAnno = pListiniSet->m_Fine.GetYear();
 	}
 
+/*
 	maxAnno++;
 	for (int i = minAnno; i < maxAnno; i++)
 	{
@@ -362,6 +397,19 @@ void CTotFatturatoView::OnInitialUpdate()
 	}
 	// Seleziona il primo elemento della combobox
 	m_cmbAnno.SetCurSel(0);
+*/
+	for (int i = maxAnno; i >= minAnno; i--)
+	{
+		CString Anno("");
+		Anno.Format("%d", i);
+		m_cmbAnno.InsertString(n, Anno);
+		m_cmbAnno.SetItemData(n, i);
+    n++;
+	}
+	CTime t = CTime::GetCurrentTime();
+	CString curYear =  "";
+	curYear.Format("%d", t.GetYear());
+	m_cmbAnno.SelectString(0, curYear);
 	
 	// Chiusura recordSet Listini
   if(pListiniSet)

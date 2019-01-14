@@ -399,6 +399,14 @@ void CVerbaliView::OnInitialUpdate()
 	m_ComboTipoProva.SetItemData(n, VERB_NC_VARIE);	
 	n = m_ComboTipoProva.AddString("Geotecnica - NC");
 	m_ComboTipoProva.SetItemData(n, VERB_NC_GEOTECNICA);	
+	n = m_ComboTipoProva.AddString("Linee Vita - LV");
+	m_ComboTipoProva.SetItemData(n, VERB_NC_LINEE_VITA);	
+	n = m_ComboTipoProva.AddString("Indagini su murature - IM");
+	m_ComboTipoProva.SetItemData(n, VERB_NC_INDAGINI_MURATURE);	
+	n = m_ComboTipoProva.AddString("Indagini su CLS - IC");
+	m_ComboTipoProva.SetItemData(n, VERB_NC_INDAGINI_CLS);	
+	n = m_ComboTipoProva.AddString("Materiali metallici - MM");
+	m_ComboTipoProva.SetItemData(n, VERB_NC_MAT_METALLICI);	
 
 	/* notifica note non visibile */
 	m_StaticAlarmNote.ShowWindow(SW_HIDE);
@@ -689,7 +697,7 @@ BOOL CVerbaliView::ValidateData()
 	{
 		// Query che verifica, fra tutti i verbali dell'anno in corso, un eventuale conflitto
 		// corretto bug 5-10-2010 s.c.
-    query.Format("(TipoVerbale = %d or TipoVerbale = %d or TipoVerbale = %d or TipoVerbale = %d or TipoVerbale = %d or TipoVerbale = %d or TipoVerbale = %d or TipoVerbale = %d or TipoVerbale = %d)"
+    query.Format("(TipoVerbale = %d or TipoVerbale = %d or TipoVerbale = %d or TipoVerbale = %d or TipoVerbale = %d or TipoVerbale = %d or TipoVerbale = %d or TipoVerbale = %d or TipoVerbale = %d or TipoVerbale = %d or TipoVerbale = %d or TipoVerbale = %d or TipoVerbale = %d)"
                  "AND (DataAccettazione > %s AND DataAccettazione <= %s)"
                  "AND ((DataAccettazione > %s AND ProgressivoTotale < %d)"
                  "OR (DataAccettazione < %s AND ProgressivoTotale > %d))",
@@ -702,6 +710,10 @@ BOOL CVerbaliView::ValidateData()
 								 VERB_NC_VARIE,
 								 VERB_NC_GEOTECNICA,
 								 VERB_GEOLOGIA,
+								 VERB_NC_LINEE_VITA,
+									VERB_NC_INDAGINI_MURATURE,
+									VERB_NC_INDAGINI_CLS,
+									VERB_NC_MAT_METALLICI,
                  m_DataAccettazione.Format("%Y0000"),
                  m_DataAccettazione.Format("%Y1231"),
                  m_DataAccettazione.Format("%Y%m%d"), 
@@ -754,7 +766,11 @@ BOOL CVerbaliView::ValidateData()
 		(m_nTipoVerbale == VERB_NC_INERTI && m_nNumSerie)						||
 		(m_nTipoVerbale == VERB_NC_MONITORAGGI && m_nNumSerie)			||
 		(m_nTipoVerbale == VERB_NC_VARIE && m_nNumSerie)						||
-		(m_nTipoVerbale == VERB_NC_GEOTECNICA && m_nNumSerie)
+		(m_nTipoVerbale == VERB_NC_GEOTECNICA && m_nNumSerie)				||
+		(m_nTipoVerbale == VERB_NC_LINEE_VITA && m_nNumSerie)				||
+		(m_nTipoVerbale == VERB_NC_INDAGINI_MURATURE && m_nNumSerie)				||
+		(m_nTipoVerbale == VERB_NC_INDAGINI_CLS && m_nNumSerie)				||
+		(m_nTipoVerbale == VERB_NC_MAT_METALLICI && m_nNumSerie)
 		)
 	{
     if(AfxMessageBox("Il verbale senze prove in concessione contiene serie.\nSalvare ugualmente?", MB_YESNO) == IDYES)
@@ -801,6 +817,10 @@ BOOL CVerbaliView::NewRecord()
 		case VERB_NC_MONITORAGGI :
 		case VERB_NC_VARIE	:
 		case VERB_NC_GEOTECNICA :
+		case VERB_NC_LINEE_VITA:
+		case VERB_NC_INDAGINI_MURATURE:
+		case VERB_NC_INDAGINI_CLS:
+		case VERB_NC_MAT_METALLICI:
       m_pVerbaliSet->m_ProgressivoParziale = m_nSenzaCert;
       break;
     case VERB_GEOLOGIA:
@@ -823,6 +843,10 @@ BOOL CVerbaliView::NewRecord()
 		case VERB_NC_MONITORAGGI :
 		case VERB_NC_VARIE	:
 		case VERB_NC_GEOTECNICA :
+		case VERB_NC_LINEE_VITA:
+		case VERB_NC_INDAGINI_MURATURE:
+		case VERB_NC_INDAGINI_CLS:
+		case VERB_NC_MAT_METALLICI:
 #ifdef WINSIGMA2
 			m_strTipoVerbale.Format("Verbale n° A%d", m_pVerbaliSet->m_ProgressivoTotale);	
 #else
@@ -960,7 +984,11 @@ BOOL CVerbaliView::SaveRecord()
 			|| (m_nTipoVerbale == VERB_NC_MONITORAGGI && pApp->GetProfileString(CONFIGURAZIONE, STAMPA_NONCONCESSIONE).IsEmpty())
 			|| (m_nTipoVerbale == VERB_NC_VARIE && pApp->GetProfileString(CONFIGURAZIONE, STAMPA_NONCONCESSIONE).IsEmpty())
 			|| (m_nTipoVerbale == VERB_NC_GEOTECNICA && pApp->GetProfileString(CONFIGURAZIONE, STAMPA_NONCONCESSIONE).IsEmpty())
-			|| (m_nTipoVerbale == VERB_GEOLOGIA && pApp->GetProfileString(CONFIGURAZIONE, STAMPA_GEOLOGIA).IsEmpty()))
+			|| (m_nTipoVerbale == VERB_GEOLOGIA && pApp->GetProfileString(CONFIGURAZIONE, STAMPA_GEOLOGIA).IsEmpty())
+			|| (m_nTipoVerbale == VERB_NC_LINEE_VITA && pApp->GetProfileString(CONFIGURAZIONE, STAMPA_NONCONCESSIONE).IsEmpty())
+			|| (m_nTipoVerbale == VERB_NC_INDAGINI_MURATURE && pApp->GetProfileString(CONFIGURAZIONE, STAMPA_NONCONCESSIONE).IsEmpty())
+			|| (m_nTipoVerbale == VERB_NC_INDAGINI_CLS && pApp->GetProfileString(CONFIGURAZIONE, STAMPA_NONCONCESSIONE).IsEmpty())
+			|| (m_nTipoVerbale == VERB_NC_MAT_METALLICI && pApp->GetProfileString(CONFIGURAZIONE, STAMPA_NONCONCESSIONE).IsEmpty()))
       dlg.m_bPrintVerbale = FALSE;
     else
       dlg.m_bPrintVerbale = TRUE;
@@ -1203,7 +1231,11 @@ void CVerbaliView::EnableControls(BOOL bEnable)
 				(m_nTipoVerbale == VERB_NC_INERTI)						||
 				(m_nTipoVerbale == VERB_NC_MONITORAGGI)				||
 				(m_nTipoVerbale == VERB_NC_VARIE)							||
-				(m_nTipoVerbale == VERB_NC_GEOTECNICA)
+				(m_nTipoVerbale == VERB_NC_GEOTECNICA)				||
+				(m_nTipoVerbale == VERB_NC_LINEE_VITA)				||
+				(m_nTipoVerbale == VERB_NC_INDAGINI_MURATURE)				||
+				(m_nTipoVerbale == VERB_NC_INDAGINI_CLS)				||
+				(m_nTipoVerbale == VERB_NC_MAT_METALLICI)
 			)
 			m_ComboTipoProva.EnableWindow(bEnable);
   }
@@ -1295,6 +1327,14 @@ void CVerbaliView::OnNuovoVerbale()
 	m_ComboTipoProva.SetItemData(n, VERB_NC_VARIE);
 	n = m_ComboTipoProva.AddString("Geotecnica - NC");
 	m_ComboTipoProva.SetItemData(n, VERB_NC_GEOTECNICA);
+	n = m_ComboTipoProva.AddString("Linee Vita - LV");
+	m_ComboTipoProva.SetItemData(n, VERB_NC_LINEE_VITA);
+	n = m_ComboTipoProva.AddString("Indagini su murature - IM");
+	m_ComboTipoProva.SetItemData(n, VERB_NC_INDAGINI_MURATURE);
+	n = m_ComboTipoProva.AddString("Indagini su CLS - IC");
+	m_ComboTipoProva.SetItemData(n, VERB_NC_INDAGINI_CLS);
+	n = m_ComboTipoProva.AddString("Materiali metallici - MM");
+	m_ComboTipoProva.SetItemData(n, VERB_NC_MAT_METALLICI);
 }
 
 
@@ -1374,6 +1414,10 @@ void CVerbaliView::NuovoVerbale(WORD ViewMode)
 			case VERB_NC_MONITORAGGI :
 			case VERB_NC_VARIE	:
 			case VERB_NC_GEOTECNICA	:
+			case VERB_NC_LINEE_VITA:
+			case VERB_NC_INDAGINI_MURATURE:
+			case VERB_NC_INDAGINI_CLS:
+			case VERB_NC_MAT_METALLICI:
 #ifdef WINSIGMA2
 				m_strTipoVerbale.Format("Verbale n° A%d", m_nTotVerbaliProvv);	
 #else
@@ -1408,6 +1452,10 @@ void CVerbaliView::NuovoVerbale(WORD ViewMode)
 			case VERB_NC_MONITORAGGI :
 			case VERB_NC_VARIE	:
 			case VERB_NC_GEOTECNICA	:
+			case VERB_NC_LINEE_VITA:
+			case VERB_NC_INDAGINI_MURATURE:
+			case VERB_NC_INDAGINI_CLS:
+			case VERB_NC_MAT_METALLICI:
         m_pVerbaliSet->m_ProgressivoParziale = m_nSenzaCertProvv;
         break;
       case VERB_GEOLOGIA:
@@ -1454,7 +1502,11 @@ void CVerbaliView::NuovoVerbale(WORD ViewMode)
 				|| (m_nTipoVerbale == VERB_NC_INERTI && pApp->GetProfileString(CONFIGURAZIONE, STAMPA_NONCONCESSIONE).IsEmpty())
 				|| (m_nTipoVerbale == VERB_NC_MONITORAGGI && pApp->GetProfileString(CONFIGURAZIONE, STAMPA_NONCONCESSIONE).IsEmpty())
 				|| (m_nTipoVerbale == VERB_NC_VARIE && pApp->GetProfileString(CONFIGURAZIONE, STAMPA_NONCONCESSIONE).IsEmpty())	
-				|| (m_nTipoVerbale == VERB_GEOLOGIA && pApp->GetProfileString(CONFIGURAZIONE, STAMPA_GEOLOGIA).IsEmpty()))
+				|| (m_nTipoVerbale == VERB_GEOLOGIA && pApp->GetProfileString(CONFIGURAZIONE, STAMPA_GEOLOGIA).IsEmpty())
+				|| (m_nTipoVerbale == VERB_NC_LINEE_VITA && pApp->GetProfileString(CONFIGURAZIONE, STAMPA_NONCONCESSIONE).IsEmpty())
+				|| (m_nTipoVerbale == VERB_NC_INDAGINI_MURATURE && pApp->GetProfileString(CONFIGURAZIONE, STAMPA_NONCONCESSIONE).IsEmpty())
+				|| (m_nTipoVerbale == VERB_NC_INDAGINI_CLS && pApp->GetProfileString(CONFIGURAZIONE, STAMPA_NONCONCESSIONE).IsEmpty())
+				|| (m_nTipoVerbale == VERB_NC_MAT_METALLICI && pApp->GetProfileString(CONFIGURAZIONE, STAMPA_NONCONCESSIONE).IsEmpty()))
         dlg.m_bPrintVerbale = FALSE;
       else
         dlg.m_bPrintVerbale = TRUE;
@@ -1526,7 +1578,7 @@ void CVerbaliView::FindNumVerbali(BOOL bProvvisori)
   int nConCert, nSenzaCert, nGeologia, nTot;
 
   CTime date(CTime::GetCurrentTime().GetYear(), 1, 1, 0, 0, 0);
-		m_pGlobalVerbaliSet->m_strFilter.Format("(TipoVerbale = %d or TipoVerbale = %d or TipoVerbale = %d or TipoVerbale = %d or TipoVerbale = %d or TipoVerbale = %d or TipoVerbale = %d or Tipoverbale = %d or Tipoverbale = %d) and DataAccettazione >= '%s'", 
+		m_pGlobalVerbaliSet->m_strFilter.Format("(TipoVerbale = %d or TipoVerbale = %d or TipoVerbale = %d or TipoVerbale = %d or TipoVerbale = %d or TipoVerbale = %d or TipoVerbale = %d or Tipoverbale = %d or Tipoverbale = %d or Tipoverbale = %d or Tipoverbale = %d or Tipoverbale = %d or Tipoverbale = %d) and DataAccettazione >= '%s'", 
 																							VERB_IN_CONCESSIONE, 
 																							VERB_NON_IN_CONCESSIONE,
 																							VERB_NC_PROVE_DI_CARICO,
@@ -1536,6 +1588,10 @@ void CVerbaliView::FindNumVerbali(BOOL bProvvisori)
 																							VERB_NC_VARIE,
 																							VERB_NC_GEOTECNICA,
 																							VERB_GEOLOGIA, 
+																							VERB_NC_LINEE_VITA,
+																							VERB_NC_INDAGINI_MURATURE,
+																							VERB_NC_INDAGINI_CLS,
+																							VERB_NC_MAT_METALLICI,
 																							date.Format("%Y-%m-%d %H:%M:%S"));
   m_pGlobalVerbaliSet->Requery();
   nConCert = nSenzaCert = nGeologia = nTot = 0;
@@ -1553,7 +1609,11 @@ void CVerbaliView::FindNumVerbali(BOOL bProvvisori)
 						(m_pGlobalVerbaliSet->m_TipoVerbale == VERB_NC_INERTI)						||
 						(m_pGlobalVerbaliSet->m_TipoVerbale == VERB_NC_MONITORAGGI)				||
 						(m_pGlobalVerbaliSet->m_TipoVerbale == VERB_NC_VARIE)							||
-						(m_pGlobalVerbaliSet->m_TipoVerbale == VERB_NC_GEOTECNICA)
+						(m_pGlobalVerbaliSet->m_TipoVerbale == VERB_NC_GEOTECNICA)				||
+						(m_pGlobalVerbaliSet->m_TipoVerbale == VERB_NC_LINEE_VITA)				||
+						(m_pGlobalVerbaliSet->m_TipoVerbale == VERB_NC_INDAGINI_MURATURE)	||
+						(m_pGlobalVerbaliSet->m_TipoVerbale == VERB_NC_INDAGINI_CLS)			||
+						(m_pGlobalVerbaliSet->m_TipoVerbale == VERB_NC_MAT_METALLICI)
 						)
     {
       if(m_pGlobalVerbaliSet->m_ProgressivoParziale > nSenzaCert)
@@ -2864,7 +2924,11 @@ void CVerbaliView::OnModifica()
 			&& m_pVerbaliSet->m_TipoVerbale != VERB_NC_INERTI
 			&& m_pVerbaliSet->m_TipoVerbale != VERB_NC_MONITORAGGI
 			&& m_pVerbaliSet->m_TipoVerbale != VERB_NC_VARIE
-			&& m_pVerbaliSet->m_TipoVerbale != VERB_NC_GEOTECNICA)
+			&& m_pVerbaliSet->m_TipoVerbale != VERB_NC_GEOTECNICA
+			&& m_pVerbaliSet->m_TipoVerbale != VERB_NC_LINEE_VITA
+			&& m_pVerbaliSet->m_TipoVerbale != VERB_NC_INDAGINI_MURATURE
+			&& m_pVerbaliSet->m_TipoVerbale != VERB_NC_INDAGINI_CLS
+			&& m_pVerbaliSet->m_TipoVerbale != VERB_NC_MAT_METALLICI)
 			)	
 #else
   if(m_pVerbaliSet->IsBOF() || m_pVerbaliSet->IsEOF())
@@ -4083,6 +4147,10 @@ void CVerbaliView::PrintVerbale()
 			case VERB_NC_MONITORAGGI :
 			case VERB_NC_VARIE	:
 			case VERB_NC_GEOTECNICA :
+			case VERB_NC_LINEE_VITA:
+			case VERB_NC_INDAGINI_MURATURE:
+			case VERB_NC_INDAGINI_CLS:
+			case VERB_NC_MAT_METALLICI:
         strPrinter = pApp->GetProfileString(CONFIGURAZIONE, STAMPA_NONCONCESSIONE);
         break;
       case VERB_GEOLOGIA:
@@ -4141,6 +4209,10 @@ BOOL CVerbaliView::ScanFields(CStringArray* pFieldNames, CStringArray* pFieldVal
 	case VERB_NC_MONITORAGGI :
 	case VERB_NC_VARIE	:
 	case VERB_NC_GEOTECNICA :
+	case VERB_NC_LINEE_VITA:
+	case VERB_NC_INDAGINI_MURATURE:
+	case VERB_NC_INDAGINI_CLS:
+	case VERB_NC_MAT_METALLICI:
     pFieldValues->Add("Prove non in concessione");
     break;
   case VERB_GEOLOGIA:
@@ -6934,6 +7006,10 @@ void CVerbaliView::PrintVerbale(int mode)
 			case VERB_NC_MONITORAGGI :
 			case VERB_NC_VARIE	:
 			case VERB_NC_GEOTECNICA :
+			case VERB_NC_LINEE_VITA:
+			case VERB_NC_INDAGINI_MURATURE:
+			case VERB_NC_INDAGINI_CLS:
+			case VERB_NC_MAT_METALLICI:
         strPrinter = pApp->GetProfileString(CONFIGURAZIONE, STAMPA_NONCONCESSIONE);
         break;
       case VERB_GEOLOGIA:

@@ -112,11 +112,19 @@ void CArchivioVerbaliView::Query(BOOL bVA)
 
 	CString strApp("");
 	if (sql.IsEmpty())
-		strApp.Format("TipoVerbale = %d OR TipoVerbale = %d OR TipoVerbale = %d OR TipoVerbale = %d OR TipoVerbale = %d OR TipoVerbale = %d OR TipoVerbale = %d OR TipoVerbale = %d OR TipoVerbale = %d", 
-									VERB_NON_IN_CONCESSIONE, VERB_IN_CONCESSIONE, VERB_GEOLOGIA, VERB_NC_PROVE_DI_CARICO, VERB_NC_CONGL_BITUMINOSI, VERB_NC_INERTI, VERB_NC_MONITORAGGI, VERB_NC_VARIE, VERB_NC_GEOTECNICA);
+		strApp.Format("TipoVerbale = %d OR TipoVerbale = %d OR TipoVerbale = %d OR TipoVerbale = %d OR TipoVerbale = %d OR \
+										TipoVerbale = %d OR TipoVerbale = %d OR TipoVerbale = %d OR TipoVerbale = %d OR TipoVerbale = %d OR \
+										TipoVerbale = %d OR TipoVerbale = %d OR TipoVerbale = %d", 
+									VERB_NON_IN_CONCESSIONE, VERB_IN_CONCESSIONE, VERB_GEOLOGIA, VERB_NC_PROVE_DI_CARICO, VERB_NC_CONGL_BITUMINOSI, 
+									VERB_NC_INERTI, VERB_NC_MONITORAGGI, VERB_NC_VARIE, VERB_NC_GEOTECNICA, VERB_NC_LINEE_VITA,
+									VERB_NC_INDAGINI_MURATURE, VERB_NC_INDAGINI_CLS, VERB_NC_MAT_METALLICI);
 	else
-		strApp.Format(" AND (TipoVerbale = %d OR TipoVerbale = %d OR TipoVerbale = %d OR TipoVerbale = %d OR TipoVerbale = %d OR TipoVerbale = %d OR TipoVerbale = %d OR TipoVerbale = %d OR TipoVerbale = %d)",
-									VERB_NON_IN_CONCESSIONE, VERB_IN_CONCESSIONE, VERB_GEOLOGIA, VERB_NC_PROVE_DI_CARICO, VERB_NC_CONGL_BITUMINOSI, VERB_NC_INERTI, VERB_NC_MONITORAGGI, VERB_NC_VARIE, VERB_NC_GEOTECNICA);
+		strApp.Format(" AND (TipoVerbale = %d OR TipoVerbale = %d OR TipoVerbale = %d OR TipoVerbale = %d OR TipoVerbale = %d OR \
+													TipoVerbale = %d OR TipoVerbale = %d OR TipoVerbale = %d OR TipoVerbale = %d OR TipoVerbale = %d OR \
+													TipoVerbale = %d OR TipoVerbale = %d OR TipoVerbale = %d)",
+									VERB_NON_IN_CONCESSIONE, VERB_IN_CONCESSIONE, VERB_GEOLOGIA, VERB_NC_PROVE_DI_CARICO, VERB_NC_CONGL_BITUMINOSI, 
+									VERB_NC_INERTI, VERB_NC_MONITORAGGI, VERB_NC_VARIE, VERB_NC_GEOTECNICA, VERB_NC_LINEE_VITA,
+									VERB_NC_INDAGINI_MURATURE, VERB_NC_INDAGINI_CLS, VERB_NC_MAT_METALLICI);
 	sql += strApp;
 
 	m_pSetVerbali->m_strFilter = sql;

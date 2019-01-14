@@ -170,6 +170,10 @@ void CServiziFatturaDlg::InitVerbali(void)
 			case VERB_NC_MONITORAGGI :
 			case VERB_NC_VARIE	:
 			case VERB_NC_GEOTECNICA :
+			case VERB_NC_LINEE_VITA:
+			case VERB_NC_INDAGINI_MURATURE:
+			case VERB_NC_INDAGINI_CLS:
+			case VERB_NC_MAT_METALLICI:
 #ifdef WINSIGMA2
         str.Format("Verbale senza prove in concessione n. A%d del %s", m_pVerbaliInFatturazione->m_ProgressivoTotale, m_pVerbaliInFatturazione->m_DataAccettazione.Format("%d/%m/%Y"));
 #else

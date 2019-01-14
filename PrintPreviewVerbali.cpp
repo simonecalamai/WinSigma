@@ -257,7 +257,10 @@ BOOL CPrintPreviewVerbali::ScanFields(CStringArray* pFieldNames, CStringArray* p
 	case VERB_NC_MONITORAGGI :
 	case VERB_NC_VARIE	:
 	case VERB_NC_GEOTECNICA :
-    pFieldValues->Add("Prove non in concessione");
+	case VERB_NC_LINEE_VITA:
+	case VERB_NC_INDAGINI_MURATURE:
+	case VERB_NC_INDAGINI_CLS:
+	case VERB_NC_MAT_METALLICI:    pFieldValues->Add("Prove non in concessione");
     break;
   case VERB_GEOLOGIA:
     pFieldValues->Add("Prove geotecniche");
