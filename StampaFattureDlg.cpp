@@ -2435,9 +2435,9 @@ BOOL CStampaFattureDlg::XMLHeaderCessionarioCommittente(FILE* f)
 		if(pos == -1)
 		{
 			// nessuno spazio tra cognome e nome: metto la stessa stringa in tutti e due
-			csLine.Format("<Cognome>%s</Cognome>\n", csRagSociale); 
-			fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
 			csLine.Format("<Nome>%s</Nome>\n", csRagSociale); 
+			fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+			csLine.Format("<Cognome>%s</Cognome>\n", csRagSociale); 
 			fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
 		}
 		else
@@ -2446,9 +2446,9 @@ BOOL CStampaFattureDlg::XMLHeaderCessionarioCommittente(FILE* f)
 			csNome = csRagSociale.Mid(pos+1);
 			csNome.TrimLeft(' ');
 			csNome.TrimRight(' ');
-			csLine.Format("<Cognome>%s</Cognome>\n", csCognome); 
-			fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
 			csLine.Format("<Nome>%s</Nome>\n", csNome); 
+			fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+			csLine.Format("<Cognome>%s</Cognome>\n", csCognome); 
 			fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
 /* per gestire i cognomi composti (De, Di, Da, Del...) s.c. 6.12.2018 da fare!!!
 			if(csCognome.GetLength() == 2 && (!csCognome.CompareNoCase("de") || !csCognome.CompareNoCase("di") || !csCognome.CompareNoCase("da"))
