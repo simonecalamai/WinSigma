@@ -494,6 +494,10 @@ void CVerbaliView::LoadCurRecord(BOOL bData)
 		case VERB_NC_MONITORAGGI :
 		case VERB_NC_VARIE	:
 		case VERB_NC_GEOTECNICA :
+		case VERB_NC_LINEE_VITA:
+		case VERB_NC_INDAGINI_MURATURE:
+		case VERB_NC_INDAGINI_CLS:
+		case VERB_NC_MAT_METALLICI:
 #ifdef WINSIGMA2
 			m_strTipoVerbale.Format("Verbale n° A%d", m_pVerbaliSet->m_ProgressivoTotale);	
 #else
