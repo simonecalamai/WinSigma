@@ -2173,6 +2173,12 @@ void CStampaFattureDlg::OnButtonFatturaXML()
 	msg.Format("File %s generato in %s", csFilename, csFolder);
 	MessageBox(msg, "Esportazione XML", MB_OK);
 
+	if(AfxMessageBox("Stampa PDF?", MB_YESNO) == IDYES)
+	{
+		OnButtonPrintFattura();
+		return;
+	}
+
 	// Uscita
   if(m_pVerbaliInfatturazione)
   {
@@ -2343,6 +2349,7 @@ void CStampaFattureDlg::XMLHeaderCedentePrestatore(FILE* f)
 BOOL CStampaFattureDlg::XMLHeaderCessionarioCommittente(FILE* f) 
 {
 	BOOL persGiuridica = TRUE;
+	CString csField("");
 	CString csLine("");
 	CString msg = "";
   CWinSigmaApp* pApp = (CWinSigmaApp*)AfxGetApp();
@@ -2417,9 +2424,7 @@ BOOL CStampaFattureDlg::XMLHeaderCessionarioCommittente(FILE* f)
 	csLine.Format("<Anagrafica>\n"); 
 	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
 	// -- Denominazione
-	CString csRagSociale = m_strRagioneSociale;
-	csRagSociale.TrimLeft(' ');
-	csRagSociale.TrimRight(' ');
+	CString csRagSociale = XMLValidate(m_strRagioneSociale);
 	if(persGiuridica == TRUE)
 	{
 		// persona giuridica -> Denominazione
@@ -2473,16 +2478,20 @@ BOOL CStampaFattureDlg::XMLHeaderCessionarioCommittente(FILE* f)
 	csLine.Format("<Sede>\n"); 
 	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
 	// -- Indirizzo
-	csLine.Format("<Indirizzo>%s</Indirizzo>\n", m_pAziendeSet->m_Indirizzo); 
+	csField = XMLValidate(m_pAziendeSet->m_Indirizzo);
+	csLine.Format("<Indirizzo>%s</Indirizzo>\n", csField); 
 	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
 	// -- CAP
-	csLine.Format("<CAP>%s</CAP>\n", m_pAziendeSet->m_CAP); 
+	csField = XMLValidate(m_pAziendeSet->m_CAP);
+	csLine.Format("<CAP>%s</CAP>\n", csField); 
 	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
 	// -- Comune
-	csLine.Format("<Comune>%s</Comune>\n", m_pAziendeSet->m_Citta); 
+	csField = XMLValidate(m_pAziendeSet->m_Citta);
+	csLine.Format("<Comune>%s</Comune>\n", csField); 
 	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
 	// -- Provincia
-	csLine.Format("<Provincia>%s</Provincia>\n", m_pAziendeSet->m_Provincia); 
+	csField = XMLValidate(m_pAziendeSet->m_Provincia);
+	csLine.Format("<Provincia>%s</Provincia>\n", csField); 
 	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
 	// -- Nazione
 	csLine.Format("<Nazione>%s</Nazione>\n", pApp->m_csNazione); 
@@ -3145,4 +3154,16 @@ int CStampaFattureDlg::FilterANSI(CString& cs)
 	if(i > n)
 		cs = csNew;
 	return (i - n); 
+}
+
+CString CStampaFattureDlg::XMLValidate(CString& cs)
+{
+	cs.TrimLeft(' ');
+	cs.TrimRight(' ');
+	cs.Replace("&", "&amp;");
+	cs.Replace("<", "&lt;");
+	cs.Replace(">", "&gt;");
+	cs.Replace("'", "&apos;");
+	cs.Replace("\"", "&quot;");
+	return cs;
 }

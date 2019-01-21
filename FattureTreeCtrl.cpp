@@ -169,6 +169,7 @@ void CFattureTreeCtrl::Populate(CString strLabel, long nCodeSelected)
           strItem.Format("N°. %d - %s", ((CFattureSet*)pSet)->m_Numero, pXTree->GetLabel());
           SetItemText(hTreeSelectedItem, strItem);
           SetItemData(hTreeSelectedItem, pXTree->GetCode());
+					if(((CFattureSet*)pSet)->m_Elett == 1) pXTree->m_nIcon = 5;
           SetItemImage(hTreeSelectedItem, pXTree->m_nIcon, pXTree->m_nIcon);
         }
       }
@@ -178,6 +179,7 @@ void CFattureTreeCtrl::Populate(CString strLabel, long nCodeSelected)
         strItem.Format("N°. %d - %s", ((CFattureSet*)pSet)->m_Numero, ((CFattureSet*)pSet)->m_RagioneSociale);
         hTreeSelectedItem = InsertItem(strItem, pXTree->m_nIcon, pXTree->m_nIcon, hTreeParentItem);
     		SetItemData(hTreeSelectedItem, pXTree->GetCode());
+				if(((CFattureSet*)pSet)->m_Elett == 1) pXTree->m_nIcon = 5;
         SetItemImage(hTreeSelectedItem, pXTree->m_nIcon, pXTree->m_nIcon);
       }
     }

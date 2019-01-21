@@ -2074,6 +2074,8 @@ void CFattureView::OnTrovaAzienda()
       m_pFattureEmesseSet->m_ABIAppoggio.Empty();
       m_pFattureEmesseSet->m_CABAppoggio.Empty();
     }
+		m_pFattureEmesseSet->m_CodiceDestinatario = pAziendeSet->m_CodiceDestinatario;
+		m_pFattureEmesseSet->m_PEC = pAziendeSet->m_PEC;
     m_pFattureEmesseSet->Update();
     pApp->UnlockTables();
     SINCRONIZE(m_pFattureEmesseSet, m_lCodiceFattura);

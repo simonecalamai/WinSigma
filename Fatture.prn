@@ -21,6 +21,9 @@ tab lines=10
 -160=+630,+0,360,40,Arial,25,35,BL,Totale Imponibile
 -180=+0,+205,260,40,Arial,25,35,BL,Totale Fattura
 -190=170,-60,600,40,Arial,20,30,L,Totale imponibile delle voci riportate
+300=60,2665,1800,50,Courier New,18,28,L,Documento privo di valenza fiscale ai sensi dell'art. 21 Dpr 633/72.,0x602000
+310=60,+30,1800,50,Courier New,18,28,L,L'originale è disponibile all'indirizzo telematico da Lei fornito oppure nella Sua area riservata dell'Agenzia delle Entrate.,0x602000
+
 
 [fields]
 5=650,400,350,40,Arial,25,35,L,codice

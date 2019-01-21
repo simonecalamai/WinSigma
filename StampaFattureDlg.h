@@ -149,6 +149,7 @@ protected:
 	void XMLBodyDatiGenerali(FILE* f);
 	void XMLBodyDatiBeniServizi(FILE* f);
 	void XMLBodyDatiPagamento(FILE* f);
+	CString XMLValidate(CString& cs);
 	CString m_csSum;
 	BOOL ChangeChecker();
 	int FilterANSI(CString& cs);

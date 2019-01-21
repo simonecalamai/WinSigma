@@ -770,6 +770,13 @@ BOOL CAziendeView::ValidateCodiceFiscale(void)
 		}
 	}
 
+	if(m_strPIVA.IsEmpty() && cf.GetTipoCodice() == TIPO_PERSONA_FISICA)
+	{
+		// no partita IVA e codice fiscale di privato --> codice dest. = 0000000
+		m_strCodiceDestinatario = "0000000";
+		UpdateData(FALSE);
+	}
+	
   return bRet;
 }
 
