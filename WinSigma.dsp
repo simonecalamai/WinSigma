@@ -277,6 +277,10 @@ SOURCE=.\CertificatiVerbaliSet.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\CondizioniPagamentoSet.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\Configurazione.cpp
 # End Source File
 # Begin Source File
@@ -675,6 +679,10 @@ SOURCE=.\CertificatiSet.h
 # Begin Source File
 
 SOURCE=.\CertificatiVerbaliSet.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\CondizioniPagamentoSet.h
 # End Source File
 # Begin Source File
 
@@ -1238,10 +1246,6 @@ SOURCE=.\html\WinSigma.hhp
 # End Source File
 # End Target
 # End Project
-# Section WinSigma : {C932BA85-4374-101B-A56C-00AA003668DC}
-# 	2:21:DefaultSinkHeaderFile:msmask.h
-# 	2:16:DefaultSinkClass:CMSMask
-# End Section
 # Section WinSigma : {BEF6E003-A874-101A-8BBA-00AA00300CAB}
 # 	2:5:Class:COleFont1
 # 	2:10:HeaderFile:font1.h
@@ -1256,4 +1260,8 @@ SOURCE=.\html\WinSigma.hhp
 # 	2:5:Class:CPicture
 # 	2:10:HeaderFile:picture.h
 # 	2:8:ImplFile:picture.cpp
+# End Section
+# Section WinSigma : {C932BA85-4374-101B-A56C-00AA003668DC}
+# 	2:21:DefaultSinkHeaderFile:msmask.h
+# 	2:16:DefaultSinkClass:CMSMask
 # End Section

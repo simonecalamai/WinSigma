@@ -1,7 +1,7 @@
---------------------------------------------------
+/*--------------------------------------------------
 -- VERSIONE 4.7.14
---------------------------------------------------
--- Tabella CONDIZIONI_PAGAMENTO
+-------------------------------------------------- 
+-- Tabella CONDIZIONI_PAGAMENTO */ 
 CREATE TABLE IF NOT EXISTS `CONDIZIONI_PAGAMENTO` (
   `Codice` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `Descrizione` varchar(100) DEFAULT '0',
@@ -15,6 +15,6 @@ INSERT INTO `CONDIZIONI_PAGAMENTO` (`Codice`, `Descrizione`, `CodiceXML`) VALUES
 	(2, 'Completo', 'TP02'),
 	(3, 'Anticipo', 'TP03');
 
--- Tabella FATTURE
-	ALTER TABLE `FATTURE`
-	ADD COLUMN `CondizioniPagamento` INT(10) NULL DEFAULT NULL AFTER `IBANAppoggio`;
+/* -- Tabella FATTURE */
+ALTER TABLE `FATTURE`
+ADD COLUMN `CondizioniPagamento` INT(10) NULL DEFAULT NULL AFTER `IBANAppoggio`;
