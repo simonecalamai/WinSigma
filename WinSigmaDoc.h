@@ -24,6 +24,7 @@ public:
   COperatoriSet*			 m_pOperatoriSet;
   CTipiMaterialeSet*	 m_pTipiMaterialeSet;
   CTipiPagamentoSet*	 m_pTipiPagamentoSet;
+	CCondizioniPagamentoSet*	m_pCondizioniPagamentoSet;
   CMarchiSet*	         m_pMarchiSet;
   CMarchiTurboSet*     m_pMarchiTurboSet;
   CListiniSet*	       m_pListiniScadutiSet;

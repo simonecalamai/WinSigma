@@ -2,6 +2,7 @@
 #include "OperatoriSet.h"
 #include "TipiMaterialeSet.h"
 #include "TipiPagamentoSet.h"
+#include "CondizioniPagamentoSet.h"
 #include "MarchiSet.h"
 #include "TipiCertificatoSet.h"
 #include "ListiniSet.h"
@@ -27,6 +28,7 @@ public:
 	COperatoriSet* m_pOperatoriSet;
 	CTipiMaterialeSet* m_pTipiMaterialeSet;
 	CTipiPagamentoSet* m_pTipiPagamentoSet;
+	CCondizioniPagamentoSet* m_pCondizioniPagamentoSet;
 	CMarchiSet* m_pMarchiSet;
 	CTipiCertificatoSet* m_pTipiCertificatoSet;
 	CListiniSet* m_pListiniSet;
@@ -49,6 +51,7 @@ public:
 		m_pOperatoriSet						= new COperatoriSet(pDatabase);
 		m_pTipiMaterialeSet				= new CTipiMaterialeSet(pDatabase);
 		m_pTipiPagamentoSet				= new CTipiPagamentoSet(pDatabase);
+		m_pCondizioniPagamentoSet				= new CCondizioniPagamentoSet(pDatabase);
 		m_pMarchiSet							= new CMarchiSet(pDatabase);
 		m_pTipiCertificatoSet			= new CTipiCertificatoSet(pDatabase);
 		m_pListiniSet							= new CListiniSet(pDatabase);
@@ -72,6 +75,7 @@ public:
 		CLOSE_DELETE(m_pOperatoriSet);
 		CLOSE_DELETE(m_pTipiMaterialeSet);
 		CLOSE_DELETE(m_pTipiPagamentoSet);
+		CLOSE_DELETE(m_pCondizioniPagamentoSet);
 		CLOSE_DELETE(m_pMarchiSet);
 		CLOSE_DELETE(m_pTipiCertificatoSet);
 		CLOSE_DELETE(m_pListiniSet);

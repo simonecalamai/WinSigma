@@ -337,12 +337,17 @@ void CFattureView::LoadCurRecord(BOOL bData)
       m_strABI = pAziendeSet->m_ABI;
       m_strCAB = pAziendeSet->m_CAB;
       m_strIBAN = pAziendeSet->m_IBAN;
-      // Tipo di pagamento
+      
+			// Tipo di pagamento
       if(!pAziendeSet->IsFieldNull(&pAziendeSet->m_TipoPagamento) &&
           pAziendeSet->m_TipoPagamento > 0)
         m_lTipoPagamento = pAziendeSet->m_TipoPagamento;
       else
         m_lTipoPagamento = lDefPagamento;
+
+			// Condizioni di pagamento
+			m_lCondizioniPagamento = pApp->m_lCondizioniPagamentoDefault;
+
       if(!pAziendeSet->IsFieldNull(&pAziendeSet->m_Sconto))
         m_dSconto = pAziendeSet->m_Sconto;
       else
@@ -424,6 +429,14 @@ void CFattureView::LoadCurRecord(BOOL bData)
         m_lTipoPagamento = m_pFattureEmesseSet->m_TipoPagamento;
       else
         m_lTipoPagamento = lDefPagamento;
+
+			// Condizioni di pagamento
+      if(!m_pFattureEmesseSet->IsFieldNull(&m_pFattureEmesseSet->m_CondizioniPagamento) &&
+          m_pFattureEmesseSet->m_CondizioniPagamento > 0)
+        m_lCondizioniPagamento = m_pFattureEmesseSet->m_CondizioniPagamento;
+      else
+				m_lCondizioniPagamento = pApp->m_lCondizioniPagamentoDefault;
+
       if(!m_pFattureEmesseSet->IsFieldNull(&m_pFattureEmesseSet->m_Sconto))
         m_dSconto = m_pFattureEmesseSet->m_Sconto;
       else
@@ -1388,6 +1401,7 @@ void CFattureView::EmettiSalvaFattura(BOOL bElett)
   dlg.m_strIndirizzo = m_strIndirizzo;
   dlg.m_strTipoPagamento = m_strTipoPagamento;
   dlg.m_lTipoPagamento = m_lTipoPagamento;
+  dlg.m_lCondizioniPagamento = m_lCondizioniPagamento;
   dlg.m_strBanca = m_strBanca;
   dlg.m_strBanca.Replace("\r\n", " ");
   dlg.m_strIBAN = m_strIBAN;
@@ -1949,6 +1963,7 @@ void CFattureView::PrintProforma(BOOL bheader)
   dlg.m_strIndirizzo = m_strIndirizzo;
   dlg.m_strTipoPagamento = m_strTipoPagamento;
   dlg.m_lTipoPagamento = m_lTipoPagamento;
+  dlg.m_lCondizioniPagamento = m_lCondizioniPagamento;
   dlg.m_strBanca = m_strBanca;
   dlg.m_strBanca.Replace("\r\n", " ");
   dlg.m_strIBAN = m_strIBAN;

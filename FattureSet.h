@@ -66,6 +66,7 @@ public:
 	long m_CodiceXML;
 	CString m_IBAN;
 	CString m_IBANAppoggio;
+	long m_CondizioniPagamento;
 	//}}AFX_FIELD
 
 

@@ -34,6 +34,7 @@ CString                 CStampaFattureDlg::m_strImportoScontato;
 CString                 CStampaFattureDlg::m_strIVA;
 CString                 CStampaFattureDlg::m_strTotaleFattura;
 CString                 CStampaFattureDlg::m_strTipoPagamento;
+CString                 CStampaFattureDlg::m_strCondizioniPagamento;
 CString                 CStampaFattureDlg::m_strTipoDocumento;
 CString                 CStampaFattureDlg::m_strCoordinateBancarie;
 double                  CStampaFattureDlg::m_dSconto;
@@ -127,6 +128,7 @@ void CStampaFattureDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_STATIC_DATI, m_StaticDati);
 	DDX_Control(pDX, IDC_DATETIMEPICKER_DATA_FATTURA, m_DTCtrlDataFattura);
 	DDX_Control(pDX, IDC_COMBO_TIPO_PAGAMENTO, m_ComboTipoPagamento);
+	DDX_Control(pDX, IDC_COMBO_CONDIZIONI_PAGAMENTO, m_ComboCondizioniPagamento);
 	DDX_Control(pDX, IDC_CHECK_SPEDIZIONE, m_BtnSpedizione);
 	DDX_Control(pDX, IDC_BUTTON_PRINT_FATTURA, m_BtnStampaFattura);
 	DDX_Control(pDX, IDOK, m_BtnEmettiFattura);
@@ -349,6 +351,7 @@ BOOL CStampaFattureDlg::OnInitDialog()
     m_BtnStampaFattura.EnableWindow(m_bFatturaProForma);
 		m_BtnFatturaXML.EnableWindow(m_bFatturaProForma);
     FindMaxNumeroFattura();
+  //  m_lCondizioniPagamento = pApp->m_lCondizioniPagamentoDefault;
     if(m_bFatturaProForma)
       m_strNumero = "0";
     else
@@ -363,6 +366,8 @@ BOOL CStampaFattureDlg::OnInitDialog()
   m_bFatturaEmessa = FALSE;
   // Inizalizzo la combo dei tipi di pagamento
   InitTipiPagamento();
+  // Inizalizzo la combo delle condizioni di pagamento (Rate-Completo-Anticipo)
+  InitCondizioniPagamento();
   // Calcolo il valore dell'iva e il totale
   str = m_strImponibileScontato;
   str.Replace(".", "");
@@ -407,7 +412,7 @@ void CStampaFattureDlg::OnButtonEmetti()
     return;
   }
   // Ho emesso una nuova fattura
-  // Sincronizzo i recodset delle aziende e dei tipi di pagamento
+  // Sincronizzo i recordset delle aziende e dei tipi di pagamento
   CTipiPagamentoSet* pTipiPagamentoSet = m_pDoc->m_pTipiPagamentoSet;
   if((n = m_ComboTipoPagamento.GetCurSel()) != -1)
   {
@@ -422,6 +427,17 @@ void CStampaFattureDlg::OnButtonEmetti()
   }
   SINCRONIZE(pTipiPagamentoSet, m_lTipoPagamento);
   m_strTipoPagamento = pTipiPagamentoSet->m_Nome;
+
+	// Condizioni di pagamento
+  CCondizioniPagamentoSet* pCondizioniPagamentoSet = m_pDoc->m_pCondizioniPagamentoSet;
+  if((n = m_ComboCondizioniPagamento.GetCurSel()) != -1)
+  {
+    // Se ho selezionato una nuova condizione di pagamento, aggiorno il record
+    if(m_ComboCondizioniPagamento.GetItemData(n) != 0)
+      m_lCondizioniPagamento= m_ComboCondizioniPagamento.GetItemData(n);
+  }
+  SINCRONIZE(pCondizioniPagamentoSet, m_lCondizioniPagamento);
+  m_strCondizioniPagamento = pCondizioniPagamentoSet->m_Descrizione;
   try
   {
     pApp->LockTable(FATTURE);
@@ -442,6 +458,8 @@ void CStampaFattureDlg::OnButtonEmetti()
     // Tipo di pagamento
     m_pFattureEmesseSet->m_TipoPagamento = m_lTipoPagamento;
     m_pFattureEmesseSet->m_Pagamento     = m_strTipoPagamento;
+		// Condizioni di pagamento
+    m_pFattureEmesseSet->m_CondizioniPagamento = m_lCondizioniPagamento;
     m_pFattureEmesseSet->m_BancaAppoggio = pTipiPagamentoSet->m_Banca;
     m_pFattureEmesseSet->m_IBANAppoggio   = pTipiPagamentoSet->m_IBAN;
     m_pFattureEmesseSet->m_ABIAppoggio   = pTipiPagamentoSet->m_ABI;
@@ -616,6 +634,15 @@ void CStampaFattureDlg::SalvaFattura(void)
       m_pFattureEmesseSet->m_CABAppoggio   = pTipiPagamentoSet->m_CAB;
       m_pFattureEmesseSet->m_CINAppoggio   = pTipiPagamentoSet->m_CIN;
       m_pFattureEmesseSet->m_ContoAppoggio = pTipiPagamentoSet->m_NumeroConto;
+    }
+  }
+  if((n = m_ComboCondizioniPagamento.GetCurSel()) != -1)
+  {
+    // Se ho selezionato una nuova condizione di pagamento, aggiorno il record
+    if(m_ComboCondizioniPagamento.GetItemData(n) != 0)
+    {
+      m_lCondizioniPagamento = m_ComboCondizioniPagamento.GetItemData(n);
+      m_pFattureEmesseSet->m_CondizioniPagamento = m_ComboCondizioniPagamento.GetItemData(n);
     }
   }
   m_pFattureEmesseSet->m_Aliquota = atof(m_strAliquota);
@@ -1916,6 +1943,26 @@ void CStampaFattureDlg::InitTipiPagamento(void)
   }
 }
 
+void CStampaFattureDlg::InitCondizioniPagamento(void)
+{
+  int i, nsel;
+  CCondizioniPagamentoSet* pCondizioniPagamentoSet = m_pDoc->m_pCondizioniPagamentoSet;
+  for(SET_START(pCondizioniPagamentoSet); !pCondizioniPagamentoSet->IsEOF(); pCondizioniPagamentoSet->MoveNext())
+  {
+  	i = m_ComboCondizioniPagamento.AddString(pCondizioniPagamentoSet->m_Descrizione);
+  	m_ComboCondizioniPagamento.SetItemData(i, pCondizioniPagamentoSet->m_Codice);
+  }
+	for(i = 0; i < m_ComboCondizioniPagamento.GetCount(); i++)
+	{
+		if(m_lCondizioniPagamento == (long)m_ComboCondizioniPagamento.GetItemData(i))
+		{
+			nsel = i;
+		}
+	}
+  m_ComboCondizioniPagamento.SetCurSel(nsel);
+  m_ComboCondizioniPagamento.GetLBText(nsel, m_strCondizioniPagamento);
+}
+
 void CStampaFattureDlg::OnSelchangeComboTipoPagamento() 
 {
   int n;
@@ -1943,6 +1990,10 @@ void CStampaFattureDlg::OnSelchangeComboTipoPagamento()
 		delete pTipiPagamento; // MANUT
   }
   UpdateData(FALSE);
+}
+
+void CStampaFattureDlg::OnSelchangeComboCondizioniPagamento() 
+{
 }
 
 
@@ -2979,7 +3030,8 @@ void CStampaFattureDlg::XMLBodyDatiPagamento(FILE* f)
 	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
 
 	// Condizioni Pagamento (TP01=rate, TP02=unica soluzione TP03=anticipo)
-	csLine.Format("<CondizioniPagamento>%s</CondizioniPagamento>\n", "TP02"); 
+	CString payCondition = GetPaymentCondition();
+	csLine.Format("<CondizioniPagamento>%s</CondizioniPagamento>\n", payCondition); 
 	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
 
 	// Dettaglio Pagamento
@@ -3058,6 +3110,24 @@ CString CStampaFattureDlg::GetPaymentMode()
 	return payMode;
 }
 
+CString CStampaFattureDlg::GetPaymentCondition() 
+{
+	CString payCondition("");
+	int n = -1;
+	UpdateData(TRUE);
+  CCondizioniPagamentoSet* pCondizioniPagamentoSet = m_pDoc->m_pCondizioniPagamentoSet;
+  if((n = m_ComboCondizioniPagamento.GetCurSel()) != -1)
+  {
+    // Se ho selezionato un nuovo tipo di pagamento, aggiorno il record
+    if(m_ComboCondizioniPagamento.GetItemData(n) != 0)
+      m_lCondizioniPagamento= m_ComboCondizioniPagamento.GetItemData(n);
+  }
+  SINCRONIZE(pCondizioniPagamentoSet, m_lCondizioniPagamento);
+
+	payCondition = pCondizioniPagamentoSet->m_CodiceXML;
+	return payCondition;
+}
+
 void CStampaFattureDlg::OnKillfocusEditOrdineAcquisto() 
 {
 	UpdateData(TRUE);
@@ -3131,6 +3201,8 @@ BOOL CStampaFattureDlg::ChangeChecker()
 	{
 		cs += m_strCodiceXML;
 	}
+	m_ComboCondizioniPagamento.GetWindowText(m_strCondizioniPagamento);
+	cs += m_strCondizioniPagamento;
 	if(!m_csSum.Compare(cs))
 		return FALSE;
 	m_csSum = cs;

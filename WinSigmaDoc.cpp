@@ -38,6 +38,7 @@ CWinSigmaDoc::CWinSigmaDoc()
 	m_pMarchiTurboSet        = NULL;
 	m_pTipiMaterialeSet      = NULL;
 	m_pTipiPagamentoSet      = NULL;
+	m_pCondizioniPagamentoSet      = NULL;
 	m_pListiniScadutiSet     = NULL;
 	m_pListiniInVigoreSet    = NULL;
 	m_pListiniInElaborazioneSet = NULL;
@@ -86,6 +87,8 @@ BOOL CWinSigmaDoc::OnNewDocument()
 	m_pTipiMaterialeSet->Open();
   m_pTipiPagamentoSet = new CTipiPagamentoSet(&pApp->m_db);
 	m_pTipiPagamentoSet->Open();
+  m_pCondizioniPagamentoSet = new CCondizioniPagamentoSet(&pApp->m_db);
+	m_pCondizioniPagamentoSet->Open();
 	m_pMarchiSet = new CMarchiSet(&pApp->m_db);
 	m_pMarchiSet->m_strSort = "Nome";
 	m_pMarchiSet->Open();
@@ -211,6 +214,11 @@ void CWinSigmaDoc::DeleteContents()
 	{
 		m_pTipiPagamentoSet->Close();
 		delete m_pTipiPagamentoSet;
+	}
+  if(m_pCondizioniPagamentoSet)
+	{
+		m_pCondizioniPagamentoSet->Close();
+		delete m_pCondizioniPagamentoSet;
 	}
   if(m_pMarchiSet)
 	{

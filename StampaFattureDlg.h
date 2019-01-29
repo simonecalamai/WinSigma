@@ -30,6 +30,7 @@ public:
 	CButton	m_StaticDati;
 	CDateTimeCtrl	m_DTCtrlDataFattura;
 	CComboBox	m_ComboTipoPagamento;
+	CComboBox	m_ComboCondizioniPagamento;
 	CButton	m_BtnSpedizione;
 	CButton	m_BtnStampaFattura;
 	CButton	m_BtnEmettiFattura;
@@ -99,6 +100,7 @@ public:
   static int  m_nTotRitAcconto;
   static int  m_nSpeseSpedizione;
   long m_lTipoPagamento;
+  long m_lCondizioniPagamento;
   CDWordArray m_aryCodiciServizi;
   static CString m_strImporto;
   static CString m_strIVA;
@@ -113,6 +115,7 @@ public:
   static BOOL m_bVerbaliPrinted;
   static double m_dSpeseSpedizione;
   static CString m_strTipoPagamento;
+  static CString m_strCondizioniPagamento;
   static int  m_nImportoVerbale;
   static BOOL m_bRiba;
   static double m_dAliquota;
@@ -140,6 +143,7 @@ protected:
   void CalcolaTotale(void);
   void CalcolaRitAcconto(void);
   void InitTipiPagamento(void);
+  void InitCondizioniPagamento(void);
   BOOL CheckData(void);
   void SalvaFattura(void);
 	void XMLHeaderDatiTrasmissione(FILE* f, int progressivo, CString versione);
@@ -154,6 +158,7 @@ protected:
 	BOOL ChangeChecker();
 	int FilterANSI(CString& cs);
 	CString GetPaymentMode();
+	CString GetPaymentCondition();
 	// Generated message map functions
 	//{{AFX_MSG(CStampaFattureDlg)
 	virtual void OnCancel();
@@ -166,6 +171,7 @@ protected:
 	afx_msg void OnChangeEditAliquota();
 	afx_msg void OnCheckPerservizio();
 	afx_msg void OnSelchangeComboTipoPagamento();
+	afx_msg void OnSelchangeComboCondizioniPagamento();
 	afx_msg void OnChangeEditSconto();
 	afx_msg void OnChangeEditTotale();
 	afx_msg void OnChangeEditRitAcconto();

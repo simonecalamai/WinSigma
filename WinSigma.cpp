@@ -300,6 +300,8 @@ BOOL CWinSigmaApp::InitInstance()
 	m_csTipoDocFattura = config.Read("TipoDocFattura");
 	m_csTipoDocNotaCredito = config.Read("TipoDocNotaCredito");
 
+	m_lCondizioniPagamentoDefault = 2; // default Pagamento Completo (TP02) 
+
 	// The one and only window has been initialized, so show and update it.
 	m_pMainWnd->ShowWindow(SW_SHOWMAXIMIZED);
 	m_pMainWnd->UpdateWindow();

@@ -24,6 +24,7 @@
 #include "OperatoriSet.h"
 #include "TipiMaterialeSet.h"
 #include "TipiPagamentoSet.h"
+#include "CondizioniPagamentoSet.h"
 #include "MarchiSet.h"
 #include "MarchiTurboSet.h"
 #include "TipiCertificatoSet.h"
@@ -40,6 +41,7 @@
 #include "CategorieServiziSet.h"
 #include "VerbaliServErogatiSet.h"
 #include "FattureSet.h"
+#include "CondizioniPagamentoSet.h"
 #include "AllTables.h"
 #include "VerbSerProSet.h"
 #include "ConnessioneDlg.h"
@@ -51,7 +53,7 @@
 //
 //#define WINSIGMA2
 
-#define STR_VERSION							"4.7.13" 
+#define STR_VERSION							"4.7.14" 
 #define STR_BUILDTIME   __TIMESTAMP__  
 #define AZIENDE_BUFFER  1024
 #define FATTURE_BUFFER  1024
@@ -231,6 +233,7 @@ enum
 #define TIPI_MATERIALE      "TIPI_MATERIALE"
 #define PRODUTTORI          "PRODUTTORI"
 #define TIPI_SCONTO         "TIPI_SCONTO"
+#define CONDIZIONI_PAGAMENTO      "CONDIZIONI_PAGAMENTO"
 
 // Stringhe per la stampa verbali
 #define CONFIGURAZIONE          "Configurazione"
@@ -406,6 +409,8 @@ class CWinSigmaApp : public CWinApp
 		CString m_csDivisa;
 		CString m_csTipoDocFattura;
 		CString m_csTipoDocNotaCredito;
+
+		long m_lCondizioniPagamentoDefault;
 
   /*---- metodi -----*/
   public:

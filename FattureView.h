@@ -96,6 +96,7 @@ public:
   long m_lCodiceFattura;
   long m_lCodiceUltimoVerbale;
   long m_lTipoPagamento;
+  long m_lCondizioniPagamento;
   int m_nTotaleFattura;
   int m_nImponibile;
   int m_nImponibileScontato;
