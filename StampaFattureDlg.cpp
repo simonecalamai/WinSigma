@@ -2797,15 +2797,23 @@ void CStampaFattureDlg::XMLBodyDatiBeniServizi(FILE* f)
 	double imponibile = 0.0f;
 	int numLinea = 0;
 	int codVerbale = 0;
+	BYTE urgenza = 0;
+	double imp_verbale = 0.0f;
   for(SET_START(m_pServiziErogati); !m_pServiziErogati->IsEOF(); m_pServiziErogati->MoveNext())
   {
 		if(m_pServiziErogati->m_Verbale != codVerbale)
 		{
+			// chiude il verbale precedente con l'eventuale maggiorazione per urgenza (s.c. 30.01.2019)
+			if(urgenza == 1)
+				XMLAddMaggiorazioneUrgenza(f, &numLinea, &imp_verbale, &imponibile); 
+	
 			// determina progressivo (parziale e totale) del verbale e il cantiere
 			codVerbale = m_pServiziErogati->m_Verbale;
 			SINCRONIZE(m_pVerbaliInfatturazione, m_pServiziErogati->m_Verbale);
 			if(m_pVerbaliInfatturazione->m_ProgressivoTotale != 0)
 			{
+				urgenza = m_pVerbaliInfatturazione->m_Urgenza;
+				imp_verbale = 0.0f;
 				// riga descrittiva con verbale + cantiere
 				numLinea++;
 				csLine.Format("<DettaglioLinee>\n"); 
@@ -2871,8 +2879,9 @@ void CStampaFattureDlg::XMLBodyDatiBeniServizi(FILE* f)
 				// altrimenti (es. riga di commento) non si indicano e il prezzo è 0.00
 				if(!m_pServiziErogati->IsFieldNull(&m_pServiziErogati->m_Quantita))
 				{
-					// Quantità
-					csLine.Format("<Quantita>%.2f</Quantita>\n", m_pServiziErogati->m_Quantita); 
+					// Quantità (correggo qtà negative non ammesse dal sist. di interscambio s.c. 31.01.2019)
+					double quantita = (m_pServiziErogati->m_Quantita < 0) ? -(m_pServiziErogati->m_Quantita) : m_pServiziErogati->m_Quantita;
+					csLine.Format("<Quantita>%.2f</Quantita>\n", quantita); 
 					fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
 					// Unità di Misura
 					csLine.Format("<UnitaMisura>%s</UnitaMisura>\n", "SERVIZIO"); 
@@ -2880,7 +2889,8 @@ void CStampaFattureDlg::XMLBodyDatiBeniServizi(FILE* f)
 				}
 			}
 
-			csLine.Format("<PrezzoUnitario>%.2f</PrezzoUnitario>\n", m_pServiziErogati->m_Prezzo); 
+			double prezzounitario = (m_pServiziErogati->m_Quantita < 0) ? -(m_pServiziErogati->m_Prezzo) : m_pServiziErogati->m_Prezzo;
+			csLine.Format("<PrezzoUnitario>%.2f</PrezzoUnitario>\n", prezzounitario); 
 			fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
 		}
 
@@ -2910,6 +2920,7 @@ void CStampaFattureDlg::XMLBodyDatiBeniServizi(FILE* f)
 				// applico l'eventuale sconto
 				prezzo *= ((100.0f - m_pServiziErogati->m_Sconto) / 100.0f);
 			}
+			imp_verbale += prezzo;
 			imponibile += prezzo;
 			csLine.Format("<PrezzoTotale>%.2f</PrezzoTotale>\n", prezzo); 
 			fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
@@ -2923,6 +2934,10 @@ void CStampaFattureDlg::XMLBodyDatiBeniServizi(FILE* f)
 		csLine.Format("</DettaglioLinee>\n"); 
 		fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
   }
+
+	// eventuale maggiorazione urgenza per l'ultimo verbale della fattura
+	if(urgenza == 1)
+		XMLAddMaggiorazioneUrgenza(f, &numLinea, &imp_verbale, &imponibile); 
 
 	// Sconto totale: visualizzato come linea ulteriore nella fattura
 	if(!m_pFattureEmesseSet->IsFieldNull(&m_pFattureEmesseSet->m_Sconto) && m_pFattureEmesseSet->m_Sconto != 0)
@@ -3018,6 +3033,48 @@ void CStampaFattureDlg::XMLBodyDatiBeniServizi(FILE* f)
 	csLine.Format("</DatiBeniServizi>\n"); 
 	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
 
+}
+
+void CStampaFattureDlg::XMLAddMaggiorazioneUrgenza(FILE* f, int* pnum, double* pimpverb, double* pimptot) 
+{
+	CString csLine; 
+
+	(*pnum)++;
+	csLine.Format("<DettaglioLinee>\n"); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+
+	// NumeroLinea
+	csLine.Format("<NumeroLinea>%d</NumeroLinea>\n", *pnum); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+
+	// Descrizione 
+	csLine.Format("<Descrizione>%s</Descrizione>\n", "Maggiorazione del 50% per diritto procedura d'urgenza"); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+
+	// Quantità
+	csLine.Format("<Quantita>1.00</Quantita>\n"); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+
+	// Unità di Misura
+	csLine.Format("<UnitaMisura>%s</UnitaMisura>\n", "SERVIZIO"); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+
+	// Prezzo Unitario		
+  double maggiorazione = *pimpverb / 2;	
+	*pimptot += maggiorazione; // aggiorno l'imponibile totale
+	csLine.Format("<PrezzoUnitario>%.2f</PrezzoUnitario>\n", maggiorazione); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+
+	// Prezzo Totale				
+	csLine.Format("<PrezzoTotale>%.2f</PrezzoTotale>\n", maggiorazione); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+
+	// AliquotaIVA
+	csLine.Format("<AliquotaIVA>%.2f</AliquotaIVA>\n", m_pFattureEmesseSet->m_Aliquota); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+
+	csLine.Format("</DettaglioLinee>\n"); 
+	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);					
 }
 
 // Esportazione XML; Body sezione Dati Pagamento

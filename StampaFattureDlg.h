@@ -153,6 +153,7 @@ protected:
 	void XMLBodyDatiGenerali(FILE* f);
 	void XMLBodyDatiBeniServizi(FILE* f);
 	void XMLBodyDatiPagamento(FILE* f);
+	void XMLAddMaggiorazioneUrgenza(FILE* f, int* pnum, double* pimpverb, double* pimptot);
 	CString XMLValidate(CString& cs);
 	CString m_csSum;
 	BOOL ChangeChecker();
