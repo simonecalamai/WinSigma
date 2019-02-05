@@ -144,7 +144,10 @@ void CCodiceFiscale::CalcolaCarattereDiControllo()
 			val = m_csCodice.GetAt(i) - '0';
 			sum += (i%2 ? (((2*val)%10)+((2*val)/10)): val);
 		}
-		resto = 10 - (sum%10);
+		if(sum%10)
+			resto = 10 - (sum%10);
+		else
+			resto = 0;
 		m_cCarattereDiControllo = '0' + resto;
 	}
 	else

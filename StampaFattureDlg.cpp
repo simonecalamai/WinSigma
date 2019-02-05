@@ -2850,89 +2850,93 @@ void CStampaFattureDlg::XMLBodyDatiBeniServizi(FILE* f)
 			}
 		}
 
-		numLinea++;
-		csLine.Format("<DettaglioLinee>\n"); 
-		fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
-		
-		// NumeroLinea
-		csLine.Format("<NumeroLinea>%d</NumeroLinea>\n", numLinea); 
-		fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
-
-		// Descrizione
+		// controllo se è definita la Descrizione, altrimenti salto la linea per evitare scarti (s.c. 5.2.2019)
 		if(!m_pServiziErogati->IsFieldNull(&m_pServiziErogati->m_Descrizione))
 		{
-			str = m_pServiziErogati->m_Descrizione;
-			str.MakeUpper();
-			FilterANSI(str);
-			str.TrimRight();
-			csLine.Format("<Descrizione>%s</Descrizione>\n", str); 
-			fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
-		}
-
-		// PrezzoUnitario
-		if(!m_pServiziErogati->IsFieldNull(&m_pServiziErogati->m_Prezzo))
-		{
-
-			if(m_pServiziErogati->m_Prezzo != 0)
-			{
-				// Quantità e Unità di Misura indicate solo se l'importo (prezzo) è definito 
-				// altrimenti (es. riga di commento) non si indicano e il prezzo è 0.00
-				if(!m_pServiziErogati->IsFieldNull(&m_pServiziErogati->m_Quantita))
-				{
-					// Quantità (correggo qtà negative non ammesse dal sist. di interscambio s.c. 31.01.2019)
-					double quantita = (m_pServiziErogati->m_Quantita < 0) ? -(m_pServiziErogati->m_Quantita) : m_pServiziErogati->m_Quantita;
-					csLine.Format("<Quantita>%.2f</Quantita>\n", quantita); 
-					fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
-					// Unità di Misura
-					csLine.Format("<UnitaMisura>%s</UnitaMisura>\n", "SERVIZIO"); 
-					fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
-				}
-			}
-
-			double prezzounitario = (m_pServiziErogati->m_Quantita < 0) ? -(m_pServiziErogati->m_Prezzo) : m_pServiziErogati->m_Prezzo;
-			csLine.Format("<PrezzoUnitario>%.2f</PrezzoUnitario>\n", prezzounitario); 
-			fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
-		}
-
-		// Sconto sulla singola linea
-    if(!m_pServiziErogati->IsFieldNull(&m_pServiziErogati->m_Sconto) && m_pServiziErogati->m_Sconto)
-		{
-			csLine.Format("<ScontoMaggiorazione>\n"); 
+			numLinea++;
+			csLine.Format("<DettaglioLinee>\n"); 
 			fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
 			
-			csLine.Format("<Tipo>%s</Tipo>\n", "SC"); 
+			// NumeroLinea
+			csLine.Format("<NumeroLinea>%d</NumeroLinea>\n", numLinea); 
 			fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
 
-			csLine.Format("<Percentuale>%.2f</Percentuale>\n", m_pServiziErogati->m_Sconto); 
+			// Descrizione
+			if(!m_pServiziErogati->IsFieldNull(&m_pServiziErogati->m_Descrizione))
+			{
+				str = m_pServiziErogati->m_Descrizione;
+				str.MakeUpper();
+				FilterANSI(str);
+				str.TrimRight();
+				csLine.Format("<Descrizione>%s</Descrizione>\n", str); 
+				fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+			}
+
+			// PrezzoUnitario
+			if(!m_pServiziErogati->IsFieldNull(&m_pServiziErogati->m_Prezzo))
+			{
+
+				if(m_pServiziErogati->m_Prezzo != 0)
+				{
+					// Quantità e Unità di Misura indicate solo se l'importo (prezzo) è definito 
+					// altrimenti (es. riga di commento) non si indicano e il prezzo è 0.00
+					if(!m_pServiziErogati->IsFieldNull(&m_pServiziErogati->m_Quantita))
+					{
+						// Quantità (correggo qtà negative non ammesse dal sist. di interscambio s.c. 31.01.2019)
+						double quantita = (m_pServiziErogati->m_Quantita < 0) ? -(m_pServiziErogati->m_Quantita) : m_pServiziErogati->m_Quantita;
+						csLine.Format("<Quantita>%.2f</Quantita>\n", quantita); 
+						fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+						// Unità di Misura
+						csLine.Format("<UnitaMisura>%s</UnitaMisura>\n", "SERVIZIO"); 
+						fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+					}
+				}
+
+				double prezzounitario = (m_pServiziErogati->m_Quantita < 0) ? -(m_pServiziErogati->m_Prezzo) : m_pServiziErogati->m_Prezzo;
+				csLine.Format("<PrezzoUnitario>%.2f</PrezzoUnitario>\n", prezzounitario); 
+				fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+			}
+
+			// Sconto sulla singola linea
+			if(!m_pServiziErogati->IsFieldNull(&m_pServiziErogati->m_Sconto) && m_pServiziErogati->m_Sconto)
+			{
+				csLine.Format("<ScontoMaggiorazione>\n"); 
+				fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+				
+				csLine.Format("<Tipo>%s</Tipo>\n", "SC"); 
+				fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+
+				csLine.Format("<Percentuale>%.2f</Percentuale>\n", m_pServiziErogati->m_Sconto); 
+				fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+
+				csLine.Format("</ScontoMaggiorazione>\n"); 
+				fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+			}
+
+			// Prezzo Totale
+			if(!m_pServiziErogati->IsFieldNull(&m_pServiziErogati->m_Quantita) && 
+					!m_pServiziErogati->IsFieldNull(&m_pServiziErogati->m_Prezzo))
+			{
+				double prezzo = m_pServiziErogati->m_Quantita * m_pServiziErogati->m_Prezzo;
+				if(!m_pServiziErogati->IsFieldNull(&m_pServiziErogati->m_Sconto) && m_pServiziErogati->m_Sconto)
+				{
+					// applico l'eventuale sconto
+					prezzo *= ((100.0f - m_pServiziErogati->m_Sconto) / 100.0f);
+				}
+				imp_verbale += prezzo;
+				imponibile += prezzo;
+				csLine.Format("<PrezzoTotale>%.2f</PrezzoTotale>\n", prezzo); 
+				fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
+			}		
+
+			// AliquotaIVA
+			csLine.Format("<AliquotaIVA>%.2f</AliquotaIVA>\n", m_pFattureEmesseSet->m_Aliquota); 
 			fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
 
-			csLine.Format("</ScontoMaggiorazione>\n"); 
+
+			csLine.Format("</DettaglioLinee>\n"); 
 			fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
 		}
-
-		// Prezzo Totale
-		if(!m_pServiziErogati->IsFieldNull(&m_pServiziErogati->m_Quantita) && 
-				!m_pServiziErogati->IsFieldNull(&m_pServiziErogati->m_Prezzo))
-		{
-			double prezzo = m_pServiziErogati->m_Quantita * m_pServiziErogati->m_Prezzo;
-	    if(!m_pServiziErogati->IsFieldNull(&m_pServiziErogati->m_Sconto) && m_pServiziErogati->m_Sconto)
-			{
-				// applico l'eventuale sconto
-				prezzo *= ((100.0f - m_pServiziErogati->m_Sconto) / 100.0f);
-			}
-			imp_verbale += prezzo;
-			imponibile += prezzo;
-			csLine.Format("<PrezzoTotale>%.2f</PrezzoTotale>\n", prezzo); 
-			fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
-		}		
-
-		// AliquotaIVA
-		csLine.Format("<AliquotaIVA>%.2f</AliquotaIVA>\n", m_pFattureEmesseSet->m_Aliquota); 
-		fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
-
-
-		csLine.Format("</DettaglioLinee>\n"); 
-		fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
   }
 
 	// eventuale maggiorazione urgenza per l'ultimo verbale della fattura
