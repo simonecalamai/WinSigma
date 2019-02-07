@@ -152,7 +152,7 @@ BOOL CWinSigmaApp::InitInstance()
 		case 1:	// WinSigma LI
 			if(dbgLI > 0)
 			{
-				dbName.Format("winsigmali");
+				dbName.Format("WinSigmaLI");
 				m_csDefaultConnect.Format("ODBC;UID=dbuser;PWD=49sigma03");
 			}
 			else
