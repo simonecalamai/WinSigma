@@ -63,6 +63,7 @@ Nr.Pagina=1700,2100,Times New Roman,24,48,C
 362=+0,+30,1800,30,Courier New,18,30,L,(campioni per cui la differenza fra i valori di resistenza dei due provini superi il 20% del valore inferiore) 
 
 440=90,2350,270,44,Arial,22,36,L,Domanda di prove 
+;445=90,+45,270,44,Arial,16,25,L,Materiale consegnato da: 
 
 460=230,2440,500,100,Times New Roman,22,40,C,Lo Sperimentatore
 470=1330,2440,400,100,Times New Roman,22,40,C,Il Direttore Responsabile del Laboratorio
@@ -98,6 +99,7 @@ Nr.Pagina=1700,2100,Times New Roman,24,48,C
 180=90,2170,300,64,Arial,15,32,L,osservazioniLabel
 190=+170,+0,1800,64,Arial,15,32,L,osservazioni
 200=370,2350,350,44,Arial,22,36,L,domandaProve
+205=90,+45,1800,44,Arial,16,25,L,consegnaMateriale
 
 210=130,2520,700,100,Times New Roman,22,40,BC,sperimentatore
 220=1280,2520,500,100,Times New Roman,22,40,BC,responsabile

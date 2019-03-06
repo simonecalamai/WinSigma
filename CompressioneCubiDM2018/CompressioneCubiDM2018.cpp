@@ -366,6 +366,23 @@ __declspec( dllexport ) int RiempiCampi(long numCertificato, CAllTables* pTabell
 
 
 //---------------	
+	if(!pCertVerbSet->IsFieldNull(&pCertVerbSet->m_Richiedente))
+	{
+		fieldNames->Add("consegnaMateriale");
+		if( pCertVerbSet->IsFieldNull(&pCertVerbSet->m_NomeImpresaRichiedente) )
+		{
+			str.Format("Materiale consegnato da %s", pCertVerbSet->m_Richiedente);	
+		}
+		else
+		{
+			str.Format("Materiale consegnato da %s per %s", pCertVerbSet->m_Richiedente, pCertVerbSet->m_NomeImpresaRichiedente);	
+		}
+	  str.Replace("&", "&&");
+		fieldValues->Add(str);
+	}
+
+
+//---------------	
 	fieldNames->Add("macchina");
 	
 	str.Format("Macchina utilizzata: %s", pSerieSet->m_Macchina);
