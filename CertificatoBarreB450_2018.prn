@@ -118,6 +118,7 @@ tab lines=12
 245=+160,+0,1000,64,Arial,15,32,L,osservazioni
 250=360,2390,1000,44,Arial,22,36,L,domandaProve
 255=1580,+0,180,44,Arial,22,36,L,dataProve
+260=80,+45,1800,44,Arial,16,25,L,consegnaMateriale
 
 270=130,2570,700,100,Times New Roman,22,40,BC,sperimentatore
 280=1280,+0,500,100,Times New Roman,22,40,BC,responsabile

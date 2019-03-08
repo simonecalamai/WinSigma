@@ -7,6 +7,7 @@
 #include "Configurazione.h"
 #include "Printerpreter.h"
 #include "StampaFattureDlg.h"
+#include "RipartizioneImponibileDlg.h"
 #include "WinSigmaDoc.h"
 
 #ifdef _DEBUG
@@ -116,6 +117,8 @@ CStampaFattureDlg::CStampaFattureDlg(CWnd* pParent /*=NULL*/)
 	m_dImponibileXML = 0.0f;
 	m_dImpostaXML = 0.0f;
 	m_dImportoPagamentoXML = 0.0f;
+	m_nTipoVerbale = -1;
+	m_strRipartizioneImponibile.Empty(); 
 }
 
 
@@ -189,6 +192,7 @@ void CStampaFattureDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Radio(pDX, IDC_RADIO_IVA_IMM, m_nEsigIVA);
 	DDX_Text(pDX, IDC_EDIT_IBANN, m_strIBAN);
 	DDV_MaxChars(pDX, m_strIBAN, 27);
+	DDX_Control(pDX, IDC_BUTTON_RIPARTIZIONE_IMPONIBILE, m_BtnRipartizioneImponibile);
 	//}}AFX_DATA_MAP
 }
 
@@ -208,6 +212,7 @@ BEGIN_MESSAGE_MAP(CStampaFattureDlg, CDialog)
 	ON_EN_KILLFOCUS(IDC_EDIT_ORDINE, OnKillfocusEditOrdineAcquisto)
 	ON_EN_KILLFOCUS(IDC_EDIT_CONTRATTO, OnKillfocusEditContratto)
 	ON_EN_KILLFOCUS(IDC_EDIT_NUMERODDT, OnKillfocusEditNumeroDDT)
+	ON_BN_CLICKED(IDC_BUTTON_RIPARTIZIONE_IMPONIBILE, OnButtonRipartizioneImponibile)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -289,6 +294,7 @@ BOOL CStampaFattureDlg::OnInitDialog()
       str.Format("Verbale = %d OR ", m_pVerbaliInfatturazione->m_Codice);
       strFilter += str;
       codice = m_pVerbaliInfatturazione->m_Codice;
+			m_nTipoVerbale = m_pVerbaliInfatturazione->m_TipoVerbale;
     }
   }
   strFilter.TrimRight(" OR ");
@@ -323,6 +329,12 @@ BOOL CStampaFattureDlg::OnInitDialog()
 		// Esigibilità IVA
 		m_nEsigIVA = m_pFattureEmesseSet->m_IVADifferita;
 
+		// Ripartizione Imponibile
+		if(!m_pFattureEmesseSet->IsFieldNull(&m_pFattureEmesseSet->m_RipartizioneImponibile))
+		{
+			m_strRipartizioneImponibile = m_pFattureEmesseSet->m_RipartizioneImponibile;
+		}
+
     if(!m_pFattureEmesseSet->IsFieldNull(&m_pFattureEmesseSet->m_Spese) && m_pFattureEmesseSet->m_Spese != 0)
     {
       m_bSpedizione = TRUE;
@@ -350,6 +362,7 @@ BOOL CStampaFattureDlg::OnInitDialog()
     m_BtnEmettiFattura.EnableWindow(!m_bFatturaProForma);
     m_BtnStampaFattura.EnableWindow(m_bFatturaProForma);
 		m_BtnFatturaXML.EnableWindow(m_bFatturaProForma);
+		m_BtnRipartizioneImponibile.EnableWindow(!m_bFatturaProForma && m_nTipoVerbale != VERB_IN_CONCESSIONE);
     FindMaxNumeroFattura();
   //  m_lCondizioniPagamento = pApp->m_lCondizioniPagamentoDefault;
     if(m_bFatturaProForma)
@@ -1209,6 +1222,21 @@ void CStampaFattureDlg::OnButtonPrintFattura()
   }
   
 	CDialog::OnOK();
+}
+
+void CStampaFattureDlg::OnButtonRipartizioneImponibile() 
+{
+	CRipartizioneImponibileDlg dlg;
+	dlg.m_nTipoVerbale = m_nTipoVerbale;
+	dlg.m_strRagioneSociale = m_strRagioneSociale;
+	dlg.m_strCodice = m_strCodice;
+	dlg.m_strIndirizzo = m_strIndirizzo;
+	dlg.m_strImponibile = m_strImponibile;
+	dlg.m_strRipartizioneImponibile = m_strRipartizioneImponibile;
+  if(dlg.DoModal() == IDOK)
+	{
+		m_strRipartizioneImponibile = dlg.m_strRipartizioneImponibile;
+	}
 }
 
 int nCntFatture = 0;

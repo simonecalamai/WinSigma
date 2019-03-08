@@ -79,6 +79,7 @@ public:
 	BOOL m_bHeader;
 	int		m_nEsigIVA;
 	CString	m_strIBAN;
+	CButton	m_BtnRipartizioneImponibile;
 	//}}AFX_DATA
 
   CWinSigmaDoc* m_pDoc;
@@ -127,9 +128,11 @@ public:
 	double m_dImpostaXML;
 	double m_dImportoPagamentoXML;
   int m_nTipoDocumento;
+	int m_nTipoVerbale;
 	void SetHeader(BOOL bon);
 	void PrnFromFattToFatt(int DaNumFatt = 0, int ANumFatt = 0, CString Anno = "", CWinSigmaDoc* m_pDoc = NULL);
-
+	CString m_strRipartizioneImponibile;
+	
 // Overrides
 	// ClassWizard generated virtual function overrides
 	//{{AFX_VIRTUAL(CStampaFattureDlg)
@@ -179,6 +182,7 @@ protected:
 	afx_msg void OnKillfocusEditOrdineAcquisto();
 	afx_msg void OnKillfocusEditContratto();
 	afx_msg void OnKillfocusEditNumeroDDT();
+	afx_msg void OnButtonRipartizioneImponibile();
 	DECLARE_EVENTSINK_MAP()
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()

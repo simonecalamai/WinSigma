@@ -1339,7 +1339,7 @@ void CFattureView::EmettiSalvaFattura(BOOL bElett)
   default:
     break;
   }
-  
+ 
   // Inizializzo i dai del dialogo per l'emissione e la stampa delle fatture
   dlg.m_pDoc = (CWinSigmaDoc*)GetDocument();
   dlg.m_nTipoDocumento = m_nTipoDocumento;

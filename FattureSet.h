@@ -67,6 +67,7 @@ public:
 	CString m_IBAN;
 	CString m_IBANAppoggio;
 	long m_CondizioniPagamento;
+	CString m_RipartizioneImponibile;
 	//}}AFX_FIELD
 
 

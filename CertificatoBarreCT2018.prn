@@ -120,6 +120,7 @@ tab lines=12
 330=80,+35,1500,64,Times New Roman,15,32,L,rotoli
 340=360,2370,1000,44,Arial,22,36,L,domandaProve
 350=1580,2370,180,44,Arial,22,36,L,dataProve
+355=80,+45,1800,44,Arial,16,25,L,consegnaMateriale
 
 
 500=130,2570,700,100,Times New Roman,22,40,BC,sperimentatore

@@ -69,7 +69,8 @@ CFattureSet::CFattureSet(CDatabase* pdb)
 	m_IBAN = _T("");
 	m_IBANAppoggio = _T("");
 	m_CondizioniPagamento = 0;
-	m_nFields = 49;
+	m_RipartizioneImponibile = _T("");
+	m_nFields = 50;
 	//}}AFX_FIELD_INIT
 	m_nDefaultType = snapshot;
 }
@@ -141,6 +142,7 @@ void CFattureSet::DoFieldExchange(CFieldExchange* pFX)
 	RFX_Text(pFX, _T("[IBAN]"), m_IBAN);
 	RFX_Text(pFX, _T("[IBANAppoggio]"), m_IBANAppoggio);
 	RFX_Long(pFX, _T("[CondizioniPagamento]"), m_CondizioniPagamento);
+	RFX_Text(pFX, _T("[RipartizioneImponibile]"), m_RipartizioneImponibile);
 	//}}AFX_FIELD_MAP
 }
 

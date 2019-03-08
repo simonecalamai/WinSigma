@@ -465,6 +465,10 @@ SOURCE=.\ReportVerbali.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\RipartizioneImponibileDlg.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\SalvaStampaVerbaliDlg.cpp
 # End Source File
 # Begin Source File
@@ -930,6 +934,10 @@ InputPath=.\Resource.h
 
 !ENDIF 
 
+# End Source File
+# Begin Source File
+
+SOURCE=.\RipartizioneImponibileDlg.h
 # End Source File
 # Begin Source File
 

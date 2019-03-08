@@ -78,7 +78,9 @@ tab lines=10
 170=80,2225,950,50,Courier New,18,30,L,macchina 
 180=380,2300,1000,44,Arial,22,36,L,domandaProve 
 190=1580,+0,180,44,Arial,22,36,L,dataProve
-210=80,+74,1000,64,Arial,15,32,L,osservazioniLabel
+200=80,+45,1800,44,Arial,16,25,L,consegnaMateriale
+
+210=80,+30,1000,64,Arial,15,32,L,osservazioniLabel
 215=+150,+0,1000,64,Arial,15,32,L,osservazioni
 
 220=130,2540,700,100,Times New Roman,22,40,BC,sperimentatore

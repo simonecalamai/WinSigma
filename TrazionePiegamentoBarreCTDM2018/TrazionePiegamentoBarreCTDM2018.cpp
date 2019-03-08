@@ -379,6 +379,16 @@ __declspec( dllexport ) int RiempiCampi(long numCertificato, CAllTables* pTabell
 	fieldNames->Add("dataProve");
 	fieldValues->Add( pSerieProvSet->m_DataProva.Format("%d/%m/%Y") );
 
+
+//---------------	
+	if(!pCertVerbSet->IsFieldNull(&pCertVerbSet->m_Richiedente))
+	{
+		fieldNames->Add("consegnaMateriale");
+		str.Format("Materiale consegnato da %s", pCertVerbSet->m_Richiedente);	
+	  str.Replace("&", "&&");
+		fieldValues->Add(str);
+	}
+
 //---------------	
 	if(pSerieProvSet->m_TipoProva < 2)
 		{

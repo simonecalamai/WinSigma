@@ -81,6 +81,7 @@ tab lines=12
 185=+150,+0,1000,64,Arial,15,32,L,osservazioni
 190=380,2340,1000,44,Arial,22,36,L,domandaProve 
 195=1580,+0,180,44,Arial,22,36,L,dataProve
+200=80,+45,1800,44,Arial,16,25,L,consegnaMateriale
 
 220=130,2540,700,100,Times New Roman,22,40,BC,sperimentatore
 230=1280,+0,500,100,Times New Roman,22,40,BC,responsabile
