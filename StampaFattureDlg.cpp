@@ -550,7 +550,13 @@ void CStampaFattureDlg::OnButtonEmetti()
 		    m_pFattureEmesseSet->m_DataDDT = m_DataDDT;
 			}
   	}
-
+		
+		// Ripartizione Imponibile
+		if(!m_strRipartizioneImponibile.IsEmpty())
+		{
+			m_pFattureEmesseSet->m_RipartizioneImponibile = m_strRipartizioneImponibile;
+		}
+		
     m_pFattureEmesseSet->Update();
     // Aggiorno
     m_pFattureEmesseSet->Requery();
@@ -715,6 +721,12 @@ void CStampaFattureDlg::SalvaFattura(void)
 	// Codice XML
 	if(!m_strCodiceXML.IsEmpty())
 		m_pFattureEmesseSet->m_CodiceXML = atoi(m_strCodiceXML);
+
+	// Ripartizione Imponibile
+	if(!m_strRipartizioneImponibile.IsEmpty())
+	{
+		m_pFattureEmesseSet->m_RipartizioneImponibile = m_strRipartizioneImponibile;
+	}
 
   m_pFattureEmesseSet->Update();
   pApp->UnlockTables();
@@ -1232,6 +1244,8 @@ void CStampaFattureDlg::OnButtonRipartizioneImponibile()
 	dlg.m_strCodice = m_strCodice;
 	dlg.m_strIndirizzo = m_strIndirizzo;
 	dlg.m_strImponibile = m_strImponibile;
+	dlg.m_strImponibileScontato = m_strImponibileScontato;
+	dlg.m_dImponibileScontato = ((double)m_nImponibileScontato/100.0f);
 	dlg.m_strRipartizioneImponibile = m_strRipartizioneImponibile;
   if(dlg.DoModal() == IDOK)
 	{

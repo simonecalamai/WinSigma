@@ -440,8 +440,11 @@
 #define IDC_BUTTON_ELIMINA_VFARLOCCO    1378
 #define IDC_EDIT_IMP_VARIE              1378
 #define IDC_EDIT_IMP_GEOTECNICA         1379
+#define IDC_EDIT_TIPO_VERBALE           1380
 #define IDC_STATIC_PIVA_CF              1381
+#define IDC_EDIT_PERC_RESIDUO           1381
 #define IDC_EDIT_TITOLI                 1382
+#define IDC_EDIT_IMP_RESIDUO            1382
 #define IDC_EDIT_NUM_COPIE              1383
 #define IDC_DATA_DUPLICATO              1384
 #define IDC_CHECK_PERSERIE              1385
