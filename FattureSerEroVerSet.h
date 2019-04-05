@@ -59,6 +59,7 @@ public:
 	CString m_PEC;
 	CString m_IBAN;
 	CString m_IBANAppoggio;
+	CString m_RipartizioneImponibile;
 	//}}AFX_FIELD
 
 
