@@ -593,9 +593,19 @@ __declspec( dllexport ) BOOL DatiProvino(CAllTables* pTabelle, CStringArray* pFi
 				pFieldValues->Add("");
 				pFieldValues->Add("");
 
-				double minRottura = (rottura > OldRottura) ? OldRottura : rottura;
+				// 5.4.2019 s.c. FIX: errore di arrotondamento
+				CString round;
+				round.Format("%.1f",rottura);
+				double rotturaRounded = atof(round);
+
+				round.Format("%.1f", OldRottura);
+				double oldrotturaRounded = atof(round);
+
+	//			double minRottura = (rottura > OldRottura) ? OldRottura : rottura;
+				double minRottura = (rotturaRounded > oldrotturaRounded) ? oldrotturaRounded : rotturaRounded;
 				double limRottura = 0.20f * minRottura;
-				double diffRottura = OldRottura - rottura;
+	//			double diffRottura = OldRottura - rottura;
+				double diffRottura = oldrotturaRounded - rotturaRounded;
 				diffRottura = (diffRottura > 0) ? diffRottura : -diffRottura;
 				if(diffRottura > limRottura)
 				{
