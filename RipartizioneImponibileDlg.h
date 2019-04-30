@@ -118,12 +118,16 @@ protected:
 
 	int m_arPerc[NCATEGORIE];
 	int m_nTotPerc;
-	double m_arImpo[NCATEGORIE];
 	double m_dTotImpo;
-	int LoadRipartizione();
-	void CalcRipartizione(int id);
 	double Percent(double val, int perc);
 	void CalcTotali();
+	void CalcParte(int id);
+	int LoadRipartizione();
+
+public:
+	double m_arImpo[NCATEGORIE];
+	int CalcolaRipartizione();
+
 };
 
 //{{AFX_INSERT_LOCATION}}

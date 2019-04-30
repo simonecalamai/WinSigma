@@ -60,6 +60,7 @@ public:
 	CString m_IBAN;
 	CString m_IBANAppoggio;
 	CString m_RipartizioneImponibile;
+	BYTE m_Elett;
 	//}}AFX_FIELD
 
 

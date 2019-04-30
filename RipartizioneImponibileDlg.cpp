@@ -204,106 +204,106 @@ BOOL CRipartizioneImponibileDlg::OnInitDialog()
 
 void CRipartizioneImponibileDlg::OnChangeEditPercProvedicarico() 
 {
-	CalcRipartizione(PC);
+	CalcParte(PC);
 }
 
 void CRipartizioneImponibileDlg::OnKillfocusEditPercProvedicarico() 
 {
-	CalcRipartizione(PC);
+	CalcParte(PC);
 }
 
 void CRipartizioneImponibileDlg::OnChangeEditPercConglomeratibituminosi() 
 {
-	CalcRipartizione(CB);
+	CalcParte(CB);
 }
 
 void CRipartizioneImponibileDlg::OnKillfocusEditPercConglomeratibituminosi() 
 {
-	CalcRipartizione(CB);
+	CalcParte(CB);
 }
 
 void CRipartizioneImponibileDlg::OnChangeEditPercGeotecnica() 
 {
-	CalcRipartizione(GEO);
+	CalcParte(GEO);
 }
 
 void CRipartizioneImponibileDlg::OnKillfocusEditPercGeotecnica() 
 {
-	CalcRipartizione(GEO);
+	CalcParte(GEO);
 }
 
 void CRipartizioneImponibileDlg::OnChangeEditPercIndaginicls() 
 {
-	CalcRipartizione(IC);
+	CalcParte(IC);
 }
 
 void CRipartizioneImponibileDlg::OnKillfocusEditPercIndaginicls() 
 {
-	CalcRipartizione(IC);
+	CalcParte(IC);
 }
 
 void CRipartizioneImponibileDlg::OnChangeEditPercIndaginimurature() 
 {
-	CalcRipartizione(IM);
+	CalcParte(IM);
 }
 
 void CRipartizioneImponibileDlg::OnKillfocusEditPercIndaginimurature() 
 {
-	CalcRipartizione(IM);
+	CalcParte(IM);
 }
 
 void CRipartizioneImponibileDlg::OnChangeEditPercInerti() 
 {
-	CalcRipartizione(I);
+	CalcParte(I);
 }
 
 void CRipartizioneImponibileDlg::OnKillfocusEditPercInerti() 
 {
-	CalcRipartizione(I);
+	CalcParte(I);
 }
 
 void CRipartizioneImponibileDlg::OnChangeEditPercLineevita() 
 {
-	CalcRipartizione(LV);
+	CalcParte(LV);
 }
 
 void CRipartizioneImponibileDlg::OnKillfocusEditPercLineevita() 
 {
-	CalcRipartizione(LV);
+	CalcParte(LV);
 }
 
 void CRipartizioneImponibileDlg::OnChangeEditPercMaterialimetallici() 
 {
-	CalcRipartizione(MM);
+	CalcParte(MM);
 }
 
 void CRipartizioneImponibileDlg::OnKillfocusEditPercMaterialimetallici() 
 {
-	CalcRipartizione(MM);
+	CalcParte(MM);
 }
 
 void CRipartizioneImponibileDlg::OnChangeEditPercMonitoraggi() 
 {
-	CalcRipartizione(MO);
+	CalcParte(MO);
 }
 
 void CRipartizioneImponibileDlg::OnKillfocusEditPercMonitoraggi() 
 {
-	CalcRipartizione(MO);
+	CalcParte(MO);
 }
 
 void CRipartizioneImponibileDlg::OnChangeEditPercVarie() 
 {
-	CalcRipartizione(V);
+	CalcParte(V);
 }
 
 void CRipartizioneImponibileDlg::OnKillfocusEditPercVarie() 
 {
-	CalcRipartizione(V);
+	CalcParte(V);
 }
 
 
-void CRipartizioneImponibileDlg::CalcRipartizione(int id = -1) 
+void CRipartizioneImponibileDlg::CalcParte(int id = -1) 
 {
 	CString strPerc = "";
 	int nPerc = 0;
@@ -456,7 +456,7 @@ void CRipartizioneImponibileDlg::CalcTotali()
 	m_dResiduo = Percent(m_dImponibileScontato, m_nPercResiduo);
 }
 
-int CRipartizioneImponibileDlg::LoadRipartizione() 
+int CRipartizioneImponibileDlg::CalcolaRipartizione() 
 {
 	CString ar[NCATEGORIE];
 	CString strRip = m_strRipartizioneImponibile;
@@ -550,6 +550,12 @@ int CRipartizioneImponibileDlg::LoadRipartizione()
 		}
 	}
 	CalcTotali();
+	return 0;
+}
+
+int CRipartizioneImponibileDlg::LoadRipartizione() 
+{
+	CalcolaRipartizione();
 	UpdateData(FALSE);
 	return 0;
 }

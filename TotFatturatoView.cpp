@@ -5,6 +5,7 @@
 #include "winsigma.h"
 #include "TotFatturatoView.h"
 #include "FattureSerEroVerSet.h"
+#include "RipartizioneImponibileDlg.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -111,6 +112,12 @@ void CTotFatturatoView::OnButtonCalcola()
 			AppFC		= 0;
 			AppFNC 	= 0;
 			AppFG		= 0;
+
+			// dal 1.1.2019 escludo le fatture non elettroniche
+			if(pFattVerSerErog->m_Elett == 0 && pFattVerSerErog->m_Data.GetYear() >= 2019)
+			{
+				continue;
+			}
 
 			// Controlla la tipologia del Verbale
 			if(pFattVerSerErog->m_TipoVerbale == VERB_IN_CONCESSIONE)
@@ -234,27 +241,75 @@ void CTotFatturatoView::OnButtonCalcola()
 
 			if(AppFNC > 0)
 			{
-				// Totali per sottocategoria di verbale non in concessione
-				if(pFattVerSerErog->m_TipoVerbale == VERB_NC_PROVE_DI_CARICO)
-					TotProveCarico += AppFNC;
-				else if(pFattVerSerErog->m_TipoVerbale == VERB_NC_CONGL_BITUMINOSI)
-					TotCongBituminosi += AppFNC;
-				else if(pFattVerSerErog->m_TipoVerbale == VERB_NC_INERTI)
-					TotInerti += AppFNC;
-				else if(pFattVerSerErog->m_TipoVerbale == VERB_NC_MONITORAGGI)
-					TotMonitoraggi += AppFNC;
-				else if(pFattVerSerErog->m_TipoVerbale == VERB_NC_VARIE)
-					TotVarie += AppFNC;
-				else if(pFattVerSerErog->m_TipoVerbale == VERB_NC_GEOTECNICA)
-					TotGeotNC += AppFNC;
-				else if(pFattVerSerErog->m_TipoVerbale == VERB_NC_LINEE_VITA)
-					TotLineeVita += AppFNC;
-				else if(pFattVerSerErog->m_TipoVerbale == VERB_NC_INDAGINI_MURATURE)
-					TotIndMurature += AppFNC;
-				else if(pFattVerSerErog->m_TipoVerbale == VERB_NC_INDAGINI_CLS)
-					TotIndCLS += AppFNC;
-				else if(pFattVerSerErog->m_TipoVerbale == VERB_NC_MAT_METALLICI)
-					TotMatMetallici += AppFNC;
+				if(!pFattVerSerErog->IsFieldNull(&pFattVerSerErog->m_RipartizioneImponibile) && pFattVerSerErog->m_RipartizioneImponibile != "")
+				{
+					CRipartizioneImponibileDlg dlg;
+//					dlg.m_strImponibile = m_strImponibile;
+//					dlg.m_strImponibileScontato = m_strImponibileScontato;
+					dlg.m_dImponibileScontato = AppFNC; //((double)m_nImponibileScontato/100.0f);
+					dlg.m_strRipartizioneImponibile = pFattVerSerErog->m_RipartizioneImponibile;
+					dlg.CalcolaRipartizione();
+					for(int i = 0; i < NCATEGORIE; i++)
+					{
+						switch(i)
+						{
+							case PC:
+								TotProveCarico += dlg.m_arImpo[PC];
+								break;
+							case CB:
+								TotCongBituminosi += dlg.m_arImpo[CB];
+								break;
+							case I:
+								TotInerti += dlg.m_arImpo[I];
+								break;	
+							case MO:
+								TotMonitoraggi += dlg.m_arImpo[MO];
+								break;
+							case LV:
+								TotLineeVita += dlg.m_arImpo[LV];
+								break;
+							case IM:
+								TotIndMurature += dlg.m_arImpo[IM];
+								break;
+							case IC:
+								TotIndCLS += dlg.m_arImpo[IC];
+								break;
+							case MM:
+								TotMatMetallici += dlg.m_arImpo[MM];
+								break;
+							case V:
+								TotVarie += dlg.m_arImpo[V];
+								break;		
+							case GEO:
+								TotGeotNC += dlg.m_arImpo[GEO];
+								break;						
+						}
+					}
+				}
+				else
+				{
+					// Totali per sottocategoria di verbale non in concessione
+					if(pFattVerSerErog->m_TipoVerbale == VERB_NC_PROVE_DI_CARICO)
+						TotProveCarico += AppFNC;
+					else if(pFattVerSerErog->m_TipoVerbale == VERB_NC_CONGL_BITUMINOSI)
+						TotCongBituminosi += AppFNC;
+					else if(pFattVerSerErog->m_TipoVerbale == VERB_NC_INERTI)
+						TotInerti += AppFNC;
+					else if(pFattVerSerErog->m_TipoVerbale == VERB_NC_MONITORAGGI)
+						TotMonitoraggi += AppFNC;
+					else if(pFattVerSerErog->m_TipoVerbale == VERB_NC_VARIE)
+						TotVarie += AppFNC;
+					else if(pFattVerSerErog->m_TipoVerbale == VERB_NC_GEOTECNICA)
+						TotGeotNC += AppFNC;
+					else if(pFattVerSerErog->m_TipoVerbale == VERB_NC_LINEE_VITA)
+						TotLineeVita += AppFNC;
+					else if(pFattVerSerErog->m_TipoVerbale == VERB_NC_INDAGINI_MURATURE)
+						TotIndMurature += AppFNC;
+					else if(pFattVerSerErog->m_TipoVerbale == VERB_NC_INDAGINI_CLS)
+						TotIndCLS += AppFNC;
+					else if(pFattVerSerErog->m_TipoVerbale == VERB_NC_MAT_METALLICI)
+						TotMatMetallici += AppFNC;
+				}
 			}
 	}
 

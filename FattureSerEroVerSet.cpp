@@ -60,7 +60,8 @@ CFattureSerEroVerSet::CFattureSerEroVerSet(CDatabase* pdb)
 	m_IBAN = _T("");
 	m_IBANAppoggio = _T("");
 	m_RipartizioneImponibile = _T("");
-	m_nFields = 42;
+	m_Elett = 0;
+	m_nFields = 43;
 	//}}AFX_FIELD_INIT
 	m_nDefaultType = snapshot;
 }
@@ -122,6 +123,7 @@ void CFattureSerEroVerSet::DoFieldExchange(CFieldExchange* pFX)
 	RFX_Text(pFX, _T("[IBAN]"), m_IBAN);
 	RFX_Text(pFX, _T("[IBANAppoggio]"), m_IBANAppoggio);
 	RFX_Text(pFX, _T("[RipartizioneImponibile]"), m_RipartizioneImponibile);
+	RFX_Byte(pFX, _T("[FATTURE].[fElett]"), m_Elett);
 	//}}AFX_FIELD_MAP
 }
 

@@ -6703,12 +6703,18 @@ void CVerbaliView::OnButtonEmenda()
 			      pNewSerie->m_Servizio5					= pOldSerie->m_Servizio5;
 			      pNewSerie->m_Servizio6					= pOldSerie->m_Servizio6;
 			      pNewSerie->m_Sigla							= pOldSerie->m_Sigla;
+			      pNewSerie->m_Sigla2							= pOldSerie->m_Sigla2;
 			      pNewSerie->m_StrutturaPrelievo  = pOldSerie->m_StrutturaPrelievo;
 			      pNewSerie->m_Snervamento				= pOldSerie->m_Snervamento;
 			      pNewSerie->m_Sperimentatore		  = pOldSerie->m_Sperimentatore;
 			      pNewSerie->m_TipoCertificato		= pOldSerie->m_TipoCertificato;
 			      pNewSerie->m_TipoProva					= pOldSerie->m_TipoProva;
 			      pNewSerie->m_Verbale						= pOldSerie->m_Verbale;
+			      pNewSerie->m_strDataND					= pOldSerie->m_strDataND;
+			      pNewSerie->m_Checked					  = pOldSerie->m_Checked;
+			      pNewSerie->m_Ordinamento				= pOldSerie->m_Ordinamento;
+			      pNewSerie->m_SiglaFornitore			= pOldSerie->m_SiglaFornitore;
+			      pNewSerie->m_VerbalePrelievo		= pOldSerie->m_VerbalePrelievo;
 			      pNewSerie->Update();
 
 
@@ -6725,10 +6731,12 @@ void CVerbaliView::OnButtonEmenda()
 						pOldProvini->m_strSort = "Codice";
             pOldProvini->Open();
 
+            CProviniSet* pNewProvini = new CProviniSet(&pApp->m_db);
+            pNewProvini->Open();
             while (!pOldProvini->IsEOF())
             {
-              CProviniSet* pNewProvini = new CProviniSet(&pApp->m_db);
-              pNewProvini->Open();
+//              CProviniSet* pNewProvini = new CProviniSet(&pApp->m_db);
+//              pNewProvini->Open();
 
               pNewProvini->AddNew();
 
@@ -6741,11 +6749,14 @@ void CVerbaliView::OnButtonEmenda()
 							pNewProvini->m_RotoliCT = pOldProvini->m_RotoliCT;
               pNewProvini->Update();
         
-              pNewProvini->Close();
-              delete pNewProvini;
+//              pNewProvini->Close();
+//              delete pNewProvini;
         
               pOldProvini->MoveNext();
             }
+
+            pNewProvini->Close();
+            delete pNewProvini;
       
             pOldProvini->Close();
             delete pOldProvini;
