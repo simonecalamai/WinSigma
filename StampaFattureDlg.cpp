@@ -2522,6 +2522,7 @@ BOOL CStampaFattureDlg::XMLHeaderCessionarioCommittente(FILE* f)
 	{
 		// persona giuridica -> Denominazione
 		csLine.Format("<Denominazione>%s</Denominazione>\n", csRagSociale); 
+		FilterANSI(csLine);
 		fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
 	}
 	else
@@ -2534,8 +2535,10 @@ BOOL CStampaFattureDlg::XMLHeaderCessionarioCommittente(FILE* f)
 		{
 			// nessuno spazio tra cognome e nome: metto la stessa stringa in tutti e due
 			csLine.Format("<Nome>%s</Nome>\n", csRagSociale); 
+			FilterANSI(csLine);
 			fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
 			csLine.Format("<Cognome>%s</Cognome>\n", csRagSociale); 
+			FilterANSI(csLine);
 			fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
 		}
 		else
@@ -2545,8 +2548,10 @@ BOOL CStampaFattureDlg::XMLHeaderCessionarioCommittente(FILE* f)
 			csNome.TrimLeft(' ');
 			csNome.TrimRight(' ');
 			csLine.Format("<Nome>%s</Nome>\n", csNome); 
+			FilterANSI(csLine);
 			fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
 			csLine.Format("<Cognome>%s</Cognome>\n", csCognome); 
+			FilterANSI(csLine);
 			fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
 /* per gestire i cognomi composti (De, Di, Da, Del...) s.c. 6.12.2018 da fare!!!
 			if(csCognome.GetLength() == 2 && (!csCognome.CompareNoCase("de") || !csCognome.CompareNoCase("di") || !csCognome.CompareNoCase("da"))
@@ -2573,6 +2578,7 @@ BOOL CStampaFattureDlg::XMLHeaderCessionarioCommittente(FILE* f)
 	// -- Indirizzo
 	csField = XMLValidate(m_pAziendeSet->m_Indirizzo);
 	csLine.Format("<Indirizzo>%s</Indirizzo>\n", csField); 
+	FilterANSI(csLine);
 	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
 	// -- CAP
 	csField = XMLValidate(m_pAziendeSet->m_CAP);
@@ -2581,6 +2587,7 @@ BOOL CStampaFattureDlg::XMLHeaderCessionarioCommittente(FILE* f)
 	// -- Comune
 	csField = XMLValidate(m_pAziendeSet->m_Citta);
 	csLine.Format("<Comune>%s</Comune>\n", csField); 
+	FilterANSI(csLine);
 	fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
 	// -- Provincia
 	csField = XMLValidate(m_pAziendeSet->m_Provincia);
@@ -2871,6 +2878,8 @@ void CStampaFattureDlg::XMLBodyDatiBeniServizi(FILE* f)
 					m_pVerbaliInfatturazione->m_ProgressivoTotale,
 					m_pVerbaliInfatturazione->m_DataAccettazione.Format("%d/%m/%Y"),
 					m_pVerbaliInfatturazione->m_Cantiere);
+				
+				FilterANSI(str);
 
 				csLine.Format("<Descrizione>%s</Descrizione>\n", str); 
 				fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
@@ -3340,5 +3349,14 @@ CString CStampaFattureDlg::XMLValidate(CString& cs)
 	cs.Replace(">", "&gt;");
 	cs.Replace("'", "&apos;");
 	cs.Replace("\"", "&quot;");
+/*
+	CString special;
+	CString subst = " ";
+	for(BYTE ch = 123; ch <= 255; ch++)
+	{
+		special.Format
+		cs.Replace
+	}
+*/
 	return cs;
 }

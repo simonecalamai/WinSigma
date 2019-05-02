@@ -581,9 +581,20 @@ __declspec( dllexport ) BOOL DatiProvino(CAllTables* pTabelle, CStringArray* pFi
 	double fiNominale = pSerieProviniSet->m_Dimensione1;
 //------------------
 	pFieldNames->Add("numeroInterno");
+
+	// verbale prelievo s.c. 30.04.2019
+	pFieldNames->Add("verbalePrelievo");
+
 	pFieldNames->Add("fiNominale");
 
 	str.Format("%d",numeroInterno);
+	pFieldValues->Add(str);
+
+	// verbale prelievo s.c. 30.04.2019
+	if(pSerieProviniSet->IsFieldNull(&pSerieProviniSet->m_VerbalePrelievo))
+		str = "";
+	else
+		str = pSerieProviniSet->m_VerbalePrelievo;
 	pFieldValues->Add(str);
 
 	str.Format("%.0f", fiNominale);
