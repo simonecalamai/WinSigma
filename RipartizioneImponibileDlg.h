@@ -8,19 +8,21 @@
 //
 
 // definizioni
-#define PC	0   // Prove di Carico
-#define CB	1		// Conglomerati Bituminosi
-#define I		2		// Inerti
-#define MO	3		// Monitoraggi
-#define LV	4		// Linee Vita
-#define IM	5		// Indagini Murature
-#define IC	6		// Indagini CLS
-#define MM	7		// Materiali Metallici
-#define V		8		// Varie
-#define GEO	9		// Geotecnica
-#define NCATEGORIE	10
+#define CONC				0   // Prove in Concessione
+#define GEOC				1		// Geologia 
+#define PC					2   // Prove di Carico
+#define CB					3		// Conglomerati Bituminosi
+#define I						4		// Inerti
+#define MO					5		// Monitoraggi
+#define LV					6		// Linee Vita
+#define IM					7		// Indagini Murature
+#define IC					8		// Indagini CLS
+#define MM					9		// Materiali Metallici
+#define V						10		// Varie
+#define GEO					11		// Geotecnica non in concessione
+#define NCATEGORIE	12
 
-#define FMT_RIP "PC=%d;CB=%d;I=%d;MO=%d;LV=%d;IM=%d;IC=%d;MM=%d;V=%d;GEO=%d"
+#define FMT_RIP "CONC=%d;GEOC=%d;PC=%d;CB=%d;I=%d;MO=%d;LV=%d;IM=%d;IC=%d;MM=%d;V=%d;GEO=%d"
 
 /////////////////////////////////////////////////////////////////////////////
 // CRipartizioneImponibileDlg dialog
@@ -36,6 +38,8 @@ public:
 // Dialog Data
 	//{{AFX_DATA(CRipartizioneImponibileDlg)
 	enum { IDD = IDD_DIALOG_RIPARTIZIONE_IMPONIBILE };
+	CEdit m_editPercProveInConcessione;
+	CEdit m_editPercGeologia;
 	CEdit m_editPercProveCarico;
 	CEdit	m_editPercConglomeratiBituminosi;
 	CEdit m_editPercInerti;
@@ -53,6 +57,8 @@ public:
 	CString	m_strImponibile;
 	CString	m_strImponibileScontato;
 	CString m_strTipoVerbale;
+	double m_dProveInConcessione;
+	double m_dGeologia;
 	double m_dProveCarico;
 	double m_dConglomeratiBituminosi;
 	double m_dInerti;
@@ -64,6 +70,8 @@ public:
 	double m_dVarie;
 	double m_dGeotecnica;
 	double m_dResiduo;
+	int m_nPercProveInConcessione;
+	int m_nPercGeologia;
 	int m_nPercProveCarico;
 	int m_nPercConglomeratiBituminosi;
 	int m_nPercInerti;
@@ -93,6 +101,8 @@ protected:
 	//{{AFX_MSG(CRipartizioneImponibileDlg)
 	virtual BOOL OnInitDialog();
 	virtual void OnOK();
+	afx_msg void OnKillfocusEditPercProveinconcessione();
+	afx_msg void OnKillfocusEditPercGeologia();
 	afx_msg void OnKillfocusEditPercProvedicarico();
 	afx_msg void OnKillfocusEditPercConglomeratibituminosi();
 	afx_msg void OnKillfocusEditPercGeotecnica();
@@ -103,6 +113,8 @@ protected:
 	afx_msg void OnKillfocusEditPercMaterialimetallici();
 	afx_msg void OnKillfocusEditPercMonitoraggi();
 	afx_msg void OnKillfocusEditPercVarie();
+	afx_msg void OnChangeEditPercProveinconcessione();
+	afx_msg void OnChangeEditPercGeologia();
 	afx_msg void OnChangeEditPercConglomeratibituminosi();
 	afx_msg void OnChangeEditPercGeotecnica();
 	afx_msg void OnChangeEditPercIndaginicls();

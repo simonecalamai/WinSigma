@@ -25,6 +25,8 @@ CRipartizioneImponibileDlg::CRipartizioneImponibileDlg(CWnd* pParent /*=NULL*/)
 	m_strImponibile = _T("");
 	m_strImponibileScontato = _T("");
 	m_strTipoVerbale = _T("");
+	m_dProveInConcessione = 0.0f;
+	m_dGeologia = 0.0f;
 	m_dProveCarico = 0.0f;
 	m_dConglomeratiBituminosi = 0.0f;
 	m_dInerti = 0.0f;
@@ -36,6 +38,8 @@ CRipartizioneImponibileDlg::CRipartizioneImponibileDlg(CWnd* pParent /*=NULL*/)
 	m_dVarie = 0.0f;
 	m_dGeotecnica = 0.0f;
 	m_dResiduo = 0.0f;
+	m_nPercProveInConcessione = 0;
+	m_nPercGeologia = 0;
 	m_nPercProveCarico = 0;
 	m_nPercConglomeratiBituminosi = 0;
 	m_nPercInerti = 0;
@@ -66,6 +70,8 @@ void CRipartizioneImponibileDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialog::DoDataExchange(pDX);
 	//{{AFX_DATA_MAP(CRipartizioneImponibileDlg)
+	DDX_Control(pDX, IDC_EDIT_PERC_PROVEINCONCESSIONE, m_editPercProveInConcessione);
+	DDX_Control(pDX, IDC_EDIT_PERC_GEOLOGIA, m_editPercGeologia);
 	DDX_Control(pDX, IDC_EDIT_PERC_PROVEDICARICO, m_editPercProveCarico);
 	DDX_Control(pDX, IDC_EDIT_PERC_CONGLOMERATIBITUMINOSI, m_editPercConglomeratiBituminosi);
 	DDX_Control(pDX, IDC_EDIT_PERC_INERTI, m_editPercInerti);
@@ -83,6 +89,8 @@ void CRipartizioneImponibileDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Text(pDX, IDC_EDIT_INDIRIZZO, m_strIndirizzo);
 	DDX_Text(pDX, IDC_EDIT_IMPONIBILE, m_strImponibileScontato);
 	DDX_Text(pDX, IDC_EDIT_TIPO_VERBALE, m_strTipoVerbale);
+	DDX_Text(pDX, IDC_EDIT_IMP_PROVEINCONCESSIONE, m_dProveInConcessione);
+	DDX_Text(pDX, IDC_EDIT_IMP_GEOLOGIA, m_dGeologia);
 	DDX_Text(pDX, IDC_EDIT_IMP_PROVEDICARICO, m_dProveCarico);
 	DDX_Text(pDX, IDC_EDIT_IMP_CONGLOMERATIBITUMINOSI, m_dConglomeratiBituminosi);
 	DDX_Text(pDX, IDC_EDIT_IMP_INERTI, m_dInerti);
@@ -95,6 +103,10 @@ void CRipartizioneImponibileDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Text(pDX, IDC_EDIT_IMP_GEOTECNICA, m_dGeotecnica);
 	DDX_Text(pDX, IDC_EDIT_IMP_RESIDUO, m_dResiduo);
 
+	DDX_Text(pDX, IDC_EDIT_PERC_PROVEINCONCESSIONE, m_nPercProveInConcessione);
+	DDV_MinMaxInt(pDX, m_nPercProveInConcessione, 0, 100);
+	DDX_Text(pDX, IDC_EDIT_PERC_GEOLOGIA, m_nPercGeologia);
+	DDV_MinMaxInt(pDX, m_nPercGeologia, 0, 100);
 	DDX_Text(pDX, IDC_EDIT_PERC_PROVEDICARICO, m_nPercProveCarico);
 	DDV_MinMaxInt(pDX, m_nPercProveCarico, 0, 100);
 	DDX_Text(pDX, IDC_EDIT_PERC_CONGLOMERATIBITUMINOSI, m_nPercConglomeratiBituminosi);
@@ -122,6 +134,8 @@ void CRipartizioneImponibileDlg::DoDataExchange(CDataExchange* pDX)
 
 BEGIN_MESSAGE_MAP(CRipartizioneImponibileDlg, CDialog)
 	//{{AFX_MSG_MAP(CRipartizioneImponibileDlg)
+	ON_EN_KILLFOCUS(IDC_EDIT_PERC_PROVEINCONCESSIONE, OnKillfocusEditPercProveinconcessione)
+	ON_EN_KILLFOCUS(IDC_EDIT_PERC_GEOLOGIA, OnKillfocusEditPercGeologia)
 	ON_EN_KILLFOCUS(IDC_EDIT_PERC_PROVEDICARICO, OnKillfocusEditPercProvedicarico)
 	ON_EN_KILLFOCUS(IDC_EDIT_PERC_CONGLOMERATIBITUMINOSI, OnKillfocusEditPercConglomeratibituminosi)
 	ON_EN_KILLFOCUS(IDC_EDIT_PERC_GEOTECNICA, OnKillfocusEditPercGeotecnica)
@@ -132,6 +146,8 @@ BEGIN_MESSAGE_MAP(CRipartizioneImponibileDlg, CDialog)
 	ON_EN_KILLFOCUS(IDC_EDIT_PERC_MATERIALIMETALLICI, OnKillfocusEditPercMaterialimetallici)
 	ON_EN_KILLFOCUS(IDC_EDIT_PERC_MONITORAGGI, OnKillfocusEditPercMonitoraggi)
 	ON_EN_KILLFOCUS(IDC_EDIT_PERC_VARIE, OnKillfocusEditPercVarie)
+	ON_EN_CHANGE(IDC_EDIT_PERC_PROVEINCONCESSIONE, OnChangeEditPercProveinconcessione)
+	ON_EN_CHANGE(IDC_EDIT_PERC_GEOLOGIA, OnChangeEditPercGeologia)
 	ON_EN_CHANGE(IDC_EDIT_PERC_CONGLOMERATIBITUMINOSI, OnChangeEditPercConglomeratibituminosi)
 	ON_EN_CHANGE(IDC_EDIT_PERC_GEOTECNICA, OnChangeEditPercGeotecnica)
 	ON_EN_CHANGE(IDC_EDIT_PERC_INDAGINICLS, OnChangeEditPercIndaginicls)
@@ -155,6 +171,12 @@ BOOL CRipartizioneImponibileDlg::OnInitDialog()
 		case -1:
 		default:
 			break;
+		case VERB_IN_CONCESSIONE:
+			m_strTipoVerbale = "Prove in concessione";
+			break;
+		case VERB_GEOLOGIA:
+			m_strTipoVerbale = "Geologia";
+			break;
 		case VERB_NC_PROVE_DI_CARICO:
 			m_strTipoVerbale = "Prove di Carico";
 			break;
@@ -171,7 +193,7 @@ BOOL CRipartizioneImponibileDlg::OnInitDialog()
 			m_strTipoVerbale = "Varie";
 			break;
 		case VERB_NC_GEOTECNICA:
-			m_strTipoVerbale = "Geotecnica";
+			m_strTipoVerbale = "Geotecnica NC";
 			break;
 		case VERB_NC_LINEE_VITA:
 			m_strTipoVerbale = "Linee Vita";
@@ -200,6 +222,26 @@ BOOL CRipartizioneImponibileDlg::OnInitDialog()
 	}
   UpdateData(FALSE);
 	return FALSE;
+}
+
+void CRipartizioneImponibileDlg::OnChangeEditPercProveinconcessione() 
+{
+	CalcParte(CONC);
+}
+
+void CRipartizioneImponibileDlg::OnKillfocusEditPercProveinconcessione() 
+{
+	CalcParte(CONC);
+}
+
+void CRipartizioneImponibileDlg::OnChangeEditPercGeologia() 
+{
+	CalcParte(GEOC);
+}
+
+void CRipartizioneImponibileDlg::OnKillfocusEditPercGeologia() 
+{
+	CalcParte(GEOC);
 }
 
 void CRipartizioneImponibileDlg::OnChangeEditPercProvedicarico() 
@@ -312,6 +354,28 @@ void CRipartizioneImponibileDlg::CalcParte(int id = -1)
 	{
 		case -1:
 		default:
+			break;
+
+		case CONC:
+			m_editPercProveInConcessione.GetWindowText(strPerc);
+			if(strPerc.IsEmpty())
+				return;
+			nPerc = atoi(strPerc);
+			m_nPercProveInConcessione = nPerc;
+			m_arPerc[CONC] = m_nPercProveInConcessione; 
+			m_dProveInConcessione = Percent(m_dImponibileScontato, m_nPercProveInConcessione);
+			m_arImpo[CONC] = m_dProveInConcessione;
+			break;
+
+		case GEOC:
+			m_editPercGeologia.GetWindowText(strPerc);
+			if(strPerc.IsEmpty())
+				return;
+			nPerc = atoi(strPerc);
+			m_nPercGeologia = nPerc;
+			m_arPerc[GEOC] = m_nPercGeologia; 
+			m_dGeologia = Percent(m_dImponibileScontato, m_nPercGeologia);
+			m_arImpo[GEOC] = m_dGeologia;
 			break;
 
 		case PC:
@@ -487,6 +551,18 @@ int CRipartizioneImponibileDlg::CalcolaRipartizione()
 		}
 		switch(i)
 		{
+			case CONC:
+				m_nPercProveInConcessione = perc;
+				m_dProveInConcessione = Percent(m_dImponibileScontato, perc);
+				m_arPerc[CONC] = perc;
+				m_arImpo[CONC] = m_dProveInConcessione;
+				break;
+			case GEOC:
+				m_nPercGeologia = perc;
+				m_dGeologia = Percent(m_dImponibileScontato, perc);
+				m_arPerc[GEOC] = perc;
+				m_arImpo[GEOC] = m_dGeologia;
+				break;
 			case PC:
 				m_nPercProveCarico = perc;
 				m_dProveCarico = Percent(m_dImponibileScontato, perc);
@@ -570,7 +646,8 @@ void CRipartizioneImponibileDlg::OnOK()
 		return;
 	}
 	CString strRip = "";
-	strRip.Format(FMT_RIP, m_nPercProveCarico, m_nPercConglomeratiBituminosi, 
+	strRip.Format(FMT_RIP, m_nPercProveInConcessione, m_nPercGeologia, 
+												m_nPercProveCarico, m_nPercConglomeratiBituminosi, 
 												m_nPercInerti, m_nPercMonitoraggi, m_nPercLineeVita, 
 												m_nPercIndaginiMurature, m_nPercIndaginiCLS, 
 												m_nPercMaterialiMetallici, m_nPercVarie, 

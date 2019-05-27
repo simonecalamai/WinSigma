@@ -362,7 +362,7 @@ BOOL CStampaFattureDlg::OnInitDialog()
     m_BtnEmettiFattura.EnableWindow(!m_bFatturaProForma);
     m_BtnStampaFattura.EnableWindow(m_bFatturaProForma);
 		m_BtnFatturaXML.EnableWindow(m_bFatturaProForma);
-		m_BtnRipartizioneImponibile.EnableWindow(!m_bFatturaProForma && m_nTipoVerbale != VERB_IN_CONCESSIONE);
+		m_BtnRipartizioneImponibile.EnableWindow(!m_bFatturaProForma);
     FindMaxNumeroFattura();
   //  m_lCondizioniPagamento = pApp->m_lCondizioniPagamentoDefault;
     if(m_bFatturaProForma)

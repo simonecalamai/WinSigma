@@ -450,13 +450,17 @@
 #define IDC_CHECK_PERSERIE              1385
 #define IDC_CHECK_CONCESSIONE           1386
 #define IDC_EDIT_A_FATTURA              1387
+#define IDC_EDIT_PERC_PROVEINCONCESSIONE 1387
 #define IDC_EDIT_DA_FATTURA             1388
+#define IDC_EDIT_PERC_GEOLOGIA          1388
 #define IDC_LIST_EFFETTI                1389
 #define IDC_EDIT_DA_ELETT               1389
 #define IDC_EDIT_PROGRESSIVO            1389
+#define IDC_EDIT_IMP_PROVEINCONCESSIONE 1389
 #define IDC_EDIT_SCONTO_FATTURA         1390
 #define IDC_EDIT_A_ELETT                1390
 #define IDC_EDIT_ANNO                   1390
+#define IDC_EDIT_IMP_GEOLOGIA           1390
 #define IDC_EDIT_IMPORTO_SCONTATO       1391
 #define IDC_EDIT_IMPORTOSCONTATO        1392
 #define IDC_CHECK_COMMENTOMATERIALE     1394

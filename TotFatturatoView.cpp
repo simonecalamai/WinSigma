@@ -55,7 +55,7 @@ void CTotFatturatoView::OnButtonCalcola()
 
 	double	FattConcessione			= 0;
 	double	FattNonConcessione	= 0;
-	double	FattGeotecnica			= 0;
+	double	FattGeologia				= 0;
 	double	ImpPA								= 0;
 	double	TotImpPA		  			= 0;
 
@@ -70,6 +70,7 @@ void CTotFatturatoView::OnButtonCalcola()
 	double TotIndCLS					= 0;
 	double TotMatMetallici		= 0;
 
+	double	impo		=	0;
 	double	AppFC		= 0;
 	double	AppFNC 	= 0;
 	double	AppFG		= 0;
@@ -103,12 +104,14 @@ void CTotFatturatoView::OnButtonCalcola()
 	pFattVerSerErog->m_strSort = "VERBALI.Codice";
 	pFattVerSerErog->Open();
 
+	impo		= 0;
 	AppFC		= 0;
 	AppFNC 	= 0;
 	AppFG		= 0;
 
 	for(SET_START(pFattVerSerErog); !pFattVerSerErog->IsEOF(); pFattVerSerErog->MoveNext())
 	{
+			impo		= 0;
 			AppFC		= 0;
 			AppFNC 	= 0;
 			AppFG		= 0;
@@ -137,6 +140,8 @@ void CTotFatturatoView::OnButtonCalcola()
 				// Se il verbale ha l'urgenza deve essere aggiunta la quota pari al 50% del costo del servizio
 				if(pFattVerSerErog->m_VuoiUrgenza == 1)
 					AppFC += Val/2;
+
+				impo = AppFC;
 			}
 			else if (
 							(pFattVerSerErog->m_TipoVerbale == VERB_NON_IN_CONCESSIONE)		|| 
@@ -167,6 +172,8 @@ void CTotFatturatoView::OnButtonCalcola()
 				// Se il verbale ha l'urgenza deve essere aggiunta la quota pari al 50% del costo del servizio
 				if(pFattVerSerErog->m_VuoiUrgenza == 1)
 						AppFNC += Val/2;
+
+				impo = AppFNC;
 			}
 			else if (pFattVerSerErog->m_TipoVerbale == VERB_GEOLOGIA)
 			{
@@ -184,6 +191,8 @@ void CTotFatturatoView::OnButtonCalcola()
 				// Se il verbale ha l'urgenza deve essere aggiunta la quota pari al 50% del costo del servizio
 				if(pFattVerSerErog->m_VuoiUrgenza == 1)
 					AppFG += Val/2;
+
+				impo = AppFG;
 			}
 			else
 			{
@@ -201,6 +210,8 @@ void CTotFatturatoView::OnButtonCalcola()
 				// Se il verbale ha l'urgenza deve essere aggiunta la quota pari al 50% del costo del servizio
 				if(pFattVerSerErog->m_VuoiUrgenza == 1)
 					AppFNC += Val/2;
+
+				impo = AppFNC;
 			}
 
 			// Spese per le spedizioni
@@ -217,9 +228,10 @@ void CTotFatturatoView::OnButtonCalcola()
 			// Applica lo sconto alla fattura
 			if(pFattVerSerErog->m_Sconto > 0)
 			{
+				impo		-= ((impo  * pFattVerSerErog->m_Sconto) / 100);
 				AppFC		-= ((AppFC  * pFattVerSerErog->m_Sconto) / 100);
 				AppFNC	-= ((AppFNC * pFattVerSerErog->m_Sconto) / 100);
-				AppFG		-= ((AppFG  * pFattVerSerErog->m_Sconto) / 100);
+				AppFG		-= ((AppFG  * pFattVerSerErog->m_Sconto) / 100); 
 			}
 
 #if 0
@@ -235,6 +247,96 @@ void CTotFatturatoView::OnButtonCalcola()
 			}
 #endif
 
+			if(!pFattVerSerErog->IsFieldNull(&pFattVerSerErog->m_RipartizioneImponibile) && pFattVerSerErog->m_RipartizioneImponibile != "")
+			{
+				// esiste una ripartizione dell'imponibile esplicita
+				CRipartizioneImponibileDlg dlg;
+				dlg.m_dImponibileScontato = impo; //((double)m_nImponibileScontato/100.0f);
+				dlg.m_strRipartizioneImponibile = pFattVerSerErog->m_RipartizioneImponibile;
+				dlg.CalcolaRipartizione();
+				for(int i = 0; i < NCATEGORIE; i++)
+				{
+					switch(i)
+					{
+						case CONC:
+							FattConcessione	+= dlg.m_arImpo[CONC];
+							break;
+						case GEOC:
+							FattGeologia += dlg.m_arImpo[GEOC];
+							break;
+						case PC:
+							TotProveCarico += dlg.m_arImpo[PC];
+							FattNonConcessione += dlg.m_arImpo[PC];
+							break;
+						case CB:
+							TotCongBituminosi += dlg.m_arImpo[CB];
+							FattNonConcessione += dlg.m_arImpo[CB];
+							break;
+						case I:
+							TotInerti += dlg.m_arImpo[I];
+							FattNonConcessione += dlg.m_arImpo[I];
+							break;	
+						case MO:
+							TotMonitoraggi += dlg.m_arImpo[MO];
+							FattNonConcessione += dlg.m_arImpo[MO];
+							break;
+						case LV:
+							TotLineeVita += dlg.m_arImpo[LV];
+							FattNonConcessione += dlg.m_arImpo[LV];
+							break;
+						case IM:
+							TotIndMurature += dlg.m_arImpo[IM];
+							FattNonConcessione += dlg.m_arImpo[IM];
+							break;
+						case IC:
+							TotIndCLS += dlg.m_arImpo[IC];
+							FattNonConcessione += dlg.m_arImpo[IC];
+							break;
+						case MM:
+							TotMatMetallici += dlg.m_arImpo[MM];
+							FattNonConcessione += dlg.m_arImpo[MM];
+							break;
+						case V:
+							TotVarie += dlg.m_arImpo[V];
+							FattNonConcessione += dlg.m_arImpo[V];
+							break;		
+						case GEO:
+							TotGeotNC += dlg.m_arImpo[GEO];
+							FattNonConcessione += dlg.m_arImpo[GEO];
+							break;						
+					}
+				}
+			}
+			else
+			{
+					FattConcessione			+= AppFC;
+					FattNonConcessione	+= AppFNC;
+					FattGeologia			+= AppFG;
+					// Totali per sottocategoria di verbale non in concessione
+					if(pFattVerSerErog->m_TipoVerbale == VERB_NC_PROVE_DI_CARICO)
+						TotProveCarico += AppFNC;
+					else if(pFattVerSerErog->m_TipoVerbale == VERB_NC_CONGL_BITUMINOSI)
+						TotCongBituminosi += AppFNC;
+					else if(pFattVerSerErog->m_TipoVerbale == VERB_NC_INERTI)
+						TotInerti += AppFNC;
+					else if(pFattVerSerErog->m_TipoVerbale == VERB_NC_MONITORAGGI)
+						TotMonitoraggi += AppFNC;
+					else if(pFattVerSerErog->m_TipoVerbale == VERB_NC_VARIE)
+						TotVarie += AppFNC;
+					else if(pFattVerSerErog->m_TipoVerbale == VERB_NC_GEOTECNICA)
+						TotGeotNC += AppFNC;
+					else if(pFattVerSerErog->m_TipoVerbale == VERB_NC_LINEE_VITA)
+						TotLineeVita += AppFNC;
+					else if(pFattVerSerErog->m_TipoVerbale == VERB_NC_INDAGINI_MURATURE)
+						TotIndMurature += AppFNC;
+					else if(pFattVerSerErog->m_TipoVerbale == VERB_NC_INDAGINI_CLS)
+						TotIndCLS += AppFNC;
+					else if(pFattVerSerErog->m_TipoVerbale == VERB_NC_MAT_METALLICI)
+						TotMatMetallici += AppFNC;
+			}
+
+
+/*
 			FattConcessione			+= AppFC;
 			FattNonConcessione	+= AppFNC;
 			FattGeotecnica			+= AppFG;
@@ -244,8 +346,6 @@ void CTotFatturatoView::OnButtonCalcola()
 				if(!pFattVerSerErog->IsFieldNull(&pFattVerSerErog->m_RipartizioneImponibile) && pFattVerSerErog->m_RipartizioneImponibile != "")
 				{
 					CRipartizioneImponibileDlg dlg;
-//					dlg.m_strImponibile = m_strImponibile;
-//					dlg.m_strImponibileScontato = m_strImponibileScontato;
 					dlg.m_dImponibileScontato = AppFNC; //((double)m_nImponibileScontato/100.0f);
 					dlg.m_strRipartizioneImponibile = pFattVerSerErog->m_RipartizioneImponibile;
 					dlg.CalcolaRipartizione();
@@ -280,8 +380,8 @@ void CTotFatturatoView::OnButtonCalcola()
 							case V:
 								TotVarie += dlg.m_arImpo[V];
 								break;		
-							case GEO:
-								TotGeotNC += dlg.m_arImpo[GEO];
+							case GEOT:
+								TotGeotNC += dlg.m_arImpo[GEOT];
 								break;						
 						}
 					}
@@ -311,6 +411,7 @@ void CTotFatturatoView::OnButtonCalcola()
 						TotMatMetallici += AppFNC;
 				}
 			}
+			*/
 	}
 
 	// imponibile per Pubblica Amministrazione (PA)
@@ -384,7 +485,7 @@ void CTotFatturatoView::OnButtonCalcola()
 	app.Format("Geo NC  = %.2f", TotGeotNC);
   m_listTotFatturato.SetItemText(n, 2, app);
 
-	app.Format("%.2f", FattConcessione + FattNonConcessione + FattGeotecnica);
+	app.Format("%.2f", FattConcessione + FattNonConcessione + FattGeologia);
 	n = m_listTotFatturato.InsertItem(n, app);
 
 	app.Format("%.2f", FattConcessione);
@@ -393,7 +494,7 @@ void CTotFatturatoView::OnButtonCalcola()
 	app.Format("%.2f", FattNonConcessione);
   m_listTotFatturato.SetItemText(n, 2, app);
 
-	app.Format("%.2f", FattGeotecnica);
+	app.Format("%.2f", FattGeologia);
 	m_listTotFatturato.SetItemText(n, 3, app);
 
 	app.Format("%.2f", TotImpPA);
