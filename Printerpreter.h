@@ -79,9 +79,9 @@ class CStringItem : public CPrintItem
     int     m_FontWeight;
     BOOL    m_bFontItalic;
     BOOL    m_bFontUnderline;
-		BYTE    m_nEdge;
     CString m_FontName;
   public:
+		BYTE    m_nEdge;
 	  static int m_LastX;
 	  static int m_LastY;
 		BOOL    m_bNull;
@@ -108,7 +108,7 @@ class CStringItem : public CPrintItem
 class CFieldItem : public CStringItem
 {
   /*----- dati -----*/
-  private:
+  public:
     // oltre alle variabili membro della classe CStringItem, ha anche 
 		// la variabli m_Key che rappresenta la chiave 
 		CString m_Key;

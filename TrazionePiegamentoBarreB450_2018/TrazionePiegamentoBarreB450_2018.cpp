@@ -580,25 +580,43 @@ __declspec( dllexport ) BOOL DatiProvino(CAllTables* pTabelle, CStringArray* pFi
 	// --------  dati Generici serie  --------//
 	double fiNominale = pSerieProviniSet->m_Dimensione1;
 //------------------
+
+	// numero interno
 	pFieldNames->Add("numeroInterno");
-
-	// verbale prelievo s.c. 30.04.2019
-	pFieldNames->Add("verbalePrelievo");
-
-	pFieldNames->Add("fiNominale");
-
 	str.Format("%d",numeroInterno);
 	pFieldValues->Add(str);
 
-	// verbale prelievo s.c. 30.04.2019
-	if(pSerieProviniSet->IsFieldNull(&pSerieProviniSet->m_VerbalePrelievo))
+	// verbale prelievo s.c. aprile-maggio 2019
+	int nProvini = pSerieProviniSet->m_NumeroProvini;
+	if(nProvini == 3)
+	{
 		str = "";
+		pFieldNames->Add("verbalePrelievoFerri3");
+		if(primoCampo == 0 && numeroInterno%nProvini != 0)
+		{
+  		// allineo il verbale di prelievo al provino centrale
+			if(!pSerieProviniSet->IsFieldNull(&pSerieProviniSet->m_VerbalePrelievo))
+			{
+				str = pSerieProviniSet->m_VerbalePrelievo;
+			}
+		}
+		pFieldValues->Add(str);
+	}
 	else
-		str = pSerieProviniSet->m_VerbalePrelievo;
-	pFieldValues->Add(str);
+	{
+		pFieldNames->Add("verbalePrelievoFerri1");
+		if(pSerieProviniSet->IsFieldNull(&pSerieProviniSet->m_VerbalePrelievo))
+			str = "";
+		else
+			str = pSerieProviniSet->m_VerbalePrelievo;
+		pFieldValues->Add(str);
+	}
 
+	// fi nominale
+	pFieldNames->Add("fiNominale");
 	str.Format("%.0f", fiNominale);
 	pFieldValues->Add(str);
+
 	//------------------ Dati provini -------------------//
 			
 	switch(pDati->nVersione)

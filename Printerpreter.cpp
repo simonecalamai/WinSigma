@@ -818,7 +818,23 @@ BOOL CPrintInterpreter::PrintTabfields(CDC* pDC, int page)
     if(hMax < 0)
       hMax *= -1;
 		for(i = 0; i < m_TabfieldItems.GetSize(); i ++)
+		{
 			((CFieldItem*)(m_TabfieldItems.GetAt(i)))->Remap(&names, &values);  
+			CFieldItem* pfItem = (CFieldItem*)m_TabfieldItems.GetAt(i);
+//			CStringItem* psItem = (CStringItem*)m_TabfieldItems.GetAt(i);
+			if(!pfItem->m_Key.CompareNoCase("verbalePrelievoFerri3"))
+			{
+				pfItem->m_nEdge &= ~EDGE_SOUTH;
+				if(n%3 == 2)
+				{
+					pfItem->m_nEdge |= EDGE_SOUTH;
+				}
+			}
+			if(!pfItem->m_Key.CompareNoCase("verbalePrelievoFerri1"))
+			{
+				pfItem->m_nEdge |= EDGE_SOUTH;
+			}
+		}
 		for (i = 0; i < m_TabfieldItems.GetSize(); i ++)
     {
 			pFont = (CFont*)m_TabfieldItems[i].Print(pDC, pFont);
@@ -1647,10 +1663,27 @@ BOOL CFieldItem::Remap(CStringArray* pEntries, CStringArray* pValues)
   // esamina l'array con le stringhe di riferimento costruite run-time
 	for (i = 0; i < pEntries->GetSize(); i ++)
 	{
-    // se la chiave corrente letta dal file di layout coincide con quella
-		// nella stringa di riferimento, esce
-		if ( !m_Key.CompareNoCase(pEntries->GetAt(i)))
-      break;
+		if(!m_Key.CompareNoCase("verbalePrelievoFerri"))
+		{
+			// ferri DM2018 trattato a parte  s.c. 31.05.2019
+			if(!pEntries->GetAt(i).CompareNoCase("verbalePrelievoFerri1"))
+			{
+				m_Key = "verbalePrelievoFerri1";
+				break;
+			}
+			else if(!pEntries->GetAt(i).CompareNoCase("verbalePrelievoFerri3"))
+			{
+				m_Key = "verbalePrelievoFerri3";
+				break;
+			}
+		}
+		else
+		{
+			// se la chiave corrente letta dal file di layout coincide con quella
+			// nella stringa di riferimento, esce
+			if ( !m_Key.CompareNoCase(pEntries->GetAt(i)))
+				break;
+		}
   }
 	// se ha trovato la chiave corrente, nell'array di stringhe
 	if (i < pEntries->GetSize() && i < pValues->GetSize())

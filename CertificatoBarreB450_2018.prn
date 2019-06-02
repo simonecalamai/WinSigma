@@ -118,7 +118,7 @@ tab lines=12
 225=+220,+0,700,38,Courier New,20,38,L,norma_valore5
 
 240=80,2290,1000,64,Arial,15,32,L,osservazioniLabel
-245=+160,+0,1000,64,Arial,15,32,L,osservazioni
+245=+160,+0,1400,64,Arial,15,32,L,osservazioni
 250=360,2390,1000,44,Arial,22,36,L,domandaProve
 255=1580,+0,180,44,Arial,22,36,L,dataProve
 260=80,+45,1800,44,Arial,16,25,L,consegnaMateriale
@@ -131,9 +131,9 @@ tab lines=12
 
 [tabfields]
 10=80,1515,30,70,Arial,16,32,CWSV,numeroInterno
-15=+30,+0,130,70,Times New Roman,14,28,CSV,verbalePrelievo
-20=+110,+0,160,70,Times New Roman,18,36,CSV,fiNominale
-30=+130,+0,160,70,Times New Roman,18,36,CBSV,sezioneNominale
+15=110,1515,130,70,Times New Roman,14,28,CWEV,verbalePrelievoFerri
+20=+130,+0,150,70,Times New Roman,18,36,CSV,fiNominale
+30=+110,+0,160,70,Times New Roman,18,36,CBSV,sezioneNominale
 35=+140,+0,160,70,Times New Roman,18,36,CBSV,sezioneEffettiva
 40=+120,+0,280,70,Times New Roman,18,36,CBSV,massa
 50=+220,+0,200,70,Times New Roman,18,36,CBSWV,snervamento
