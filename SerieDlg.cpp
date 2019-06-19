@@ -471,7 +471,8 @@ void CSerieDlg::OnSelchangeTipiCertificato()
 			(m_ComboTipoCertificato.GetItemData(i) == 12) ||
 			(m_ComboTipoCertificato.GetItemData(i) == 13) ||
 			(m_ComboTipoCertificato.GetItemData(i) == 18) || 
-			(m_ComboTipoCertificato.GetItemData(i) == 17))		
+			(m_ComboTipoCertificato.GetItemData(i) == 17) ||
+			(m_ComboTipoCertificato.GetItemData(i) == 20))		
 	{
 //		m_ctrlVerbalePrelievo.EnableWindow(TRUE);
 	}
@@ -481,7 +482,8 @@ void CSerieDlg::OnSelchangeTipiCertificato()
 	}
 	if ((m_ComboTipoCertificato.GetItemData(i) == 11) ||
 			(m_ComboTipoCertificato.GetItemData(i) == 13) || 
-			(m_ComboTipoCertificato.GetItemData(i) == 17))
+			(m_ComboTipoCertificato.GetItemData(i) == 17) ||
+			(m_ComboTipoCertificato.GetItemData(i) == 20))
 	{
 		m_ctrlSiglaFornitore.EnableWindow(TRUE);
 	}
