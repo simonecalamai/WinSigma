@@ -10,88 +10,99 @@ tab lines=15
 
 
 [strings]
-10=70,130,500,50,Courier New,40,50,BL,.CA. CUBETTI
-20=+650,130,500,50,Courier New,30,40,L, MINUTA DI PROVA
-30=+1000,+0,100,50,Courier New,30,40,L,PAG.
-35=70,+40,2000,50,Courier New,20,30,L,------------------------------------------------------------------------------------------------------------------------------------------------------------
-40=250,220,400,50,Courier New,30,40,BL,UNI EN 12390-3
+10=70,100,500,50,Courier New,40,50,BL,.CA. CUBETTI
+20=+1400,100,500,50,Courier New,30,40,L, MINUTA DI PROVA
+30=+1200,+0,100,50,Courier New,30,40,L,PAG.
+;35=70,+40,2900,50,Courier New,20,30,L,---------1---------2---------3---------4---------5---------6---------7---------8---------9---------0---------1---------2---------3---------4---------5---------6---------7---------8---------9---------0---------1---------2---------3---------4---------5
+35=70,+40,2900,50,Courier New,20,30,L,-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+40=250,180,400,50,Courier New,30,40,BL,UNI EN 12390-3
 50=+450,+0,1000,50,Courier New,30,40,BL,ROTTURA A COMPRESSIONE
 60=+650,+0,300,50,Courier New,30,40,BL,PT001
-70=70,350,300,50,Courier New,20,38,L,Verbale num  :
+70=70,250,300,50,Courier New,20,38,L,Verbale num  :
 80=+470,+0,80,50,Courier New,20,38,L,del
-;90=+600,+0,200,50,Courier New,20,38,L,CONSEGNA:
-100=70,430,650,50,Courier New,30,40,L,Numero verbale in Concessione
-130=70,+150,300,50,Courier New,20,38,L,Campioni N.....:
-140=70,+70,380,50,Courier New,20,38,L,Campioni consegnati    :
-150=70,+40,380,50,Courier New,20,38,L,Prove richieste e note :
-160=70,+60,1700,50,Courier New,20,38,L,TR =Tipo di rottura - 1: soddisfacente 2: non soddisfacente  Rottura n°.......
-170=70,+40,1900,50,Courier New,20,38,L, R =Rettifica       - A: effettuata con molatura  A1: effettuata con cappatura  B: non effettuata in quanto campione già conforme
-;180=660,+70,1000,50,Courier New,30,40,BL,Risultati di PROVA A COMPRESSIONE
-190=40,+110,2000,50,Courier New,20,30,L,------------------------------------------------------------------------------------------------------------------------------------------------------------
+;100=70,430,650,50,Courier New,30,40,L,Numero verbale in Concessione
+130=70,300,300,50,Courier New,20,38,L,Campioni N.....:
+140=+400,+0,380,50,Courier New,20,38,L,Campioni consegnati    :
+150=+0,+35,380,50,Courier New,20,38,L,Prove richieste e note :
+;160=70,+60,1700,50,Courier New,20,38,L,TR =Tipo di rottura - 1: soddisfacente 2: non soddisfacente  Rottura n°.......
+;170=70,+40,1900,50,Courier New,20,38,L, R =Rettifica       - A: effettuata con molatura  A1: effettuata con cappatura  B: non effettuata in quanto campione già conforme
+
+190=70,+140,2900,50,Courier New,20,30,L,----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 200=130,+40,100,50,Courier New,20,34,L,SIGLA
-202=+140,+0,80,50,Courier New,20,34,L,Verb.
+202=+150,+0,80,50,Courier New,20,34,L,Verb.
 210=+160,+0,120,50,Courier New,20,34,L,Posizione
-220=+350,+0,100,50,Courier New,20,34,L,D A T E
-230=+310,+0,300,50,Courier New,20,34,L,D I M E N S I O N I
-240=+330,+0,100,50,Courier New,20,34,L,AREA
-250=+120,+0,100,50,Courier New,20,34,L,MASSA
-260=+115,+0,100,50,Courier New,20,34,L,CARICO
-270=+115,+0,135,50,Courier New,20,34,L,RESISTENZA
-280=+185,+0,80,50,Courier New,20,34,L,TR
-290=+40,+0,80,50,Courier New,20,34,L,R
+220=+400,+0,100,50,Courier New,20,34,L,D A T E
+230=+410,+0,350,50,Courier New,20,34,L,D I M E N S I O N I
+240=+380,+0,100,50,Courier New,20,34,L,AREA
+250=+160,+0,100,50,Courier New,20,34,L,MASSA
+260=+160,+0,100,50,Courier New,20,34,L,CARICO
+270=+160,+0,135,50,Courier New,20,34,L,RESISTENZA
+280=+200,+0,80,50,Courier New,20,34,L,TR
+290=+50,+0,80,50,Courier New,20,34,L,R
+292=+120,+0,80,50,Courier New,20,34,L,OP
+294=+110,+0,100,50,Courier New,20,34,L,CASSONE
+
 300=130,+40,110,50,Courier New,20,34,L,Mater.
-302=+140,+0,80,50,Courier New,20,34,L,Prel.
-310=+180,+0,110,50,Courier New,20,34,L,prove
-320=+215,+0,400,50,Courier New,20,34,L,Prel.  Scad.  MATUR/PROVA
-325=+530,+0,100,50,Courier New,20,34,L,mm
-330=+235,+0,100,50,Courier New,20,34,L,mm²
-340=+130,+0,100,50,Courier New,20,34,L,kg
-350=+120,+0,200,50,Courier New,20,34,L,kN
-360=+130,+0,400,50,Courier New,20,34,L,N/mm²
-370=40,+90,2000,50,Courier New,20,30,L,------------------------------------------------------------------------------------------------------------------------------------------------------------
--800=1100,2300,900,50,Courier New,20,38,BL,La prova è stata eseguita in conformità alla norma in intestazione
--900=1250,2400,500,50,Courier New,20,38,BC,Lo Sperimentatore
--910=+50,+100,400,50,Courier New,20,30,BC,...........................
+302=+150,+0,80,50,Courier New,20,34,L,Prel.
+310=+190,+0,110,50,Courier New,20,34,L,prove
+320=+240,+0,500,50,Courier New,20,34,L,Prel.      Scad.     MATUR/PROVA
+325=+650,+0,100,50,Courier New,20,34,L,mm
+330=+280,+0,100,50,Courier New,20,34,L,mm²
+340=+170,+0,100,50,Courier New,20,34,L,kg
+350=+165,+0,200,50,Courier New,20,34,L,kN
+360=+175,+0,400,50,Courier New,20,34,L,N/mm²
+
+400=1250,+35,260,50,Courier New,20,34,L,D        b        h
+
+500=70,+40,2900,50,Courier New,20,30,L,---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+600=70,1700,1700,50,Courier New,20,38,L,TR:Tipo di rottura - 1: soddisfacente 2: non soddisfacente  Rottura n°.......
+610=70,+40,1900,50,Courier New,20,38,L, R: Rettifica       - A: effettuata con molatura  A1: effettuata con cappatura  B: non effettuata in quanto campione già conforme
+620=70,+45,1700,50,Courier New,20,38,L,OP: Check verifica di ortogonalità e planarità (RIF. PT001)
+630=70,+40,2800,50,Courier New,20,38,L,TOLLERANZE UNI EN 12390-1      Planarità: 0.0006D mm   Perpendicolarità: 0.5 mm   (D: spigolo del cassero   b: dimensione di getto   h: altezza rettificata)
+
+800=2000,1900,900,50,Courier New,20,38,BL,La prova è stata eseguita in conformità alla norma in intestazione
+900=2200,1950,500,50,Courier New,20,38,BC,Lo Sperimentatore
+910=+50,+80,400,50,Courier New,20,30,BC,...........................
 
 
 [fields]
 ;5=1380,130,250,50,Courier New,30,40,L,dataMinuta
-10=1860,130,100,50,Courier New,30,40,L,@page
-75=430,350,100,50,Courier New,30,40,BL,totaleVerbali
+10=2850,100,100,50,Courier New,30,40,L,@page
+75=430,250,100,50,Courier New,30,40,BL,totaleVerbali
 85=+200,+0,300,50,Courier New,30,40,BL,dataAccettazione
 100=+500,+0,1000,50,Courier New,30,40,BL,urgenza
-105=750,430,250,50,Courier New,30,40,L,progressivoVerbale
-125=1340,+100,550,50,Courier New,30,40,BL,spianpieg
-135=490,+50,100,50,Courier New,20,38,L,numeroCampioni
-145=490,+70,1000,50,Courier New,20,38,BL,materialeConsegnato
-155=490,+40,1400,60,Courier New,20,38,BL,proveRichieste
-160=430,+150,1200,50,Courier New,30,40,BC,titolo
+;105=750,430,250,50,Courier New,30,40,L,progressivoVerbale
+125=1340,+0,550,50,Courier New,30,40,BL,spianpieg
+135=400,300,100,50,Courier New,20,38,L,numeroCampioni
+145=900,+0,1000,50,Courier New,20,38,BL,materialeConsegnato
+155=+0,+35,1400,60,Courier New,20,38,BL,proveRichieste
+160=880,+70,1200,50,Courier New,30,40,BC,titolo
 
 
 
 [tabfields]
-1=100,1150,1900,80,Courier New,40,80,L,separatore
-10=65,1150,90,80,Courier New,18,32,L,materiale
+1=70,660,2840,80,Courier New,40,80,L,separatore
+10=80,660,90,80,Courier New,18,32,L,materiale
 40=+90,+0,170,80,Courier New,18,32,BL,sigla
-;10=70,1150,70,80,Courier New,20,40,L,materiale
-;40=+60,+0,100,80,Courier New,20,40,BL,sigla
-45=+100,+0,120,80,Courier New,18,32,BL,verbale_prelievo
-50=+80,+0,80,80,Courier New,20,40,C,prove
-60=+80,+0,200,80,Courier New,20,40,BC,posizione
-70=+220,+0,120,80,Courier New,20,40,BL,prelievo
-75=+120,+5,100,80,Courier New,16,32,L,scad45gg
-;80=+100,-5,70,80,Courier New,20,40,L,UB
-90=+100,-5,120,80,Courier New,20,40,BL,matur_prova 
-100=+140,+0,50,80,Courier New,20,40,L,nProvino
-110=+90,+0,100,80,Courier New,20,40,L,dim1
+45=+130,+0,120,80,Courier New,18,32,BL,verbale_prelievo
+;50=+80,+0,80,80,Courier New,20,40,C,prove
+60=+90,+0,200,80,Courier New,20,40,BC,posizione
+70=+300,+0,120,80,Courier New,20,40,BL,prelievo
+75=+160,+5,100,80,Courier New,16,32,L,scad45gg
+90=+150,-5,120,80,Courier New,20,40,BL,matur_prova 
+100=+150,+0,50,80,Courier New,20,40,L,nProvino
+110=+100,+0,100,80,Courier New,20,40,L,dim1
 120=+100,+0,100,80,Courier New,20,40,L,dim2
 130=+100,+0,100,80,Courier New,20,40,L,dim3
-140=+120,+0,120,80,Courier New,20,40,L,area
-150=+120,+0,120,80,Courier New,20,40,L,massa
-160=+130,+0,120,80,Courier New,20,40,L,carico
-170=+130,+0,100,80,Courier New,20,40,L,resistenza
+140=+160,+0,120,80,Courier New,20,40,L,area
+150=+160,+0,120,80,Courier New,20,40,L,massa
+160=+160,+0,120,80,Courier New,20,40,L,carico
+170=+170,+0,100,80,Courier New,20,40,L,resistenza
 180=+125,+0,40,80,Courier New,20,40,L,posCertificato
-190=+50,+0,100,80,Courier New,20,40,L,tr_s
+190=+90,+0,100,80,Courier New,20,40,L,tr_s
+192=+160,+0,100,80,Courier New,20,40,L,op
+194=+150,+0,100,80,Courier New,20,40,L,cassone
 
 
 [grids]

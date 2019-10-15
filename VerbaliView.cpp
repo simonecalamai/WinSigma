@@ -3484,13 +3484,13 @@ BOOL CVerbaliView::ScanProviniMinuta(CStringArray* pFieldNames, CStringArray* pF
   pFieldNames->Add("dim3");
   pFieldValues->Add("......");
   pFieldNames->Add("area");
-  pFieldValues->Add("......");
+  pFieldValues->Add(".......");
   pFieldNames->Add("massa");
-  pFieldValues->Add("......");
+  pFieldValues->Add(".......");
   pFieldNames->Add("carico");
-  pFieldValues->Add("......");
+  pFieldValues->Add(".......");
   pFieldNames->Add("resistenza");
-  pFieldValues->Add("......");
+  pFieldValues->Add(".......");
   pFieldNames->Add("posCertificato");
 	str.Format("%d", m_nPosCertificato);
   pFieldValues->Add(str);
@@ -3502,9 +3502,13 @@ BOOL CVerbaliView::ScanProviniMinuta(CStringArray* pFieldNames, CStringArray* pF
 		 || m_pSerieSet->m_Servizio4 == m_pSerieSet->m_ServAggiungibile
 		 || m_pSerieSet->m_Servizio5 == m_pSerieSet->m_ServAggiungibile
 		 || m_pSerieSet->m_Servizio6 == m_pSerieSet->m_ServAggiungibile)
-     pFieldValues->Add(".. A");
+     pFieldValues->Add("... A");
   else
-    pFieldValues->Add(".. .");
+    pFieldValues->Add("... ..");
+  pFieldNames->Add("op");
+  pFieldValues->Add("....");
+  pFieldNames->Add("cassone");
+  pFieldValues->Add("....");
   
   // Dati minuta ferri
   pFieldNames->Add("diametro");
