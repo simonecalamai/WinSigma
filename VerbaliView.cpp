@@ -3093,6 +3093,8 @@ void CVerbaliView::PrintMinuta()
   m_pSerieSet->m_strFilter.Format("Verbale = %d", m_pVerbaliSet->m_Codice);
   m_pSerieSet->Requery();
 
+	// prima effettua una simulazione di stampa per determinare il numero delle pagine (s.c. 23.10.2019)
+	// non è molto elegante fatto così --> da rivedere
   nCodiceCertificato = -1;
   // Numero totale dei campioni
   int n = 0;
@@ -3116,7 +3118,7 @@ void CVerbaliView::PrintMinuta()
     if(m_pTipiCertificatoSet->m_LayoutStampaMinuta.IsEmpty() || !inclusione)
 		{
 			if(m_pSerieSet->m_NuovoCertificato)
-		  m_nPosCertificato++;
+			  m_nPosCertificato++;
       m_pSerieSet->MoveNext();
       continue;
 		}
@@ -3129,6 +3131,50 @@ void CVerbaliView::PrintMinuta()
       strNames.Add("numeroCampioni");
       strValues.Add(strNumCampioni);
       strLayout.Format(".\\%s", m_pTipiCertificatoSet->m_LayoutStampaMinuta);
+
+			m_nTotalePagine = 0;
+			prnInterpreter.SetPage(1);
+			prnInterpreter.StartSimulation();
+			prnInterpreter.Print(strLayout, &strNames, &strValues, NULL, ScanProviniMinuta);
+			m_nTotalePagine = prnInterpreter.GetPage() - 1;
+			prnInterpreter.EndSimulation();
+		}
+	}
+
+	// esecuzione della stampa effettiva (s.c. 23.10.2019)
+  nCodiceCertificato = -1;
+  m_nPosCertificato = 0;
+
+  for(SET_START(m_pSerieSet); !m_pSerieSet->IsEOF();)
+	{
+    SINCRONIZE(m_pTipiCertificatoSet, m_pSerieSet->m_TipoCertificato);
+		
+		// Verifico se il tipo di certificato è incluso fra quelli selezionati
+		inclusione = FALSE;
+		for(int n=0; n < m_paryTCerMinute.GetSize(); n++)
+			if( m_pTipiCertificatoSet->m_Codice == (long)m_paryTCerMinute.GetAt(n))
+				inclusione = TRUE;
+			
+		// Se non è incluso passo alle serie successive senza fare altro che incrementare 
+		// l'intero che rappresenta la posizione del certificato
+    if(m_pTipiCertificatoSet->m_LayoutStampaMinuta.IsEmpty() || !inclusione)
+		{
+			if(m_pSerieSet->m_NuovoCertificato)
+			  m_nPosCertificato++;
+      m_pSerieSet->MoveNext();
+      continue;
+		}
+		
+    if(m_pTipiCertificatoSet->m_Codice != nCodiceCertificato)
+		{
+			m_nSerieInStampa = 0;
+      nCodiceCertificato = m_pTipiCertificatoSet->m_Codice;
+      SetFieldsMinuta(&strNames, &strValues);
+      strNames.Add("numeroCampioni");
+      strValues.Add(strNumCampioni);
+      strLayout.Format(".\\%s", m_pTipiCertificatoSet->m_LayoutStampaMinuta);
+			prnInterpreter.SetPage(1);
+			prnInterpreter.SetTotPages(m_nTotalePagine);
       prnInterpreter.Print(strLayout, &strNames, &strValues, NULL, ScanProviniMinuta);
 		}
 	}
@@ -3505,8 +3551,8 @@ BOOL CVerbaliView::ScanProviniMinuta(CStringArray* pFieldNames, CStringArray* pF
      pFieldValues->Add("... A");
   else
     pFieldValues->Add("... ..");
-  pFieldNames->Add("op");
-  pFieldValues->Add("....");
+  pFieldNames->Add("op"); 
+  pFieldValues->Add("|_|");
   pFieldNames->Add("cassone");
   pFieldValues->Add("....");
   

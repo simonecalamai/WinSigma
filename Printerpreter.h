@@ -353,6 +353,7 @@ class CPrintInterpreter : public CObject
 								   BOOL (CALLBACK *pfnSetTabfields)(CStringArray*, CStringArray*));
 		void SetHeaderFile(CString headerFName);
 		void SetDocName(CString docName);
+		void SetTotPages(int totPages);
 
   protected:
     BOOL PrintStrings  (CDC* pDC, int page);

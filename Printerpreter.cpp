@@ -27,6 +27,7 @@
 #define KEY_PAGE_DIM      "page_dim"
 
 #define KEY_CURPAGE       "@page"
+#define KEY_TOTPAGES      "@totpages"
 
 #define LAST_PAGE        -1
 
@@ -509,6 +510,20 @@ BOOL CPrintInterpreter::PrintText(CString layoutFName,
 		m_pFieldsValue->Add(str);
 	}
 
+	// Pagine totali
+	str.Format("%ld", m_nTotalePagine);
+  for (i = 0; i < m_pFieldsName->GetSize(); i ++)
+	{
+    if(m_pFieldsName->GetAt(i) == KEY_TOTPAGES)
+		  break;
+	}	
+	if(i < m_pFieldsValue->GetSize())
+		m_pFieldsValue->SetAt(i, str);
+	else
+	{
+		m_pFieldsName->Add(KEY_TOTPAGES);
+		m_pFieldsValue->Add(str);
+	}
 	/***************************** andrea **************************/
 	/************** Sostituzione dei caratteri speciali ************/
 	/************** nella stampa in modalità testo *****************/
@@ -611,6 +626,21 @@ BOOL CPrintInterpreter::PrintText(CString layoutFName,
     		m_pFieldsName->Add(KEY_CURPAGE);
     		m_pFieldsValue->Add(str);
     	}
+
+			// Pagine totali
+			str.Format("%ld", m_nTotalePagine);
+			for (i = 0; i < m_pFieldsName->GetSize(); i ++)
+			{
+				if(m_pFieldsName->GetAt(i) == KEY_TOTPAGES)
+					break;
+			}	
+			if(i < m_pFieldsValue->GetSize())
+				m_pFieldsValue->SetAt(i, str);
+			else
+			{
+				m_pFieldsName->Add(KEY_TOTPAGES);
+				m_pFieldsValue->Add(str);
+			}
 
 			/***************************** andrea **************************/
 			/************** Sostituzione dei caratteri speciali ************/
@@ -759,6 +789,24 @@ BOOL CPrintInterpreter::PrintFields(CDC* pDC, int page)
 		m_pFieldsName->Add(KEY_CURPAGE);
 		m_pFieldsValue->Add(str);
 	}
+
+	// Pagine totali
+	CString fna;
+	str.Format("%ld", m_nTotalePagine);
+  for (i = 0; i < m_pFieldsName->GetSize(); i ++)
+	{
+		fna = m_pFieldsName->GetAt(i);
+    if(m_pFieldsName->GetAt(i) == KEY_TOTPAGES)
+		  break;
+	}	
+	if(i < m_pFieldsValue->GetSize())
+		m_pFieldsValue->SetAt(i, str);
+	else
+	{
+		m_pFieldsName->Add(KEY_TOTPAGES);
+		m_pFieldsValue->Add(str);
+	}
+
 
 	for (i = 0; i < m_FieldItems.GetSize(); i ++)
     ((CFieldItem*)(m_FieldItems.GetAt(i)))->Remap(m_pFieldsName,
@@ -1085,6 +1133,10 @@ void CPrintInterpreter::SetDocName(CString	docName)
 	m_DocName = docName;
 }
 
+void CPrintInterpreter::SetTotPages(int totPages)
+{
+	m_nTotalePagine = totPages;
+}
 
 /*----- implementazione di CPrintItem -----*/
 CPrintItem::CPrintItem(void) : CObject()
