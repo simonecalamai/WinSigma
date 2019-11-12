@@ -2786,7 +2786,7 @@ void CStampaFattureDlg::XMLBodyDatiGenerali(FILE* f)
 		// Data DDT
 		if(m_DataDDT > 0)
 		{
-			csLine.Format("<Data>%s</Data>\n", m_DataDDT.Format("%Y-%m-%d")); 
+			csLine.Format("<DataDDT>%s</DataDDT>\n", m_DataDDT.Format("%Y-%m-%d")); 
 			fwrite(csLine.GetBuffer(csLine.GetLength()), csLine.GetLength(),1,f);
 		}
 

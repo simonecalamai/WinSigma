@@ -134,7 +134,12 @@ BOOL CPrintInterpreter::PrePrinting(HDC DC)
 	{
 		// visualizza il dialogo per scegliere stampante e altre impostazioni di stampa
 		CPrintDialog dialogPrt(TRUE);
-
+/*
+		LPDEVMODE pDevMode = dialogPrt.GetDevMode();
+		GlobalLock(pDevMode);
+		pDevMode->dmOrientation = DMORIENT_LANDSCAPE;
+		GlobalUnlock(pDevMode);
+*/
 /*
 		// landscape print (minuta cubetti)
 		CPrintDialog dialogPrt(FALSE);

@@ -11,85 +11,138 @@ tab lines=16
 
 
 [strings]
-10=70,130,500,50,Courier New,40,50,BL,-DA-
-;20=+600,130,700,50,Courier New,30,40,BL,MINUTA DI PROVA DI TRAZIONE RETI
-20=+650,130,500,50,Courier New,30,40,L, MINUTA DI PROVA
-30=+1050,+0,100,50,Courier New,30,40,L,PAG.
-40=70,+40,2000,50,Courier New,20,30,L,------------------------------------------------------------------------------------------------------------------------------------------------------------
-50=220,220,400,50,Courier New,30,40,BL,UNI EN ISO 15630-2 
-60=+550,+0,850,50,Courier New,30,40,BL,TRAZIONE SU RETI
-70=70,350,300,50,Courier New,20,38,L,Verbale num  :
+10=70,100,500,50,Courier New,40,50,BL,-DA-
+20=+1250,100,500,50,Courier New,30,40,L, MINUTA DI PROVA
+30=+1350,+0,100,50,Courier New,30,40,L,PAG.
+31=+210,+0,100,50,Courier New,30,40,L,/
+;35=70,+40,2900,50,Courier New,20,30,L,---------1---------2---------3---------4---------5---------6---------7---------8---------9---------0---------1---------2---------3---------4---------5---------6---------7---------8---------9---------0---------1---------2---------3---------4---------5
+35=70,+40,2900,50,Courier New,20,30,L,-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+40=250,180,400,50,Courier New,30,40,BL,UNI EN ISO 15630-2 
+50=+700,+0,1000,50,Courier New,30,40,BL,TRAZIONE SU RETI
+70=70,250,300,50,Courier New,20,38,L,Verbale num  :
 80=+470,+0,80,50,Courier New,20,38,L,del
-;90=+600,+0,200,50,Courier New,20,38,L,CONSEGNA:
-100=70,430,650,50,Courier New,30,40,L,Numero verbale in Concessione
-130=70,+150,300,50,Courier New,20,38,L,Campioni N.....:
-140=70,+70,380,50,Courier New,20,38,L,Campioni consegnati    :
-150=70,+40,380,50,Courier New,20,38,L,Prove richieste e note :
-160=70,+60,1700,50,Courier New,20,38,L,DATA DI PROVA: .../.../...
-170=70,+50,750,50,Courier New,20,38,L,CARATTERISTICHE DIMENSIONALI DELLA RETE: 
+;100=70,430,650,50,Courier New,30,40,L,Numero verbale in Concessione
+130=70,300,300,50,Courier New,20,38,L,Campioni N.....:
+140=+400,+0,380,50,Courier New,20,38,L,Campioni consegnati    :
+150=+0,+35,380,50,Courier New,20,38,L,Prove richieste e note :
+160=+2000,+0,700,50,Courier New,20,38,L,Data prove: .../.../...
+
+170=70,+55,750,50,Courier New,20,38,L,CARATTERISTICHE DIMENSIONALI DELLA RETE: 
 175=+700,+0,800,50,Courier New,20,38,L,maglia .... X .... (cm)
-185=+0,+40,800,50,Courier New,20,38,L,fili Ø...(mm) e Ø...(mm)
-190=70,+100,2000,50,Courier New,20,30,L,------------------------------------------------------------------------------------------------------------------------------------------------------------
-200=100,+40,120,50,Courier New,20,34,EWC,Ø NOM.
-210=+120,+0,170,50,Courier New,20,34,C,PESO
-220=+170,+0,170,50,Courier New,20,34,EC,LUNGH.
-230=+170,+0,200,50,Courier New,20,34,EC,SEZIONE
-240=+200,+0,195,50,Courier New,20,34,C,CAR.SNE.
-250=+195,+0,195,50,Courier New,20,34,EC,CAR.ROT.
-260=+195,+0,175,50,Courier New,20,34,C,SNERVAM.
-280=+175,+0,175,50,Courier New,20,34,C,ROTTURA
-290=+175,+0,110,50,Courier New,20,34,C,AG
-295=+110,+0,110,50,Courier New,20,34,C,AGT
-310=+110,+0,150,50,Courier New,20,34,EC,Rm/ReH
-320=+150,+0,180,50,Courier New,20,34,EC,DIST. NODO
+185=+700,+0,800,50,Courier New,20,38,L,fili Ø...(mm) e Ø...(mm)
 
-400=100,+40,120,30,Courier New,20,34,EWC,mm
-410=+120,+0,170,30,Courier New,20,34,EC,gr
-420=+170,+0,170,30,Courier New,20,34,EC,mm
-430=+170,+0,200,30,Courier New,20,34,EC,mm²
-440=+200,+0,195,30,Courier New,20,34,EC,KN
-450=+195,+0,195,30,Courier New,20,34,EC,KN
-460=+195,+0,175,30,Courier New,20,34,EC,ReH
-480=+175,+0,175,30,Courier New,20,34,EC,Rm
-510=+175,+0,110,50,Couier New,20,30,C,%
-520=+110,+0,110,30,Couier New,20,30,EC,%
-530=+110,+0,150,30,Courier New,20,34,EC,
-540=+150,+0,180,30,Courier New,20,34,EC,N
+;190=70,490,2300,50,Courier New,20,30,L,-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+;200=450,530,140,50,Courier New,20,34,EWC,Ø NOM.
+200=450,530,140,50,Courier New,20,34,C,Ø NOM.
+210=+140,+0,190,50,Courier New,20,34,C,PESO
+;220=+190,+0,190,50,Courier New,20,34,EC,LUNGH.
+220=+190,+0,190,50,Courier New,20,34,C,LUNGH.
+;230=+190,+0,220,50,Courier New,20,34,EC,SEZIONE
+230=+190,+0,220,50,Courier New,20,34,C,SEZIONE
+240=+220,+0,210,50,Courier New,20,34,C,CAR.SNE.
+;250=+210,+0,210,50,Courier New,20,34,EC,CAR.ROT.
+250=+210,+0,210,50,Courier New,20,34,C,CAR.ROT.
+260=+210,+0,190,50,Courier New,20,34,C,SNERVAM.
+280=+190,+0,190,50,Courier New,20,34,C,ROTTURA
+290=+190,+0,150,50,Courier New,20,34,C,AG
+295=+150,+0,150,50,Courier New,20,34,C,AGT
+;310=+150,+0,170,50,Courier New,20,34,EC,Rm/ReH
+310=+150,+0,170,50,Courier New,20,34,C,Rm/ReH
+;320=+170,+0,200,50,Courier New,20,34,EC,DIST. NODO
+320=+170,+0,200,50,Courier New,20,34,C,DIST. NODO
 
-550=70,+50,2000,50,Courier New,20,30,L,------------------------------------------------------------------------------------------------------------------------------------------------------------
--900=1250,2400,500,50,Courier New,20,38,BC,Lo Sperimentatore
--910=+50,+100,400,50,Courier New,20,30,BC,...........................
+; con delimitatori di casella
+;400=450,+40,140,30,Courier New,20,34,EWC,mm
+;410=+140,+0,190,30,Courier New,20,34,EC,gr
+;420=+190,+0,190,30,Courier New,20,34,EC,mm
+;430=+190,+0,220,30,Courier New,20,34,EC,mm²
+;440=+220,+0,210,30,Courier New,20,34,EC,KN
+;450=+210,+0,210,30,Courier New,20,34,EC,KN
+;460=+210,+0,190,30,Courier New,20,34,EC,ReH
+;480=+190,+0,190,30,Courier New,20,34,EC,Rm
+;510=+190,+0,150,50,Courier New,20,30,C,%
+;520=+150,+0,150,30,Courier New,20,30,EC,%
+;530=+150,+0,170,30,Courier New,20,34,EC,
+;540=+170,+0,200,30,Courier New,20,34,EC,N
+
+; senza delimitatori
+400=450,+40,140,30,Courier New,20,34,C,mm
+410=+140,+0,190,30,Courier New,20,34,C,gr
+420=+190,+0,190,30,Courier New,20,34,C,mm
+430=+190,+0,220,30,Courier New,20,34,C,mm²
+440=+220,+0,210,30,Courier New,20,34,C,KN
+450=+210,+0,210,30,Courier New,20,34,C,KN
+460=+210,+0,190,30,Courier New,20,34,C,ReH
+480=+190,+0,190,30,Courier New,20,34,C,Rm
+510=+190,+0,150,50,Courier New,20,30,C,%
+520=+150,+0,150,30,Courier New,20,30,C,%
+530=+150,+0,170,30,Courier New,20,34,C,
+540=+170,+0,200,30,Courier New,20,34,C,N
+
+
+;550=70,+50,2300,50,Courier New,20,30,L,-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+800=2000,1900,900,50,Courier New,20,38,BL,La prova è stata eseguita in conformità alla norma in intestazione
+900=2200,1950,500,50,Courier New,20,38,BC,Lo Sperimentatore
+910=+50,+80,400,50,Courier New,20,30,BC,...........................
 
 
 [fields]
-5=1470,130,250,50,Courier New,30,40,L,dataMinuta
-10=1860,+0,100,50,Courier New,30,40,L,@page
-20=430,350,100,50,Courier New,30,40,BL,totaleVerbali
-30=+200,+0,300,50,Courier New,30,40,BL,dataAccettazione
-40=+500,+0,1000,50,Courier New,30,40,BL,urgenza
-50=750,430,250,50,Courier New,30,40,L,progressivoVerbale
-60=1340,+100,550,50,Courier New,30,40,BL,spianpieg
-70=490,+50,100,50,Courier New,20,38,L,numeroCampioni
-80=490,+70,1000,50,Courier New,20,38,BL,materialeConsegnato
-90=490,+40,1400,60,Courier New,20,38,BL,proveRichieste
-100=430,+200,1200,50,Courier New,30,40,BC,titolo
+;5=1470,130,250,50,Courier New,30,40,L,dataMinuta
+10=2830,100,100,50,Courier New,30,40,L,@page
+20=+100,100,100,50,Courier New,30,40,L,@totpages
+75=430,250,100,50,Courier New,30,40,BL,totaleVerbali
+85=+200,+0,300,50,Courier New,30,40,BL,dataAccettazione
+100=+500,+0,1000,50,Courier New,30,40,BL,urgenza
+;105=750,430,250,50,Courier New,30,40,L,progressivoVerbale
+125=1700,+0,550,50,Courier New,30,40,BL,spianpieg
+135=400,300,100,50,Courier New,20,38,L,numeroCampioni
+145=900,+0,1000,50,Courier New,20,38,BL,materialeConsegnato
+155=+0,+35,1400,60,Courier New,20,38,BL,proveRichieste
+160=940,+105,1200,50,Courier New,30,40,BC,titolo
 
 
 
 [tabfields]
-1=100,1070,1960,80,Courier New,40,80,L,separatore
-5=60,1070,30,80,Courier New,20,40,R,indiceReti
-200=100,+0,120,80,Courier New,20,40,WEC,fiReti
-210=+120,+0,170,80,Courier New,20,40,C,pesoReti
-220=+170,+0,170,80,Courier New,20,40,C,lunghezzaReti
-230=+170,+0,200,80,Courier New,20,40,WEC,sezioneReti
-240=+200,+0,195,80,Courier New,20,40,C,snervamentoReti
-250=+195,+0,195,80,Courier New,20,40,C,rotturaReti
-260=+195,+0,175,80,Courier New,20,40,WC,tensSnerBReti
-280=+175,+0,175,80,Courier New,20,40,C,tensRottBReti
-300=+175,+0,110,80,Courier New,20,40,C,agReti
-310=+110,+0,110,80,Courier New,20,40,C,agtReti
-320=+110,+0,150,80,Courier New,20,40,WEC,ratioRotSnervReti
-330=+150,+0,180,80,Courier New,20,40,EC,distaccoReti
+;;1=400,600,1960,80,Courier New,40,80,L,separatore
+;5=380,600,60,80,Courier New,20,40,R,indiceReti
+;200=450,+0,140,80,Courier New,20,40,WEC,fiReti
+;210=+140,+0,190,80,Courier New,20,40,C,pesoReti
+;220=+190,+0,190,80,Courier New,20,40,C,lunghezzaReti
+;230=+190,+0,220,80,Courier New,20,40,WEC,sezioneReti
+;240=+220,+0,210,80,Courier New,20,40,C,snervamentoReti
+;250=+210,+0,210,80,Courier New,20,40,C,rotturaReti
+;260=+210,+0,190,80,Courier New,20,40,WC,tensSnerBReti
+;280=+190,+0,190,80,Courier New,20,40,C,tensRottBReti
+;300=+190,+0,150,80,Courier New,20,40,C,agReti
+;310=+150,+0,150,80,Courier New,20,40,C,agtReti
+;320=+150,+0,170,80,Courier New,20,40,WEC,ratioRotSnervReti
+;330=+170,+0,200,80,Courier New,20,40,EC,distaccoReti
+
+;1=400,600,1960,80,Courier New,40,80,L,separatore
+5=380,600,60,80,Courier New,20,40,R,indiceReti
+200=450,+0,140,80,Courier New,20,40,C,fiReti
+210=+140,+0,190,80,Courier New,20,40,C,pesoReti
+220=+190,+0,190,80,Courier New,20,40,C,lunghezzaReti
+230=+190,+0,220,80,Courier New,20,40,C,sezioneReti
+240=+220,+0,210,80,Courier New,20,40,C,snervamentoReti
+250=+210,+0,210,80,Courier New,20,40,C,rotturaReti
+260=+210,+0,190,80,Courier New,20,40,C,tensSnerBReti
+280=+190,+0,190,80,Courier New,20,40,C,tensRottBReti
+300=+190,+0,150,80,Courier New,20,40,C,agReti
+310=+150,+0,150,80,Courier New,20,40,C,agtReti
+320=+150,+0,170,80,Courier New,20,40,C,ratioRotSnervReti
+330=+170,+0,200,80,Courier New,20,40,C,distaccoReti
 
 [grids]
+10=370,500,2320,150,1,1
+20=+0,+150,2320,300,1,1
+30=+0,+300,2320,310,1,1
+40=+0,+310,2320,310,1,1
+50=+0,+310,2320,300,1,1
+90=450,500,140,1370,1,1
+100=+140,+0,380,1370,1,1
+120=+380,+0,220,1370,1,1
+130=+220,+0,420,1370,1,1
+140=+420,+0,380,1370,1,1
+150=+380,+0,300,1370,1,1
+160=+300,+0,170,1370,1,1
