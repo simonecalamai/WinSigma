@@ -3574,8 +3574,15 @@ BOOL CVerbaliView::ScanProviniMinuta(CStringArray* pFieldNames, CStringArray* pF
   pFieldValues->Add("........");
   pFieldNames->Add("allungamento");
   pFieldValues->Add("........");
+
+  pFieldNames->Add("piegEsito");
+  pFieldValues->Add("......");
   pFieldNames->Add("piegMandr");
-  pFieldValues->Add("........");
+  pFieldValues->Add("......");
+  pFieldNames->Add("ripianoTrazione");
+  pFieldValues->Add("......");
+  pFieldNames->Add("pancalePiegamento");
+  pFieldValues->Add("......");
   pFieldNames->Add("numProvino");
   pFieldValues->Add("1");
 	
