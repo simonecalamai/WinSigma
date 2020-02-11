@@ -41,7 +41,7 @@ tab lines=14
 270=+150,+0,150,50,Courier New,20,34,L,TENS.SNE
 280=+180,+0,150,50,Courier New,20,34,L,TENS.ROT
 290=+180,+0,120,50,Courier New,20,34,L,ALLUNG.
-300=+190,+0,170,50,Courier New,20,34,L,RIPIANO
+300=+160,+0,170,50,Courier New,20,34,L,RIPIANO
 330=1360,+40,50,50,Courier New,20,34,L,mm
 340=+120,+0,50,50,Courier New,20,34,L,mm
 350=+140,+0,50,50,Courier New,20,34,L,mm²
@@ -85,8 +85,8 @@ tab lines=14
 110=+170,+0,150,80,Courier New,20,40,L,tensSne
 120=+190,+0,150,80,Courier New,20,40,L,tensRot
 130=+170,+0,120,80,Courier New,20,40,L,allungamento
-140=+200,+0,170,80,Courier New,20,40,L,piegMandr
-;150=+200,+0,120,80,Courier New,20,40,L,posCertificato
+140=+170,+0,170,80,Courier New,20,40,L,piegMandr
+150=+140,+0,100,80,Courier New,20,40,L,posCertificato
 
 
 [grids]
@@ -104,4 +104,4 @@ tab lines=14
 120=+180,470,480,1310,1,1
 130=+480,470,640,1310,1,1
 140=+640,470,180,1310,1,1
-;150=+400,470,180,1310,1,1
+150=+180,470,160,1310,1,1

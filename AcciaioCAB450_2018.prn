@@ -43,8 +43,8 @@ tab lines=16
 290=+215,+0,120,50,Courier New,20,34,L,AG
 295=+165,+0,120,50,Courier New,20,34,L,AGT
 300=+180,+0,140,50,Courier New,20,34,L,PIEGAMENTO
-305=+250,+0,120,50,Courier New,20,34,L,RIPIANO
-310=+170,+0,120,50,Courier New,20,34,L,PANCALE
+305=+220,+0,120,50,Courier New,20,34,L,RIPIANO
+310=+145,+0,120,50,Courier New,20,34,L,PANCALE
 ;310=+90,+0,100,50,Courier New,20,34,L,Mandr.
 ;320=250,+70,100,50,Courier New,20,34,L,prove
 330=570,575,50,50,Courier New,20,34,L,mm
@@ -60,8 +60,8 @@ tab lines=16
 400=+210,+0,50,50,Courier New,20,30,L,%
 410=+170,+0,50,50,Courier New,20,30,L,%
 420=+130,-25,250,50,Courier New,20,34,L,ESITO     MANDR.
-430=+280,+0,210,50,Courier New,20,34,L,TRAZIONE
-440=+160,+0,210,50,Courier New,20,34,L,PIEGAMENTO
+430=+255,+0,210,50,Courier New,20,34,L,TRAZIONE
+440=+135,+0,210,50,Courier New,20,34,L,PIEGAMENTO
 450=2480,+28,50,50,Courier New,20,30,L,mm
 ;500=70,+40,2900,50,Courier New,20,30,L,---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -102,10 +102,10 @@ tab lines=16
 135=+180,+0,100,80,Courier New,20,40,L,peso
 140=+150,+0,130,80,Courier New,20,40,L,piegEsito
 145=+130,+0,130,80,Courier New,20,40,L,piegMandr
-150=+170,+0,130,80,Courier New,20,40,L,ripianoTrazione
-155=+170,+0,130,80,Courier New,20,40,L,pancalePiegamento
+150=+150,+0,130,80,Courier New,20,40,L,ripianoTrazione
+155=+150,+0,130,80,Courier New,20,40,L,pancalePiegamento
 ;140=+200,+0,130,80,Courier New,20,40,L,piegMandr
-;150=+220,+0,120,80,Courier New,20,40,L,posCertificato
+160=+140,+0,120,80,Courier New,20,40,L,posCertificato
 
 
 [grids]
@@ -128,4 +128,5 @@ tab lines=16
 190=+180,470,160,1420,1,1
 200=+160,470,280,1420,1,1
 210=+140,640,140,1250,1,1
-220=+140,470,180,1420,1,1
+220=+140,470,140,1420,1,1
+230=+140,470,160,1420,1,1

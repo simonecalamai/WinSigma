@@ -4642,6 +4642,25 @@ BOOL CVerbaliView::ScanCampioni(CStringArray* pFieldNames, CStringArray* pFieldV
 		}
     pFieldValues->Add(str);
 	} 
+	else if(m_pSerieSet->m_TipoCertificato == 17)   
+	{
+		// certificato ferri B450 DM 2018
+    pFieldNames->Add("struttura");
+		if(!m_pSerieSet->m_StrutturaPrelievo.IsEmpty())
+		{
+			str.Format("%s - %s", m_pSerieSet->m_StrutturaPrelievo, m_pSerieSet->m_VerbalePrelievo);
+		}
+		else
+		{
+			str.Format("%s", m_pSerieSet->m_VerbalePrelievo);
+		}
+		if(m_nPrintMode == STAMPA_VERBALE_AD_AGHI)
+		{
+			str.Replace("°", "ø");
+			str.Replace("²", "ı");
+		}
+    pFieldValues->Add(str);
+	} 
   else if((!m_pSerieSet->m_StrutturaPrelievo.IsEmpty()) || (m_pSerieSet->m_TipoCertificato == 13))
   {
     pFieldNames->Add("struttura");
