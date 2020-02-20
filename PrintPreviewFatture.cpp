@@ -129,9 +129,9 @@ void CPrintPreviewFatture::Print(long lCodice, CDC* pDC, CRect* pRect)
 	}
 
   if(m_bRaggruppaPerServizio)
-    prn.Print(pApp->GetCurrentDirectory() + m_strLayout, &strNames, &strValues, &ScanDatiFattura, &ScanPerServizio);
+    prn.Print(pApp->GetCurrentDirectory() + m_strLayout, &strNames, &strValues, NULL, &ScanDatiFattura, &ScanPerServizio);
   else
-    prn.Print(pApp->GetCurrentDirectory() + m_strLayout, &strNames, &strValues, &ScanDatiFattura, &ScanServizi);
+    prn.Print(pApp->GetCurrentDirectory() + m_strLayout, &strNames, &strValues, NULL, &ScanDatiFattura, &ScanServizi);
   m_nNumPagine = prn.GetPage() - 1;
   prn.EndSimulation();
   m_pVerbaliInfatturazione->m_strSort = "Codice";
@@ -153,9 +153,9 @@ void CPrintPreviewFatture::Print(long lCodice, CDC* pDC, CRect* pRect)
 			prn.SetHeaderFile(pApp->GetCurrentDirectory() + "\\" + pApp->m_headerFatturePrn);
 		}
     if(m_bRaggruppaPerServizio)
-      prn.Print(pApp->GetCurrentDirectory() + m_strLayout, &strNames, &strValues, &ScanDatiFattura, &ScanPerServizio);
+      prn.Print(pApp->GetCurrentDirectory() + m_strLayout, &strNames, &strValues, NULL, &ScanDatiFattura, &ScanPerServizio);
     else
-      prn.Print(pApp->GetCurrentDirectory() + m_strLayout, &strNames, &strValues, &ScanDatiFattura, &ScanServizi);
+      prn.Print(pApp->GetCurrentDirectory() + m_strLayout, &strNames, &strValues, NULL, &ScanDatiFattura, &ScanServizi);
   }
   prn.PostPrinting();
 }
@@ -192,9 +192,9 @@ int CPrintPreviewFatture::PrintPage(long lCodice, CDC* pDC, CRect* pRect, int nP
   SET_START(m_pVerbaliInfatturazione);
   SET_START(m_pServiziErogati);
   if(m_bRaggruppaPerServizio)
-    prn.Print(pApp->GetCurrentDirectory() + m_strLayout, &strNames, &strValues, &ScanDatiFattura, &ScanPerServizio);
+    prn.Print(pApp->GetCurrentDirectory() + m_strLayout, &strNames, &strValues, NULL, &ScanDatiFattura, &ScanPerServizio);
   else
-    prn.Print(pApp->GetCurrentDirectory() + m_strLayout, &strNames, &strValues, &ScanDatiFattura, &ScanServizi);
+    prn.Print(pApp->GetCurrentDirectory() + m_strLayout, &strNames, &strValues, NULL, &ScanDatiFattura, &ScanServizi);
   m_nNumPagine = prn.GetPage() - 1;
   prn.EndSimulation();
   prn.m_nTotalePagine = m_nNumPagine;

@@ -411,7 +411,7 @@ void CStatProveView::OnButtonReport()
 			m_aryDatiStampa.Add(m_ListRisultato.GetItemText(i, 1));
 		}
 
-		prn.Print(pApp->GetCurrentDirectory() + "\\" + "StatisticheProve.prn", &fieldNames, &fieldValues, NULL, &ScanProve);
+		prn.Print(pApp->GetCurrentDirectory() + "\\" + "StatisticheProve.prn", &fieldNames, &fieldValues, NULL, NULL, &ScanProve);
 	}
 
 	m_aryDatiStampa.RemoveAll();

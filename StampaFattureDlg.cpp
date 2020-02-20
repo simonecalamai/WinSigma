@@ -940,9 +940,9 @@ void CStampaFattureDlg::PrnFromFattToFatt(int DaNumFatt, int ANumFatt, CString A
 			prn.SetHeaderFile(pApp->GetCurrentDirectory() + "\\" + pApp->m_headerFatturePrn);
 		}
 		if(m_bRaggruppaPerServizio)
-			prn.Print(pApp->GetCurrentDirectory() + strLayout, &strNames, &strValues, &ScanDatiFattura, &ScanPerServizio);
+			prn.Print(pApp->GetCurrentDirectory() + strLayout, &strNames, &strValues, NULL, &ScanDatiFattura, &ScanPerServizio);
 		else
-			prn.Print(pApp->GetCurrentDirectory() + strLayout, &strNames, &strValues, &ScanDatiFattura, &ScanServizi);
+			prn.Print(pApp->GetCurrentDirectory() + strLayout, &strNames, &strValues, NULL, &ScanDatiFattura, &ScanServizi);
 		m_nNumPagine = prn.GetPage() - 1;
 		prn.EndSimulation();
 		m_pVerbaliInfatturazione->m_strSort = "Codice";
@@ -966,9 +966,9 @@ void CStampaFattureDlg::PrnFromFattToFatt(int DaNumFatt, int ANumFatt, CString A
 				prn.SetHeaderFile(pApp->GetCurrentDirectory() + "\\" + pApp->m_headerFatturePrn);
 			}
 			if(m_bRaggruppaPerServizio)
-				prn.Print(pApp->GetCurrentDirectory() + strLayout, &strNames, &strValues, &ScanDatiFattura, &ScanPerServizio);
+				prn.Print(pApp->GetCurrentDirectory() + strLayout, &strNames, &strValues, NULL, &ScanDatiFattura, &ScanPerServizio);
 			else
-				prn.Print(pApp->GetCurrentDirectory() + strLayout, &strNames, &strValues, &ScanDatiFattura, &ScanServizi);
+				prn.Print(pApp->GetCurrentDirectory() + strLayout, &strNames, &strValues, NULL, &ScanDatiFattura, &ScanServizi);
 		}
 	}
 
@@ -1191,9 +1191,9 @@ void CStampaFattureDlg::OnButtonPrintFattura()
 	}
 
   if(m_bRaggruppaPerServizio)
-    prn.Print(pApp->GetCurrentDirectory() + strLayout, &strNames, &strValues, &ScanDatiFattura, &ScanPerServizio);
+    prn.Print(pApp->GetCurrentDirectory() + strLayout, &strNames, &strValues, NULL, &ScanDatiFattura, &ScanPerServizio);
   else
-    prn.Print(pApp->GetCurrentDirectory() + strLayout, &strNames, &strValues, &ScanDatiFattura, &ScanServizi);
+    prn.Print(pApp->GetCurrentDirectory() + strLayout, &strNames, &strValues, NULL, &ScanDatiFattura, &ScanServizi);
   m_nNumPagine = prn.GetPage() - 1;
   prn.EndSimulation();
   m_pVerbaliInfatturazione->m_strSort = "Codice";
@@ -1215,9 +1215,9 @@ void CStampaFattureDlg::OnButtonPrintFattura()
 			prn.SetHeaderFile(pApp->GetCurrentDirectory() + "\\" + pApp->m_headerFatturePrn);
 		}
     if(m_bRaggruppaPerServizio)
-      prn.Print(pApp->GetCurrentDirectory() + strLayout, &strNames, &strValues, &ScanDatiFattura, &ScanPerServizio);
+      prn.Print(pApp->GetCurrentDirectory() + strLayout, &strNames, &strValues, NULL, &ScanDatiFattura, &ScanPerServizio);
     else
-      prn.Print(pApp->GetCurrentDirectory() + strLayout, &strNames, &strValues, &ScanDatiFattura, &ScanServizi);
+      prn.Print(pApp->GetCurrentDirectory() + strLayout, &strNames, &strValues, NULL, &ScanDatiFattura, &ScanServizi);
   }
   prn.PostPrinting();
   if(m_pVerbaliInfatturazione)

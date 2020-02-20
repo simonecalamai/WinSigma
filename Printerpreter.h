@@ -29,7 +29,7 @@ class CPrintItem : public CObject
     CPrintItem(void);
 		void SetNomefile(CString nomefile);
     // imposta le variabili in base ai valori letti dal file alla sezione sec 
-		virtual BOOL Load(CString sec, CString key, CString layoutFName);
+		virtual BOOL Load(CString sec, CString key, CString layoutFName, CStringArray* pMarchiFiles);
     // stampa l'oggetto in base alle sue caratteristiche
 		virtual CGdiObject* Print(CDC* pDC, CGdiObject* pGdiObj);
     // Stampa in modalità testo
@@ -54,8 +54,8 @@ class CPrintItemArray : public CObArray
 		CPrintItemArray(void);
     // distruttore
 		~CPrintItemArray(void);
-    // costruzione dell'arry
-		int  Load(CString sec, CString layoutFName, CString headerFName = "");
+    // costruzione dell'array
+		int  Load(CString sec, CString layoutFName, CString headerFName = "", CStringArray* pMarchiFiles = NULL);
     //
 		CPrintItem& operator[](int i);
     // 
@@ -90,7 +90,7 @@ class CStringItem : public CPrintItem
   public:
     CStringItem(void);
     // imposta le variabili membro, in base ai dati contenuti nel file
-		BOOL Load(CString sec, CString key, CString layoutFName);
+		BOOL Load(CString sec, CString key, CString layoutFName, CStringArray* pMarchiFiles);
     // stampa
 		CGdiObject* Print(CDC* pDC, CGdiObject* pFont);
     // Stampa in modalità testo
@@ -116,7 +116,7 @@ class CFieldItem : public CStringItem
   public:
     CFieldItem(void);
     // imposta le variabili membro, in base ai dati contenuti nel file    
-		BOOL Load(CString sec, CString key, CString layoutFName);
+		BOOL Load(CString sec, CString key, CString layoutFName, CStringArray* pMarchiFiles);
 #if 0
     // stampa
 		CGdiObject* Print(CDC* pDC, CGdiObject* pFont);
@@ -157,7 +157,7 @@ class CTabfieldItem : public CFieldItem
 	  static int m_nRigheScritte;
     CTabfieldItem(void);
     // imposta le variabili membro, in base ai dati contenuti nel file    
-    BOOL Load(CString sec, CString key, CString layoutFName);
+    BOOL Load(CString sec, CString key, CString layoutFName, CStringArray* pMarchiFiles);
     // stampa
 		CGdiObject* Print(CDC* pDC, CGdiObject* pFont);
     // Stampa in modalità testo
@@ -180,7 +180,7 @@ class CTextItem : public CStringItem
   /*----- metodi -----*/
   public:
     CTextItem(void);
-    BOOL Load(CString sec, CString key, CString layoutFName);
+    BOOL Load(CString sec, CString key, CString layoutFName, CStringArray* pMarchiFiles);
     CGdiObject* Print(CDC* pDC, CGdiObject* pFont);
 };
 
@@ -204,7 +204,7 @@ class CGridItem : public CPrintItem
   public:
     CGridItem(void);
     CGridItem(CGridItem* pItem);
-    BOOL Load(CString sec, CString key, CString layoutFName);
+    BOOL Load(CString sec, CString key, CString layoutFName, CStringArray* pMarchiFiles);
     CGdiObject* Print(CDC* pDC, CGdiObject* pPen);
 };
 
@@ -230,7 +230,7 @@ class CBitmapItem : public CPrintItem
   public:
     CBitmapItem(void);
     ~CBitmapItem(void);
-    BOOL Load(CString sec, CString key, CString layoutFName);
+    BOOL Load(CString sec, CString key, CString layoutFName, CStringArray* pMarchiFiles);
     CGdiObject* Print(CDC* pDC, CGdiObject* pBitmap);
 };
 
@@ -257,7 +257,7 @@ class CImageItem : public CPrintItem
   public:
     CImageItem(void);
     ~CImageItem(void);
-    BOOL Load(CString sec, CString key, CString layoutFName);
+    BOOL Load(CString sec, CString key, CString layoutFName, CStringArray* pMarchiFiles);
     CGdiObject* Print(CDC* pDC, CGdiObject* pBitmap);
 };
 
@@ -277,7 +277,7 @@ class CBarcodeItem : public CPrintItem
   public:
     CBarcodeItem(void);
     ~CBarcodeItem(void);
-    BOOL Load(CString sec, CString key, CString layoutFName);
+    BOOL Load(CString sec, CString key, CString layoutFName, CStringArray* pMarchiFiles);
     CGdiObject* Print(CDC* pDC, CGdiObject* pBitmap);
 };
 
@@ -337,6 +337,7 @@ class CPrintInterpreter : public CObject
 		BOOL Print(CString layoutFName,
 								 CStringArray* pFiledsName,
 								 CStringArray* pFieldsValue,
+								 CStringArray* pMarchiFiles,
 								 BOOL (CALLBACK *pfnSetFields)(CStringArray*, CStringArray*),
 								 BOOL (CALLBACK *pfnSetTabfields)(CStringArray*, CStringArray*));
 		BOOL PrintPage(CString layoutFName,

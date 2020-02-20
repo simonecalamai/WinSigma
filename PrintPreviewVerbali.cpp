@@ -129,9 +129,9 @@ void CPrintPreviewVerbali::Print(long lCodVerbale, CDC* pDC, CRect* pRect)
   prnInterpreter.SetPage(1);
   prnInterpreter.StartSimulation();
 #ifdef WINSIGMA2
-	prnInterpreter.Print(".\\VerbaliSigma2.prn", &strNames, &strValues, NULL, &ScanCampioni);
+	prnInterpreter.Print(".\\VerbaliSigma2.prn", &strNames, &strValues, NULL, NULL, &ScanCampioni);
 #else
-  prnInterpreter.Print(".\\Verbali.prn", &strNames, &strValues, NULL, &ScanCampioni);
+  prnInterpreter.Print(".\\Verbali.prn", &strNames, &strValues, NULL, NULL, &ScanCampioni);
 #endif  
 	m_nTotalePagine = prnInterpreter.GetPage() - 1;
   prnInterpreter.EndSimulation();
@@ -139,9 +139,9 @@ void CPrintPreviewVerbali::Print(long lCodVerbale, CDC* pDC, CRect* pRect)
   SET_START(m_pSerieSet);
   ScanFields(&strNames, &strValues);
 #ifdef WINSIGMA2
-	prnInterpreter.Print(".\\VerbaliSigma2.prn", &strNames, &strValues, NULL, &ScanCampioni);
+	prnInterpreter.Print(".\\VerbaliSigma2.prn", &strNames, &strValues, NULL, NULL, &ScanCampioni);
 #else
-  prnInterpreter.Print(".\\Verbali.prn", &strNames, &strValues, NULL, &ScanCampioni);
+  prnInterpreter.Print(".\\Verbali.prn", &strNames, &strValues, NULL, NULL, &ScanCampioni);
 #endif	
 	prnInterpreter.PostPrinting();
   m_pSerieSet->m_strFilter.Empty();
@@ -208,9 +208,9 @@ int CPrintPreviewVerbali::PrintPage(long lCodVerbale, CDC* pDC, CRect* pRect, in
   prnInterpreter.SetPage(1);
   prnInterpreter.StartSimulation();
 #ifdef WINSIGMA2
-	prnInterpreter.Print(".\\VerbaliSigma2.prn", &strNames, &strValues, NULL, &ScanCampioni);
+	prnInterpreter.Print(".\\VerbaliSigma2.prn", &strNames, &strValues, NULL, NULL, &ScanCampioni);
 #else
-  prnInterpreter.Print(".\\Verbali.prn", &strNames, &strValues, NULL, &ScanCampioni);
+  prnInterpreter.Print(".\\Verbali.prn", &strNames, &strValues, NULL, NULL, &ScanCampioni);
 #endif 	
 	m_nTotalePagine = prnInterpreter.GetPage() - 1;
   prnInterpreter.EndSimulation();

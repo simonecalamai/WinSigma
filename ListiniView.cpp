@@ -786,9 +786,9 @@ void CListiniView::StampaListino(BOOL bInConcessione)
   SET_START(m_pCategorieSet);
 	m_aryPagine.RemoveAll();
 #ifdef WINSIGMA2	
-	prn.Print(pApp->GetCurrentDirectory() + "\\ListinoIndexSigma2.prn", &fieldNames, &fieldValues, NULL, &ScanCategorie);
+	prn.Print(pApp->GetCurrentDirectory() + "\\ListinoIndexSigma2.prn", &fieldNames, &fieldValues, NULL, NULL, &ScanCategorie);
 #else
-	prn.Print(pApp->GetCurrentDirectory() + "\\ListinoIndex.prn", &fieldNames, &fieldValues, NULL, &ScanCategorie);
+	prn.Print(pApp->GetCurrentDirectory() + "\\ListinoIndex.prn", &fieldNames, &fieldValues, NULL, NULL, &ScanCategorie);
 #endif
 	for(SET_START(m_pCategorieSet);
 	    !m_pCategorieSet->IsEOF();
@@ -802,9 +802,9 @@ void CListiniView::StampaListino(BOOL bInConcessione)
 		m_pServiziSet->Requery();
 		SET_START(m_pServiziSet);
 #ifdef WINSIGMA2	
-		prn.Print(pApp->GetCurrentDirectory() + "\\ListinoSigma2.prn", &fieldNames, &fieldValues, NULL, &ScanServizi);
+		prn.Print(pApp->GetCurrentDirectory() + "\\ListinoSigma2.prn", &fieldNames, &fieldValues, NULL, NULL, &ScanServizi);
 #else
-		prn.Print(pApp->GetCurrentDirectory() + "\\Listino.prn", &fieldNames, &fieldValues, NULL, &ScanServizi);
+		prn.Print(pApp->GetCurrentDirectory() + "\\Listino.prn", &fieldNames, &fieldValues, NULL, NULL, &ScanServizi);
 #endif
 	}
   prn.EndSimulation();
@@ -821,9 +821,9 @@ void CListiniView::StampaListino(BOOL bInConcessione)
  	str.MakeUpper();
   fieldValues.Add(str);
 #ifdef WINSIGMA2
-	prn.Print(pApp->GetCurrentDirectory() + "\\ListinoCoverSigma2.prn", &fieldNames, &fieldValues, NULL, NULL);
+	prn.Print(pApp->GetCurrentDirectory() + "\\ListinoCoverSigma2.prn", &fieldNames, &fieldValues, NULL, NULL, NULL);
 #else
-	prn.Print(pApp->GetCurrentDirectory() + "\\ListinoCover.prn", &fieldNames, &fieldValues, NULL, NULL);
+	prn.Print(pApp->GetCurrentDirectory() + "\\ListinoCover.prn", &fieldNames, &fieldValues, NULL, NULL, NULL);
 #endif
 	fieldNames.RemoveAll();
 	fieldValues.RemoveAll();
@@ -831,9 +831,9 @@ void CListiniView::StampaListino(BOOL bInConcessione)
   SET_START(m_pCategorieSet);
   prn.SetPage(1);
 #ifdef WINSIGMA2
-	prn.Print(pApp->GetCurrentDirectory() + "\\ListinoIndexSigma2.prn", &fieldNames, &fieldValues, NULL, &ScanCategorie);
+	prn.Print(pApp->GetCurrentDirectory() + "\\ListinoIndexSigma2.prn", &fieldNames, &fieldValues, NULL, NULL, &ScanCategorie);
 #else
-	prn.Print(pApp->GetCurrentDirectory() + "\\ListinoIndex.prn", &fieldNames, &fieldValues, NULL, &ScanCategorie);
+	prn.Print(pApp->GetCurrentDirectory() + "\\ListinoIndex.prn", &fieldNames, &fieldValues, NULL, NULL, &ScanCategorie);
 #endif
 	fieldNames.RemoveAll();
 	fieldValues.RemoveAll();
@@ -858,9 +858,9 @@ void CListiniView::StampaListino(BOOL bInConcessione)
 		fieldValues.Add(m_pCategorieSet->m_Nome);
     fieldValues.Add(m_pCategorieSet->m_Descrizione);
 #ifdef WINSIGMA2
-		prn.Print(pApp->GetCurrentDirectory() + "\\ListinoSigma2.prn", &fieldNames, &fieldValues, NULL, &ScanServizi);
+		prn.Print(pApp->GetCurrentDirectory() + "\\ListinoSigma2.prn", &fieldNames, &fieldValues, NULL, NULL, &ScanServizi);
 #else
-		prn.Print(pApp->GetCurrentDirectory() + "\\Listino.prn", &fieldNames, &fieldValues, NULL, &ScanServizi);
+		prn.Print(pApp->GetCurrentDirectory() + "\\Listino.prn", &fieldNames, &fieldValues, NULL, NULL, &ScanServizi);
 #endif
 	}
 

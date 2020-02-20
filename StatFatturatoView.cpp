@@ -372,7 +372,7 @@ void CStatFatturatoView::OnButtonStampaReport()
 			m_aryDatiStampa.Add(m_listFatturato.GetItemText(i, 2));
 		}
 
-		prn.Print(pApp->GetCurrentDirectory() + "\\" + "StatisticheFatturato.prn", &fieldNames, &fieldValues, NULL, &ScanFatture);
+		prn.Print(pApp->GetCurrentDirectory() + "\\" + "StatisticheFatturato.prn", &fieldNames, &fieldValues, NULL, NULL, &ScanFatture);
 	}
 
 	m_aryDatiStampa.RemoveAll();

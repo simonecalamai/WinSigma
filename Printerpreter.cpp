@@ -252,6 +252,7 @@ BOOL CPrintInterpreter::Print(
        CString layoutFName,
        CStringArray* pNames,
        CStringArray* pValues,
+			 CStringArray* pMarchiFiles,
        BOOL (CALLBACK *pfnSetFields)(CStringArray*, CStringArray*),
        BOOL (CALLBACK *pfnSetTabfields)(CStringArray*, CStringArray*))
 {
@@ -270,21 +271,21 @@ BOOL CPrintInterpreter::Print(
 
   // dal file di layout vede se deve scrivere il numero a ciascuna pagina e, in caso
 	// affermativo, memorizza come nelle le variabili membro dell'oggetto m_PageItem
-  BOOL bStampaNumeroPagina = m_PageItem.Load(SEC_GENERAL, KEY_NR_PAGINA, layoutFName);
+  BOOL bStampaNumeroPagina = m_PageItem.Load(SEC_GENERAL, KEY_NR_PAGINA, layoutFName, pMarchiFiles);
    
 	/*----- creo il device context per la stampante -----*/
 	if (m_dcPrint.m_hDC == NULL)
     return FALSE;
   
 	// legge il file di layout per costruire i vari array di tipo CPrintItemArray  
-	m_StringItems.Load(SEC_STRINGS,                  layoutFName, m_HeaderFName);
-	m_FieldItems.Load(SEC_FIELDS,                    layoutFName, m_HeaderFName);
-	m_TabfieldItems.Load(SEC_TABFIELDS,              layoutFName, m_HeaderFName);
-	m_TextItems.Load(SEC_TEXTS,                      layoutFName, m_HeaderFName);
-  m_GridItems.Load(SEC_GRIDS,                      layoutFName, m_HeaderFName);
-  m_BitmapItems.Load(SEC_BITMAPS,                  layoutFName, m_HeaderFName);
-  m_ImageItems.Load(SEC_IMAGES,										 layoutFName, m_HeaderFName);
-  m_BarcodeItems.Load(SEC_BARCODES,                layoutFName, m_HeaderFName);
+	m_StringItems.Load(SEC_STRINGS,                  layoutFName, m_HeaderFName, pMarchiFiles);
+	m_FieldItems.Load(SEC_FIELDS,                    layoutFName, m_HeaderFName, pMarchiFiles);
+	m_TabfieldItems.Load(SEC_TABFIELDS,              layoutFName, m_HeaderFName, pMarchiFiles);
+	m_TextItems.Load(SEC_TEXTS,                      layoutFName, m_HeaderFName, pMarchiFiles);
+  m_GridItems.Load(SEC_GRIDS,                      layoutFName, m_HeaderFName, pMarchiFiles);
+  m_BitmapItems.Load(SEC_BITMAPS,                  layoutFName, m_HeaderFName, pMarchiFiles);
+  m_ImageItems.Load(SEC_IMAGES,										 layoutFName, m_HeaderFName, pMarchiFiles);
+  m_BarcodeItems.Load(SEC_BARCODES,                layoutFName, m_HeaderFName, pMarchiFiles);
   	  
 	CFont* pFont;
 
@@ -368,7 +369,7 @@ BOOL CPrintInterpreter::Print(
 
   // dal file di layout vede se deve scrivere il numero a ciascuna pagina e, in caso
 	// affermativo, memorizza come nelle le variabili membro dell'oggetto m_PageItem
-  BOOL bStampaNumeroPagina = m_PageItem.Load(SEC_GENERAL, KEY_NR_PAGINA, layoutFName);
+  BOOL bStampaNumeroPagina = m_PageItem.Load(SEC_GENERAL, KEY_NR_PAGINA, layoutFName, NULL);
    
 	/*----- creo il device context per la stampante -----*/
 	if (m_dcPrint.m_hDC == NULL)
@@ -458,7 +459,7 @@ BOOL CPrintInterpreter::PrintText(CString layoutFName,
 
   // dal file di layout vede se deve scrivere il numero a ciascuna pagina e, in caso
 	// affermativo, memorizza come nelle le variabili membro dell'oggetto m_PageItem
-  BOOL bStampaNumeroPagina = m_PageItem.Load(SEC_GENERAL, KEY_NR_PAGINA, layoutFName);
+  BOOL bStampaNumeroPagina = m_PageItem.Load(SEC_GENERAL, KEY_NR_PAGINA, layoutFName, NULL);
   
   if((pPrintFile = fopen(printFileName, "wt")) == NULL)
     return FALSE;
@@ -1155,7 +1156,7 @@ CPrintItem::CPrintItem(void) : CObject()
 	m_Nomefile = "";
 }
 
-BOOL CPrintItem::Load(CString sec, CString key, CString layoutFName)
+BOOL CPrintItem::Load(CString sec, CString key, CString layoutFName, CStringArray* pMarchiFiles)
 {
   return TRUE;
 }
@@ -1202,7 +1203,7 @@ CPrintItemArray::~CPrintItemArray(void)
 * Ritorno    :     
 * Note       : 
 *********************************************************************/
-int CPrintItemArray::Load(CString sec, CString layoutFName, CString headerFName)
+int CPrintItemArray::Load(CString sec, CString layoutFName, CString headerFName, CStringArray* pMarchiFiles)
 {
   int         i, p;
   char        buffer[1536];
@@ -1241,7 +1242,7 @@ int CPrintItemArray::Load(CString sec, CString layoutFName, CString headerFName)
     
 		// imposta le variabili membro dell'oggetto appena allocato in base al valore
 		// presente a destra della chiave corrente
-		if (pPrintItem->Load(sec, buffer + p, layoutFName))
+		if (pPrintItem->Load(sec, buffer + p, layoutFName, pMarchiFiles))
     {
       // calcola la variabile m_Page che viene :
 			// LAST_PAGE (valore negativo, controlla nel define) se la chiave e' minore di zero
@@ -1307,7 +1308,7 @@ int CPrintItemArray::Load(CString sec, CString layoutFName, CString headerFName)
     
 			// imposta le variabili membro dell'oggetto appena allocato in base al valore
 			// presente a destra della chiave corrente
-			if (pPrintItem->Load(sec, bufheader + p, headerFName))
+			if (pPrintItem->Load(sec, bufheader + p, headerFName, pMarchiFiles))
 			{
 				int nChiave = atoi((LPCSTR)(bufheader + p));
 				
@@ -1373,7 +1374,7 @@ CStringItem::CStringItem(void) : CPrintItem()
 * Ritorno    :     
 * Note       : 
 *********************************************************************/
-BOOL CStringItem::Load(CString sec, CString key, CString layoutFName)
+BOOL CStringItem::Load(CString sec, CString key, CString layoutFName, CStringArray* pMarchiFiles)
 {
   int     p;
   char    buffer[256];
@@ -1678,11 +1679,11 @@ CFieldItem::CFieldItem(void) : CStringItem()
 * Ritorno    :     
 * Note       : 
 *********************************************************************/
-BOOL CFieldItem::Load(CString sec, CString key, CString layoutFName)
+BOOL CFieldItem::Load(CString sec, CString key, CString layoutFName, CStringArray* pMarchiFiles)
 {
   // ricava i dati del campo in base a cosa e' scritto alla chiave key
 	// in particolare ricava la variabile m_Text
-	BOOL r = CStringItem::Load(sec, key, layoutFName);
+	BOOL r = CStringItem::Load(sec, key, layoutFName, pMarchiFiles);
 
   // eguaglia m_Key a m_Text in quuanto la chiave e' l'ultima parte dellla riga 
 	// nel file di layout alla sezione fields 
@@ -1807,12 +1808,12 @@ void CTabfieldItem::SetFont(CString strFont)
 * Ritorno    :     
 * Note       : 
 *********************************************************************/
-BOOL CTabfieldItem::Load(CString sec, CString key, CString layoutFName)
+BOOL CTabfieldItem::Load(CString sec, CString key, CString layoutFName, CStringArray* pMarchiFiles)
 {
   BOOL bRet;
   
 	// chiama la Load della classe CFieldItem per impostare
-  bRet = CFieldItem::Load(sec, key, layoutFName);
+  bRet = CFieldItem::Load(sec, key, layoutFName, pMarchiFiles);
   m_ZeroY = m_Y;
   return bRet;
 }
@@ -1869,9 +1870,9 @@ CTextItem::CTextItem(void) : CStringItem()
   m_FileName = "";
 }
 
-BOOL CTextItem::Load(CString sec, CString key, CString layoutFName)
+BOOL CTextItem::Load(CString sec, CString key, CString layoutFName, CStringArray* pMarchiFiles)
 {
-  BOOL r = CStringItem::Load(sec, key, layoutFName);
+  BOOL r = CStringItem::Load(sec, key, layoutFName, pMarchiFiles);
 
   m_FileName = m_Text;
   m_Text = "";
@@ -1948,7 +1949,7 @@ CGridItem::CGridItem(CGridItem * pItem) : CPrintItem()
 * Ritorno    :     
 * Note       : 
 *********************************************************************/
-BOOL CGridItem::Load(CString sec, CString key, CString layoutFName)
+BOOL CGridItem::Load(CString sec, CString key, CString layoutFName, CStringArray* pMarchiFiles)
 {
   int     p;
   char    buffer[128];
@@ -2102,7 +2103,7 @@ CBitmapItem::~CBitmapItem(void)
   }
 }
 
-BOOL CBitmapItem::Load(CString sec, CString key, CString layoutFName)
+BOOL CBitmapItem::Load(CString sec, CString key, CString layoutFName, CStringArray* pMarchiFiles)
 {
   int     p, r, zerox, zeroy;
   char    buffer[128];
@@ -2146,6 +2147,16 @@ BOOL CBitmapItem::Load(CString sec, CString key, CString layoutFName)
   if(!buffer[p]) return FALSE;
   m_PathName = buffer + p;
   p += (strlen(buffer + p) + 1);
+	// check if we are printing MARCHI s.c. 20.02.2020
+	CString mark("marchio");
+	if(m_PathName.Find(mark) == 0)
+	{
+		int index = atoi(m_PathName.Mid(mark.GetLength(), 1));
+		if(index == 1 || index == 2)
+		{
+			m_PathName = pMarchiFiles->GetAt(index - 1);
+		}
+	}
   if(!f.Open(m_PathName, CFile::modeRead)) return FALSE;
   /*----- carico la bitmap -----*/  
   f.Read((char*)&fileHeader, sizeof(BITMAPFILEHEADER));
@@ -2277,7 +2288,7 @@ CImageItem::~CImageItem(void)
 #endif
 }
 
-BOOL CImageItem::Load(CString sec, CString key, CString layoutFName)
+BOOL CImageItem::Load(CString sec, CString key, CString layoutFName, CStringArray* pMarchiFiles)
 {
   int     p, zerox, zeroy;
   char    buffer[128];
@@ -2438,7 +2449,7 @@ CBarcodeItem::~CBarcodeItem(void)
 {
 }
 
-BOOL CBarcodeItem::Load(CString sec, CString key, CString layoutFName)
+BOOL CBarcodeItem::Load(CString sec, CString key, CString layoutFName, CStringArray* pMarchiFiles)
 {
   int     p, zerox, zeroy;
   char    buffer[128];

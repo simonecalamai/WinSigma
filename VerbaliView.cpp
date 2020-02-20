@@ -3135,7 +3135,7 @@ void CVerbaliView::PrintMinuta()
 			m_nTotalePagine = 0;
 			prnInterpreter.SetPage(1);
 			prnInterpreter.StartSimulation();
-			prnInterpreter.Print(strLayout, &strNames, &strValues, NULL, ScanProviniMinuta);
+			prnInterpreter.Print(strLayout, &strNames, &strValues, NULL, NULL, ScanProviniMinuta);
 			m_nTotalePagine = prnInterpreter.GetPage() - 1;
 			prnInterpreter.EndSimulation();
 		}
@@ -3175,7 +3175,7 @@ void CVerbaliView::PrintMinuta()
       strLayout.Format(".\\%s", m_pTipiCertificatoSet->m_LayoutStampaMinuta);
 			prnInterpreter.SetPage(1);
 			prnInterpreter.SetTotPages(m_nTotalePagine);
-      prnInterpreter.Print(strLayout, &strNames, &strValues, NULL, ScanProviniMinuta);
+      prnInterpreter.Print(strLayout, &strNames, &strValues, NULL, NULL, ScanProviniMinuta);
 		}
 	}
   prnInterpreter.PostPrinting();
@@ -4182,7 +4182,7 @@ void CVerbaliView::PrintVerbale()
   if(m_nPrintMode == STAMPA_VERBALE_AD_AGHI)
     prnInterpreter.PrintText(strPrnFile, printFileName, &strNames, &strValues, NULL, &ScanCampioni);
   else
-    prnInterpreter.Print(strPrnFile, &strNames, &strValues, NULL, &ScanCampioni);
+    prnInterpreter.Print(strPrnFile, &strNames, &strValues, NULL, NULL, &ScanCampioni);
   m_nTotalePagine = prnInterpreter.GetPage() - 1;
   prnInterpreter.EndSimulation();
   prnInterpreter.SetPage(1);
@@ -4228,7 +4228,7 @@ void CVerbaliView::PrintVerbale()
   }
   else
   {
-    prnInterpreter.Print(strPrnFile, &strNames, &strValues, NULL, &ScanCampioni);
+    prnInterpreter.Print(strPrnFile, &strNames, &strValues, NULL, NULL, &ScanCampioni);
   	prnInterpreter.PostPrinting();
   }
 #endif 
@@ -5505,7 +5505,7 @@ void CVerbaliView::StampaCertificati(BOOL bHeader)
 	{
 		CString temp, fileLayout = "";	// contenitore del nome del file di layout
 		int numeroPagine = 0;
-		CStringArray fieldNames, fieldValues;
+		CStringArray fieldNames, fieldValues, marchiFiles;
 
 		SetCursor(LoadCursor(NULL, IDC_WAIT));
 		for(int i=0; i<CertScelti.GetSize(); i++)
@@ -5553,7 +5553,7 @@ void CVerbaliView::StampaCertificati(BOOL bHeader)
 				}
 				
 				prn.Print(pApp->GetCurrentDirectory() + "\\" + fileLayout, 
-							&fieldNames, &fieldValues, NULL, &ScanProvini );
+							&fieldNames, &fieldValues, NULL, NULL, &ScanProvini );
 
 				// (andrea) Modifica provvisoria per saltare la stampa degli allegati
 				// numeroPagine = 1;
@@ -5563,7 +5563,7 @@ void CVerbaliView::StampaCertificati(BOOL bHeader)
 					int contaProvini = 1;
 					byte stampaAllegati = TRUE;
 					SET_START(m_pTabelle->m_pSerieProviniSet);
-					typedef BOOL (PROCESTERNA)(CString*,CAllTables*,CStringArray*,CStringArray*, int* );	
+					typedef BOOL (PROCESTERNA)(CString*,CAllTables*,CStringArray*,CStringArray*, CStringArray*, int* );	
 					HINSTANCE hist = NULL;
 					PROCESTERNA* pFunc;		
 					BOOL esito = 0;
@@ -5576,9 +5576,10 @@ void CVerbaliView::StampaCertificati(BOOL bHeader)
 						{
 							fieldNames.RemoveAll();
 							fieldValues.RemoveAll();
+							marchiFiles.RemoveAll();
 							//stampaAllegati = (pFunc)(&fileLayout,m_pTabelle,&fieldNames,&fieldValues,&contaProvini);
 							SET_START(m_pTabelle->m_pSerieProviniSet);
-							stampaAllegati = (pFunc)(&fileLayout,m_pTabelle,&fieldNames,&fieldValues,&pagCorrente);
+							stampaAllegati = (pFunc)(&fileLayout,m_pTabelle,&fieldNames,&fieldValues,&marchiFiles,&pagCorrente);
 							//--------- gestione numeri di pagina --------------------//
 							fieldNames.Add("pagineTotali");
 							str.Format("%d",numeroPagine);
@@ -5590,7 +5591,7 @@ void CVerbaliView::StampaCertificati(BOOL bHeader)
 
 							pagCorrente++;
 							prn.Print(pApp->GetCurrentDirectory() + "\\" + fileLayout, 
-								&fieldNames, &fieldValues, NULL, NULL);
+								&fieldNames, &fieldValues, &marchiFiles, NULL, NULL);
 						}
 					}
 				}
@@ -5770,7 +5771,7 @@ void CVerbaliView::StampaCertificato(long codRif, BOOL isCodSerie, BOOL bHeader)
 
 		CString fileLayout = "";	// contenitore del nome del file di layout
 		int numeroPagine = 0;
-		CStringArray fieldNames, fieldValues;
+		CStringArray fieldNames, fieldValues, marchiFiles;
 
 		for(int i = 0; i < CertScelti.GetSize(); i++)
 		{
@@ -5849,7 +5850,7 @@ void CVerbaliView::StampaCertificato(long codRif, BOOL isCodSerie, BOOL bHeader)
 				}
 
 				prn.Print(pApp->GetCurrentDirectory() + "\\" + fileLayout, 
-							&fieldNames, &fieldValues, NULL, &ScanProvini);
+							&fieldNames, &fieldValues, NULL, NULL, &ScanProvini);
 					// (andrea) Modifica provvisoria per saltare la stampa degli allegati
 				// numeroPagine = 1;
 				// --------------------------------------------------------------- //
@@ -5858,7 +5859,7 @@ void CVerbaliView::StampaCertificato(long codRif, BOOL isCodSerie, BOOL bHeader)
 					int contaProvini = 1;
 					byte stampaAllegati = TRUE;
 					SET_START(m_pTabelle->m_pSerieProviniSet);
-					typedef BOOL (PROCESTERNA)(CString*,CAllTables*,CStringArray*,CStringArray*, int*, BOOL*, CTime* );	
+					typedef BOOL (PROCESTERNA)(CString*,CAllTables*,CStringArray*,CStringArray*,CStringArray*, int*, BOOL*, CTime* );	
 					HINSTANCE hist = NULL;
 					PROCESTERNA* pFunc;		
 					BOOL esito = 0;
@@ -5871,9 +5872,10 @@ void CVerbaliView::StampaCertificato(long codRif, BOOL isCodSerie, BOOL bHeader)
 						{
 							fieldNames.RemoveAll();
 							fieldValues.RemoveAll();
+							marchiFiles.RemoveAll();
 							//stampaAllegati = (pFunc)(&fileLayout,m_pTabelle,&fieldNames,&fieldValues,&contaProvini);
 							SET_START(m_pTabelle->m_pSerieProviniSet);
-							stampaAllegati = (pFunc)(&fileLayout,m_pTabelle,&fieldNames,&fieldValues,&pagCorrente,&stampaDuplicato, &dlg.m_DataDuplicato);
+							stampaAllegati = (pFunc)(&fileLayout, m_pTabelle, &fieldNames, &fieldValues, &marchiFiles, &pagCorrente,&stampaDuplicato, &dlg.m_DataDuplicato);
 							//--------- gestione numeri di pagina --------------------//
 							fieldNames.Add("pagineTotali");
 							str.Format("%d",numeroPagine);
@@ -5890,7 +5892,7 @@ void CVerbaliView::StampaCertificato(long codRif, BOOL isCodSerie, BOOL bHeader)
 							//--------------------------------------------------------//	
 							pagCorrente++;
 							prn.Print(pApp->GetCurrentDirectory() + "\\" + fileLayout, 
-								&fieldNames, &fieldValues, NULL, NULL);
+								&fieldNames, &fieldValues, &marchiFiles, NULL, NULL);
 						}
 					}					
 				}
@@ -6276,7 +6278,7 @@ void CVerbaliView::OnStampaEtichette()
 					str.Format("Stampa del report delle etichette dei Verbali (%s)", dlg.m_strScelti);
 					aryField.Add("intestazione");
 					aryValue.Add(str);
-					prn.Print(".\\ReportEtichette.prn", &aryField, &aryValue, NULL, &ScanEtichette);
+					prn.Print(".\\ReportEtichette.prn", &aryField, &aryValue, NULL, NULL, &ScanEtichette);
 					prn.PostPrinting();
 				}
 			}
@@ -6290,7 +6292,7 @@ void CVerbaliView::OnStampaEtichette()
 					m_aryCampiEtichette.Copy(*paryInd);
 					aryField.RemoveAll();
 					aryValue.RemoveAll();
-					prn.Print(".\\Etichette.prn", &aryField, &aryValue, NULL, &ScanEtichette);
+					prn.Print(".\\Etichette.prn", &aryField, &aryValue, NULL, NULL, &ScanEtichette);
 					prn.PostPrinting();
 				}
 			}
@@ -6555,7 +6557,7 @@ void CVerbaliView::OnPrintSchedaIntFattura()
 			str = "Non ci sono dati aggiuntivi.";
 		fValue.Add(str);
 		
-		prn.Print(FILE_STAMPA_SCHEDA, &fName, &fValue, NULL, NULL);
+		prn.Print(FILE_STAMPA_SCHEDA, &fName, &fValue, NULL, NULL, NULL);
 		prn.PostPrinting();
     aziendeSet.Close();
 	}

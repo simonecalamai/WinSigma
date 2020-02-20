@@ -266,7 +266,7 @@ void CMarchiView::OnStampa()
 
   m_BmpObject.Save("marchio.bmp");
 	prn.PrePrinting();
-	prn.Print(pApp->GetCurrentDirectory() + "\\marchio.prn", &fieldNames, &fieldValues, NULL, NULL);
+	prn.Print(pApp->GetCurrentDirectory() + "\\marchio.prn", &fieldNames, &fieldValues, NULL, NULL, NULL);
 	prn.PostPrinting();
 }
 

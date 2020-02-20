@@ -68,7 +68,7 @@ __declspec( dllexport ) BOOL DatiProvino(CAllTables* pTabelle, CStringArray* pFi
 																				 CStringArray* pFieldValues, byte primoCampo, int numeroInterno, long CodiceCertificato);
 
 __declspec( dllexport ) BOOL StampaAllegato(CString* fileLayout, CAllTables* tabelle, 
-																						CStringArray* fieldNames, CStringArray* fieldValues, 
+																						CStringArray* fieldNames, CStringArray* fieldValues, CStringArray* marchiFiles,  
 																						int* pContaProvini, BOOL* Duplicato,  CTime* DataDuplicato);
 }
 

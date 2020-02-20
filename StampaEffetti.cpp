@@ -253,7 +253,7 @@ void CStampaEffetti::OnOK()
 	prn.SetPage(1);
 	m_ItemCount=0;
   m_nTotaleEffetti = 0;
-	prn.Print(pApp->GetCurrentDirectory() + "\\Effetti.prn", &strNames, &strValues, NULL, &ScanPerEffetto);	
+	prn.Print(pApp->GetCurrentDirectory() + "\\Effetti.prn", &strNames, &strValues, NULL, NULL, &ScanPerEffetto);	
  
 	prn.PostPrinting();
 

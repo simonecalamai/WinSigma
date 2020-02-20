@@ -255,7 +255,7 @@ void CReportVerbali::StampaReport()
 		}
 		// - - - - - - - - - - - - - - - - - - - - - - - - //
 		
-		prnInterpreter.Print(FILE_STAMPA, &fieldNames, &fieldValues, NULL, &ScanVerbali );
+		prnInterpreter.Print(FILE_STAMPA, &fieldNames, &fieldValues, NULL, NULL, &ScanVerbali );
 		prnInterpreter.PostPrinting();
 	}
 

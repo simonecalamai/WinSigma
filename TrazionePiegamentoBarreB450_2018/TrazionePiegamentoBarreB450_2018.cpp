@@ -785,7 +785,7 @@ __declspec( dllexport ) BOOL DatiProvino(CAllTables* pTabelle, CStringArray* pFi
 
 
 __declspec( dllexport ) BOOL StampaAllegato(CString* fileLayout, CAllTables* tabelle, 
-																						CStringArray* fieldNames, CStringArray* fieldValues, 
+																						CStringArray* fieldNames, CStringArray* fieldValues, CStringArray* marchiFiles,
 																						int* pContaProvini, BOOL* Duplicato, CTime* DataDuplicato)
 {	
 	CSerieProviniSet* pSerieProvSet = tabelle->m_pSerieProviniSet;
@@ -932,8 +932,12 @@ __declspec( dllexport ) BOOL StampaAllegato(CString* fileLayout, CAllTables* tab
 					bmpObject.Open(&mFile);
 					mFile.Close();
 				}
-	   		bmpObject.Save("marchio1.bmp");
+				CString marchioFile;
+				marchioFile.Format("%s.bmp", pMarchiSet->m_Nome);
+	   		bmpObject.Save(marchioFile);
+//	   		bmpObject.Save("marchio1.bmp");
 				bmpObject.Close();
+				marchiFiles->Add(marchioFile);
 			}
 		  else
 			{
@@ -1011,9 +1015,12 @@ __declspec( dllexport ) BOOL StampaAllegato(CString* fileLayout, CAllTables* tab
 					bmpObject.Open(&mFile);
 					mFile.Close();
 				}
-	   		bmpObject.Save("marchio2.bmp");
+				CString marchioFile;
+				marchioFile.Format("%s.bmp", pMarchiSet->m_Nome);
+	   		bmpObject.Save(marchioFile);
+//	   		bmpObject.Save("marchio2.bmp");
 				bmpObject.Close();
-			}
+				marchiFiles->Add(marchioFile);			}
 			else
 			{
 				temp.Format(", %d", iProvino);
