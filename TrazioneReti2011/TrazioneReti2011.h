@@ -25,6 +25,7 @@
 #define DENOMINATORE_SEZIONE 7.85
 #define PI_GRECO 3.141592654
 #define INDICE_ALLUNGAMENTO 10
+#define MARCHI_FOLDER			"marchi"
 
 #define SAFETY_OPEN(pSet) pSet->IsOpen() ? pSet->Requery() : pSet->Open();
 

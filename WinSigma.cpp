@@ -302,6 +302,9 @@ BOOL CWinSigmaApp::InitInstance()
 
 	m_lCondizioniPagamentoDefault = 2; // default Pagamento Completo (TP02) 
 
+	// create folder marchi
+	_mkdir(MARCHI_FOLDER);
+
 	// The one and only window has been initialized, so show and update it.
 	m_pMainWnd->ShowWindow(SW_SHOWMAXIMIZED);
 	m_pMainWnd->UpdateWindow();

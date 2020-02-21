@@ -933,7 +933,7 @@ __declspec( dllexport ) BOOL StampaAllegato(CString* fileLayout, CAllTables* tab
 					mFile.Close();
 				}
 				CString marchioFile;
-				marchioFile.Format("%s.bmp", pMarchiSet->m_Nome);
+				marchioFile.Format("%s\\%s.bmp", MARCHI_FOLDER, pMarchiSet->m_Nome);
 	   		bmpObject.Save(marchioFile);
 //	   		bmpObject.Save("marchio1.bmp");
 				bmpObject.Close();
@@ -1016,7 +1016,7 @@ __declspec( dllexport ) BOOL StampaAllegato(CString* fileLayout, CAllTables* tab
 					mFile.Close();
 				}
 				CString marchioFile;
-				marchioFile.Format("%s.bmp", pMarchiSet->m_Nome);
+				marchioFile.Format("%s\\%s.bmp", MARCHI_FOLDER, pMarchiSet->m_Nome);
 	   		bmpObject.Save(marchioFile);
 //	   		bmpObject.Save("marchio2.bmp");
 				bmpObject.Close();

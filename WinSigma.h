@@ -53,7 +53,7 @@
 //
 //#define WINSIGMA2
 
-#define STR_VERSION							"4.7.21" 
+#define STR_VERSION							"4.7.22" 
 #define STR_BUILDTIME   __TIMESTAMP__  
 #define AZIENDE_BUFFER  1024
 #define FATTURE_BUFFER  1024
@@ -120,6 +120,8 @@
 #define PRIV_FATTURAZIONE         2
 #define PRIV_CERTIFICAZIONE       3
 #define PRIV_ACCETTAZIONE         4
+
+#define MARCHI_FOLDER			"marchi"
 
 // definizioni per scadenze fatture
 enum

@@ -26,6 +26,7 @@
 #define STR_ALLUNGAMENTO 5
 
 #define PI_GRECO 3.141592654
+#define MARCHI_FOLDER			"marchi"
 
 #define SAFETY_OPEN(pSet) pSet->IsOpen() ? pSet->Requery() : pSet->Open();
 

@@ -22,6 +22,7 @@
 // Definizione delle macro generiche
 
 #define MATERIALE "Profilati in acciaio"
+#define MARCHI_FOLDER			"marchi"
 
 #define PI_GRECO 3.141592654
 

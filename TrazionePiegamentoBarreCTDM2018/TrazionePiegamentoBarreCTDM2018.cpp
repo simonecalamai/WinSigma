@@ -924,8 +924,12 @@ __declspec( dllexport ) BOOL StampaAllegato(CString* fileLayout, CAllTables* tab
 					bmpObject.Open(&mFile);
 					mFile.Close();
 				}
-	   		bmpObject.Save("marchio1.bmp");
+				CString marchioFile;
+				marchioFile.Format("%s\\%s.bmp", MARCHI_FOLDER, pMarchiSet->m_Nome);
+	   		bmpObject.Save(marchioFile);
+//	   		bmpObject.Save("marchio1.bmp");
 				bmpObject.Close();
+				marchiFiles->Add(marchioFile);
 			}
 		  else
 			{
@@ -1003,8 +1007,12 @@ __declspec( dllexport ) BOOL StampaAllegato(CString* fileLayout, CAllTables* tab
 					bmpObject.Open(&mFile);
 					mFile.Close();
 				}
-	   		bmpObject.Save("marchio2.bmp");
+				CString marchioFile;
+				marchioFile.Format("%s\\%s.bmp", MARCHI_FOLDER, pMarchiSet->m_Nome);
+	   		bmpObject.Save(marchioFile);
+//	   		bmpObject.Save("marchio2.bmp");
 				bmpObject.Close();
+				marchiFiles->Add(marchioFile);
 			}
 			else
 			{
