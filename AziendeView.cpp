@@ -23,6 +23,10 @@ static char THIS_FILE[]=__FILE__;
 #define new DEBUG_NEW
 #endif
 
+#define COD_DEST_PRIVATO_SIZE		7
+#define COD_DEST_PA_SIZE				6
+
+
 #define V_APERTO      "Aperto"
 #define V_DAFATTURARE "In fatturazione"
 #define V_CHIUSO      "Chiuso"
@@ -746,6 +750,12 @@ BOOL CAziendeView::ValidateData()
     AfxMessageBox("Verificare il campo CAB");
     return FALSE;
   }
+
+	if(VerificaCodiceDestinatario() == FALSE)
+	{
+		return FALSE;
+	}
+
   return TRUE;
 }
 
@@ -812,6 +822,25 @@ BOOL CAziendeView::VerificaPI(void)
       return FALSE;
   
   return TRUE;
+}
+
+BOOL CAziendeView::VerificaCodiceDestinatario()
+{
+	if(m_strCodiceDestinatario.GetLength() == COD_DEST_PRIVATO_SIZE)
+	{
+		return TRUE;
+	}
+	else if(m_strCodiceDestinatario.GetLength() == COD_DEST_PA_SIZE)
+	{
+		CString str("Codice destinatario di 6 caratteri.\nConfermi la correttezza?");
+		if(AfxMessageBox(str, MB_YESNO) == IDYES)
+			return TRUE;
+		else	
+			return FALSE;
+	}
+	CString str("Codice destinatario errato");
+	AfxMessageBox(str, MB_OK);
+	return FALSE;
 }
 
 BOOL CAziendeView::NewRecord()

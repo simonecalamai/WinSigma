@@ -148,6 +148,7 @@ protected:
 	BOOL CheckIDExist(CString& strID);
 	BOOL CheckPIVAExist(CString strPIVA = "");
 	BOOL ValidateCodiceFiscale(void);
+	BOOL VerificaCodiceDestinatario(void);
 
 	// ClassWizard generated virtual function overrides
 	//{{AFX_VIRTUAL(CAziendeView)

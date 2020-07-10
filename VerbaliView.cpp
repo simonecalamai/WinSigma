@@ -3505,7 +3505,10 @@ BOOL CVerbaliView::ScanProviniMinuta(CStringArray* pFieldNames, CStringArray* pF
 		CString csData29 = (ctMat29).Format("%d/%m/%y");
 		CString csData30 = (ctMat30).Format("%d/%m/%y");
 
-		if(accett == ctMat28 || accett == ctMat29 || accett == ctMat30)
+//		if(accett == ctMat28 || accett == ctMat29 || accett == ctMat30)
+		if(csDataAccett.CompareNoCase(csData28) == 0 || 
+				csDataAccett.CompareNoCase(csData29) == 0 || 
+				csDataAccett.CompareNoCase(csData30) == 0)
 		{
 			pFieldValues->Add(csDataAccett);
 		}
