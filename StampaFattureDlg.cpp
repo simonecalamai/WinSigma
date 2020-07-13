@@ -3077,6 +3077,8 @@ void CStampaFattureDlg::XMLBodyDatiBeniServizi(FILE* f)
 			break;
 		case 2:			// split
 			esigIVA = "S";
+			// per PA l'importo del pagamento corrisponde all'imponibile s.c. 13.07.2020
+			m_dImportoPagamentoXML = m_dImponibileXML;
 			break;
 	}
 	csLine.Format("<EsigibilitaIVA>%s</EsigibilitaIVA>\n", esigIVA); 
