@@ -238,7 +238,7 @@ __declspec( dllexport ) int RiempiCampi(long numCertificato, CAllTables* pTabell
 	CString query;
 	query.Format("VERBALI.Codice = CERTIFICATI.Verbale AND CERTIFICATI.Codice = %d",numCertificato);
 	pCertVerbSet->m_strFilter = query;
-	SAFETY_OPEN(pCertVerbSet);
+	SAFETY_OPEN(pCertVerbSet); 
 
 	CSerieSet* pSerieSet = pTabelle->m_pSerieSet;
 	pSerieSet->m_strFilter.Format("NuovoCertificato = 1 AND Certificato = %d", numCertificato);
