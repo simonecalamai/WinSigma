@@ -8,7 +8,7 @@ y zero=-60
 ;20=+920,+20,30,40,Times,30,40,-,0x602000
 30=+630,+16,1100,40,Times,25,40,BL,- Prove su materiali da costruzione,0x602000
 40=340,230,1500,42,Times,24,40,L,Autorizzazione Ministero Infrastrutture e Trasporti - Associato ALIG,0x602000
-50=340,280,1260,42,Times,24,40,L,D.M. n. 196 del 25.06.2015 (Legge 1086/71 art. 20 - Circ. 7617/STC Settore A),0x602000
+50=340,280,1260,42,Times,24,40,L,D.M. n. 127 del 04.06.2020 (Legge 1086/71 art. 20 - Circ. 7617/STC Settore A),0x602000
 
 ;footer
 500=80,2800,800,50,Courier New,18,28,L,Firmato digitalmente ai sensi del D.Lgs 82/2005,0x602000
