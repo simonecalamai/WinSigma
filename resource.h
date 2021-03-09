@@ -596,7 +596,10 @@
 #define IDC_STATIC_FATTURE              1589
 #define IDC_RADIO_IVA_IMM               1590
 #define IDC_RADIO_IVA_DIFF              1591
+#define IDC_DATETIMEPICKER_FROM         1591
 #define IDC_RADIO_IVA_SPLIT             1592
+#define IDC_DATETIMEPICKER_TO           1592
+#define IDC_BUTTON_PRINT_ALL            1593
 #define ID_AZIENDA_MODIFICA             32771
 #define ID_VERBALE_MODIFICA             32772
 #define ID_FATTURA_EMETTI               32773
@@ -721,7 +724,7 @@
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        275
 #define _APS_NEXT_COMMAND_VALUE         33055
-#define _APS_NEXT_CONTROL_VALUE         1591
+#define _APS_NEXT_CONTROL_VALUE         1594
 #define _APS_NEXT_SYMED_VALUE           196
 #endif
 #endif

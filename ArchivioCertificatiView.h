@@ -31,6 +31,9 @@ private:
 public:
 	//{{AFX_DATA(CArchivioCertificatiView)
 	enum { IDD = IDD_FORM_ARCHIVIO_CERTIFICATI };
+	CButton	m_btnPrintAll;
+	CDateTimeCtrl	m_dateTo;
+	CDateTimeCtrl	m_dateFrom;
 	CComboBox	m_ComboTipoCertificato;
 	CEdit	m_EditNumeroCertificato;
 	CComboBox	m_cmbAnni;
@@ -88,6 +91,7 @@ protected:
 	afx_msg void OnPreviewDoc();
 	afx_msg void OnStampa();
 	afx_msg void OnStampaConHeader();
+	afx_msg void OnButtonPrintAll();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

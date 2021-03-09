@@ -16,6 +16,8 @@
 
 #define TIME_OUT_MSG_ID   WM_USER + 3
 
+class CPrintInterpreter;
+
 class CVerbaliView : public CXFormView
 {
 protected:
@@ -154,6 +156,8 @@ public:
 	static int m_nPrintMode;
 	static void StampaCertificato(CTipiCertificatoSet* pSet, long codRif, BOOL isCodSerie = TRUE, BOOL bHeader = FALSE );
 	static void StampaCertificato(long codRif, BOOL isCodSerie = TRUE, BOOL bHeader = FALSE );
+	static void StampaCertificatoDiretto(CTipiCertificatoSet* pSet, long codRif, CPrintInterpreter* pprn, BOOL isCodSerie = TRUE, BOOL bHeader = FALSE);
+	static void StampaCertificatoDiretto(long codRif, CPrintInterpreter* pprn, BOOL isCodSerie = TRUE, BOOL bHeader = FALSE);
 	void CreaEmendamento(long codDoc);
 	static CStringArray m_aryCampiEtichette;
 	static int m_nContaEtichette;

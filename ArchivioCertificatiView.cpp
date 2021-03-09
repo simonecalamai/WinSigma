@@ -3,6 +3,7 @@
 
 #include "stdafx.h"
 #include "winsigma.h"
+#include "Printerpreter.h"
 #include "StampaCertificatiDlg.h"
 #include "ArchivioCertificatiView.h"
 #include "WinsigmaDoc.h"
@@ -65,6 +66,8 @@ void CArchivioCertificatiView::Carica_Combo()
   }
 	pSet->Close();
   year = CTime::GetCurrentTime().GetYear();
+
+/*
 	//Seleziona come Item corrente quello dell'anno in corso
   for(n = 0; n < m_cmbAnni.GetCount(); n++)
   {
@@ -72,6 +75,12 @@ void CArchivioCertificatiView::Carica_Combo()
       break;
   }
 	m_cmbAnni.SetCurSel(n);
+*/
+
+	// nessuna selezione nella combo Anni
+	m_cmbAnni.SetCurSel(-1);
+
+
   // Combo con i tipi di certificato
   CTipiCertificatoSet* pTipiSet = new CTipiCertificatoSet(&pApp->m_db);
   pTipiSet->Open();
@@ -97,13 +106,39 @@ void CArchivioCertificatiView::Query()
 	//Aggiorna le variabili con il valore contenuto nei campi della form
 	UpdateData(TRUE);
 
-	m_cmbAnni.GetLBText(m_cmbAnni.GetCurSel(),csApp);
-	//Crea la stringa sql da utilizzare nella Query
-	if(csApp != TUTTI)
+	int selAnno = m_cmbAnni.GetCurSel();
+	if(selAnno == CB_ERR)
+	{
+		CTime start, end;
+		m_dateFrom.GetTime(start);
+		m_dateTo.GetTime(end);
+		CString strFrom, strTo; 
+		//Crea la stringa sql da utilizzare nella Query
+		if(start <= end)
+		{
+			strFrom.Format("%d-%d-%d", start.GetYear(), start.GetMonth(), start.GetDay());
+			strTo.Format("%d-%d-%d", end.GetYear(), end.GetMonth(), end.GetDay());
+			sql = "(DataEmissione >= '" + strFrom + "' AND DataEmissione <= '" + strTo + "')";
+		}
+	}
+	else
+	{
+		m_cmbAnni.GetLBText(selAnno, csApp);
+		if(csApp != TUTTI)
+		{
+			sql = "(DataEmissione >= '" + csApp + "-1-1' AND DataEmissione <= '" + csApp + "-12-31')";
+			year = m_cmbAnni.GetItemData(m_cmbAnni.GetCurSel());
+		}
+	}
+
+/*
+  if(csApp != TUTTI)
   {
 	  sql = "(DataEmissione >= '" + csApp + "-1-1' AND DataEmissione <= '" + csApp + "-12-31')";
     year = m_cmbAnni.GetItemData(m_cmbAnni.GetCurSel());
   }
+*/
+
 	if(!m_strNumeroFattura.IsEmpty())
   {
     CFattureSet* pFatture = new CFattureSet(&pApp->m_db);
@@ -199,7 +234,8 @@ void CArchivioCertificatiView::Query()
 	else
 		sql += " AND CERTIFICATI.Verbale = VERBALI.Codice";
 		
-	m_pSet->m_strSort = "Verbale, NumeroCertificato";
+	m_pSet->m_strSort = "DataEmissione";
+//	m_pSet->m_strSort = "Verbale, NumeroCertificato";
 	m_pSet->m_strFilter = sql;
 	m_pSet->Requery();
 }
@@ -309,6 +345,9 @@ void CArchivioCertificatiView::DoDataExchange(CDataExchange* pDX)
 {
 	CFormView::DoDataExchange(pDX);
 	//{{AFX_DATA_MAP(CArchivioCertificatiView)
+	DDX_Control(pDX, IDC_BUTTON_PRINT_ALL, m_btnPrintAll);
+	DDX_Control(pDX, IDC_DATETIMEPICKER_TO, m_dateTo);
+	DDX_Control(pDX, IDC_DATETIMEPICKER_FROM, m_dateFrom);
 	DDX_Control(pDX, IDC_COMBO_TIPO, m_ComboTipoCertificato);
 	DDX_Control(pDX, IDC_EDIT_NUMERO_CERTIFICATO, m_EditNumeroCertificato);
 	DDX_Control(pDX, IDC_COMBO_ANNO, m_cmbAnni);
@@ -344,6 +383,7 @@ BEGIN_MESSAGE_MAP(CArchivioCertificatiView, CFormView)
 	ON_COMMAND(IDD_PREVIEW_DOC, OnPreviewDoc)
 	ON_COMMAND(ID_STAMPA, OnStampa)
 	ON_COMMAND(ID_STAMPA_CON_HEADER, OnStampaConHeader)
+	ON_BN_CLICKED(IDC_BUTTON_PRINT_ALL, OnButtonPrintAll)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -376,6 +416,26 @@ void CArchivioCertificatiView::OnInitialUpdate()
 	m_pSet->Open();
 
 	Carica_Combo();
+
+	// set from and to date controls to begin and end of the currente month (s.c. 28.2.2021)
+	CTime now = CTime::GetCurrentTime();
+	int currentMonth = now.GetMonth();
+	int currentYear = now.GetYear();
+//	int currentMonth = 12;
+//	int currentYear = 2020;
+	int nextMonth = currentMonth == 12 ? 1 : 1 + currentMonth;
+	int nextMonthYear = currentMonth == 12 ? 1 + currentYear : currentYear;
+
+	CTime dateStartMonth = CTime(currentYear, currentMonth, 1, 0, 0, 0, 0);
+	CTime dateNextMonth = CTime(nextMonthYear, nextMonth, 1, 0, 0, 0, 0);
+
+	CTimeSpan spanMonth = dateNextMonth - dateStartMonth;
+
+	int monthDays = spanMonth.GetDays();
+	CTime dateEndMonth = CTime(currentYear, currentMonth,monthDays, 0, 0, 0, 0);
+
+	m_dateFrom.SetTime(&dateStartMonth);
+	m_dateTo.SetTime(&dateEndMonth);
 
 	m_rbIntestazione_Certificati.SetCheck(1);
 
@@ -717,4 +777,20 @@ void CArchivioCertificatiView::StampaCertificato(BOOL bHeader)
 void CArchivioCertificatiView::OnStampaConHeader() 
 {
 	StampaCertificato(TRUE);
+}
+
+void CArchivioCertificatiView::OnButtonPrintAll() 
+{
+	int num = m_Risultati_Ricerca.GetItemCount();
+	long codCert = 0;
+	CPrintInterpreter prn;
+	if(prn.PrePrinting())
+	{
+		for(int i = 0; i < num; i++)
+		{
+			codCert = m_Risultati_Ricerca.GetItemData(i);
+			CVerbaliView::StampaCertificatoDiretto(m_pTipiCertSet, codCert, &prn, FALSE, TRUE);
+		}
+		prn.PostPrinting();
+	}	
 }
